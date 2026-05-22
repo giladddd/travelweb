@@ -1,0 +1,9 @@
+# Assets folder is too large for GitHub (193MB)
+assets/
+
+# Node
+node_modules/
+
+# Windows
+Thumbs.db
+desktop.ini
