@@ -3,7 +3,7 @@ const fs   = require('fs');
 const path = require('path');
 const zlib = require('zlib');
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const ROOT = __dirname.endsWith(path.sep) ? __dirname : __dirname + path.sep;
 
 const mime = {
