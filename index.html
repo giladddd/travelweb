@@ -10034,6 +10034,55 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
   }
 })();
 
+// Intercept all add-to-cart buttons — prevent reload, show green feedback
+(function() {
+  function getCartCount() {
+    var el = document.querySelector('.ast-cart-menu-wrap .count, .woo-cart-count, [class*="cart-count"]');
+    return el ? (parseInt(el.textContent) || 0) : 0;
+  }
+  function setCartCount(n) {
+    var els = document.querySelectorAll('.ast-cart-menu-wrap .count, .woo-cart-count, [class*="cart-count"]');
+    els.forEach(function(el) { el.textContent = n; });
+    // also update the badge next to cart icon in header
+    var badges = document.querySelectorAll('.ast-cart-menu-wrap span.count');
+    badges.forEach(function(b) { b.textContent = n; });
+  }
+
+  function handleAddToCart(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      var origText = btn.innerHTML;
+      var origBg = btn.style.background || '';
+      btn.innerHTML = '&#10003; נוסף לסל!';
+      btn.style.background = '#22c55e';
+      btn.style.borderColor = '#22c55e';
+      btn.disabled = true;
+
+      // Update cart badge count
+      setCartCount(getCartCount() + 1);
+
+      setTimeout(function() {
+        btn.innerHTML = origText;
+        btn.style.background = origBg;
+        btn.style.borderColor = '';
+        btn.disabled = false;
+      }, 3000);
+    });
+  }
+
+  function initCartButtons() {
+    document.querySelectorAll('.ajax_add_to_cart, .add_to_cart_button').forEach(handleAddToCart);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCartButtons);
+  } else {
+    initCartButtons();
+  }
+})();
+
 // Guide accordion in mobile menu
 (function() {
   function initGuideAccordion() {
