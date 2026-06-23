@@ -9919,6 +9919,61 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 			})();
 		</script>
 			<script src='assets/js/local-submenu-fix.js?v=21'></script>
+<script>
+(function() {
+  function initSwatches() {
+    var form = document.querySelector('form.variations_form');
+    if (!form) return;
+
+    // Handle package type swatches (מוצילה + תיק יום / מוצילה בלבד)
+    var packageSwatches = form.querySelectorAll('.xpro_swatches[data-attribute_name="attribute_pa_package"] .swatch');
+    var packageSelect = form.querySelector('select[name="attribute_pa_package"]');
+
+    packageSwatches.forEach(function(swatch) {
+      swatch.addEventListener('click', function() {
+        packageSwatches.forEach(function(s) { s.classList.remove('selected'); });
+        swatch.classList.add('selected');
+        var val = swatch.getAttribute('data-value');
+        if (packageSelect) {
+          packageSelect.value = val;
+          packageSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+
+    // Update price display when variations change
+    form.addEventListener('found_variation', function(e) {
+      var variation = e.detail || (e.originalEvent && e.originalEvent.detail);
+      if (variation && variation.display_price !== undefined) {
+        var priceEl = document.getElementById('smart-price-display');
+        if (priceEl) {
+          priceEl.innerHTML = variation.display_price.toFixed(2) + '&nbsp;&#8362;';
+        }
+      }
+    });
+
+    // jQuery fallback for WooCommerce events
+    if (window.jQuery) {
+      jQuery(form).on('found_variation', function(e, variation) {
+        var priceEl = document.getElementById('smart-price-display');
+        if (priceEl && variation && variation.display_price !== undefined) {
+          priceEl.innerHTML = '&#8362;' + variation.display_price.toFixed(2);
+        }
+      });
+      jQuery(form).on('reset_data', function() {
+        var priceEl = document.getElementById('smart-price-display');
+        if (priceEl) priceEl.innerHTML = 'בחר אפשרות';
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwatches);
+  } else {
+    initSwatches();
+  }
+})();
+</script>
 </body>
 </html>
 
