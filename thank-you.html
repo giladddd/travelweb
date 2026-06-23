@@ -1231,20 +1231,9 @@ data-backlink-text="Back">
 
 <div id="ty-wrapper">
   <div id="ty-icon">✓</div>
-  <h1>ההזמנה התקבלה!</h1>
-  <p class="ty-sub">תודה רבה, ניצור איתך קשר בקרוב לתיאום</p>
-  <div id="ty-order-box">
-    <h2>סיכום הזמנה</h2>
-    <div id="ty-items-list"><p style="color:#9ca3af;text-align:center;">טוען...</p></div>
-  </div>
-  <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:20px 24px; margin:0 0 24px; text-align:right; direction:rtl;">
-    <h3 style="font-size:1rem; font-weight:800; color:#166534; margin:0 0 12px;">מה הלאה? ✨</h3>
-    <ul style="list-style:none; padding:0; margin:0; color:#374151; font-size:0.95rem; line-height:2;">
-      <li>✅ קיבלנו את פרטי ההזמנה שלכם</li>
-      <li>📞 נחזור אליכם תוך 24 שעות לאישור סופי</li>
-      <li>📦 הציוד יוכן ויישלח לפני תאריך הטיסה</li>
-    </ul>
-  </div>
+  <h1 id="ty-title">ההזמנה התקבלה!</h1>
+  <p class="ty-sub" id="ty-sub">ההזמנה שלך מחכה לך במייל 📧</p>
+  <p style="color:#6b7280; font-size:0.95rem; margin:0 0 28px; text-align:center; direction:rtl;">שלחנו אישור לכתובת המייל שלך. בנוסף קיבלנו עדכון ונחזור אליך תוך 24 שעות לתיאום.</p>
   <a id="ty-cta" href="https://wa.me/972523960215" target="_blank" rel="noopener noreferrer">📱 צרו קשר בוואטסאפ</a>
   <br>
   <a id="ty-back" href="index.html">חזרה לדף הבית</a>
@@ -1252,36 +1241,12 @@ data-backlink-text="Back">
 
 <script>
 (function () {
-  var order = null;
-  try { order = JSON.parse(localStorage.getItem('lastOrder')); } catch(e) {}
-  var list = document.getElementById('ty-items-list');
-  if (!list) return;
-  if (!order || !order.cart || !order.cart.length) {
-    list.innerHTML = '<p style="color:#9ca3af;text-align:center;">הסל הועבר לטיפול</p>';
-    return;
-  }
-  var html = '';
-  var total = 0;
-  order.cart.forEach(function(item) {
-    var qty = item.qty || 1;
-    var priceStr = item.price || '';
-    var num = parseFloat((priceStr || '').replace(/[^\d.]/g, '')) || 0;
-    total += num * qty;
-    html += '<div class="ty-item">';
-    html += '<div><div class="ty-item-name">' + (item.name || 'פריט') + (qty > 1 ? ' ×' + qty : '') + '</div>';
-    if (item.variations) html += '<div class="ty-item-details">' + item.variations + '</div>';
-    html += '</div>';
-    html += '<div class="ty-item-price">' + priceStr + '</div>';
-    html += '</div>';
-  });
-  if (total > 0) {
-    html += '<div class="ty-total-row"><span>סה"כ</span><span>₪' + total.toFixed(0) + '</span></div>';
-  }
-  list.innerHTML = html;
-  if (order.name) {
-    var sub = document.querySelector('.ty-sub');
-    if (sub) sub.textContent = 'תודה ' + order.name + ', ניצור איתך קשר בקרוב לתיאום';
-  }
+  try {
+    var order = JSON.parse(localStorage.getItem('lastOrder'));
+    if (order && order.name) {
+      document.getElementById('ty-title').textContent = 'תודה ' + order.name + '! 🎒';
+    }
+  } catch(e) {}
 })();
 </script>  </div><!-- .ast-container -->
 </div><!-- #content -->

@@ -2,6 +2,124 @@ const http = require('http');
 const fs   = require('fs');
 const path = require('path');
 const zlib = require('zlib');
+const tls  = require('tls');
+const net  = require('net');
+
+// ── Gmail SMTP (no npm) ──────────────────────────────────────────────────────
+// Set env vars before starting: EMAIL_PASS=your-gmail-app-password
+const SMTP_HOST = 'smtp.gmail.com';
+const SMTP_PORT = 587;
+const EMAIL_USER = process.env.EMAIL_USER || 'thesmarttravel3@gmail.com';
+const EMAIL_PASS = process.env.EMAIL_PASS || '';
+
+function base64(str) { return Buffer.from(str, 'utf8').toString('base64'); }
+
+function sendEmail({ to, subject, html }) {
+  return new Promise((resolve, reject) => {
+    if (!EMAIL_PASS) return reject(new Error('EMAIL_PASS not set'));
+    const boundary = 'boundary_' + Date.now();
+    const message = [
+      `From: =?UTF-8?B?${base64('המטייל החכם')}?= <${EMAIL_USER}>`,
+      `To: ${to}`,
+      `Subject: =?UTF-8?B?${base64(subject)}?=`,
+      'MIME-Version: 1.0',
+      `Content-Type: text/html; charset=UTF-8`,
+      '',
+      html
+    ].join('\r\n');
+
+    let socket = net.createConnection(SMTP_PORT, SMTP_HOST);
+    let secure = false;
+    let buf = '';
+    let step = 0;
+
+    function send(cmd) { (secure ? socket : socket).write(cmd + '\r\n'); }
+
+    function onData(data) {
+      buf += data.toString();
+      const lines = buf.split('\r\n');
+      buf = lines.pop();
+      for (const line of lines) {
+        const code = parseInt(line);
+        if (isNaN(code)) continue;
+        if (step === 0 && code === 220) { step=1; send('EHLO localhost'); }
+        else if (step === 1 && code === 250) { step=2; send('STARTTLS'); }
+        else if (step === 2 && code === 220) {
+          step=3;
+          const upgraded = tls.connect({ socket, host: SMTP_HOST, servername: SMTP_HOST }, () => {
+            socket = upgraded;
+            socket.on('data', onData);
+            send('EHLO localhost');
+          });
+          return;
+        }
+        else if (step === 3 && code === 250) { step=4; send('AUTH LOGIN'); }
+        else if (step === 4 && code === 334) { step=5; send(base64(EMAIL_USER)); }
+        else if (step === 5 && code === 334) { step=6; send(base64(EMAIL_PASS)); }
+        else if (step === 6 && code === 235) { step=7; send(`MAIL FROM:<${EMAIL_USER}>`); }
+        else if (step === 7 && code === 250) { step=8; send(`RCPT TO:<${to}>`); }
+        else if (step === 8 && code === 250) { step=9; send('DATA'); }
+        else if (step === 9 && code === 354) { step=10; send(message + '\r\n.'); }
+        else if (step === 10 && code === 250) { step=11; send('QUIT'); resolve(); }
+        else if (code >= 400) { reject(new Error('SMTP error: ' + line)); send('QUIT'); }
+      }
+    }
+    socket.on('data', onData);
+    socket.on('error', reject);
+    socket.on('timeout', () => reject(new Error('SMTP timeout')));
+    socket.setTimeout(15000);
+  });
+}
+
+async function handleSendOrder(req, res) {
+  let body = '';
+  req.on('data', d => body += d);
+  req.on('end', async () => {
+    try {
+      const order = JSON.parse(body);
+      const { name, phone, email, gender, flightDate, address, notes, cart } = order;
+
+      const cartHtml = (cart || []).map(i => {
+        const p = parseFloat((i.price||'').toString().replace(/[^\d.]/g,'')) || 0;
+        const vars = i.variations ? (typeof i.variations === 'string' ? i.variations
+          : Object.entries(i.variations).map(([k,v])=>k+': '+v).join(' | ')) : '';
+        return `<tr><td>${i.qty||1} × ${i.name}${vars?' ('+vars+')':''}</td><td>₪${p.toFixed(2)}</td></tr>`;
+      }).join('');
+
+      const businessHtml = `<div dir="rtl" style="font-family:Arial;font-size:15px">
+        <h2>הזמנה חדשה 🎒</h2>
+        <p><b>שם:</b> ${name}</p>
+        <p><b>טלפון:</b> ${phone}</p>
+        ${email ? `<p><b>מייל:</b> ${email}</p>` : ''}
+        ${gender ? `<p><b>מין:</b> ${gender}</p>` : ''}
+        ${flightDate ? `<p><b>תאריך טיסה:</b> ${flightDate}</p>` : ''}
+        ${address ? `<p><b>כתובת:</b> ${address}</p>` : ''}
+        ${notes ? `<p><b>הערות:</b> ${notes}</p>` : ''}
+        <h3>מוצרים:</h3>
+        <table border="1" cellpadding="6" style="border-collapse:collapse">
+          <tr><th>פריט</th><th>מחיר</th></tr>${cartHtml}
+        </table>
+      </div>`;
+
+      const customerHtml = `<div dir="rtl" style="font-family:Arial;font-size:15px">
+        <h2>שלום ${name} 👋</h2>
+        <p>קיבלנו את הזמנתך ונחזור אליך בהקדם לתיאום!</p>
+        <p>לכל שאלה: <a href="https://wa.me/972523960215">WhatsApp</a> | ${EMAIL_USER}</p>
+        <p>צוות המטייל החכם 🎒</p>
+      </div>`;
+
+      await sendEmail({ to: EMAIL_USER, subject: `הזמנה חדשה מ-${name}`, html: businessHtml });
+      if (email) await sendEmail({ to: email, subject: 'ההזמנה שלך התקבלה – המטייל החכם', html: customerHtml });
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true }));
+    } catch (err) {
+      console.error('Email error:', err.message);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, error: err.message }));
+    }
+  });
+}
 
 const PORT = process.env.PORT || 8080;
 const ROOT = __dirname.endsWith(path.sep) ? __dirname : __dirname + path.sep;
@@ -92,6 +210,11 @@ function serveFile(req, res, filePath) {
 }
 
 const server = http.createServer((req, res) => {
+  // Send order email endpoint
+  if (req.method === 'POST' && req.url === '/api/send-order') {
+    return handleSendOrder(req, res);
+  }
+
   // Rate limiting
   const ip = req.socket.remoteAddress || 'unknown';
   const count = (requestCounts.get(ip) || 0) + 1;

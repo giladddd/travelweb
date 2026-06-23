@@ -1425,6 +1425,11 @@ data-backlink-text="Back">
     localStorage.removeItem(CART_KEY);
     var waMsg = 'הזמנה חדשה!\nשם: '+name+'\nטלפון: '+phone+(order.gender?'\nמין: '+order.gender:'')+(order.flightDate?'\nתאריך טיסה: '+order.flightDate:'')+(order.address?'\nכתובת: '+order.address:'')+(order.email?'\nמייל: '+order.email:'')+'\n\nמוצרים:\n'+buildCartText(items)+(order.notes?'\n\nהערות: '+order.notes:'');
     window.open('https://wa.me/972523960215?text='+encodeURIComponent(waMsg), '_blank');
+    fetch('/api/send-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(order)
+    }).catch(function(){});
     window.location.href = 'thank-you.html';
   }
   document.getElementById('submit-order-btn').addEventListener('click', function(){
