@@ -5792,10 +5792,6 @@ data-backlink-text="Back">
 </div>
 <!-- end Content Accordion -->				</div>
 				</div>
-				<div style="text-align:center;direction:rtl;margin-top:16px;">
-  <p style="font-size:16px;font-weight:700;color:#0F172B;margin-bottom:12px;">לשלב האחרון &ndash; הטבות בחינם &#127381;</p>
-  <button onclick="(function(){var nav=document.querySelector('.ue-tabs.uc_tab_nav');if(nav){var top=nav.getBoundingClientRect().top+window.scrollY-85;window.scrollTo({top:top,behavior:'smooth'});setTimeout(function(){var t=document.querySelector('[data-hash-id=&quot;#ue-tab3&quot;]');if(t)t.click();},400);}})();" style="background:var(--e-global-color-primary,#f97316);color:#fff;border:none;padding:14px 28px;border-radius:35px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;">לשלב 3 ← הטבות בחינם</button>
-</div>
 					</div>
 				</div>
 				</div>
@@ -9963,6 +9959,56 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
       jQuery(form).on('reset_data', function() {
         var priceEl = document.getElementById('smart-price-display');
         if (priceEl) priceEl.innerHTML = 'בחר אפשרות';
+      });
+    }
+
+    // AJAX add to cart — no page reload
+    var addBtn = form.querySelector('.single_add_to_cart_button');
+    if (addBtn) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var productId = form.querySelector('[name="product_id"]').value;
+        var variationId = form.querySelector('[name="variation_id"]').value;
+        var qty = (form.querySelector('[name="quantity"]') || {}).value || 1;
+        var packageVal = packageSelect ? packageSelect.value : '';
+        var monthsSelect = form.querySelector('select[name="attribute_pa_months"]');
+        var monthsVal = monthsSelect ? monthsSelect.value : '';
+
+        var params = new URLSearchParams({
+          action: 'woocommerce_add_to_cart',
+          product_id: productId,
+          variation_id: variationId,
+          quantity: qty,
+          attribute_pa_package: packageVal,
+          attribute_pa_months: monthsVal
+        });
+
+        // Visual feedback — green for 3 seconds
+        var origText = addBtn.textContent;
+        var origBg = addBtn.style.background;
+        addBtn.style.background = '#22c55e';
+        addBtn.textContent = '✓ נוסף לסל!';
+        addBtn.disabled = true;
+
+        fetch('/wp-admin/admin-ajax.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString()
+        }).catch(function() {}).finally(function() {
+          // Update cart badge if exists
+          var badge = document.querySelector('.cart-count, .woo-cart-count, .woocommerce-cart-total');
+          if (badge) {
+            var cur = parseInt(badge.textContent) || 0;
+            badge.textContent = cur + parseInt(qty);
+          }
+        });
+
+        setTimeout(function() {
+          addBtn.style.background = origBg;
+          addBtn.textContent = origText;
+          addBtn.disabled = false;
+        }, 3000);
       });
     }
   }
