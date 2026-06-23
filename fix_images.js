@@ -84,7 +84,7 @@ for (const file of files) {
   });
 
   // ── 4. Fix src/data attrs still pointing to the domain ──────────────────────
-  html = html.replace(/((?:src|data-src|data-large_image|data-bg)=["'])https?:\/\/the-smart-traveller\.com\/(wp-content\/uploads\/[^"'\s]+)(["'])/gi, (match, attr, uploadsPath, end) => {
+  html = html.replace(/((?:src|data-src|data-large_image|data-thumb|data-bg)=["'])https?:\/\/the-smart-traveller\.com\/(wp-content\/uploads\/[^"'\s]+)(["'])/gi, (match, attr, uploadsPath, end) => {
     const local = uploadsToLocal(uploadsPath, pre);
     if (!local) return match;
     count++;
