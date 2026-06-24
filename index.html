@@ -589,6 +589,117 @@ a:where(:not(.wp-element-button))
   .elementor-element-b5a54c3 { width: 100% !important; max-width: 100% !important; }
 }
 </style>
+
+<style>
+/* =====================================================
+   Feature cards (icon-box) — match the-smart-traveller.com
+   ===================================================== */
+
+/* CSS custom properties from the live site's global kit */
+:root {
+  --e-global-color-primary: #F97316;
+  --e-global-color-secondary: #0F172B;
+  --e-global-color-text: #000000;
+  --e-global-color-c69b957: #FFFFFF;
+}
+
+/* Card containers: white bg, rounded corners, shadow, min-height, padding */
+.elementor-element-b4aef14,
+.elementor-element-146fdc2,
+.elementor-element-c452639,
+.elementor-element-985bb02 {
+  background-color: #FFFFFF !important;
+  border-radius: 25px !important;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15) !important;
+  min-height: 160px !important;
+}
+
+/* Inner padding for each card */
+.elementor-element-b4aef14 > .e-con-inner,
+.elementor-element-146fdc2 > .e-con-inner,
+.elementor-element-c452639 > .e-con-inner,
+.elementor-element-985bb02 > .e-con-inner {
+  padding: 10px !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+}
+
+/* Icon-box wrapper: horizontal layout, icon on inline-start (right in RTL) */
+.elementor-element-b4aef14 .elementor-icon-box-wrapper,
+.elementor-element-146fdc2 .elementor-icon-box-wrapper,
+.elementor-element-c452639 .elementor-icon-box-wrapper,
+.elementor-element-985bb02 .elementor-icon-box-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 15px !important;
+  text-align: start !important;
+}
+
+/* Icon size and color */
+.elementor-element-b4aef14 .elementor-icon-box-icon .elementor-icon,
+.elementor-element-146fdc2 .elementor-icon-box-icon .elementor-icon,
+.elementor-element-c452639 .elementor-icon-box-icon .elementor-icon,
+.elementor-element-985bb02 .elementor-icon-box-icon .elementor-icon {
+  font-size: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex-shrink: 0 !important;
+}
+
+.elementor-element-b4aef14 .elementor-icon-box-icon svg,
+.elementor-element-146fdc2 .elementor-icon-box-icon svg,
+.elementor-element-c452639 .elementor-icon-box-icon svg,
+.elementor-element-985bb02 .elementor-icon-box-icon svg {
+  width: 40px !important;
+  height: 40px !important;
+  fill: #F97316 !important;
+}
+
+/* Title styling */
+.elementor-element-b4aef14 .elementor-icon-box-title,
+.elementor-element-146fdc2 .elementor-icon-box-title,
+.elementor-element-c452639 .elementor-icon-box-title,
+.elementor-element-985bb02 .elementor-icon-box-title {
+  font-family: "Assistant", sans-serif !important;
+  font-size: 25px !important;
+  font-weight: 700 !important;
+  color: #0F172B !important;
+  margin: 0 0 5px 0 !important;
+  line-height: 1.2 !important;
+}
+
+/* Description styling */
+.elementor-element-b4aef14 .elementor-icon-box-description,
+.elementor-element-146fdc2 .elementor-icon-box-description,
+.elementor-element-c452639 .elementor-icon-box-description,
+.elementor-element-985bb02 .elementor-icon-box-description {
+  font-family: "Assistant", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #000000 !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* Mobile: title smaller + stack icon above text */
+@media (max-width: 767px) {
+  .elementor-element-b4aef14 .elementor-icon-box-title,
+  .elementor-element-146fdc2 .elementor-icon-box-title,
+  .elementor-element-c452639 .elementor-icon-box-title,
+  .elementor-element-985bb02 .elementor-icon-box-title {
+    font-size: 18px !important;
+  }
+  .elementor-element-b4aef14 .elementor-icon-box-wrapper,
+  .elementor-element-146fdc2 .elementor-icon-box-wrapper,
+  .elementor-element-c452639 .elementor-icon-box-wrapper,
+  .elementor-element-985bb02 .elementor-icon-box-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+}
+</style>
 </head>
 
 <body itemtype='https://schema.org/WebPage' itemscope='itemscope' class="rtl home wp-singular page-template page-template-elementor_header_footer page page-id-2992 wp-custom-logo wp-embed-responsive wp-theme-astra theme-astra onetap-root onetap-accessibility-plugin onetap-body-class onetap-custom-class onetap-classes onetap_hide_text_magnifier onetap_hide_dyslexic_font onetap_hide_dark_contrast onetap_hide_saturation onetap_hide_read_page onetap_hide_keyboard_navigation onetap_hide_mute_sounds onetap_hide_highlight_titles woocommerce-no-js ehf-template-astra ehf-stylesheet-astra xpro-theme-builder-template ast-page-builder-template ast-no-sidebar astra-4.13.3 ast-single-post ast-inherit-site-logo-transparent ast-theme-transparent-header ast-hfb-header elementor-default elementor-template-full-width elementor-kit-1345 elementor-page elementor-page-2992">
