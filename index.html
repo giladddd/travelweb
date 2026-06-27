@@ -653,7 +653,7 @@
 
       <!-- RENT FLOW -->
       <div id="sf-rent-flow">
-        <!-- sub-choice: מוצילה בלבד / מוצילה + תיק יום -->
+        <!-- sub-choice -->
         <div style="margin-bottom:20px">
           <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 10px">מה תרצו להשכיר?</p>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -661,38 +661,58 @@
             <button class="sf-subtype-btn" id="sf-subtype-both" onclick="setSubtype('both')">🎒+👜 מוצילה + תיק יום</button>
           </div>
         </div>
+
+        <!-- duration: slider + dropdown synced -->
         <div class="sf-duration" id="sf-duration-block">
-          <label>מספר חודשי השכרה: <strong id="sf-months-label">3</strong></label>
-          <input type="range" id="sf-months" min="1" max="12" value="3" oninput="updateMonths(this.value)">
-        </div>
-        <div class="sf-cards-grid" id="sf-rent-cards">
-          <div class="sf-card" id="pack-osprey65" onclick="selectPack('osprey65')">
-            <div class="sf-urgency">🔴 נותרו 2 יחידות בלבד!</div>
-            <div class="sf-badge-popular">⭐ הכי פופולרי</div>
-            <div class="sf-card-img">🎒</div>
-            <h3>Osprey Atmos AG 65L</h3>
-            <p class="sf-card-desc">המוצילה הפופולרית ביותר — מערכת אוורור AG מתקדמת, 65 ליטר</p>
-            <div class="sf-price-rent" id="price-osprey65-rent">₪<strong>140</strong>/חודש</div>
-            <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('osprey65')">+ הוסף לסל</button>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap">
+            <label style="font-weight:700;color:#0F172B;white-space:nowrap">מספר חודשי השכרה:</label>
+            <select id="sf-months-select" onchange="updateMonths(this.value)" style="border:2px solid #F97316;border-radius:8px;padding:6px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
+              <option value="1">1 חודש</option>
+              <option value="2">2 חודשים</option>
+              <option value="3" selected>3 חודשים</option>
+              <option value="4">4 חודשים</option>
+              <option value="5">5 חודשים</option>
+              <option value="6">6 חודשים</option>
+              <option value="7">7 חודשים</option>
+              <option value="8">8 חודשים</option>
+            </select>
           </div>
-          <div class="sf-card" id="pack-deuter60" onclick="selectPack('deuter60')">
+          <input type="range" id="sf-months" min="1" max="8" value="3" oninput="updateMonths(this.value)" style="width:100%">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-top:4px"><span>חודש 1</span><span>8 חודשים</span></div>
+          <div id="sf-price-display" style="background:#FFF7ED;border:1.5px solid #F97316;border-radius:10px;padding:10px 16px;margin-top:12px;text-align:center;font-weight:700;font-size:16px;color:#C2410C"></div>
+        </div>
+
+        <!-- gender selection for מוצילה -->
+        <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 10px">בחרו דגם:</p>
+        <div class="sf-cards-grid">
+          <div class="sf-card" id="pack-rent-women" onclick="selectPack('rent-women')">
+            <div class="sf-badge-popular">👩 דגם נשים</div>
             <div class="sf-card-img">🎒</div>
-            <h3>Deuter Aircontact 60L</h3>
-            <p class="sf-card-desc">נוחות גבוהה לטיולים ארוכים — מסגרת כסף גמישה, הגנת מותניים רחבה</p>
-            <div class="sf-price-rent" id="price-deuter60-rent">₪<strong>120</strong>/חודש</div>
-            <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('deuter60')">+ הוסף לסל</button>
+            <h3>מוצילה לנשים 60–70L</h3>
+            <p class="sf-card-desc">מוצילה עם פתיחת מזוודה — אוספרי או גרגורי בלבד</p>
+            <div class="sf-price-rent" id="price-rent-women">₪<strong id="pw-val">369</strong> סה״כ</div>
+            <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('rent-women')">+ הוסף לסל</button>
+          </div>
+          <div class="sf-card" id="pack-rent-men" onclick="selectPack('rent-men')">
+            <div class="sf-badge-popular">👨 דגם גברים</div>
+            <div class="sf-card-img">🎒</div>
+            <h3>מוצילה לגברים 60–70L</h3>
+            <p class="sf-card-desc">מוצילה עם פתיחת מזוודה — אוספרי או גרגורי בלבד</p>
+            <div class="sf-price-rent" id="price-rent-men">₪<strong id="pm-val">369</strong> סה״כ</div>
+            <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('rent-men')">+ הוסף לסל</button>
           </div>
         </div>
-        <!-- תיק יום — מוצג רק כשבוחרים "מוצילה + תיק יום" -->
+
+        <!-- תיק יום — רק ב"מוצילה + תיק יום" -->
         <div id="sf-daypack-section" style="display:none;margin-top:20px">
-          <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 10px">בחרו תיק יום:</p>
+          <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 10px">תיק יום (כלול בחבילה):</p>
           <div class="sf-cards-grid">
-            <div class="sf-card" id="pack-farpoint40" onclick="selectDayPack('farpoint40')">
+            <div class="sf-card selected" id="pack-daypack" style="border-color:#F97316;background:#FFF7ED">
+              <div class="sf-badge-popular">✅ כלול</div>
               <div class="sf-card-img">👜</div>
-              <h3>Osprey Farpoint 40L</h3>
-              <p class="sf-card-desc">תיק יום גדול — ניתן להכניס לתא המטוס</p>
-              <div class="sf-price-rent">₪<strong>80</strong>/חודש</div>
-              <button class="sf-add-btn" onclick="event.stopPropagation();addDayPackToCart('farpoint40')">+ הוסף לסל</button>
+              <h3>תיק יום 30–35L</h3>
+              <p class="sf-card-desc">תיק יום עם פתיחת מזוודה — אוספרי או גרגורי בלבד</p>
+              <div class="sf-price-rent">כלול במחיר החבילה</div>
             </div>
           </div>
         </div>
@@ -952,8 +972,15 @@
   var subtype = 'pack'; // 'pack' or 'both'
   var months = 3;
   var selectedPack = null;
-  var packRentPrices = { osprey65: 140, deuter60: 120, farpoint40: 80 };
-  var packBuyPrices  = { osprey65: 890, deuter60: 750, farpoint40: 590, 'buy-women': 1119, 'buy-men': 1119 };
+  var packBuyPrices = { 'buy-women': 1119, 'buy-men': 1119 };
+
+  // מוצילה בלבד: 169 לחודש 1, +100 לכל חודש נוסף, מחיר max = 6 חודשים (669)
+  // מוצילה + תיק יום: 269 לחודש 1, +100 לכל חודש נוסף, max = 6 חודשים (769)
+  function calcRentPrice(m) {
+    var base = subtype === 'both' ? 269 : 169;
+    var capped = Math.min(m, 6);
+    return base + (capped - 1) * 100;
+  }
 
   function getCart() { try { return JSON.parse(localStorage.getItem('smartCart') || '[]'); } catch(e) { return []; } }
   function saveCart(c) { localStorage.setItem('smartCart', JSON.stringify(c)); }
@@ -1022,21 +1049,30 @@
     document.getElementById('sf-next-1').disabled = true;
     document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
   };
+  function refreshPriceDisplay() {
+    var price = calcRentPrice(months);
+    var suffix = months >= 6 ? ' (מחיר חצי שנה)' : '';
+    var txt = '💰 סה״כ לתשלום: ₪' + price + suffix;
+    var el = document.getElementById('sf-price-display');
+    if (el) el.textContent = txt;
+    // update card price labels
+    var pw = document.getElementById('pw-val'); if(pw) pw.textContent = price;
+    var pm = document.getElementById('pm-val'); if(pm) pm.textContent = price;
+  }
   window.setSubtype = function(t) {
     subtype = t;
     document.getElementById('sf-subtype-pack').classList.toggle('active', t==='pack');
     document.getElementById('sf-subtype-both').classList.toggle('active', t==='both');
     document.getElementById('sf-daypack-section').style.display = t==='both' ? '' : 'none';
+    refreshPriceDisplay();
   };
-  window.updateMonths = function(v) { months=parseInt(v); document.getElementById('sf-months-label').textContent=months; };
-  window.selectDayPack = function(id) {
-    document.querySelectorAll('#sf-daypack-section .sf-card').forEach(function(c){ c.classList.remove('selected'); });
-    document.getElementById('pack-'+id).classList.add('selected');
-  };
-  window.addDayPackToCart = function(id) {
-    var price = packRentPrices[id] * months;
-    addItemToCart({ id: id+'-day', name: 'Osprey Farpoint 40L (תיק יום)', price: price, qty:1, mode:'rent', duration:months });
-    showToast('✓ תיק יום נוסף לסל');
+  window.updateMonths = function(v) {
+    months = parseInt(v);
+    var sel = document.getElementById('sf-months-select');
+    var rng = document.getElementById('sf-months');
+    if (sel && sel.value != months) sel.value = months;
+    if (rng && rng.value != months) rng.value = months;
+    refreshPriceDisplay();
   };
   window.selectPack = function(id) {
     selectedPack=id;
@@ -1063,29 +1099,35 @@
     injectAddButtons();
   };
   var allPackNames = {
-    'osprey65':'Osprey Atmos AG 65L', 'deuter60':'Deuter Aircontact 60L',
-    'farpoint40':'Osprey Farpoint 40L',
-    'buy-women':'Osprey Eja 65L — דגם נשים', 'buy-men':'Osprey Atmos AG 65L — דגם גברים'
+    'rent-women': 'מוצילה לנשים 60–70L (אוספרי/גרגורי)',
+    'rent-men':   'מוצילה לגברים 60–70L (אוספרי/גרגורי)',
+    'buy-women':  'מוצילה לנשים — קנייה',
+    'buy-men':    'מוצילה לגברים — קנייה'
   };
   window.submitForm = function() {
     if(!selectedPack){ alert('אנא בחרו מוצילה בשלב 1'); goStep(1); return; }
-    var packPrice = mode==='rent' ? packRentPrices[selectedPack]*months : packBuyPrices[selectedPack];
-    addItemToCart({id:selectedPack, name:allPackNames[selectedPack], price:packPrice, qty:1, mode:mode, duration:mode==='rent'?months:null});
+    var packPrice = mode==='rent' ? calcRentPrice(months) : packBuyPrices[selectedPack];
+    var name = allPackNames[selectedPack] || selectedPack;
+    if (mode==='rent' && subtype==='both') name += ' + תיק יום 30–35L';
+    addItemToCart({id:selectedPack, name:name, price:packPrice, qty:1, mode:mode, duration:mode==='rent'?months:null});
     showToast('✓ המוצילה נוספה לסל!');
     setTimeout(function(){ window.location.href='order-summary.html'; },1000);
   };
   window.addPackToCart = function(id) {
-    selectedPack=id;
+    selectedPack = id;
     document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
     var el = document.getElementById('pack-'+id); if(el) el.classList.add('selected');
-    var packPrice = mode==='rent' ? packRentPrices[id]*months : packBuyPrices[id];
-    addItemToCart({id:id, name:allPackNames[id], price:packPrice, qty:1, mode:mode, duration:mode==='rent'?months:null});
-    showToast('✓ '+(allPackNames[id]||id)+' נוספה לסל');
-    document.getElementById('sf-next-1').disabled=false;
+    var packPrice = mode==='rent' ? calcRentPrice(months) : packBuyPrices[id];
+    var name = allPackNames[id] || id;
+    if (mode==='rent' && subtype==='both') name += ' + תיק יום 30–35L';
+    addItemToCart({id:id, name:name, price:packPrice, qty:1, mode:mode, duration:mode==='rent'?months:null});
+    showToast('✓ ' + name + ' נוספה לסל');
+    document.getElementById('sf-next-1').disabled = false;
     document.getElementById('sf-next-1').disabled=false;
   };
   injectAddButtons();
   updateHeader();
+  refreshPriceDisplay();
 })();
 </script>
 </div><!-- /#smart-form-360 -->
