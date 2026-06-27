@@ -595,6 +595,19 @@
     font-size: 13px; font-weight: 700; box-shadow: 0 2px 6px rgba(249,115,22,0.4);
   }
   .sf-prod-card.selected .sf-prod-check { display: flex; }
+  /* dual-price rent card */
+  .sf-dual-prices { padding: 6px 10px 2px; display: flex; flex-direction: column; gap: 3px; }
+  .sf-dual-row { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+  .sf-dual-label { color: #64748B; font-weight: 600; }
+  .sf-dual-val { font-weight: 800; color: #F97316; font-size: 13px; }
+  .sf-dual-val.buy { color: #0F172B; }
+  .sf-dual-btns { display: flex; gap: 6px; padding: 8px 10px 10px; }
+  .sf-dual-btns button { flex: 1; border: none; border-radius: 50px; padding: 7px 4px; font-family: Assistant,sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+  .sf-dual-btns .btn-rent { background: #FFF7ED; color: #F97316; border: 1.5px solid #F97316; }
+  .sf-dual-btns .btn-rent:hover { background: #F97316; color: white; }
+  .sf-dual-btns .btn-buy { background: #F1F5F9; color: #0F172B; border: 1.5px solid #CBD5E1; }
+  .sf-dual-btns .btn-buy:hover { background: #0F172B; color: white; }
+  .sf-rent-note { display:flex;align-items:center;gap:8px;background:#EFF6FF;border:1.5px solid #3B82F6;border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:13px;font-weight:700;color:#1D4ED8; }
   .sf-services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
   .sf-service-card {
     background: white; border-radius: 16px;
@@ -748,119 +761,88 @@
 
     <div class="sf-step-panel" id="sf-panel-2">
       <h2 class="sf-heading">שלב 2: ציוד נלווה</h2>
-      <p class="sf-sub">בחרו את הציוד שתרצו להוסיף לחבילה שלכם</p>
+      <div class="sf-rent-note">🔄 <span>השכרה = מחיר חד פעמי לכל הטיול — מחזירים בסוף</span></div>
       <div class="sf-cat-tabs">
-        <button class="sf-cat-tab active" onclick="showCat('rent',event)">השכרה 🔄</button>
-        <button class="sf-cat-tab" onclick="showCat('general',event)">ציוד כללי 🛒</button>
-        <button class="sf-cat-tab" onclick="showCat('hygiene',event)">היגיינה 🧴</button>
-        <button class="sf-cat-tab" onclick="showCat('field',event)">ציוד שטח ⛺</button>
+        <button class="sf-cat-tab active" onclick="showCat('rent',event)">🔄 להשכרה</button>
+        <button class="sf-cat-tab" onclick="showCat('general',event)">🛒 ציוד כללי</button>
+        <button class="sf-cat-tab" onclick="showCat('field',event)">⛺ ציוד שטח</button>
       </div>
+
+      <!-- ══ RENT TAB ══ -->
       <div class="sf-cat-panel active" id="cat-rent">
         <div class="sf-prod-grid">
-          <div class="sf-prod-card" data-id="2199" data-name="מתאם אוניברסלי להשכרה" data-price="10" data-mode="rent" onclick="toggleProduct(this)">
+
+          <div class="sf-prod-card" data-id="2199" data-name="מתאם אוניברסלי" data-rent="10" data-buy="29">
             <img src="assets/images/2024_03_Sd6b4e280839646d9ba8350c1d3b5a8a3p-600x600.webp" alt="מתאם אוניברסלי">
             <div class="sf-prod-name">מתאם אוניברסלי</div>
-            <div class="sf-prod-price">₪10/חודש</div>
+            <div class="sf-dual-prices">
+              <div class="sf-dual-row"><span class="sf-dual-label">🔄 השכרה</span><span class="sf-dual-val rent-calc" data-rent="10">₪30 לטיול</span></div>
+              <div class="sf-dual-row"><span class="sf-dual-label">🛒 קנייה</span><span class="sf-dual-val buy">₪29</span></div>
+            </div>
+            <div class="sf-dual-btns">
+              <button class="btn-rent" onclick="addDual(this,'rent','2199','מתאם אוניברסלי',10,29)">🔄 השכרה</button>
+              <button class="btn-buy" onclick="addDual(this,'buy','2199','מתאם אוניברסלי',10,29)">🛒 קנייה</button>
+            </div>
             <div class="sf-prod-check">✓</div>
           </div>
-          <div class="sf-prod-card" data-id="2136" data-name="מטען נייד 20,000mAh להשכרה" data-price="50" data-mode="rent" onclick="toggleProduct(this)">
+
+          <div class="sf-prod-card" data-id="2136" data-name="מטען נייד 20,000mAh" data-rent="50" data-buy="150">
             <img src="assets/images/2024_03_S7694aeeb34064d239a1bb7ed7a3c2e9c2-600x600.webp" alt="מטען נייד">
             <div class="sf-prod-name">מטען נייד 20,000mAh</div>
-            <div class="sf-prod-price">₪50/חודש</div>
+            <div class="sf-dual-prices">
+              <div class="sf-dual-row"><span class="sf-dual-label">🔄 השכרה</span><span class="sf-dual-val rent-calc" data-rent="50">₪150 לטיול</span></div>
+              <div class="sf-dual-row"><span class="sf-dual-label">🛒 קנייה</span><span class="sf-dual-val buy">₪150</span></div>
+            </div>
+            <div class="sf-dual-btns">
+              <button class="btn-rent" onclick="addDual(this,'rent','2136','מטען נייד 20,000mAh',50,150)">🔄 השכרה</button>
+              <button class="btn-buy" onclick="addDual(this,'buy','2136','מטען נייד 20,000mAh',50,150)">🛒 קנייה</button>
+            </div>
             <div class="sf-prod-check">✓</div>
           </div>
-          <div class="sf-prod-card" data-id="2045" data-name="מנעול וכבל" data-price="15" data-mode="rent" onclick="toggleProduct(this)">
+
+          <div class="sf-prod-card" data-id="2045" data-name="מנעול וכבל" data-rent="15" data-buy="45">
             <img src="assets/images/2024_03_Saaf0a2e96f7e45ca9a5a40691550442dk-600x695.webp" alt="מנעול">
             <div class="sf-prod-name">מנעול וכבל</div>
-            <div class="sf-prod-price">₪15/חודש</div>
+            <div class="sf-dual-prices">
+              <div class="sf-dual-row"><span class="sf-dual-label">🔄 השכרה</span><span class="sf-dual-val rent-calc" data-rent="15">₪45 לטיול</span></div>
+              <div class="sf-dual-row"><span class="sf-dual-label">🛒 קנייה</span><span class="sf-dual-val buy">₪45</span></div>
+            </div>
+            <div class="sf-dual-btns">
+              <button class="btn-rent" onclick="addDual(this,'rent','2045','מנעול וכבל',15,45)">🔄 השכרה</button>
+              <button class="btn-buy" onclick="addDual(this,'buy','2045','מנעול וכבל',15,45)">🛒 קנייה</button>
+            </div>
             <div class="sf-prod-check">✓</div>
           </div>
-          <div class="sf-prod-card" data-id="1997" data-name="סט 5 ארגוניות להשכרה" data-price="50" data-mode="rent" onclick="toggleProduct(this)">
+
+          <div class="sf-prod-card" data-id="1997" data-name="סט 5 ארגוניות" data-rent="50" data-buy="89">
             <img src="assets/images/2024_03_S011edd8498d140358b560abdfffd1ab97-600x762.webp" alt="ארגוניות">
             <div class="sf-prod-name">סט 5 ארגוניות</div>
-            <div class="sf-prod-price">₪50/חודש</div>
+            <div class="sf-dual-prices">
+              <div class="sf-dual-row"><span class="sf-dual-label">🔄 השכרה</span><span class="sf-dual-val rent-calc" data-rent="50">₪150 לטיול</span></div>
+              <div class="sf-dual-row"><span class="sf-dual-label">🛒 קנייה</span><span class="sf-dual-val buy">₪89</span></div>
+            </div>
+            <div class="sf-dual-btns">
+              <button class="btn-rent" onclick="addDual(this,'rent','1997','סט 5 ארגוניות',50,89)">🔄 השכרה</button>
+              <button class="btn-buy" onclick="addDual(this,'buy','1997','סט 5 ארגוניות',50,89)">🛒 קנייה</button>
+            </div>
             <div class="sf-prod-check">✓</div>
           </div>
+
         </div>
       </div>
+
+      <!-- ══ GENERAL TAB (כולל היגיינה) ══ -->
       <div class="sf-cat-panel" id="cat-general">
         <div class="sf-prod-grid">
-          <div class="sf-prod-card" data-id="3920" data-name="מטען נייד 20,000mAh" data-price="150" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_S7694aeeb34064d239a1bb7ed7a3c2e9c2-600x600.webp" alt="מטען">
-            <div class="sf-prod-name">מטען נייד 20,000mAh</div>
-            <div class="sf-prod-price">₪150</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="3045" data-name="מנעול וכבל" data-price="45" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_Saaf0a2e96f7e45ca9a5a40691550442dk-600x695.webp" alt="מנעול">
-            <div class="sf-prod-name">מנעול וכבל</div>
-            <div class="sf-prod-price">₪45</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="3038" data-name="מתאם אוניברסלי" data-price="29" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_Sd6b4e280839646d9ba8350c1d3b5a8a3p-600x600.webp" alt="מתאם">
-            <div class="sf-prod-name">מתאם אוניברסלי</div>
-            <div class="sf-prod-price">₪29</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="2182" data-name="פאוץ כסף" data-price="39" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_S00d8742083024e3cb84b8f17a32cc82an-600x600.webp" alt="פאוץ כסף">
-            <div class="sf-prod-name">פאוץ כסף</div>
-            <div class="sf-prod-price">₪39</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="2148" data-name="כרית מתנפחת" data-price="49" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_Sa15dbbb195874b6ca8dfcd66b3a7601dp-600x517.webp" alt="כרית">
-            <div class="sf-prod-name">כרית מתנפחת</div>
-            <div class="sf-prod-price">₪49</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="1946" data-name="פנס ראש" data-price="50" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_S04b7bbf0ee294ec9be5d98f18fce81c3B-600x600.webp" alt="פנס ראש">
-            <div class="sf-prod-name">פנס ראש</div>
-            <div class="sf-prod-price">₪50</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="1921" data-name="שקית נגד מים" data-price="39" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_Sb59013377a664438b4b1beddd72a6c83m-600x600.webp" alt="שקית">
-            <div class="sf-prod-name">שקית נגד מים</div>
-            <div class="sf-prod-price">₪39</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-        </div>
-      </div>
-      <div class="sf-cat-panel" id="cat-hygiene">
-        <div class="sf-prod-grid">
-          <div class="sf-prod-card" data-id="2473" data-name="כיסוי מברשת שיניים" data-price="15" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_1461_244_8185.png" alt="כיסוי מברשת">
-            <div class="sf-prod-name">כיסוי מברשת שיניים</div>
-            <div class="sf-prod-price">₪15</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="2035" data-name="שק כביסה" data-price="39" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_Sab71cf54503d47969d412a862a120b86Q-1-1-600x600.webp" alt="שק כביסה">
-            <div class="sf-prod-name">שק כביסה</div>
-            <div class="sf-prod-price">₪39</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="2027" data-name="גוזז ציפורניים" data-price="10" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_Sa2ffd9feeb82415395f473f4fbdc3642G-600x600.webp" alt="גוזז">
-            <div class="sf-prod-name">גוזז ציפורניים</div>
-            <div class="sf-prod-price">₪10</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="1967" data-name="ליינר" data-price="69" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_Sa83619ae10624df0b9b0590bfb05c718a-600x600.webp" alt="ליינר">
-            <div class="sf-prod-name">ליינר</div>
-            <div class="sf-prod-price">₪69</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-          <div class="sf-prod-card" data-id="1920" data-name="לייף סטרו - בקבוק מסנן" data-price="319" data-mode="buy" onclick="toggleProduct(this)">
-            <img src="assets/images/2024_03_71kXq9KdP1L.__AC_SX300_SY300_QL70_FMwebp_.webp" alt="לייף סטרו">
-            <div class="sf-prod-name">לייף סטרו מסנן</div>
-            <div class="sf-prod-price">₪319</div>
-            <div class="sf-prod-check">✓</div>
-          </div>
+          <div class="sf-prod-card" data-id="2182" data-name="פאוץ כסף" data-price="39" data-mode="buy" onclick="toggleProduct(this)"><img src="assets/images/2024_03_S00d8742083024e3cb84b8f17a32cc82an-600x600.webp" alt="פאוץ כסף"><div class="sf-prod-name">פאוץ כסף</div><div class="sf-prod-price">₪39</div><div class="sf-prod-check">✓</div></div>
+          <div class="sf-prod-card" data-id="2148" data-name="כרית מתנפחת" data-price="49" data-mode="buy" onclick="toggleProduct(this)"><img src="assets/images/2024_03_Sa15dbbb195874b6ca8dfcd66b3a7601dp-600x517.webp" alt="כרית"><div class="sf-prod-name">כרית מתנפחת</div><div class="sf-prod-price">₪49</div><div class="sf-prod-check">✓</div></div>
+          <div class="sf-prod-card" data-id="1946" data-name="פנס ראש" data-price="50" data-mode="buy" onclick="toggleProduct(this)"><img src="assets/images/2024_03_S04b7bbf0ee294ec9be5d98f18fce81c3B-600x600.webp" alt="פנס ראש"><div class="sf-prod-name">פנס ראש</div><div class="sf-prod-price">₪50</div><div class="sf-prod-check">✓</div></div>
+          <div class="sf-prod-card" data-id="1921" data-name="שקית נגד מים" data-price="39" data-mode="buy" onclick="toggleProduct(this)"><img src="assets/images/2024_03_Sb59013377a664438b4b1beddd72a6c83m-600x600.webp" alt="שקית"><div class="sf-prod-name">שקית נגד מים</div><div class="sf-prod-price">₪39</div><div class="sf-prod-check">✓</div></div>
+          <div class="sf-prod-card" data-id="2473" data-name="כיסוי מברשת שיניים" data-price="15" data-mode="buy" onclick="toggleProduct(this)"><img src="assets/images/2024_03_1461_244_8185.png" alt="כיסוי מברשת"><div class="sf-prod-name">כיסוי מברשת שיניים</div><div class="sf-prod-price">₪15</div><div class="sf-prod-check">✓</div></div>
+          <div class="sf-prod-card" data-id="2035" data-name="שק כביסה" data-price="39" data-mode="buy" onclick="toggleProduct(this)"><img src="assets/images/2024_03_Sab71cf54503d47969d412a862a120b86Q-1-1-600x600.webp" alt="שק כביסה"><div class="sf-prod-name">שק כביסה</div><div class="sf-prod-price">₪39</div><div class="sf-prod-check">✓</div></div>
+          <div class="sf-prod-card" data-id="2027" data-name="גוזז ציפורניים" data-price="10" data-mode="buy" onclick="toggleProduct(this)"><img src="assets/images/2024_03_Sa2ffd9feeb82415395f473f4fbdc3642G-600x600.webp" alt="גוזז"><div class="sf-prod-name">גוזז ציפורניים</div><div class="sf-prod-price">₪10</div><div class="sf-prod-check">✓</div></div>
+          <div class="sf-prod-card" data-id="1967" data-name="ליינר" data-price="69" data-mode="buy" onclick="toggleProduct(this)"><img src="assets/images/2024_03_Sa83619ae10624df0b9b0590bfb05c718a-600x600.webp" alt="ליינר"><div class="sf-prod-name">ליינר</div><div class="sf-prod-price">₪69</div><div class="sf-prod-check">✓</div></div>
+          <div class="sf-prod-card" data-id="1920" data-name="לייף סטרו מסנן" data-price="319" data-mode="buy" onclick="toggleProduct(this)"><img src="assets/images/2024_03_71kXq9KdP1L.__AC_SX300_SY300_QL70_FMwebp_.webp" alt="לייף סטרו"><div class="sf-prod-name">לייף סטרו מסנן</div><div class="sf-prod-price">₪319</div><div class="sf-prod-check">✓</div></div>
         </div>
       </div>
       <div class="sf-cat-panel" id="cat-field">
@@ -1073,6 +1055,21 @@
     if (sel && sel.value != months) sel.value = months;
     if (rng && rng.value != months) rng.value = months;
     refreshPriceDisplay();
+    // update dual-price rent labels in step 2
+    document.querySelectorAll('.rent-calc').forEach(function(el) {
+      var perMonth = parseInt(el.dataset.rent) || 0;
+      el.textContent = '₪' + (perMonth * months) + ' לטיול';
+    });
+  };
+  window.addDual = function(btn, mode, id, name, rentPerMonth, buyPrice) {
+    var price = mode === 'rent' ? rentPerMonth * months : buyPrice;
+    var label = mode === 'rent' ? name + ' (השכרה)' : name;
+    addItemToCart({ id: id + '-' + mode, name: label, price: price, qty: 1, mode: mode, duration: mode === 'rent' ? months : null });
+    var orig = btn.textContent;
+    btn.textContent = '✓ נוסף!';
+    btn.style.background = '#22c55e'; btn.style.color = 'white'; btn.style.borderColor = '#22c55e';
+    setTimeout(function() { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; }, 2000);
+    showToast('✓ ' + label + ' נוסף לסל');
   };
   window.selectPack = function(id) {
     selectedPack=id;
