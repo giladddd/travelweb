@@ -161,6 +161,17 @@
     .step-btn.green { background: #25D366; }
     .step-btn.green:hover { background: #1DAA56; }
 
+    /* IMAGE CAROUSEL */
+    .step-carousel-wrap { position: relative; margin: 14px 0 0; }
+    .step-carousel { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+    .step-carousel::-webkit-scrollbar { display: none; }
+    .step-carousel-slide { flex: 0 0 80%; scroll-snap-align: start; border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; background: #F1F5F9; }
+    .step-carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .step-carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #F97316; color: white; border: none; cursor: pointer; width: 34px; height: 34px; border-radius: 50%; font-size: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 2; }
+    .step-carousel-btn.prev { right: 6px; }
+    .step-carousel-btn.next { left: 6px; }
+    @media (min-width: 600px) { .step-carousel-slide { flex: 0 0 calc(50% - 5px); } }
+
     .step-check-row {
       display: flex; align-items: center; gap: 10px;
       padding: 14px 20px 18px;
@@ -332,6 +343,18 @@
     </div>
     <div class="step-body">
       <p class="step-desc">אל תשכחו לבדוק את מזג האוויר ביעדים הנבחרים לפני שמחליטים על תאריכים.</p>
+    </div>
+    <div class="step-carousel-wrap">
+      <button class="step-carousel-btn prev" onclick="slideCarousel('c2',-1)">›</button>
+      <div class="step-carousel" id="c2">
+        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.07-2-768x859.jpeg" alt="עונות יבשת"></div>
+        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.07-768x868.jpeg" alt="עונות יבשת"></div>
+        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.08-1.jpeg" alt="עונות יבשת"></div>
+        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.06-1-768x849.jpeg" alt="עונות יבשת"></div>
+        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.06.jpeg" alt="עונות יבשת"></div>
+        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.07-1-768x864.jpeg" alt="עונות יבשת"></div>
+      </div>
+      <button class="step-carousel-btn next" onclick="slideCarousel('c2',1)">‹</button>
     </div>
     <div class="step-check-row">
       <input type="checkbox" id="chk2" onchange="markDone(this,2)">
@@ -735,6 +758,15 @@ function updateProgress(){
     updateProgress();
   }catch(e){}
 })();
+
+// CAROUSEL
+window.slideCarousel = function(id, dir) {
+  var c = document.getElementById(id);
+  if(!c) return;
+  var slide = c.querySelector('.step-carousel-slide');
+  var w = slide ? slide.offsetWidth + 10 : 260;
+  c.scrollBy({ left: dir * w, behavior: 'smooth' });
+};
 
 // CART TOTAL
 (function(){
