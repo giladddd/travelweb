@@ -167,6 +167,30 @@
     .slider-nav-btn:hover { background: #F97316; color: white; }
     .slider-nav-label { font-size: 13px; font-weight: 700; color: #64748B; min-width: 60px; text-align: center; }
 
+    /* CLIMATE TABLE */
+    .climate-wrap { margin: 14px 0 0; overflow: hidden; }
+    .climate-slider { display: flex; transition: transform 0.35s ease; }
+    .climate-slide { flex: 0 0 100%; padding: 0 16px 4px; }
+    .climate-title { font-size: 15px; font-weight: 900; color: #0F172B; margin-bottom: 10px; }
+    .climate-legend { display: flex; align-items: center; gap: 12px; padding: 8px 16px 0; font-size: 12px; font-weight: 600; color: #64748B; }
+    .cl-dot { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-left: 4px; }
+    .cl-green { background: #22C55E; }
+    .cl-yellow { background: #F59E0B; }
+    .cl-red { background: #EF4444; }
+    .ct-scroll { overflow-x: auto; border-radius: 10px; border: 1.5px solid #E2E8F0; }
+    .ct { width: 100%; border-collapse: collapse; font-size: 11.5px; min-width: 520px; }
+    .ct thead th { background: #0F172B; color: white; padding: 7px 4px; text-align: center; font-weight: 700; white-space: nowrap; position: sticky; top: 0; }
+    .ct thead th:first-child { text-align: right; padding-right: 10px; min-width: 90px; }
+    .ct tbody td { padding: 0; height: 30px; border: 1px solid #F1F5F9; text-align: center; }
+    .ct tbody td:first-child { text-align: right; padding: 6px 10px; font-weight: 700; color: #0F172B; background: white; white-space: nowrap; }
+    .ct tbody tr:nth-child(even) td:first-child { background: #F8FAFC; }
+    .ct td.g { background: #BBF7D0; }
+    .ct td.y { background: #FEF08A; }
+    .ct td.r { background: #FECACA; }
+    .ct tbody tr:hover td.g { background: #86EFAC; }
+    .ct tbody tr:hover td.y { background: #FDE047; }
+    .ct tbody tr:hover td.r { background: #FCA5A5; }
+
     /* BUDGET SLIDER */
     .budget-slider-wrap { margin: 14px 0 0; overflow: hidden; }
     .budget-slider { display: flex; transition: transform 0.35s ease; }
@@ -398,17 +422,109 @@
     <div class="step-body">
       <p class="step-desc">אל תשכחו לבדוק את מזג האוויר ביעדים הנבחרים לפני שמחליטים על תאריכים.</p>
     </div>
-    <div class="step-carousel-wrap">
-      <button class="step-carousel-btn prev" onclick="slideCarousel('c2',-1)">›</button>
-      <div class="step-carousel" id="c2">
-        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.07-2-768x859.jpeg" alt="עונות יבשת"></div>
-        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.07-768x868.jpeg" alt="עונות יבשת"></div>
-        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.08-1.jpeg" alt="עונות יבשת"></div>
-        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.06-1-768x849.jpeg" alt="עונות יבשת"></div>
-        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.06.jpeg" alt="עונות יבשת"></div>
-        <div class="step-carousel-slide"><img src="assets/images/2026_05_WhatsApp-Image-2026-05-07-at-08.19.07-1-768x864.jpeg" alt="עונות יבשת"></div>
+    <!-- CLIMATE TABLES SLIDER -->
+    <div class="climate-wrap">
+      <div class="climate-legend">
+        <span class="cl-dot cl-green"></span>מומלץ
+        <span class="cl-dot cl-yellow"></span>בסדר
+        <span class="cl-dot cl-red"></span>לא מומלץ
       </div>
-      <button class="step-carousel-btn next" onclick="slideCarousel('c2',1)">‹</button>
+      <div class="climate-slider" id="climate-slider">
+
+        <!-- אסיה -->
+        <div class="climate-slide">
+          <div class="climate-title">🌏 אסיה</div>
+          <div class="ct-scroll"><table class="ct">
+            <thead><tr><th>יעד</th><th>ינו</th><th>פבר</th><th>מרץ</th><th>אפר</th><th>מאי</th><th>יונ</th><th>יול</th><th>אוג</th><th>ספט</th><th>אוק</th><th>נוב</th><th>דצמ</th></tr></thead>
+            <tbody>
+              <tr><td>תאילנד</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="y"></td><td class="g"></td></tr>
+              <tr><td>ויאטנם צפון</td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="y"></td></tr>
+              <tr><td>ויאטנם דרום</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td></tr>
+              <tr><td>קמבודיה</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="y"></td><td class="g"></td></tr>
+              <tr><td>לאוס</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>מיאנמר</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>הודו צפון</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>גואה / הודו דרום</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>נפאל</td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td></tr>
+              <tr><td>בלי</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>פיליפינים</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="y"></td><td class="g"></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+
+        <!-- דרום אמריקה -->
+        <div class="climate-slide">
+          <div class="climate-title">🌎 דרום אמריקה</div>
+          <div class="ct-scroll"><table class="ct">
+            <thead><tr><th>יעד</th><th>ינו</th><th>פבר</th><th>מרץ</th><th>אפר</th><th>מאי</th><th>יונ</th><th>יול</th><th>אוג</th><th>ספט</th><th>אוק</th><th>נוב</th><th>דצמ</th></tr></thead>
+            <tbody>
+              <tr><td>פרו</td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td></tr>
+              <tr><td>בוליביה</td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td></tr>
+              <tr><td>קולומביה</td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td></tr>
+              <tr><td>אקוודור</td><td class="y"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="y"></td></tr>
+              <tr><td>ברזיל (ריו)</td><td class="y"></td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td></tr>
+              <tr><td>ארגנטינה</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>צ'ילה</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>פרגוואי</td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+
+        <!-- מרכז אמריקה -->
+        <div class="climate-slide">
+          <div class="climate-title">🌴 מרכז אמריקה</div>
+          <div class="ct-scroll"><table class="ct">
+            <thead><tr><th>יעד</th><th>ינו</th><th>פבר</th><th>מרץ</th><th>אפר</th><th>מאי</th><th>יונ</th><th>יול</th><th>אוג</th><th>ספט</th><th>אוק</th><th>נוב</th><th>דצמ</th></tr></thead>
+            <tbody>
+              <tr><td>מקסיקו</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>גואטמלה</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>בליז</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>קוסטה ריקה</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td></tr>
+              <tr><td>פנמה</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td></tr>
+              <tr><td>קובה</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>קולומביה</td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+
+        <!-- אוסטרליה וניו זילנד -->
+        <div class="climate-slide">
+          <div class="climate-title">🦘 אוסטרליה וניו זילנד</div>
+          <div class="ct-scroll"><table class="ct">
+            <thead><tr><th>יעד</th><th>ינו</th><th>פבר</th><th>מרץ</th><th>אפר</th><th>מאי</th><th>יונ</th><th>יול</th><th>אוג</th><th>ספט</th><th>אוק</th><th>נוב</th><th>דצמ</th></tr></thead>
+            <tbody>
+              <tr><td>סידני</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>מלבורן</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>קוונסלנד</td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td></tr>
+              <tr><td>פרת'</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>ניו זילנד צפון</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>ניו זילנד דרום</td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+
+        <!-- אפריקה -->
+        <div class="climate-slide">
+          <div class="climate-title">🌍 אפריקה</div>
+          <div class="ct-scroll"><table class="ct">
+            <thead><tr><th>יעד</th><th>ינו</th><th>פבר</th><th>מרץ</th><th>אפר</th><th>מאי</th><th>יונ</th><th>יול</th><th>אוג</th><th>ספט</th><th>אוק</th><th>נוב</th><th>דצמ</th></tr></thead>
+            <tbody>
+              <tr><td>מרוקו</td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td></tr>
+              <tr><td>קניה (ספארי)</td><td class="y"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="y"></td></tr>
+              <tr><td>טנזניה</td><td class="y"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="y"></td></tr>
+              <tr><td>דרום אפריקה</td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="y"></td></tr>
+              <tr><td>זמביה/זימבבואה</td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td></tr>
+              <tr><td>אתיופיה</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+
+      </div>
+      <div class="slider-nav" style="padding:10px 20px 4px">
+        <button class="slider-nav-btn" onclick="goClimate(Math.max(climateIdx-1,0))">›</button>
+        <span class="slider-nav-label" id="climate-label">1 / 5</span>
+        <button class="slider-nav-btn" onclick="goClimate(Math.min(climateIdx+1,4))">‹</button>
+      </div>
     </div>
     <div class="step-check-row">
       <input type="checkbox" id="chk2" onchange="markDone(this,2)">
@@ -1006,6 +1122,26 @@ function updateProgress(){
     });
     updateProgress();
   }catch(e){}
+})();
+
+// CLIMATE SLIDER
+var climateIdx = 0;
+window.goClimate = function(idx) {
+  climateIdx = idx;
+  var slider = document.getElementById('climate-slider');
+  if(slider) slider.style.transform = 'translateX(' + (idx * 100) + '%)';
+  var lbl = document.getElementById('climate-label');
+  if(lbl) lbl.textContent = (idx+1) + ' / 5';
+};
+(function(){
+  var el = document.getElementById('climate-slider');
+  if(!el) return;
+  var startX;
+  el.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  el.addEventListener('touchend', function(e){
+    var diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40) goClimate(diff > 0 ? Math.min(climateIdx+1,4) : Math.max(climateIdx-1,0));
+  });
 })();
 
 // BUDGET SLIDER
