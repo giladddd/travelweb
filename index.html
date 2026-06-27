@@ -571,6 +571,11 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 .wpcp-prev-button, .wpcp-next-button,
 .swiper-button-prev, .swiper-button-next { display: none !important; }
 
+/* Hide blue Elementor swiper nav buttons bleeding out on the side */
+.elementor-swiper-button, .e-n-accordion .elementor-swiper-button { display: none !important; }
+.elementor-main-swiper { overflow: hidden !important; }
+html, body { overflow-x: hidden !important; }
+
 /* Video carousel in dark section */
 #video-carousel-section .wpcp-carousel-wrapper { max-width: 900px; margin: 0 auto; }
 #video-carousel-section .wpcp-single-item { border-radius: 14px; overflow: hidden; }
