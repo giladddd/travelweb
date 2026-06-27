@@ -115,28 +115,39 @@
     }
 
     /* ===== VIDEOS SECTION ===== */
-    .videos-section { background: #0F172B; padding: 56px 20px; direction: rtl; }
-    .sec-title { text-align: center; font-size: 28px; font-weight: 800; color: #F97316; margin-bottom: 6px; }
-    .sec-sub { text-align: center; color: #94A3B8; font-size: 15px; margin-bottom: 32px; }
+    .videos-section { background: white; padding: 24px 0; overflow: hidden; }
+    .videos-track-wrap { overflow: hidden; }
+    .videos-track {
+      display: flex; gap: 12px; width: max-content;
+      animation: marqueeVideos 50s linear infinite;
+    }
+    .videos-track:hover { animation-play-state: paused; }
+    @keyframes marqueeVideos {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .video-thumb {
+      flex: 0 0 220px;
+      border-radius: 12px; overflow: hidden; position: relative; display: block;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.13);
+    }
+    .video-thumb img { width: 100%; height: 130px; object-fit: cover; display: block; }
+    .video-play {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.2); transition: background 0.2s;
+    }
+    .video-thumb:hover .video-play { background: rgba(0,0,0,0.45); }
+    .video-play svg { width: 40px; height: 40px; fill: white; opacity: 0.9; }
+    /* shared hscroll for testimonials */
     .hscroll {
       display: flex; gap: 14px; overflow-x: auto;
       scroll-snap-type: x mandatory; padding-bottom: 10px;
       -webkit-overflow-scrolling: touch;
     }
     .hscroll::-webkit-scrollbar { height: 4px; }
-    .hscroll::-webkit-scrollbar-track { background: #1E293B; border-radius: 2px; }
+    .hscroll::-webkit-scrollbar-track { background: #F1F5F9; border-radius: 2px; }
     .hscroll::-webkit-scrollbar-thumb { background: #F97316; border-radius: 2px; }
-    .video-thumb {
-      flex: 0 0 260px; scroll-snap-align: start;
-      border-radius: 14px; overflow: hidden; position: relative; display: block;
-    }
-    .video-thumb img { width: 100%; height: 146px; object-fit: cover; display: block; }
-    .video-play {
-      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-      background: rgba(0,0,0,0.25); transition: background 0.2s;
-    }
-    .video-thumb:hover .video-play { background: rgba(0,0,0,0.45); }
-    .video-play svg { width: 48px; height: 48px; fill: white; opacity: 0.9; }
+    .sec-title { text-align: center; font-size: 28px; font-weight: 800; color: #0F172B; margin-bottom: 32px; }
 
     /* ===== FEATURES ===== */
     .features-section { background: #FAECE3; padding: 56px 20px; direction: rtl; }
@@ -295,33 +306,57 @@
 
 <!-- VIDEOS -->
 <section class="videos-section">
-  <h2 class="sec-title">מטיילים שלנו מספרים</h2>
-  <p class="sec-sub">לחצו על הסרטון לצפייה ביוטיוב</p>
-  <div class="hscroll">
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=uywip_xs3Bs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/uywip_xs3Bs/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=-VKTKyyWNtc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/-VKTKyyWNtc/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=YfAmTUaPm78" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/YfAmTUaPm78/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=-_Lkyu1Wiu0" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/-_Lkyu1Wiu0/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=lP99wsg2nOI" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/lP99wsg2nOI/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=h9G6i_3zRLQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/h9G6i_3zRLQ/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=gq05ZsUgniQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/gq05ZsUgniQ/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=4ziu47oP8tc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/4ziu47oP8tc/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=TUv_keZsjE8" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/TUv_keZsjE8/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=atGmAGxGVTA" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/atGmAGxGVTA/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=_oi6O20To7E" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/_oi6O20To7E/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=OFxfKLUjank" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/OFxfKLUjank/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=4zKh2fR_OmM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/4zKh2fR_OmM/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=bou6p_ozepM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/bou6p_ozepM/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=YRgB1fwI0kE" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/YRgB1fwI0kE/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=gVpcb6TDbX4" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/gVpcb6TDbX4/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=I6XIleKwNXM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/I6XIleKwNXM/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=SModmF7KFfc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/SModmF7KFfc/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
-    <a class="video-thumb" href="https://www.youtube.com/watch?v=AgjbB-1ZfVU" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/AgjbB-1ZfVU/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+  <div class="videos-track-wrap">
+    <div class="videos-track">
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=uywip_xs3Bs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/uywip_xs3Bs/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=-VKTKyyWNtc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/-VKTKyyWNtc/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=YfAmTUaPm78" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/YfAmTUaPm78/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=-_Lkyu1Wiu0" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/-_Lkyu1Wiu0/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=lP99wsg2nOI" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/lP99wsg2nOI/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=h9G6i_3zRLQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/h9G6i_3zRLQ/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=gq05ZsUgniQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/gq05ZsUgniQ/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=4ziu47oP8tc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/4ziu47oP8tc/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=TUv_keZsjE8" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/TUv_keZsjE8/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=atGmAGxGVTA" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/atGmAGxGVTA/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=_oi6O20To7E" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/_oi6O20To7E/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=OFxfKLUjank" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/OFxfKLUjank/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=4zKh2fR_OmM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/4zKh2fR_OmM/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=bou6p_ozepM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/bou6p_ozepM/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=YRgB1fwI0kE" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/YRgB1fwI0kE/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=gVpcb6TDbX4" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/gVpcb6TDbX4/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=I6XIleKwNXM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/I6XIleKwNXM/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=SModmF7KFfc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/SModmF7KFfc/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=AgjbB-1ZfVU" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/AgjbB-1ZfVU/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <!-- duplicate for seamless loop -->
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=uywip_xs3Bs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/uywip_xs3Bs/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=-VKTKyyWNtc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/-VKTKyyWNtc/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=YfAmTUaPm78" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/YfAmTUaPm78/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=-_Lkyu1Wiu0" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/-_Lkyu1Wiu0/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=lP99wsg2nOI" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/lP99wsg2nOI/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=h9G6i_3zRLQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/h9G6i_3zRLQ/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=gq05ZsUgniQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/gq05ZsUgniQ/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=4ziu47oP8tc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/4ziu47oP8tc/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=TUv_keZsjE8" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/TUv_keZsjE8/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=atGmAGxGVTA" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/atGmAGxGVTA/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=_oi6O20To7E" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/_oi6O20To7E/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=OFxfKLUjank" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/OFxfKLUjank/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=4zKh2fR_OmM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/4zKh2fR_OmM/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=bou6p_ozepM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/bou6p_ozepM/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=YRgB1fwI0kE" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/YRgB1fwI0kE/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=gVpcb6TDbX4" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/gVpcb6TDbX4/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=I6XIleKwNXM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/I6XIleKwNXM/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=SModmF7KFfc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/SModmF7KFfc/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+      <a class="video-thumb" href="https://www.youtube.com/watch?v=AgjbB-1ZfVU" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/AgjbB-1ZfVU/hqdefault.jpg" alt="סרטון" loading="lazy"><div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></a>
+    </div>
   </div>
 </section>
 
 <!-- 3-STEP FORM -->
 <div id="formpack">
+<div style="text-align:center;padding:48px 20px 8px;background:#fff">
+  <h2 style="font-size:clamp(22px,5vw,34px);font-weight:900;color:#0F172B;margin:0 0 8px">הכל לטיול בטופס אחד</h2>
+  <p style="font-size:16px;color:#64748B;margin:0">מציוד עד בירוקרטיה — מסדרים הכל יחד</p>
+</div>
 <div id="smart-form-360">
 <style>
   /* ===== SMART FORM 360 ===== */
