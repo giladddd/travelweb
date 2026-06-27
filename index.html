@@ -1795,38 +1795,18 @@ data-backlink-text="Back">
   .sf-service-name { font-size: 15px; font-weight: 700; color: #0F172B; }
   .sf-service-price { font-size: 14px; color: #64748B; }
   .sf-free { color: #16A34A; font-weight: 700; }
-  /* Summary Panel */
-  .sf-summary {
-    width: 300px; flex-shrink: 0; background: white;
-    border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    padding: 24px; position: sticky; top: 80px;
+  /* Add to cart button on product cards */
+  .sf-add-btn {
+    display: block; width: 100%; margin-top: 10px;
+    background: #F97316; color: white; border: none;
+    border-radius: 50px; padding: 9px 14px;
+    font-family: 'Assistant', sans-serif; font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; direction: rtl;
   }
-  .sf-summary h3 {
-    font-size: 18px; font-weight: 800; color: #0F172B;
-    margin: 0 0 16px; padding-bottom: 12px; border-bottom: 2px solid #F1F5F9;
-  }
-  #sf-summary-items { margin-bottom: 16px; min-height: 60px; }
-  .sf-sum-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 0; font-size: 14px; color: #334155; border-bottom: 1px solid #F8FAFC;
-  }
-  .sf-total {
-    font-size: 18px; font-weight: 800; color: #0F172B;
-    padding: 12px 0; border-top: 2px solid #F97316; margin-bottom: 16px;
-  }
-  .sf-total span { color: #F97316; }
-  /* Mobile bottom bar */
-  .sf-mobile-bar {
-    display: none; position: fixed; bottom: 0; right: 0; left: 0;
-    background: white; box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
-    padding: 14px 20px; z-index: 999;
-    align-items: center; justify-content: space-between;
-    font-size: 16px; font-weight: 700; color: #0F172B; direction: rtl;
-  }
+  .sf-add-btn:hover { background: #EA580C; transform: scale(1.02); }
+  .sf-add-btn.added { background: #22c55e !important; }
   /* Responsive */
   @media (max-width: 768px) {
-    .sf-summary { display: none; }
-    .sf-mobile-bar { display: flex; }
     .sf-layout { flex-direction: column; }
     #smart-form-360 { padding: 40px 16px 80px; }
     .sf-cards-grid { grid-template-columns: 1fr; }
@@ -1877,6 +1857,7 @@ data-backlink-text="Back">
           <div class="sf-price-rent" id="price-osprey65-rent">₪<strong>140</strong>/חודש</div>
           <div class="sf-price-buy" id="price-osprey65-buy" style="display:none">₪<strong>890</strong> לקנייה</div>
           <div class="sf-compare" id="compare-osprey65" style="display:none">השכרה 3 חודשים = 420₪ | קנייה = 890₪</div>
+          <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('osprey65')">+ הוסף לסל</button>
         </div>
         <div class="sf-card" id="pack-deuter60" onclick="selectPack('deuter60')">
           <div class="sf-card-img">🎒</div>
@@ -1885,6 +1866,7 @@ data-backlink-text="Back">
           <div class="sf-price-rent" id="price-deuter60-rent">₪<strong>120</strong>/חודש</div>
           <div class="sf-price-buy" id="price-deuter60-buy" style="display:none">₪<strong>750</strong> לקנייה</div>
           <div class="sf-compare" id="compare-deuter60" style="display:none">השכרה 3 חודשים = 360₪ | קנייה = 750₪</div>
+          <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('deuter60')">+ הוסף לסל</button>
         </div>
         <div class="sf-card" id="pack-farpoint40" onclick="selectPack('farpoint40')">
           <div class="sf-card-img">🎒</div>
@@ -1893,6 +1875,7 @@ data-backlink-text="Back">
           <div class="sf-price-rent" id="price-farpoint40-rent">₪<strong>80</strong>/חודש</div>
           <div class="sf-price-buy" id="price-farpoint40-buy" style="display:none">₪<strong>590</strong> לקנייה</div>
           <div class="sf-compare" id="compare-farpoint40" style="display:none">השכרה 3 חודשים = 240₪ | קנייה = 590₪</div>
+          <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('farpoint40')">+ הוסף לסל</button>
         </div>
       </div>
       <div style="text-align:center;margin-top:24px">
@@ -2123,21 +2106,7 @@ data-backlink-text="Back">
     </div>
 
   </div><!-- /.sf-main -->
-
-  <!-- Sticky side summary panel -->
-  <div class="sf-summary" id="sf-summary">
-    <h3>סיכום הזמנה</h3>
-    <div id="sf-summary-items"><p style="color:#888;font-size:14px;text-align:center">טרם נבחרו פריטים</p></div>
-    <div class="sf-total">סה"כ: <span id="sf-total-price">0</span> ₪</div>
-    <button class="sf-btn-main" id="sf-submit-btn" onclick="submitForm()" disabled style="width:100%">המשך לסיכום ←</button>
-  </div>
 </div><!-- /.sf-layout -->
-
-<!-- Mobile bottom bar -->
-<div class="sf-mobile-bar">
-  <span>סה"כ: <strong><span id="sf-mobile-total">0</span> ₪</strong></span>
-  <button class="sf-btn-main" id="sf-mobile-btn" onclick="submitForm()" disabled>המשך →</button>
-</div>
 
 <script>
 (function() {
@@ -2145,11 +2114,95 @@ data-backlink-text="Back">
   var mode = 'rent';
   var months = 3;
   var selectedPack = null;
-  var selectedProducts = {};
-  var selectedServices = {};
 
   var packRentPrices = { osprey65: 140, deuter60: 120, farpoint40: 80 };
   var packBuyPrices  = { osprey65: 890, deuter60: 750, farpoint40: 590 };
+
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem('smartCart') || '[]'); } catch(e) { return []; }
+  }
+  function saveCart(cart) {
+    localStorage.setItem('smartCart', JSON.stringify(cart));
+  }
+  function updateHeader() {
+    var cart = getCart();
+    var total = cart.reduce(function(s,i){ return s + (i.price||0)*(i.qty||1); }, 0);
+    var count = cart.filter(function(i){ return i.mode !== 'free'; }).length;
+    document.querySelectorAll('.woocommerce-Price-amount.amount').forEach(function(el){
+      el.innerHTML = total.toFixed(2) + '&nbsp;<span class="woocommerce-Price-currencySymbol">&#8362;</span>';
+    });
+    document.querySelectorAll('[data-counter]').forEach(function(el){ el.setAttribute('data-counter', count); });
+  }
+
+  function showToast(msg) {
+    var toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:14px 28px;border-radius:50px;font-family:Assistant,sans-serif;font-size:17px;font-weight:700;z-index:99999;box-shadow:0 4px 20px rgba(0,0,0,0.2);direction:rtl;transition:opacity 0.4s';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(function(){ toast.style.opacity='0'; setTimeout(function(){ toast.remove(); }, 400); }, 2000);
+  }
+
+  // Add single item to cart
+  function addItemToCart(item) {
+    var cart = getCart();
+    var existing = cart.find(function(c){ return c.id === item.id && c.mode === item.mode; });
+    if (existing) { existing.qty = (existing.qty||1) + 1; }
+    else { cart.push(item); }
+    saveCart(cart);
+    updateHeader();
+  }
+
+  // Inject "הוסף לסל" buttons into product cards
+  function injectAddButtons() {
+    document.querySelectorAll('.sf-prod-card').forEach(function(card) {
+      if (card.querySelector('.sf-add-btn')) return;
+      card.removeAttribute('onclick');
+      var btn = document.createElement('button');
+      btn.className = 'sf-add-btn';
+      btn.textContent = '+ הוסף לסל';
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var price = parseFloat(card.dataset.price) || 0;
+        var itemMode = card.dataset.mode || 'buy';
+        var finalPrice = itemMode === 'rent' ? price * months : price;
+        addItemToCart({
+          id: card.dataset.id,
+          name: card.dataset.name,
+          price: finalPrice,
+          qty: 1,
+          mode: itemMode,
+          duration: itemMode === 'rent' ? months : null
+        });
+        btn.textContent = '✓ נוסף!';
+        btn.classList.add('added');
+        setTimeout(function(){ btn.textContent = '+ הוסף לסל'; btn.classList.remove('added'); }, 2000);
+        showToast('✓ ' + card.dataset.name + ' נוסף לסל');
+      });
+      card.appendChild(btn);
+    });
+
+    // Service checkboxes → add to cart button
+    document.querySelectorAll('.sf-service-card').forEach(function(card) {
+      if (card.querySelector('.sf-add-btn')) return;
+      var inp = card.querySelector('input[type="checkbox"]');
+      if (!inp) return;
+      // hide the checkbox, add button instead
+      inp.style.display = 'none';
+      var btn = document.createElement('button');
+      btn.className = 'sf-add-btn';
+      btn.style.marginTop = '12px';
+      btn.textContent = '+ הוסף חינם';
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        addItemToCart({ id: inp.dataset.id, name: inp.dataset.name, price: 0, qty: 1, mode: 'free' });
+        btn.textContent = '✓ נוסף!';
+        btn.classList.add('added');
+        btn.disabled = true;
+        showToast('✓ ' + inp.dataset.name + ' נוסף לסל');
+      });
+      card.appendChild(btn);
+    });
+  }
 
   window.setMode = function(m) {
     mode = m;
@@ -2166,14 +2219,12 @@ data-backlink-text="Back">
           'השכרה '+months+' חודשים = '+(packRentPrices[id]*months)+'₪ | קנייה = '+packBuyPrices[id]+'₪';
       }
     });
-    updateTotal();
   };
 
   window.updateMonths = function(v) {
     months = parseInt(v);
     document.getElementById('sf-months-label').textContent = months;
     if (mode==='buy') setMode('buy');
-    updateTotal();
   };
 
   window.selectPack = function(id) {
@@ -2181,29 +2232,6 @@ data-backlink-text="Back">
     document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
     document.getElementById('pack-'+id).classList.add('selected');
     document.getElementById('sf-next-1').disabled = false;
-    updateTotal();
-  };
-
-  window.toggleProduct = function(el) {
-    var id = el.dataset.id;
-    if (selectedProducts[id]) {
-      delete selectedProducts[id];
-      el.classList.remove('selected');
-    } else {
-      selectedProducts[id] = { id: id, name: el.dataset.name, price: parseFloat(el.dataset.price), mode: el.dataset.mode };
-      el.classList.add('selected');
-    }
-    updateTotal();
-  };
-
-  window.toggleService = function(inp) {
-    var id = inp.dataset.id;
-    if (inp.checked) {
-      selectedServices[id] = { id: id, name: inp.dataset.name, price: 0 };
-    } else {
-      delete selectedServices[id];
-    }
-    updateTotal();
   };
 
   window.showCat = function(cat, evt) {
@@ -2211,6 +2239,7 @@ data-backlink-text="Back">
     document.querySelectorAll('.sf-cat-tab').forEach(function(t){ t.classList.remove('active'); });
     document.getElementById('cat-'+cat).classList.add('active');
     if (evt && evt.target) evt.target.classList.add('active');
+    injectAddButtons();
   };
 
   window.goStep = function(step) {
@@ -2222,78 +2251,33 @@ data-backlink-text="Back">
       s.classList.toggle('done', i+1 < step);
     });
     document.getElementById('smart-form-360').scrollIntoView({ behavior:'smooth', block:'start' });
+    injectAddButtons();
   };
 
-  function getPackPrice() {
-    if (!selectedPack) return 0;
-    return mode === 'rent' ? packRentPrices[selectedPack] * months : packBuyPrices[selectedPack];
-  }
-
-  function updateTotal() {
-    var total = getPackPrice();
-    Object.values(selectedProducts).forEach(function(p) {
-      total += p.mode === 'rent' ? p.price * months : p.price;
-    });
-
-    ['sf-total-price','sf-mobile-total'].forEach(function(id){
-      var el = document.getElementById(id);
-      if (el) el.textContent = total;
-    });
-
-    var itemsEl = document.getElementById('sf-summary-items');
-    if (!itemsEl) return;
-    var html = '';
-    if (selectedPack) {
-      var packNames = { osprey65:'Osprey 65L', deuter60:'Deuter 60L', farpoint40:'Farpoint 40L' };
-      html += '<div class="sf-sum-item"><span>'+packNames[selectedPack]+'</span><span>&#8362;'+getPackPrice()+'</span></div>';
-    }
-    Object.values(selectedProducts).forEach(function(p){
-      var pr = p.mode === 'rent' ? p.price * months : p.price;
-      html += '<div class="sf-sum-item"><span>'+p.name+'</span><span>&#8362;'+pr+'</span></div>';
-    });
-    Object.values(selectedServices).forEach(function(s){
-      html += '<div class="sf-sum-item"><span>'+s.name+'</span><span class="sf-free">חינם</span></div>';
-    });
-    if (!html) html = '<p style="color:#888;font-size:14px;text-align:center">טרם נבחרו פריטים</p>';
-    itemsEl.innerHTML = html;
-
-    var hasItems = selectedPack !== null;
-    var submitBtn = document.getElementById('sf-submit-btn');
-    var mobileBtn = document.getElementById('sf-mobile-btn');
-    if (submitBtn) submitBtn.disabled = !hasItems;
-    if (mobileBtn) mobileBtn.disabled = !hasItems;
-  }
-
+  // "המשך לסיכום הזמנה" button — add pack to cart first then redirect
   window.submitForm = function() {
     if (!selectedPack) { alert('אנא בחרו מוצילה בשלב 1'); goStep(1); return; }
     var packNames = { osprey65:'Osprey Atmos AG 65L', deuter60:'Deuter Aircontact 60L', farpoint40:'Osprey Farpoint 40L' };
-    var cart = [];
-    cart.push({ id: selectedPack, name: packNames[selectedPack], price: getPackPrice(), qty: 1, mode: mode, duration: mode==='rent' ? months : null });
-    Object.values(selectedProducts).forEach(function(p){
-      cart.push({ id: p.id, name: p.name, price: p.mode==='rent' ? p.price*months : p.price, qty: 1, mode: p.mode, duration: p.mode==='rent' ? months : null });
-    });
-    Object.values(selectedServices).forEach(function(s){
-      cart.push({ id: s.id, name: s.name, price: 0, qty: 1, mode: 'free' });
-    });
-    localStorage.setItem('smartCart', JSON.stringify(cart));
-
-    // Update header cart button with total + count
-    var total = cart.reduce(function(s,i){ return s + (i.price||0)*i.qty; }, 0);
-    var count = cart.filter(function(i){ return i.mode !== 'free'; }).length;
-    document.querySelectorAll('.woocommerce-Price-amount.amount').forEach(function(el){
-      el.innerHTML = total.toFixed(2) + '&nbsp;<span class="woocommerce-Price-currencySymbol">&#8362;</span>';
-    });
-    document.querySelectorAll('[data-counter]').forEach(function(el){ el.setAttribute('data-counter', count); });
-
-    // Show toast then redirect
-    var toast = document.createElement('div');
-    toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:16px 32px;border-radius:50px;font-family:Assistant;font-size:18px;font-weight:700;z-index:99999;box-shadow:0 4px 20px rgba(0,0,0,0.2);direction:rtl';
-    toast.textContent = '✓ ' + cart.length + ' פריטים נוספו לסל!';
-    document.body.appendChild(toast);
-    setTimeout(function(){ window.location.href = 'order-summary.html'; }, 1200);
+    var packPrice = mode === 'rent' ? packRentPrices[selectedPack] * months : packBuyPrices[selectedPack];
+    addItemToCart({ id: selectedPack, name: packNames[selectedPack], price: packPrice, qty: 1, mode: mode, duration: mode==='rent' ? months : null });
+    showToast('✓ המוצילה נוספה לסל!');
+    setTimeout(function(){ window.location.href = 'order-summary.html'; }, 1000);
   };
 
-  updateTotal();
+  // Pack card "הוסף לסל" button (step 1)
+  window.addPackToCart = function(id) {
+    selectedPack = id;
+    document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
+    document.getElementById('pack-'+id).classList.add('selected');
+    var packNames = { osprey65:'Osprey Atmos AG 65L', deuter60:'Deuter Aircontact 60L', farpoint40:'Osprey Farpoint 40L' };
+    var packPrice = mode === 'rent' ? packRentPrices[id] * months : packBuyPrices[id];
+    addItemToCart({ id: id, name: packNames[id], price: packPrice, qty: 1, mode: mode, duration: mode==='rent' ? months : null });
+    showToast('✓ ' + packNames[id] + ' נוספה לסל');
+    document.getElementById('sf-next-1').disabled = false;
+  };
+
+  injectAddButtons();
+  updateHeader();
 })();
 </script>
 </div>
