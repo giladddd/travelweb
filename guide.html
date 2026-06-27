@@ -179,6 +179,36 @@
     .budget-dot { width: 28px; height: 6px; border-radius: 3px; border: none; background: #E2E8F0; cursor: pointer; transition: background 0.2s; padding: 0; }
     .budget-dot.active { background: #F97316; width: 44px; }
 
+    /* CREDIT CARD SLIDER */
+    .cc-slider-wrap { margin: 14px 0 0; overflow: hidden; }
+    .cc-slider { display: flex; transition: transform 0.35s ease; }
+    .cc-card { flex: 0 0 100%; padding: 0 20px 4px; }
+    .cc-card-header { color: white; font-size: 17px; font-weight: 900; padding: 12px 16px; border-radius: 12px 12px 0 0; text-align: center; }
+    .cc-blue  { background: linear-gradient(135deg,#1D4ED8,#2563EB); }
+    .cc-orange{ background: linear-gradient(135deg,#EA580C,#F97316); }
+    .cc-dark  { background: linear-gradient(135deg,#0F172B,#1E3A5F); }
+    .cc-purple{ background: linear-gradient(135deg,#7C3AED,#9333EA); }
+    .cc-teal  { background: linear-gradient(135deg,#0D9488,#14B8A6); }
+    .cc-body  { background: #F8FAFC; border-radius: 0 0 12px 12px; border: 1.5px solid #E2E8F0; border-top: none; }
+    .cc-stats { display: flex; gap: 0; border-bottom: 1.5px solid #E2E8F0; background: white; border-radius: 0; }
+    .cc-stat  { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 10px 4px; border-left: 1px solid #F1F5F9; gap: 3px; }
+    .cc-stat:last-child { border-left: none; }
+    .cc-stat-label { font-size: 11px; color: #64748B; font-weight: 600; text-align: center; line-height: 1.3; }
+    .cc-stat-val { font-size: 16px; font-weight: 900; }
+    .cc-stat-val.green  { color: #16A34A; }
+    .cc-stat-val.orange { color: #F97316; }
+    .cc-stat-val.red    { color: #DC2626; }
+    .cc-pros, .cc-cons { padding: 10px 14px 2px; }
+    .cc-section-title { font-size: 13px; font-weight: 800; margin-bottom: 5px; }
+    .cc-item { font-size: 13px; color: #475569; padding: 2px 0; line-height: 1.5; }
+    .cc-item::before { content: '• '; }
+    .cc-btn { display: block; margin: 12px 14px 14px; background: #F97316; color: white; text-align: center; padding: 10px; border-radius: 50px; font-size: 14px; font-weight: 700; transition: background 0.2s; }
+    .cc-btn:hover { background: #EA580C; }
+    /* wrap card body */
+    .cc-card > *:not(.cc-card-header):not(.cc-btn) { background: white; }
+    .cc-pros { border-top: 1px solid #F1F5F9; }
+    .cc-cons { border-top: 1px solid #F1F5F9; }
+
     /* IMAGE CAROUSEL */
     .step-carousel-wrap { position: relative; margin: 14px 0 0; }
     .step-carousel { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
@@ -484,14 +514,153 @@
       <div class="step-title">💳 מזמינים אשראי</div>
     </div>
     <div class="step-body">
-      <p class="step-desc">מזמינים אחד מכרטיסי האשראי הבאים עם 0–1% עמלת מט"ח. רצוי לקחת 2 כרטיסים בינלאומיים לטיול לבטחון.</p>
+      <p class="step-desc">רצוי לקחת 2 כרטיסים בינלאומיים לטיול. הנה השוואה מלאה — הזז בין הכרטיסים:</p>
     </div>
-    <div class="step-btns">
-      <a href="https://share.google/J8Isk3DI7aAZChV2L" target="_blank" class="step-btn">וואן זירו — 0% עמלה</a>
-      <a href="https://share.google/SePnQ9MqPIBcalVFQ" target="_blank" class="step-btn outline">ישראכרט BASIC — 0% מט"ח</a>
-      <a href="https://share.google/V4s5hihSa7GGnGJ2s" target="_blank" class="step-btn outline">מקס I need it — 1%</a>
-      <a href="https://share.google/d2yg1nJ5buPLRMtzg" target="_blank" class="step-btn outline">LYLA נטען — ~1%</a>
+
+    <!-- CREDIT CARD COMPARISON SLIDER -->
+    <div class="cc-slider-wrap">
+      <div class="cc-slider" id="cc-slider">
+
+        <!-- כרטיס 1: PassportCard -->
+        <div class="cc-card">
+          <div class="cc-card-header cc-blue">PassportCard Pay</div>
+          <div class="cc-stats">
+            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val green">0₪</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val green">0%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val green">0%</span></div>
+          </div>
+          <div class="cc-pros">
+            <div class="cc-section-title">✅ יתרונות</div>
+            <div class="cc-item">ללא עמלת ניהון</div>
+            <div class="cc-item">ללא עמלת משיכה</div>
+          </div>
+          <div class="cc-cons">
+            <div class="cc-section-title">❌ חסרונות</div>
+            <div class="cc-item">מגבלת משיכה 1,200₪ בקופות</div>
+            <div class="cc-item">לא ניתן לרכוש אונליין</div>
+            <div class="cc-item">לא ניתן לקנות אוטו מחוץ ל־24ש'</div>
+          </div>
+          <a href="https://www.passportcard.co.il" target="_blank" class="cc-btn">להזמנה ←</a>
+        </div>
+
+        <!-- כרטיס 2: ישראכרט Basic -->
+        <div class="cc-card">
+          <div class="cc-card-header cc-orange">ישראכרט Basic</div>
+          <div class="cc-stats">
+            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val green">0₪</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val green">0%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val red">3.5%</span></div>
+          </div>
+          <div class="cc-pros">
+            <div class="cc-section-title">✅ יתרונות</div>
+            <div class="cc-item">ללא עמלת ניהון</div>
+            <div class="cc-item">ללא דמי כרטיס</div>
+          </div>
+          <div class="cc-cons">
+            <div class="cc-section-title">❌ חסרונות</div>
+            <div class="cc-item">עמלת משיכה במזומן גבוהה (3.5%)</div>
+          </div>
+          <a href="https://share.google/SePnQ9MqPIBcalVFQ" target="_blank" class="cc-btn">להזמנה ←</a>
+        </div>
+
+        <!-- כרטיס 3: ONE ZERO -->
+        <div class="cc-card">
+          <div class="cc-card-header cc-dark">ONE ZERO</div>
+          <div class="cc-stats">
+            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val orange">49₪/חודש</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val green">0%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val green">2%</span></div>
+          </div>
+          <div class="cc-pros">
+            <div class="cc-section-title">✅ יתרונות</div>
+            <div class="cc-item">ללא עמלת ניהון</div>
+            <div class="cc-item">עמלת משיכה נמוכה יחסית</div>
+            <div class="cc-item">החזר דמי משמרת חשבון</div>
+          </div>
+          <div class="cc-cons">
+            <div class="cc-section-title">❌ חסרונות</div>
+            <div class="cc-item">דמי כרטיס חודשיים (49₪)</div>
+            <div class="cc-item">אפליקציה חדשה יחסית</div>
+          </div>
+          <a href="https://share.google/J8Isk3DI7aAZChV2L" target="_blank" class="cc-btn">להזמנה ←</a>
+        </div>
+
+        <!-- כרטיס 4: MAX בהצטרפות -->
+        <div class="cc-card">
+          <div class="cc-card-header cc-purple">MAX בהצטרפות</div>
+          <div class="cc-stats">
+            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val green">0₪</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val red">3%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val red">3%</span></div>
+          </div>
+          <div class="cc-pros">
+            <div class="cc-section-title">✅ יתרונות</div>
+            <div class="cc-item">ללא דמי כרטיס</div>
+          </div>
+          <div class="cc-cons">
+            <div class="cc-section-title">❌ חסרונות</div>
+            <div class="cc-item">עמלת ניהון גבוהה (3%)</div>
+            <div class="cc-item">עמלת משיכה גבוהה (3%)</div>
+          </div>
+          <a href="#" class="cc-btn" style="opacity:0.5;pointer-events:none">לא מומלץ לטיול</a>
+        </div>
+
+        <!-- כרטיס 5: MAX I Need It -->
+        <div class="cc-card">
+          <div class="cc-card-header cc-purple">MAX I Need It</div>
+          <div class="cc-stats">
+            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val green">0₪</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val orange">1%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val red">3%</span></div>
+          </div>
+          <div class="cc-pros">
+            <div class="cc-section-title">✅ יתרונות</div>
+            <div class="cc-item">ללא דמי כרטיס</div>
+            <div class="cc-item">עמלת ניהון נמוכה יחסית (1%)</div>
+            <div class="cc-item">עמלת ניהון מוקפאת</div>
+          </div>
+          <div class="cc-cons">
+            <div class="cc-section-title">❌ חסרונות</div>
+            <div class="cc-item">עמלת משיכה גבוהה (3%)</div>
+            <div class="cc-item">הכרטיס מוגבל בשימוש</div>
+          </div>
+          <a href="https://share.google/V4s5hihSa7GGnGJ2s" target="_blank" class="cc-btn">להזמנה ←</a>
+        </div>
+
+        <!-- כרטיס 6: Laya -->
+        <div class="cc-card">
+          <div class="cc-card-header cc-teal">Laya</div>
+          <div class="cc-stats">
+            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val orange">~45₪/חודש</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val green">~0%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val orange">~1%</span></div>
+          </div>
+          <div class="cc-pros">
+            <div class="cc-section-title">✅ יתרונות</div>
+            <div class="cc-item">עמלות עקיפות נמוכות מאוד (~0.9%)</div>
+            <div class="cc-item">ביטוח נסיעות חינם</div>
+            <div class="cc-item">קאשבק</div>
+          </div>
+          <div class="cc-cons">
+            <div class="cc-section-title">❌ חסרונות</div>
+            <div class="cc-item">דמי כרטיס חודשיים (~45₪)</div>
+            <div class="cc-item">עמלות עקיפות נוספות</div>
+          </div>
+          <a href="https://share.google/d2yg1nJ5buPLRMtzg" target="_blank" class="cc-btn">להזמנה ←</a>
+        </div>
+
+      </div>
+      <!-- dots -->
+      <div class="budget-dots" id="cc-dots">
+        <button class="budget-dot active" onclick="goCC(0)"></button>
+        <button class="budget-dot" onclick="goCC(1)"></button>
+        <button class="budget-dot" onclick="goCC(2)"></button>
+        <button class="budget-dot" onclick="goCC(3)"></button>
+        <button class="budget-dot" onclick="goCC(4)"></button>
+        <button class="budget-dot" onclick="goCC(5)"></button>
+      </div>
     </div>
+
     <div class="step-check-row">
       <input type="checkbox" id="chk5" onchange="markDone(this,5)">
       <label for="chk5">הזמנתי אשראי ✓</label>
@@ -852,6 +1021,25 @@ window.goSlide = function(idx) {
   el.addEventListener('touchend', function(e){
     var diff = startX - e.changedTouches[0].clientX;
     if(Math.abs(diff) > 40) goSlide(diff > 0 ? Math.min(budgetIdx+1,1) : Math.max(budgetIdx-1,0));
+  });
+})();
+
+// CREDIT CARD SLIDER
+var ccIdx = 0;
+window.goCC = function(idx) {
+  ccIdx = idx;
+  var slider = document.getElementById('cc-slider');
+  if(slider) slider.style.transform = 'translateX(' + (idx * 100) + '%)';
+  document.querySelectorAll('#cc-dots .budget-dot').forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+};
+(function(){
+  var el = document.getElementById('cc-slider');
+  if(!el) return;
+  var startX;
+  el.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  el.addEventListener('touchend', function(e){
+    var diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40) goCC(diff > 0 ? Math.min(ccIdx+1,5) : Math.max(ccIdx-1,0));
   });
 })();
 
