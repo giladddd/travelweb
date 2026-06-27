@@ -4,42 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>סיכום הזמנה – המטייל החכם</title>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Assistant', sans-serif;
-      background: #F1F5F9;
+      background: #F0F4F8;
       color: #1E293B;
-      min-height: 100vh;
       direction: rtl;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Header ── */
+    /* ── HEADER ── */
     .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
       background: #0F172B;
-      padding: 0 28px;
-      height: 66px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 16px rgba(0,0,0,.4);
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
     }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
+    .site-logo {
       color: #fff;
-      text-decoration: none;
+      font-size: 22px;
+      font-weight: 700;
       letter-spacing: -0.3px;
+      text-decoration: none;
     }
-
-    .wa-btn {
-      display: inline-flex;
+    .whatsapp-btn {
+      display: flex;
       align-items: center;
       gap: 8px;
       background: #25D366;
@@ -47,600 +45,758 @@
       font-family: 'Assistant', sans-serif;
       font-size: 15px;
       font-weight: 700;
-      padding: 10px 22px;
-      border-radius: 50px;
+      padding: 9px 20px;
+      border-radius: 999px;
       text-decoration: none;
-      transition: background .2s, transform .15s;
-      white-space: nowrap;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(37,211,102,0.35);
     }
-    .wa-btn:hover { background: #1ebe5d; transform: translateY(-1px); }
+    .whatsapp-btn:hover {
+      background: #1ebe5d;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(37,211,102,0.45);
+    }
 
-    /* ── Page heading ── */
-    .page-heading {
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+      padding: 56px 20px 48px;
       text-align: center;
-      padding: 52px 24px 36px;
+      position: relative;
+      overflow: hidden;
     }
-    .page-heading h1 {
-      font-size: 36px;
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+    .hero-title {
+      color: #fff;
+      font-size: 42px;
       font-weight: 800;
-      color: #F97316;
-      line-height: 1.2;
+      margin-bottom: 12px;
+      position: relative;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      letter-spacing: -0.5px;
     }
-    .page-heading p {
-      margin-top: 10px;
-      font-size: 17px;
-      color: #64748B;
+    .hero-subtitle {
+      color: rgba(255,255,255,0.92);
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    /* Steps indicator */
+    .steps-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      position: relative;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
       font-weight: 600;
     }
+    .step-item.active {
+      color: #fff;
+    }
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .step-item.active .step-circle {
+      background: #fff;
+      color: #F97316;
+      border-color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .step-arrow {
+      color: rgba(255,255,255,0.5);
+      margin: 0 12px;
+      font-size: 16px;
+    }
 
-    /* ── Main layout ── */
-    .main-wrapper {
+    /* ── MAIN CONTENT AREA ── */
+    .main-content {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 20px 56px;
+      padding: 40px 20px 60px;
+    }
+    .content-grid {
       display: grid;
-      grid-template-columns: 55% 1fr;
+      grid-template-columns: 1fr 420px;
       gap: 28px;
       align-items: start;
     }
 
-    /* ── Cards ── */
+    /* ── CARDS ── */
     .card {
       background: #fff;
       border-radius: 20px;
-      box-shadow: 0 4px 28px rgba(15,23,43,.09);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
       overflow: hidden;
+      margin-bottom: 24px;
     }
-
+    .card:last-child { margin-bottom: 0; }
     .card-header {
-      background: linear-gradient(135deg, #0F172B 0%, #1E3A5F 100%);
-      padding: 22px 28px;
-    }
-    .card-header h2 {
-      font-size: 20px;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .card-body {
-      padding: 26px 28px;
-    }
-
-    /* ── Cart items ── */
-    .cart-row {
+      background: linear-gradient(135deg, #0F172B 0%, #1E293B 100%);
+      padding: 20px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 14px;
-      border-radius: 12px;
-      gap: 12px;
-      transition: background .15s;
     }
-    .cart-row:nth-child(odd)  { background: #F8FAFC; }
-    .cart-row:nth-child(even) { background: #fff; }
-    .cart-row:hover { background: #FFF7ED; }
+    .card-header-title {
+      color: #fff;
+      font-size: 19px;
+      font-weight: 700;
+    }
+    .card-header-subtitle {
+      color: rgba(255,255,255,0.65);
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .card-body {
+      padding: 0;
+    }
 
-    .cart-item-info {
+    /* ── CART ITEMS ── */
+    .cart-row {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 24px;
+      border-bottom: 1px solid #F1F5F9;
+      transition: background 0.15s;
+    }
+    .cart-row:last-child { border-bottom: none; }
+    .cart-row:hover { background: #FAFBFC; }
+    .cart-icon-circle {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .cart-item-details {
       flex: 1;
       min-width: 0;
     }
     .cart-item-name {
       font-size: 16px;
-      font-weight: 700;
-      color: #1E293B;
-      line-height: 1.3;
+      font-weight: 600;
+      color: #0F172B;
+      margin-bottom: 5px;
     }
-    .badges-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .cart-badge {
+    .cart-mode-badge {
       display: inline-block;
       font-size: 12px;
       font-weight: 700;
       padding: 3px 10px;
-      border-radius: 50px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
     }
-    .badge-rent { background: #DBEAFE; color: #1D4ED8; }
-    .badge-buy  { background: #DCFCE7; color: #166534; }
-    .badge-free { background: #FEF9C3; color: #92400E; }
-
-    .cart-duration {
-      font-size: 12px;
-      font-weight: 600;
-      color: #94A3B8;
-    }
-
     .cart-item-price {
       font-size: 18px;
       font-weight: 800;
       color: #F97316;
       white-space: nowrap;
-      flex-shrink: 0;
     }
 
-    .cart-divider {
-      border: none;
-      border-top: 1.5px dashed #E2E8F0;
-      margin: 10px 0 4px;
-    }
-
-    .cart-total {
+    /* Cart total */
+    .cart-total-row {
+      background: #FFF7ED;
+      border-top: 2px solid #FED7AA;
+      padding: 20px 24px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 14px 14px 2px;
+      justify-content: space-between;
     }
-    .cart-total span:first-child {
-      font-size: 18px;
-      font-weight: 800;
+    .cart-total-label {
+      font-size: 17px;
+      font-weight: 700;
       color: #0F172B;
     }
-    .cart-total span:last-child {
+    .cart-total-amount {
       font-size: 26px;
-      font-weight: 800;
+      font-weight: 900;
       color: #F97316;
     }
 
-    .cart-empty {
-      text-align: center;
-      padding: 48px 20px;
-      color: #94A3B8;
-      font-size: 16px;
-      font-weight: 600;
+    /* Savings card */
+    .savings-card {
+      background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+      border: 1.5px solid #86EFAC;
+      border-radius: 16px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 20px;
     }
-    .cart-empty a {
-      color: #F97316;
-      text-decoration: none;
+    .savings-icon { font-size: 32px; }
+    .savings-text-title {
+      font-size: 15px;
       font-weight: 700;
+      color: #15803D;
     }
-    .cart-empty a:hover { text-decoration: underline; }
-
-    /* ── Form ── */
-    .form-group {
-      margin-bottom: 16px;
+    .savings-text-sub {
+      font-size: 13px;
+      color: #166534;
+      margin-top: 2px;
     }
 
-    label {
+    /* ── FORM ── */
+    .form-body { padding: 28px 24px; }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
       display: block;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 700;
-      color: #475569;
-      margin-bottom: 6px;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
     }
-    label .req {
-      color: #F97316;
-      margin-right: 2px;
-    }
-
-    input[type="text"],
-    input[type="tel"],
-    input[type="email"],
-    input[type="date"],
-    textarea {
+    .form-label .required { color: #F97316; margin-right: 2px; }
+    .form-input,
+    .form-textarea {
       width: 100%;
-      border: 1.5px solid #E2E8F0;
+      border: 2px solid #E2E8F0;
       border-radius: 12px;
       padding: 14px 16px;
       font-family: 'Assistant', sans-serif;
       font-size: 16px;
-      font-weight: 600;
-      color: #1E293B;
+      color: #0F172B;
       background: #FAFBFC;
       outline: none;
-      transition: border-color .2s, box-shadow .2s, background .2s;
-      direction: rtl;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      appearance: none;
     }
-    input[type="text"]:focus,
-    input[type="tel"]:focus,
-    input[type="email"]:focus,
-    input[type="date"]:focus,
-    textarea:focus {
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: #CBD5E1; font-weight: 400; }
+    .form-input:focus,
+    .form-textarea:focus {
       border-color: #F97316;
+      box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
       background: #fff;
-      box-shadow: 0 0 0 3px rgba(249,115,22,.12);
     }
-    textarea { resize: vertical; }
+    .form-textarea { resize: vertical; min-height: 88px; }
 
-    /* Gender pill toggle */
-    .gender-group { display: flex; gap: 10px; }
-    .gender-group input[type="radio"] { display: none; }
-    .gender-label {
+    /* Gender toggle */
+    .gender-row {
+      display: flex;
+      gap: 10px;
+    }
+    .gender-pill {
       flex: 1;
-      text-align: center;
-      padding: 12px 0;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: 700;
-      color: #64748B;
+      padding: 12px 8px;
+      border: 2px solid #E2E8F0;
+      border-radius: 12px;
       background: #FAFBFC;
-      transition: all .2s;
-      margin-bottom: 0 !important;
-      user-select: none;
+      font-family: 'Assistant', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
     }
-    .gender-group input[type="radio"]:checked + .gender-label {
-      background: #F97316;
+    .gender-pill:hover { border-color: #F97316; color: #F97316; background: #FFF7ED; }
+    .gender-pill.active {
       border-color: #F97316;
+      background: linear-gradient(135deg, #F97316, #EA580C);
       color: #fff;
-      box-shadow: 0 4px 14px rgba(249,115,22,.35);
+      box-shadow: 0 4px 12px rgba(249,115,22,0.3);
     }
-    .gender-label:hover {
-      border-color: #F97316;
-      color: #F97316;
+
+    /* Trust pills */
+    .trust-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 4px 0 24px;
     }
-    .gender-group input[type="radio"]:checked + .gender-label:hover {
-      color: #fff;
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748B;
     }
 
     /* Submit button */
     .submit-btn {
-      display: block;
       width: 100%;
-      background: #F97316;
-      color: #fff;
-      font-family: 'Assistant', sans-serif;
-      font-size: 18px;
-      font-weight: 800;
-      padding: 18px;
+      background: linear-gradient(135deg, #F97316, #EA580C);
       border: none;
-      border-radius: 50px;
+      border-radius: 16px;
+      padding: 20px;
+      font-family: 'Assistant', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
       cursor: pointer;
-      margin-top: 10px;
-      transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 6px 20px rgba(249,115,22,.35);
-      letter-spacing: 0.3px;
+      box-shadow: 0 8px 24px rgba(249,115,22,0.4);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      letter-spacing: -0.2px;
     }
-    .submit-btn:hover:not(:disabled) {
-      background: #EA6A0A;
+    .submit-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(249,115,22,.45);
+      box-shadow: 0 12px 32px rgba(249,115,22,0.5);
     }
-    .submit-btn:disabled {
-      opacity: .72;
-      cursor: not-allowed;
-    }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:disabled { opacity: 0.75; cursor: not-allowed; transform: none; }
 
-    .submit-footer {
+    .below-btn {
+      margin-top: 16px;
       text-align: center;
-      margin-top: 14px;
+    }
+    .below-btn p {
       font-size: 13px;
-      font-weight: 600;
       color: #94A3B8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .submit-footer a {
-      color: #25D366;
-      text-decoration: none;
-      font-weight: 700;
-    }
-    .submit-footer a:hover { text-decoration: underline; }
-    .submit-footer .sep { color: #CBD5E1; }
-
-    /* ── Trust badges ── */
-    .trust-row {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px 52px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .trust-badge {
-      background: #fff;
-      border-radius: 18px;
-      padding: 24px 16px;
-      text-align: center;
-      box-shadow: 0 2px 14px rgba(15,23,43,.07);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .trust-badge:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 26px rgba(15,23,43,.11);
-    }
-    .trust-badge .badge-icon {
-      font-size: 34px;
-      display: block;
       margin-bottom: 8px;
     }
-    .trust-badge .badge-title {
-      font-size: 16px;
+    .whatsapp-link {
+      color: #25D366;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .whatsapp-link:hover { text-decoration: underline; }
+
+    /* ── FOOTER TRUST BADGES ── */
+    .trust-footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+    .trust-badges-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .trust-badge-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .trust-badge-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+    }
+    .trust-badge-icon { font-size: 44px; margin-bottom: 14px; }
+    .trust-badge-title {
+      font-size: 18px;
       font-weight: 800;
       color: #0F172B;
+      margin-bottom: 6px;
     }
-    .trust-badge .badge-sub {
-      font-size: 13px;
-      font-weight: 600;
-      color: #94A3B8;
-      margin-top: 4px;
-    }
-
-    /* ── Field error state ── */
-    .input-error {
-      border-color: #EF4444 !important;
-      box-shadow: 0 0 0 3px rgba(239,68,68,.14) !important;
+    .trust-badge-sub {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.5;
     }
 
-    /* ── Mobile ── */
-    @media (max-width: 768px) {
-      .main-wrapper {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 0 14px 44px;
-      }
-      .page-heading h1 { font-size: 26px; }
-      .page-heading { padding: 32px 16px 22px; }
-      .trust-row {
-        grid-template-columns: 1fr;
-        padding: 0 14px 40px;
-        gap: 12px;
-      }
-      .card-body  { padding: 20px 18px; }
-      .card-header { padding: 18px 18px; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
       .site-header { padding: 0 16px; }
+      .hero-title { font-size: 30px; }
+      .hero-subtitle { font-size: 16px; }
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+      .trust-badges-row {
+        grid-template-columns: 1fr;
+      }
+      .steps-row { flex-wrap: wrap; gap: 8px; justify-content: center; }
+      .step-arrow { margin: 0 4px; }
+    }
+
+    /* Divider inside form */
+    .form-divider {
+      height: 1px;
+      background: #F1F5F9;
+      margin: 8px 0 24px;
+    }
+
+    /* Section label inside form */
+    .form-section-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .form-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #F1F5F9;
+    }
+
+    /* Sticky cart total on mobile */
+    @media (max-width: 800px) {
+      .sticky-total {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background: #fff;
+        border-top: 2px solid #F1F5F9;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 50;
+        box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+      }
+      .main-content { padding-bottom: 90px; }
+    }
+    @media (min-width: 801px) {
+      .sticky-total { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── Header ── -->
-  <header class="site-header">
-    <a class="logo" href="index.html">המטייל החכם 🎒</a>
-    <a class="wa-btn" href="https://wa.me/972501234567" target="_blank" rel="noopener">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      דברו איתנו!
-    </a>
-  </header>
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <a href="index.html" class="site-logo">🎒 המטייל החכם</a>
+  <a href="https://wa.me/972500000000" target="_blank" class="whatsapp-btn">
+    <span>💬</span> WhatsApp
+  </a>
+</header>
 
-  <!-- ── Page heading ── -->
-  <div class="page-heading">
-    <h1>🛒 סיכום ואישור הזמנה</h1>
-    <p>בדקו את הפריטים שבחרתם ומלאו פרטים לאישור</p>
+<!-- ── HERO ── -->
+<section class="page-hero">
+  <h1 class="hero-title">🛒 סיכום הזמנה שלך</h1>
+  <p class="hero-subtitle">בדקו את הפריטים, מלאו פרטים ואנחנו נדאג לכל השאר</p>
+  <div class="steps-row">
+    <div class="step-item active">
+      <div class="step-circle">1</div>
+      <span>פריטים</span>
+    </div>
+    <div class="step-arrow">←</div>
+    <div class="step-item active">
+      <div class="step-circle">2</div>
+      <span>פרטים</span>
+    </div>
+    <div class="step-arrow">←</div>
+    <div class="step-item">
+      <div class="step-circle">3</div>
+      <span>אישור</span>
+    </div>
   </div>
+</section>
 
-  <!-- ── Two-column layout ── -->
-  <div class="main-wrapper">
+<!-- ── MAIN CONTENT ── -->
+<div class="main-content">
+  <div class="content-grid">
 
-    <!-- Left column: Cart summary -->
-    <div class="card">
-      <div class="card-header">
-        <h2>🛒 הפריטים שלכם</h2>
+    <!-- LEFT: Cart -->
+    <div class="left-col">
+
+      <!-- Cart items card -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-header-title">🛒 הפריטים שלכם</div>
+            <div class="card-header-subtitle" id="cart-count">טוען...</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="cart-items">
+            <!-- filled by JS -->
+          </div>
+          <div id="cart-total-row" class="cart-total-row" style="display:none">
+            <span class="cart-total-label">סה״כ לתשלום</span>
+            <span class="cart-total-amount" id="cart-total">₪0</span>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <div id="cart-items">
-          <!-- populated by JS -->
+
+      <!-- Savings -->
+      <div id="savings-section" style="display:none">
+        <div class="savings-card">
+          <div class="savings-icon">💰</div>
+          <div>
+            <div class="savings-text-title">חסכתם ביחס לחנות רגילה!</div>
+            <div class="savings-text-sub" id="savings-text">השכרה חכמה חוסכת לכם מאות שקלים</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="right-col">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-header-title">📋 פרטי ההזמנה</div>
+            <div class="card-header-subtitle">ממלאים פה ואנחנו מסדרים הכל</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form id="order-form" class="form-body" novalidate>
+
+            <div class="form-section-label">פרטים אישיים</div>
+
+            <div class="form-group">
+              <label class="form-label" for="customer-name">שם מלא <span class="required">*</span></label>
+              <input class="form-input" type="text" id="customer-name" name="name" placeholder="ישראל ישראלי" required autocomplete="name">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="customer-phone">טלפון <span class="required">*</span></label>
+              <input class="form-input" type="tel" id="customer-phone" name="phone" placeholder="050-0000000" required autocomplete="tel" dir="ltr" style="text-align:right">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="customer-email">מייל</label>
+              <input class="form-input" type="email" id="customer-email" name="email" placeholder="email@example.com" autocomplete="email" dir="ltr" style="text-align:right">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">מין</label>
+              <div class="gender-row">
+                <button type="button" class="gender-pill" data-value="זכר">👨 זכר</button>
+                <button type="button" class="gender-pill" data-value="נקבה">👩 נקבה</button>
+              </div>
+              <input type="hidden" id="gender-input" name="gender" value="">
+            </div>
+
+            <div class="form-divider"></div>
+            <div class="form-section-label">פרטי נסיעה</div>
+
+            <div class="form-group">
+              <label class="form-label" for="customer-flight-date">תאריך טיסה</label>
+              <input class="form-input" type="date" id="customer-flight-date" name="flightDate">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="customer-address">כתובת למשלוח</label>
+              <textarea class="form-textarea" id="customer-address" name="address" rows="3" placeholder="רחוב, עיר, מיקוד..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="customer-notes">הערות</label>
+              <textarea class="form-textarea" id="customer-notes" name="notes" rows="3" placeholder="כל הערה חשובה לנו..."></textarea>
+            </div>
+
+            <!-- Trust pills -->
+            <div class="trust-row">
+              <span class="trust-pill">🔒 תשלום מאובטח</span>
+              <span class="trust-pill">⭐ שירות אישי</span>
+              <span class="trust-pill">🚚 משלוח עד הבית</span>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="submit-btn" id="submit-btn">
+              שלח הזמנה ← 🎒
+            </button>
+
+            <div class="below-btn">
+              <p>🔒 הזמנה מאובטחת ומוצפנת</p>
+              <a href="https://wa.me/972500000000" target="_blank" class="whatsapp-link">שאלות? דברו איתנו ב-WhatsApp 💬</a>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>
 
-    <!-- Right column: Order form -->
-    <div class="card">
-      <div class="card-header">
-        <h2>📋 פרטים לאישור ההזמנה</h2>
-      </div>
-      <div class="card-body">
-        <form id="order-form" novalidate>
-
-          <div class="form-group">
-            <label for="customer-name">שם מלא <span class="req">*</span></label>
-            <input type="text" id="customer-name" placeholder="ישראל ישראלי" required autocomplete="name">
-          </div>
-
-          <div class="form-group">
-            <label for="customer-phone">מספר טלפון <span class="req">*</span></label>
-            <input type="tel" id="customer-phone" placeholder="050-000-0000" required autocomplete="tel">
-          </div>
-
-          <div class="form-group">
-            <label for="customer-email">כתובת מייל</label>
-            <input type="email" id="customer-email" placeholder="israel@example.com" autocomplete="email">
-          </div>
-
-          <div class="form-group">
-            <label>מין</label>
-            <div class="gender-group">
-              <input type="radio" id="gender-male"   name="customer-gender" value="male">
-              <label class="gender-label" for="gender-male">👨 זכר</label>
-
-              <input type="radio" id="gender-female" name="customer-gender" value="female">
-              <label class="gender-label" for="gender-female">👩 נקבה</label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="customer-flight-date">תאריך טיסה</label>
-            <input type="date" id="customer-flight-date">
-          </div>
-
-          <div class="form-group">
-            <label for="customer-address">כתובת למשלוח</label>
-            <textarea id="customer-address" rows="2" placeholder="רחוב, עיר, מיקוד"></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="customer-notes">הערות נוספות</label>
-            <textarea id="customer-notes" rows="3" placeholder="כל מידע נוסף שיעזור לנו לשרת אותך טוב יותר..."></textarea>
-          </div>
-
-          <button type="submit" class="submit-btn" id="submit-btn">שלח הזמנה 🎒</button>
-
-          <div class="submit-footer">
-            <span>🔒 הזמנה מאובטחת</span>
-            <span class="sep">|</span>
-            <span>💬 שאלות? <a href="https://wa.me/972501234567" target="_blank" rel="noopener">WhatsApp</a></span>
-          </div>
-
-        </form>
-      </div>
-    </div>
-
   </div>
+</div>
 
-  <!-- ── Trust badges ── -->
-  <div class="trust-row">
-    <div class="trust-badge">
-      <span class="badge-icon">🔒</span>
-      <div class="badge-title">מאובטח לחלוטין</div>
-      <div class="badge-sub">פרטיכם שמורים בבטחה</div>
+<!-- ── FOOTER TRUST BADGES ── -->
+<div class="trust-footer">
+  <div class="trust-badges-row">
+    <div class="trust-badge-card">
+      <div class="trust-badge-icon">🔒</div>
+      <div class="trust-badge-title">מאובטח ב-100%</div>
+      <div class="trust-badge-sub">כל הנתונים מוצפנים ומאובטחים ברמה הגבוהה ביותר</div>
     </div>
-    <div class="trust-badge">
-      <span class="badge-icon">⭐</span>
-      <div class="badge-title">שירות אישי</div>
-      <div class="badge-sub">אנחנו כאן בשבילכם</div>
+    <div class="trust-badge-card">
+      <div class="trust-badge-icon">🌟</div>
+      <div class="trust-badge-title">שירות אישי</div>
+      <div class="trust-badge-sub">צוות מסור שמלווה אתכם לאורך כל הדרך עד שוב הביתה</div>
     </div>
-    <div class="trust-badge">
-      <span class="badge-icon">🎒</span>
-      <div class="badge-title">ניסיון של שנים</div>
-      <div class="badge-sub">המומחים לציוד טיולים</div>
+    <div class="trust-badge-card">
+      <div class="trust-badge-icon">✈️</div>
+      <div class="trust-badge-title">ניסיון של שנים</div>
+      <div class="trust-badge-sub">מאות נוסעים מרוצים שסמכו עלינו ברחבי העולם</div>
     </div>
   </div>
+</div>
 
-  <script>
-    /* ── Helpers ── */
-    function escHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
+<!-- Sticky mobile total -->
+<div class="sticky-total" id="sticky-total" style="display:none">
+  <span style="font-size:15px;font-weight:700;color:#0F172B">סה״כ לתשלום</span>
+  <span style="font-size:20px;font-weight:900;color:#F97316" id="total-amount">₪0</span>
+</div>
 
-    function formatPrice(n) {
-      return Number(n).toLocaleString('he-IL');
-    }
+<script>
+(function() {
+  var cart = [];
+  try { cart = JSON.parse(localStorage.getItem('smartCart') || '[]'); } catch(e) {}
+  if (!Array.isArray(cart)) cart = [];
 
-    /* ── Load cart ── */
-    var cart = [];
-    try {
-      cart = JSON.parse(localStorage.getItem('smartCart') || '[]');
-      if (!Array.isArray(cart)) cart = [];
-    } catch(e) { cart = []; }
+  function esc(str) {
+    return String(str)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
 
-    /* ── Render cart ── */
-    function renderCart() {
-      var container = document.getElementById('cart-items');
+  function renderCart() {
+    var container = document.getElementById('cart-items');
+    var countEl = document.getElementById('cart-count');
+    var totalRowEl = document.getElementById('cart-total-row');
+    var totalEl = document.getElementById('cart-total');
+    var totalAmountEl = document.getElementById('total-amount');
+    var stickyEl = document.getElementById('sticky-total');
+    var savingsSection = document.getElementById('savings-section');
 
-      if (cart.length === 0) {
-        container.innerHTML =
-          '<div class="cart-empty">' +
-            '<div style="font-size:52px;margin-bottom:14px">🛒</div>' +
-            '<p style="font-size:18px;font-weight:700;color:#475569;">העגלה ריקה</p>' +
-            '<p style="margin-top:10px"><a href="index.html">← חזרה לחנות</a></p>' +
-          '</div>';
-        return;
-      }
-
-      var total = 0;
-      var html  = '';
-
-      cart.forEach(function(item) {
-        var qty       = item.qty || 1;
-        var linePrice = (item.price || 0) * qty;
-        total += linePrice;
-
-        var modeLabel, badgeCls;
-        if (item.mode === 'rent') {
-          modeLabel = '🔄 השכרה'; badgeCls = 'badge-rent';
-        } else if (item.mode === 'free') {
-          modeLabel = '🎁 חינם';   badgeCls = 'badge-free';
-        } else {
-          modeLabel = '🛍️ קנייה'; badgeCls = 'badge-buy';
-        }
-
-        html +=
-          '<div class="cart-row">' +
-            '<div class="cart-item-info">' +
-              '<span class="cart-item-name">' +
-                escHtml(item.name) + (qty > 1 ? ' &times; ' + qty : '') +
-              '</span>' +
-              '<div class="badges-row">' +
-                '<span class="cart-badge ' + badgeCls + '">' + modeLabel + '</span>' +
-                (item.duration
-                  ? '<span class="cart-duration">' + item.duration + ' חודשים</span>'
-                  : '') +
-              '</div>' +
-            '</div>' +
-            '<span class="cart-item-price">₪' + formatPrice(linePrice) + '</span>' +
-          '</div>';
-      });
-
-      html += '<hr class="cart-divider">';
-      html +=
-        '<div class="cart-total">' +
-          '<span>סה"כ לתשלום</span>' +
-          '<span>₪' + formatPrice(total) + '</span>' +
+    if (cart.length === 0) {
+      container.innerHTML =
+        '<div style="text-align:center;padding:56px 24px;color:#94A3B8">' +
+          '<div style="font-size:72px;margin-bottom:20px;opacity:0.4">🛒</div>' +
+          '<p style="font-size:20px;font-weight:700;color:#64748B;margin-bottom:8px">העגלה שלך ריקה</p>' +
+          '<p style="font-size:15px;margin-bottom:24px;">לא בחרתם ציוד עדיין</p>' +
+          '<a href="index.html" style="display:inline-block;background:linear-gradient(135deg,#F97316,#EA580C);color:#fff;font-weight:800;font-size:16px;padding:14px 28px;border-radius:12px;text-decoration:none;box-shadow:0 6px 18px rgba(249,115,22,0.35);">← חזרה לבחירת ציוד</a>' +
         '</div>';
-
-      container.innerHTML = html;
+      if (countEl) countEl.textContent = '0 פריטים';
+      return;
     }
 
-    /* ── Form validation helpers ── */
-    function markError(el) {
-      el.classList.add('input-error');
-      el.addEventListener('input', function() {
-        el.classList.remove('input-error');
-      }, { once: true });
-    }
+    var total = 0;
+    var rentCount = 0;
+    var html = '';
 
-    /* ── Form submit ── */
-    document.getElementById('order-form').addEventListener('submit', function(e) {
-      e.preventDefault();
+    cart.forEach(function(item) {
+      var qty = item.qty || 1;
+      var unitPrice = item.price || 0;
+      var price = unitPrice * qty;
+      total += price;
+      if (item.mode === 'rent') rentCount++;
 
-      var nameEl  = document.getElementById('customer-name');
-      var phoneEl = document.getElementById('customer-phone');
-      var name    = nameEl.value.trim();
-      var phone   = phoneEl.value.trim();
+      var modeIcon = item.mode === 'rent' ? '🔄' : item.mode === 'free' ? '🎁' : '🛍️';
+      var modeLabel = item.mode === 'rent' ? 'השכרה' : item.mode === 'free' ? 'חינם' : 'קנייה';
+      var modeBg   = item.mode === 'rent' ? '#DBEAFE' : item.mode === 'free' ? '#DCFCE7' : '#FFF7ED';
+      var modeColor= item.mode === 'rent' ? '#1D4ED8' : item.mode === 'free' ? '#15803D' : '#EA580C';
 
-      var valid = true;
-      if (!name)  { markError(nameEl);  valid = false; }
-      if (!phone) { markError(phoneEl); valid = false; }
-      if (!valid) {
-        (!name ? nameEl : phoneEl).focus();
-        return;
-      }
-
-      var btn = document.getElementById('submit-btn');
-      btn.disabled    = true;
-      btn.textContent = '⏳ שולח...';
-
-      var genderEl = document.querySelector('input[name="customer-gender"]:checked');
-
-      var order = {
-        name:       name,
-        phone:      phone,
-        email:      document.getElementById('customer-email').value.trim(),
-        gender:     genderEl ? genderEl.value : '',
-        flightDate: document.getElementById('customer-flight-date').value,
-        address:    document.getElementById('customer-address').value.trim(),
-        notes:      document.getElementById('customer-notes').value.trim(),
-        cart:       cart
-      };
-
-      fetch('/api/send-order', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(order)
-      }).catch(function() {}).finally(function() {
-        localStorage.removeItem('smartCart');
-        window.location.href = 'thank-you.html?name=' + encodeURIComponent(order.name);
-      });
+      html +=
+        '<div class="cart-row">' +
+          '<div class="cart-icon-circle" style="background:' + modeBg + '">' + modeIcon + '</div>' +
+          '<div class="cart-item-details">' +
+            '<div class="cart-item-name">' + esc(item.name) + '</div>' +
+            '<span class="cart-mode-badge" style="background:' + modeBg + ';color:' + modeColor + '">' +
+              modeLabel + (item.duration ? ' · ' + item.duration + ' חודשים' : '') +
+              (qty > 1 ? ' × ' + qty : '') +
+            '</span>' +
+          '</div>' +
+          '<div class="cart-item-price">' +
+            (price === 0 ? '<span style="color:#15803D;font-weight:800">חינם</span>' : '₪' + price.toLocaleString('he-IL')) +
+          '</div>' +
+        '</div>';
     });
 
-    /* ── Init ── */
-    renderCart();
-  </script>
+    container.innerHTML = html;
+
+    if (countEl) countEl.textContent = cart.length + ' פריטים נבחרו';
+
+    var totalStr = '₪' + total.toLocaleString('he-IL');
+    if (totalEl) totalEl.textContent = totalStr;
+    if (totalAmountEl) totalAmountEl.textContent = totalStr;
+    if (totalRowEl) totalRowEl.style.display = 'flex';
+    if (stickyEl) stickyEl.style.display = 'flex';
+
+    if (rentCount > 0 && savingsSection) {
+      savingsSection.style.display = 'block';
+    }
+  }
+
+  // Gender toggle
+  document.querySelectorAll('.gender-pill').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.gender-pill').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('gender-input').value = btn.dataset.value;
+    });
+  });
+
+  // Form submit
+  document.getElementById('order-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Basic validation
+    var name = document.getElementById('customer-name').value.trim();
+    var phone = document.getElementById('customer-phone').value.trim();
+    if (!name || !phone) {
+      document.getElementById(name ? 'customer-phone' : 'customer-name').focus();
+      return;
+    }
+
+    var btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '⏳ שולח הזמנה...';
+    btn.style.opacity = '0.8';
+
+    var order = {
+      name: name,
+      phone: phone,
+      email: document.getElementById('customer-email').value,
+      gender: document.getElementById('gender-input').value,
+      flightDate: document.getElementById('customer-flight-date').value,
+      address: document.getElementById('customer-address').value,
+      notes: document.getElementById('customer-notes').value,
+      cart: cart
+    };
+
+    fetch('/api/send-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(order)
+    }).catch(function(){}).finally(function() {
+      localStorage.removeItem('smartCart');
+      window.location.href = 'thank-you.html?name=' + encodeURIComponent(order.name);
+    });
+  });
+
+  renderCart();
+})();
+</script>
 </body>
 </html>
