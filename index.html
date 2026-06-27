@@ -576,6 +576,17 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 .elementor-main-swiper { overflow: hidden !important; }
 html, body { overflow-x: hidden !important; }
 
+/* Push closed side-menu fully off-screen (overflow:hidden doesn't clip position:fixed) */
+#uc_ue_side_menu_elementor_b991733 .uc-side-menu-wrapper.menu-right-close {
+  right: -400px !important;
+  margin-right: 0 !important;
+  box-shadow: none !important;
+}
+/* Also hide any dark overlay when menu is closed */
+#uc_ue_side_menu_elementor_b991733 .menu-right-close .ue_side_menu_overlay {
+  display: none !important;
+}
+
 /* Video carousel in dark section */
 #video-carousel-section .wpcp-carousel-wrapper { max-width: 900px; margin: 0 auto; }
 #video-carousel-section .wpcp-single-item { border-radius: 14px; overflow: hidden; }
