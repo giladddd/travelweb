@@ -253,17 +253,16 @@
   <button class="side-close-btn" id="side-close">✕</button>
   <nav class="side-nav">
     <a href="index.html">דף הבית</a>
-    <a href="categories/bags-rental.html">מוצ'ילות להשכרה</a>
-    <a href="categories/day-bags.html">תיקי יום להשכרה</a>
-    <a href="categories/rental.html">ציוד טיולים להשכרה</a>
-    <a href="categories/general-equipment.html">ציוד כללי לקנייה</a>
-    <a href="categories/field.html">ציוד שטח לקנייה</a>
-    <a href="categories/hygiene.html">מוצרי היגיינה לקנייה</a>
-    <a href="guide.html">המדריך המלא לטיול</a>
-    <a href="categories/benefits.html">הטבות</a>
+    <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="categories/day-bags.html">תיקי יום</a>
+    <a href="categories/general-equipment.html">ציוד כללי</a>
+    <a href="categories/hygiene.html">ציוד היגיינה</a>
+    <a href="categories/field.html">ציוד שטח</a>
+    <a href="categories/benefits.html">הטבות בהכנה בחינם</a>
     <a href="about.html">אודות</a>
     <a href="order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
-    <a href="https://wa.me/972523960215" target="_blank" style="color:#25D366">לשיחה עם מומחה 💬</a>
+    <a href="https://wa.me/972523960215" target="_blank" style="color:#25D366">לשיחה עם מומחי הטיול הגדול שלנו 💬</a>
+    <a href="guide.html">המדריך המלא לטיול</a>
   </nav>
   <div class="side-social">
     <a href="https://www.facebook.com/share/14hoGSftwcy/" target="_blank">📘</a>
@@ -773,7 +772,7 @@
               <button class="sf-mode-opt active" onclick="setCardMode(this,'rent')">🔄 השכרה</button>
               <button class="sf-mode-opt" onclick="setCardMode(this,'buy')">🛒 קנייה</button>
             </div>
-            <div class="sf-rentable-price">₪<span class="sf-price-val">50</span><span class="sf-price-sfx"> לטיול</span></div>
+            <div class="sf-rentable-price">₪<span class="sf-price-val">50</span><span class="sf-price-sfx"> לכל הטיול</span></div>
             <button class="sf-add-btn" onclick="addRentable(this.closest('.sf-prod-card'))">+ הוסף לסל</button>
             <div class="sf-prod-check">✓</div>
           </div>
@@ -785,7 +784,7 @@
               <button class="sf-mode-opt active" onclick="setCardMode(this,'rent')">🔄 השכרה</button>
               <button class="sf-mode-opt" onclick="setCardMode(this,'buy')">🛒 קנייה</button>
             </div>
-            <div class="sf-rentable-price">₪<span class="sf-price-val">10</span><span class="sf-price-sfx"> לטיול</span></div>
+            <div class="sf-rentable-price">₪<span class="sf-price-val">10</span><span class="sf-price-sfx"> לכל הטיול</span></div>
             <button class="sf-add-btn" onclick="addRentable(this.closest('.sf-prod-card'))">+ הוסף לסל</button>
             <div class="sf-prod-check">✓</div>
           </div>
@@ -797,7 +796,7 @@
               <button class="sf-mode-opt active" onclick="setCardMode(this,'rent')">🔄 השכרה</button>
               <button class="sf-mode-opt" onclick="setCardMode(this,'buy')">🛒 קנייה</button>
             </div>
-            <div class="sf-rentable-price">₪<span class="sf-price-val">20</span><span class="sf-price-sfx"> לטיול</span></div>
+            <div class="sf-rentable-price">₪<span class="sf-price-val">20</span><span class="sf-price-sfx"> לכל הטיול</span></div>
             <button class="sf-add-btn" onclick="addRentable(this.closest('.sf-prod-card'))">+ הוסף לסל</button>
             <div class="sf-prod-check">✓</div>
           </div>
@@ -809,7 +808,7 @@
               <button class="sf-mode-opt active" onclick="setCardMode(this,'rent')">🔄 השכרה</button>
               <button class="sf-mode-opt" onclick="setCardMode(this,'buy')">🛒 קנייה</button>
             </div>
-            <div class="sf-rentable-price">₪<span class="sf-price-val">59</span><span class="sf-price-sfx"> לטיול</span></div>
+            <div class="sf-rentable-price">₪<span class="sf-price-val">59</span><span class="sf-price-sfx"> לכל הטיול</span></div>
             <button class="sf-add-btn" onclick="addRentable(this.closest('.sf-prod-card'))">+ הוסף לסל</button>
             <div class="sf-prod-check">✓</div>
           </div>
@@ -1055,7 +1054,7 @@
     btn.classList.add('active');
     var price = mode === 'rent' ? parseInt(card.dataset.rent) : parseInt(card.dataset.buy);
     card.querySelector('.sf-price-val').textContent = price;
-    card.querySelector('.sf-price-sfx').textContent = mode === 'rent' ? ' לטיול' : '';
+    card.querySelector('.sf-price-sfx').textContent = mode === 'rent' ? ' לכל הטיול' : '';
   };
   window.addRentable = function(card) {
     var mode = card.dataset.modeSel || 'rent';
