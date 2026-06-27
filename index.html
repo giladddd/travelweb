@@ -566,8 +566,24 @@ a:where(:not(.wp-element-button))
 <style id="bug-fixes">
 /* Bug 1: remove any body padding that creates white gap above hero */
 body { padding-top: 0 !important; margin-top: 0 !important; }
-/* Bug 2: hide all owl carousel nav buttons globally */
-.owl-nav, .owl-prev, .owl-next, .owl-nav button, .owl-carousel .owl-nav { display: none !important; }
+/* Bug 2 + carousel nav: hide all nav arrows */
+.owl-nav, .owl-prev, .owl-next, .owl-nav button, .owl-carousel .owl-nav,
+.wpcp-prev-button, .wpcp-next-button,
+.swiper-button-prev, .swiper-button-next { display: none !important; }
+
+/* Video carousel in dark section */
+#video-carousel-section .wpcp-carousel-wrapper { max-width: 900px; margin: 0 auto; }
+#video-carousel-section .wpcp-single-item { border-radius: 14px; overflow: hidden; }
+#video-carousel-section .wpcp-single-item img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 14px; }
+#video-carousel-section .wpcp-single-item a { display: block; position: relative; border-radius: 14px; overflow: hidden; }
+#video-carousel-section .wpcp-single-item .fa-play-circle-o {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-size: 48px; color: rgba(255,255,255,0.9);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5); transition: transform 0.2s;
+}
+#video-carousel-section .wpcp-single-item a:hover .fa-play-circle-o { transform: translate(-50%,-50%) scale(1.15); }
+#video-carousel-section .swiper-pagination-bullet { background: #64748B !important; opacity: 1 !important; }
+#video-carousel-section .swiper-pagination-bullet-active { background: #F97316 !important; width: 20px !important; border-radius: 4px !important; }
 </style>
 <style>
 /* Guide accordion in mobile menu */
@@ -5692,6 +5708,33 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     document.body.style.paddingTop = '0';
     document.body.style.marginTop = '0';
   }
+  // Move video carousel above the 3-step form + style it
+  function moveCarouselAboveForm() {
+    var form = document.getElementById('smart-form-360');
+    var carousel = document.querySelector('.elementor-element-832d70c');
+    if (!form || !carousel) return;
+
+    // Build a styled wrapper section
+    var wrapper = document.createElement('section');
+    wrapper.id = 'video-carousel-section';
+    wrapper.style.cssText = 'background:#0F172B;padding:48px 20px 40px;direction:rtl;';
+
+    var heading = document.createElement('div');
+    heading.innerHTML = '<h2 style="text-align:center;font-family:Assistant,sans-serif;font-size:26px;font-weight:800;color:#F97316;margin:0 0 6px">מטיילים שלנו מספרים</h2>' +
+      '<p style="text-align:center;font-family:Assistant,sans-serif;font-size:15px;color:#94A3B8;margin:0 0 28px">לחצו על הסרטון לצפייה</p>';
+
+    wrapper.appendChild(heading);
+    wrapper.appendChild(carousel);
+
+    // Insert wrapper before the form
+    form.parentNode.insertBefore(wrapper, form);
+
+    // Add divider between carousel and form
+    var divider = document.createElement('div');
+    divider.style.cssText = 'height:4px;background:linear-gradient(90deg,#F97316,#EA580C,#F97316);';
+    form.parentNode.insertBefore(divider, form);
+  }
+
   // Bug 3: add click-outside-to-close for hamburger menu (polyfill doesn't have this)
   function fixHamburger() {
     if (typeof jQuery === 'undefined') return;
@@ -5705,9 +5748,9 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     });
   }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function(){ fixHeaderGap(); fixHamburger(); });
+    document.addEventListener('DOMContentLoaded', function(){ fixHeaderGap(); fixHamburger(); moveCarouselAboveForm(); });
   } else {
-    fixHeaderGap(); fixHamburger();
+    fixHeaderGap(); fixHamburger(); moveCarouselAboveForm();
   }
   window.addEventListener('resize', fixHeaderGap);
 })();
