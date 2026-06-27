@@ -1,1481 +1,646 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="he-IL">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="הזמנת ציוד לטיול – המטייל החכם. השכרה וקנייה של מוצילה וציוד לטיול.">
-<meta property="og:title" content="הזמן ציוד לטיול – המטייל החכם">
-<meta property="og:image" content="https://the-smart-traveller.com/assets/images/2024_03_cropped-logo-300x300.png">
-<meta property="og:url" content="https://the-smart-traveller.com/order-summary.html">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="he_IL">
-<title>הזמן ציוד לטיול – המטייל החכם</title>
-<meta name='robots' content='noindex, follow' />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-/* ===== RESET & BASE ===== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Assistant', sans-serif;
-  background: #F8FAFC;
-  color: #0F172B;
-  direction: rtl;
-  min-height: 100vh;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>סיכום הזמנה – המטייל החכם</title>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ===== VARIABLES ===== */
-:root {
-  --orange: #F97316;
-  --orange-light: #FFF7ED;
-  --orange-dark: #EA6C0A;
-  --navy: #0F172B;
-  --navy-mid: #1E293B;
-  --gray: #64748B;
-  --gray-light: #E2E8F0;
-  --white: #FFFFFF;
-  --green: #16A34A;
-  --green-light: #F0FDF4;
-  --radius: 16px;
-  --shadow: 0 4px 20px rgba(0,0,0,0.08);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
-}
+    body {
+      font-family: 'Assistant', sans-serif;
+      background: #F1F5F9;
+      color: #1E293B;
+      min-height: 100vh;
+      direction: rtl;
+    }
 
-/* ===== HEADER ===== */
-.site-header {
-  background: var(--navy);
-  padding: 0 24px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-}
-.header-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--white);
-  font-size: 18px;
-  font-weight: 700;
-}
-.header-logo span { color: var(--orange); }
-.header-actions { display: flex; align-items: center; gap: 12px; }
-.whatsapp-btn {
-  background: #25D366;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  padding: 8px 16px;
-  font-family: 'Assistant', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-}
-.hamburger-btn {
-  background: transparent;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-radius: 8px;
-  color: white;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 18px;
-}
+    /* ── Header ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0F172B;
+      padding: 0 28px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(0,0,0,.4);
+    }
 
-/* ===== SOCIAL PROOF BANNER ===== */
-.social-proof-banner {
-  background: linear-gradient(135deg, var(--orange) 0%, #FB923C 100%);
-  color: white;
-  text-align: center;
-  padding: 10px 20px;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-}
-.social-proof-banner span { font-weight: 800; }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
 
-/* ===== PROGRESS BAR ===== */
-.progress-container {
-  background: var(--white);
-  padding: 20px 24px 0;
-  border-bottom: 1px solid var(--gray-light);
-  position: sticky;
-  top: 64px;
-  z-index: 90;
-}
-.progress-steps {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0;
-  max-width: 600px;
-  margin: 0 auto 20px;
-}
-.progress-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  flex: 1;
-  position: relative;
-}
-.progress-step::before {
-  content: '';
-  position: absolute;
-  top: 18px;
-  right: 50%;
-  width: 100%;
-  height: 3px;
-  background: var(--gray-light);
-  z-index: 0;
-}
-.progress-step:first-child::before { display: none; }
-.progress-step.active::before,
-.progress-step.done::before { background: var(--orange); }
-.step-circle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--gray-light);
-  color: var(--gray);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 15px;
-  z-index: 1;
-  position: relative;
-  transition: all 0.3s ease;
-}
-.progress-step.active .step-circle {
-  background: var(--orange);
-  color: white;
-  box-shadow: 0 0 0 4px rgba(249,115,22,0.2);
-}
-.progress-step.done .step-circle {
-  background: var(--orange);
-  color: white;
-}
-.step-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--gray);
-  white-space: nowrap;
-}
-.progress-step.active .step-label { color: var(--orange); }
-.progress-step.done .step-label { color: var(--orange); }
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: #fff;
+      font-family: 'Assistant', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .wa-btn:hover { background: #1ebe5d; transform: translateY(-1px); }
 
-/* ===== LAYOUT ===== */
-.page-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 20px 120px;
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 28px;
-  align-items: start;
-}
+    /* ── Page heading ── */
+    .page-heading {
+      text-align: center;
+      padding: 52px 24px 36px;
+    }
+    .page-heading h1 {
+      font-size: 36px;
+      font-weight: 800;
+      color: #F97316;
+      line-height: 1.2;
+    }
+    .page-heading p {
+      margin-top: 10px;
+      font-size: 17px;
+      color: #64748B;
+      font-weight: 600;
+    }
 
-/* ===== STEP CONTAINER ===== */
-.step-container { display: none; }
-.step-container.active { display: block; }
+    /* ── Main layout ── */
+    .main-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 56px;
+      display: grid;
+      grid-template-columns: 55% 1fr;
+      gap: 28px;
+      align-items: start;
+    }
 
-.step-title {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--navy);
-  margin-bottom: 8px;
-}
-.step-subtitle {
-  font-size: 15px;
-  color: var(--gray);
-  margin-bottom: 24px;
-}
+    /* ── Cards ── */
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 28px rgba(15,23,43,.09);
+      overflow: hidden;
+    }
 
-/* ===== MODE TOGGLE ===== */
-.mode-toggle {
-  display: flex;
-  background: var(--gray-light);
-  border-radius: 50px;
-  padding: 4px;
-  margin-bottom: 28px;
-  gap: 4px;
-}
-.mode-btn {
-  flex: 1;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 50px;
-  background: transparent;
-  color: var(--gray);
-  font-family: 'Assistant', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.mode-btn.active {
-  background: var(--white);
-  color: var(--navy);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+    .card-header {
+      background: linear-gradient(135deg, #0F172B 0%, #1E3A5F 100%);
+      padding: 22px 28px;
+    }
+    .card-header h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+    }
 
-/* ===== BACKPACK CARDS ===== */
-.backpack-grid {
-  display: grid;
-  gap: 16px;
-}
-.backpack-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  border: 2px solid transparent;
-  padding: 20px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: var(--shadow);
-  position: relative;
-}
-.backpack-card:hover { border-color: rgba(249,115,22,0.4); transform: translateY(-2px); }
-.backpack-card.selected {
-  border-color: var(--orange);
-  background: var(--orange-light);
-  box-shadow: 0 0 0 4px rgba(249,115,22,0.12);
-}
-.backpack-card-inner {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.backpack-icon {
-  font-size: 40px;
-  flex-shrink: 0;
-}
-.backpack-info { flex: 1; }
-.backpack-name {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 4px;
-}
-.backpack-desc {
-  font-size: 13px;
-  color: var(--gray);
-  margin-bottom: 8px;
-}
-.backpack-price {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--orange);
-}
-.backpack-price-sub {
-  font-size: 13px;
-  color: var(--gray);
-  font-weight: 400;
-}
-.backpack-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: #EF4444;
-  color: white;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 50px;
-}
-.return-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--green-light);
-  color: var(--green);
-  border-radius: 50px;
-  padding: 4px 12px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-top: 8px;
-}
-.savings-compare {
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: #F1F5F9;
-  border-radius: 8px;
-  font-size: 13px;
-  color: var(--navy-mid);
-}
-.savings-compare span { font-weight: 700; color: var(--orange); }
-.selected-check {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--orange);
-  color: white;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-.backpack-card.selected .selected-check { display: flex; }
+    .card-body {
+      padding: 26px 28px;
+    }
 
-/* ===== DURATION SELECTOR ===== */
-.duration-section {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin-top: 20px;
-  box-shadow: var(--shadow);
-}
-.duration-label {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 14px;
-}
-.duration-slider-wrap {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.duration-slider {
-  flex: 1;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 6px;
-  border-radius: 3px;
-  background: var(--gray-light);
-  outline: none;
-  cursor: pointer;
-}
-.duration-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--orange);
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(249,115,22,0.4);
-}
-.duration-value {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--orange);
-  min-width: 80px;
-  text-align: center;
-}
+    /* ── Cart items ── */
+    .cart-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 14px;
+      border-radius: 12px;
+      gap: 12px;
+      transition: background .15s;
+    }
+    .cart-row:nth-child(odd)  { background: #F8FAFC; }
+    .cart-row:nth-child(even) { background: #fff; }
+    .cart-row:hover { background: #FFF7ED; }
 
-/* ===== EQUIPMENT GRID ===== */
-.equipment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.bundle-btn {
-  background: var(--orange-light);
-  color: var(--orange);
-  border: 2px solid var(--orange);
-  border-radius: 50px;
-  padding: 8px 18px;
-  font-family: 'Assistant', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.bundle-btn:hover { background: var(--orange); color: white; }
-.equipment-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 14px;
-}
-.equip-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  border: 2px solid transparent;
-  padding: 18px 16px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: var(--shadow);
-  position: relative;
-  user-select: none;
-}
-.equip-card:hover { border-color: rgba(249,115,22,0.4); transform: translateY(-2px); }
-.equip-card.selected {
-  border-color: var(--orange);
-  background: var(--orange-light);
-}
-.equip-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 10px;
-}
-.equip-icon { font-size: 32px; }
-.equip-check {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid var(--gray-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-.equip-card.selected .equip-check {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: white;
-}
-.equip-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-.equip-price-row {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.equip-price-rent { font-size: 13px; color: var(--gray); }
-.equip-price-buy { font-size: 15px; font-weight: 700; color: var(--orange); }
+    .cart-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+      min-width: 0;
+    }
+    .cart-item-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1E293B;
+      line-height: 1.3;
+    }
+    .badges-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
-/* Mode picker popup inside equip card */
-.equip-mode-picker {
-  display: none;
-  margin-top: 10px;
-  background: #F8FAFC;
-  border-radius: 10px;
-  padding: 10px;
-  gap: 6px;
-}
-.equip-card.selected .equip-mode-picker { display: flex; }
-.mode-pill {
-  flex: 1;
-  padding: 6px 4px;
-  border: 2px solid var(--gray-light);
-  border-radius: 8px;
-  background: white;
-  font-family: 'Assistant', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.2s ease;
-  color: var(--gray);
-}
-.mode-pill.active {
-  border-color: var(--orange);
-  background: var(--orange);
-  color: white;
-}
+    .cart-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+    .badge-rent { background: #DBEAFE; color: #1D4ED8; }
+    .badge-buy  { background: #DCFCE7; color: #166534; }
+    .badge-free { background: #FEF9C3; color: #92400E; }
 
-/* ===== SERVICES ===== */
-.services-grid { display: grid; gap: 12px; }
-.service-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  border: 2px solid var(--gray-light);
-  padding: 18px 20px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.service-card:hover { border-color: rgba(249,115,22,0.4); }
-.service-card.selected {
-  border-color: var(--orange);
-  background: var(--orange-light);
-}
-.service-checkbox {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  border: 2px solid var(--gray-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  flex-shrink: 0;
-  transition: all 0.2s ease;
-}
-.service-card.selected .service-checkbox {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: white;
-}
-.service-icon { font-size: 26px; }
-.service-info { flex: 1; }
-.service-name {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--navy);
-}
-.service-desc {
-  font-size: 13px;
-  color: var(--gray);
-  margin-top: 2px;
-}
-.service-price {
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--orange);
-  white-space: nowrap;
-}
+    .cart-duration {
+      font-size: 12px;
+      font-weight: 600;
+      color: #94A3B8;
+    }
 
-/* ===== CUSTOMER FORM ===== */
-.form-section { display: none; }
-.form-section.active { display: block; margin-top: 28px; }
-.form-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--navy);
-  margin-bottom: 20px;
-  padding-top: 20px;
-  border-top: 2px solid var(--gray-light);
-}
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.form-group { display: flex; flex-direction: column; gap: 6px; }
-.form-group.full { grid-column: 1 / -1; }
-.form-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--navy-mid);
-}
-.form-label .req { color: var(--orange); }
-.form-input, .form-textarea, .form-select {
-  border: 2px solid var(--gray-light);
-  border-radius: 10px;
-  padding: 12px 14px;
-  font-family: 'Assistant', sans-serif;
-  font-size: 15px;
-  color: var(--navy);
-  background: var(--white);
-  transition: border-color 0.2s ease;
-  outline: none;
-  width: 100%;
-  direction: rtl;
-}
-.form-input:focus, .form-textarea:focus, .form-select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
-}
-.form-textarea { resize: vertical; min-height: 90px; }
-.gender-row { display: flex; gap: 16px; margin-top: 4px; }
-.gender-option {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-}
-.gender-option input[type="radio"] {
-  accent-color: var(--orange);
-  width: 18px;
-  height: 18px;
-}
+    .cart-item-price {
+      font-size: 18px;
+      font-weight: 800;
+      color: #F97316;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
 
-/* ===== STEP NAV BUTTONS ===== */
-.step-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 28px;
-  padding-top: 20px;
-  border-top: 1px solid var(--gray-light);
-  gap: 12px;
-}
-.btn-back {
-  background: transparent;
-  border: 2px solid var(--gray-light);
-  border-radius: 50px;
-  padding: 12px 24px;
-  font-family: 'Assistant', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--gray);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.btn-back:hover { border-color: var(--navy); color: var(--navy); }
-.btn-next {
-  background: var(--orange);
-  border: none;
-  border-radius: 50px;
-  padding: 14px 32px;
-  font-family: 'Assistant', sans-serif;
-  font-size: 17px;
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 14px rgba(249,115,22,0.4);
-}
-.btn-next:hover:not(:disabled) {
-  background: var(--orange-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(249,115,22,0.5);
-}
-.btn-next:disabled {
-  background: #CBD5E1;
-  box-shadow: none;
-  cursor: not-allowed;
-}
-.btn-submit {
-  background: var(--green);
-  border: none;
-  border-radius: 50px;
-  padding: 16px 36px;
-  font-family: 'Assistant', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 14px rgba(22,163,74,0.4);
-  width: 100%;
-  justify-content: center;
-  margin-top: 8px;
-}
-.btn-submit:hover {
-  background: #15803D;
-  transform: translateY(-1px);
-}
+    .cart-divider {
+      border: none;
+      border-top: 1.5px dashed #E2E8F0;
+      margin: 10px 0 4px;
+    }
 
-/* ===== STICKY SUMMARY PANEL ===== */
-.summary-panel {
-  position: sticky;
-  top: 140px;
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-}
-.summary-header {
-  background: var(--navy);
-  color: white;
-  padding: 18px 20px;
-  font-size: 17px;
-  font-weight: 700;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.summary-body { padding: 16px 20px; }
-.summary-items { min-height: 80px; }
-.summary-empty {
-  text-align: center;
-  color: var(--gray);
-  font-size: 14px;
-  padding: 20px 0;
-}
-.summary-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--gray-light);
-  gap: 8px;
-}
-.summary-item:last-child { border-bottom: none; }
-.summary-item-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--navy);
-  line-height: 1.3;
-}
-.summary-item-sub {
-  font-size: 12px;
-  color: var(--gray);
-  margin-top: 2px;
-}
-.summary-item-price {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--orange);
-  white-space: nowrap;
-}
-.summary-divider {
-  border: none;
-  border-top: 2px solid var(--gray-light);
-  margin: 14px 0;
-}
-.summary-total-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 14px;
-}
-.summary-total-label {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--navy);
-}
-.summary-total-price {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--orange);
-}
-.summary-note {
-  font-size: 12px;
-  color: var(--gray);
-  margin-top: 8px;
-  line-height: 1.5;
-}
-.summary-cta {
-  margin-top: 16px;
-  background: var(--orange);
-  border: none;
-  border-radius: 50px;
-  padding: 14px 20px;
-  font-family: 'Assistant', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
-  width: 100%;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(249,115,22,0.35);
-}
-.summary-cta:hover { background: var(--orange-dark); }
-.trust-badges {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid var(--gray-light);
-  flex-wrap: wrap;
-}
-.trust-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  color: var(--gray);
-  font-weight: 600;
-}
-.trust-badge-icon { font-size: 20px; }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 14px 2px;
+    }
+    .cart-total span:first-child {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0F172B;
+    }
+    .cart-total span:last-child {
+      font-size: 26px;
+      font-weight: 800;
+      color: #F97316;
+    }
 
-/* ===== MOBILE BOTTOM BAR ===== */
-.mobile-total-bar {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: var(--navy);
-  color: white;
-  padding: 12px 20px;
-  z-index: 200;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
-}
-.mobile-total-info { display: flex; flex-direction: column; }
-.mobile-total-label { font-size: 12px; color: rgba(255,255,255,0.7); }
-.mobile-total-price { font-size: 22px; font-weight: 800; color: var(--orange); }
-.mobile-order-btn {
-  background: var(--orange);
-  border: none;
-  border-radius: 50px;
-  padding: 12px 24px;
-  font-family: 'Assistant', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
-  white-space: nowrap;
-}
+    .cart-empty {
+      text-align: center;
+      padding: 48px 20px;
+      color: #94A3B8;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .cart-empty a {
+      color: #F97316;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .cart-empty a:hover { text-decoration: underline; }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .page-wrapper {
-    grid-template-columns: 1fr;
-    padding-bottom: 100px;
-  }
-  .summary-panel { display: none; }
-  .mobile-total-bar { display: flex; }
-  .form-grid { grid-template-columns: 1fr; }
-  .form-group.full { grid-column: 1; }
-}
-@media (max-width: 600px) {
-  .progress-container { padding: 14px 12px 0; }
-  .step-title { font-size: 22px; }
-  .equipment-grid { grid-template-columns: repeat(2, 1fr); }
-  .mode-btn { font-size: 14px; padding: 10px 12px; }
-  .page-wrapper { padding: 20px 14px 110px; }
-}
+    /* ── Form ── */
+    .form-group {
+      margin-bottom: 16px;
+    }
 
-/* ===== ANIMATIONS ===== */
-@keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.step-container.active { animation: fadeSlideIn 0.3s ease; }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+    label .req {
+      color: #F97316;
+      margin-right: 2px;
+    }
 
-/* ===== MISC ===== */
-.urgency-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #FEF2F2;
-  color: #EF4444;
-  border-radius: 50px;
-  padding: 3px 10px;
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: 6px;
-}
-</style>
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: 'Assistant', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1E293B;
+      background: #FAFBFC;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+      direction: rtl;
+    }
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="email"]:focus,
+    input[type="date"]:focus,
+    textarea:focus {
+      border-color: #F97316;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(249,115,22,.12);
+    }
+    textarea { resize: vertical; }
+
+    /* Gender pill toggle */
+    .gender-group { display: flex; gap: 10px; }
+    .gender-group input[type="radio"] { display: none; }
+    .gender-label {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      color: #64748B;
+      background: #FAFBFC;
+      transition: all .2s;
+      margin-bottom: 0 !important;
+      user-select: none;
+    }
+    .gender-group input[type="radio"]:checked + .gender-label {
+      background: #F97316;
+      border-color: #F97316;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(249,115,22,.35);
+    }
+    .gender-label:hover {
+      border-color: #F97316;
+      color: #F97316;
+    }
+    .gender-group input[type="radio"]:checked + .gender-label:hover {
+      color: #fff;
+    }
+
+    /* Submit button */
+    .submit-btn {
+      display: block;
+      width: 100%;
+      background: #F97316;
+      color: #fff;
+      font-family: 'Assistant', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 18px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 6px 20px rgba(249,115,22,.35);
+      letter-spacing: 0.3px;
+    }
+    .submit-btn:hover:not(:disabled) {
+      background: #EA6A0A;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(249,115,22,.45);
+    }
+    .submit-btn:disabled {
+      opacity: .72;
+      cursor: not-allowed;
+    }
+
+    .submit-footer {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .submit-footer a {
+      color: #25D366;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .submit-footer a:hover { text-decoration: underline; }
+    .submit-footer .sep { color: #CBD5E1; }
+
+    /* ── Trust badges ── */
+    .trust-row {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 52px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .trust-badge {
+      background: #fff;
+      border-radius: 18px;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 2px 14px rgba(15,23,43,.07);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .trust-badge:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 26px rgba(15,23,43,.11);
+    }
+    .trust-badge .badge-icon {
+      font-size: 34px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .trust-badge .badge-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0F172B;
+    }
+    .trust-badge .badge-sub {
+      font-size: 13px;
+      font-weight: 600;
+      color: #94A3B8;
+      margin-top: 4px;
+    }
+
+    /* ── Field error state ── */
+    .input-error {
+      border-color: #EF4444 !important;
+      box-shadow: 0 0 0 3px rgba(239,68,68,.14) !important;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .main-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 14px 44px;
+      }
+      .page-heading h1 { font-size: 26px; }
+      .page-heading { padding: 32px 16px 22px; }
+      .trust-row {
+        grid-template-columns: 1fr;
+        padding: 0 14px 40px;
+        gap: 12px;
+      }
+      .card-body  { padding: 20px 18px; }
+      .card-header { padding: 18px 18px; }
+      .site-header { padding: 0 16px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="site-header">
-  <a href="index.html" class="header-logo">
-    🎒 המטייל <span>החכם</span>
-  </a>
-  <div class="header-actions">
-    <a href="https://wa.me/972501234567" class="whatsapp-btn" target="_blank">
-      <span>💬</span> וואטסאפ
+  <!-- ── Header ── -->
+  <header class="site-header">
+    <a class="logo" href="index.html">המטייל החכם 🎒</a>
+    <a class="wa-btn" href="https://wa.me/972501234567" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      דברו איתנו!
     </a>
-    <button class="hamburger-btn">☰</button>
+  </header>
+
+  <!-- ── Page heading ── -->
+  <div class="page-heading">
+    <h1>🛒 סיכום ואישור הזמנה</h1>
+    <p>בדקו את הפריטים שבחרתם ומלאו פרטים לאישור</p>
   </div>
-</header>
 
-<!-- SOCIAL PROOF BANNER -->
-<div class="social-proof-banner">
-  🔥 <span>127 מטיילים</span> הזמינו ציוד החודש — הצטרפו אליהם!
-</div>
+  <!-- ── Two-column layout ── -->
+  <div class="main-wrapper">
 
-<!-- PROGRESS BAR -->
-<div class="progress-container">
-  <div class="progress-steps">
-    <div class="progress-step active" id="prog-1" onclick="goToStep(1)">
-      <div class="step-circle">1</div>
-      <div class="step-label">🎒 מוצילה</div>
-    </div>
-    <div class="progress-step" id="prog-2" onclick="goToStep(2)">
-      <div class="step-circle">2</div>
-      <div class="step-label">🧳 ציוד</div>
-    </div>
-    <div class="progress-step" id="prog-3" onclick="goToStep(3)">
-      <div class="step-circle">3</div>
-      <div class="step-label">✈️ שירותים</div>
-    </div>
-  </div>
-</div>
-
-<!-- PAGE WRAPPER -->
-<div class="page-wrapper">
-
-  <!-- MAIN CONTENT -->
-  <div class="main-content">
-
-    <!-- STEP 1: BACKPACK -->
-    <div class="step-container active" id="step-1">
-      <div class="step-title">בחרו מוצילה לטיול</div>
-      <div class="step-subtitle">השכרה חודשית או קנייה עם אפשרות החזרה לאחר הטיול</div>
-
-      <!-- Mode Toggle -->
-      <div class="mode-toggle">
-        <button class="mode-btn active" id="mode-rent" onclick="setBackpackMode('rent')">
-          🎒 השכרה
-        </button>
-        <button class="mode-btn" id="mode-buy" onclick="setBackpackMode('buy')">
-          🛍️ קנייה + החזרה
-        </button>
+    <!-- Left column: Cart summary -->
+    <div class="card">
+      <div class="card-header">
+        <h2>🛒 הפריטים שלכם</h2>
       </div>
-
-      <!-- Backpack Cards -->
-      <div class="backpack-grid" id="backpack-grid">
-
-        <!-- Osprey 65L -->
-        <div class="backpack-card" id="bp-osprey65" onclick="selectBackpack('osprey65')">
-          <div class="backpack-badge">⚡ נותרו 2 יחידות</div>
-          <div class="backpack-card-inner">
-            <div class="backpack-icon">🎒</div>
-            <div class="backpack-info">
-              <div class="backpack-name">Osprey Atmos AG 65L</div>
-              <div class="backpack-desc">המוצילה הפופולרית ביותר — מערכת אוורור AG מתקדמת, 65 ליטר</div>
-              <div class="backpack-price" id="bp-price-osprey65">
-                140₪<span class="backpack-price-sub">/חודש</span>
-              </div>
-              <div class="return-badge" id="bp-return-osprey65" style="display:none">
-                💚 אחרי הטיול — מחזיר לפי המחירון
-              </div>
-              <div class="savings-compare" id="bp-compare-osprey65" style="display:none">
-                השכרה לחצי שנה = <span>840₪</span> &nbsp;|&nbsp; קנייה = <span>890₪</span> (מחזיר לפי מחירון)
-              </div>
-              <div class="urgency-tag">🔴 נותרו 2 יחידות בלבד!</div>
-            </div>
-            <div class="selected-check">✓</div>
-          </div>
+      <div class="card-body">
+        <div id="cart-items">
+          <!-- populated by JS -->
         </div>
-
-        <!-- Deuter 60L -->
-        <div class="backpack-card" id="bp-deuter60" onclick="selectBackpack('deuter60')">
-          <div class="backpack-card-inner">
-            <div class="backpack-icon">🎒</div>
-            <div class="backpack-info">
-              <div class="backpack-name">Deuter Aircontact 60L</div>
-              <div class="backpack-desc">נוחות גבוהה לטיולים ארוכים — מסגרת כסף גמישה, חגורת מותניים רחבה</div>
-              <div class="backpack-price" id="bp-price-deuter60">
-                120₪<span class="backpack-price-sub">/חודש</span>
-              </div>
-              <div class="return-badge" id="bp-return-deuter60" style="display:none">
-                💚 אחרי הטיול — מחזיר לפי המחירון
-              </div>
-              <div class="savings-compare" id="bp-compare-deuter60" style="display:none">
-                השכרה לחצי שנה = <span>720₪</span> &nbsp;|&nbsp; קנייה = <span>750₪</span> (מחזיר לפי מחירון)
-              </div>
-            </div>
-            <div class="selected-check">✓</div>
-          </div>
-        </div>
-
-        <!-- Osprey Farpoint 40L -->
-        <div class="backpack-card" id="bp-farpoint40" onclick="selectBackpack('farpoint40')">
-          <div class="backpack-card-inner">
-            <div class="backpack-icon">🎒</div>
-            <div class="backpack-info">
-              <div class="backpack-name">Osprey Farpoint 40L</div>
-              <div class="backpack-desc">תיק יום גדול — מושלם לטיולים קצרים, אפשר להכניס לתא מטוס</div>
-              <div class="backpack-price" id="bp-price-farpoint40">
-                80₪<span class="backpack-price-sub">/חודש</span>
-              </div>
-              <div class="return-badge" id="bp-return-farpoint40" style="display:none">
-                💚 אחרי הטיול — מחזיר לפי המחירון
-              </div>
-              <div class="savings-compare" id="bp-compare-farpoint40" style="display:none">
-                השכרה לחצי שנה = <span>480₪</span> &nbsp;|&nbsp; קנייה = <span>590₪</span> (מחזיר לפי מחירון)
-              </div>
-            </div>
-            <div class="selected-check">✓</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Duration selector (rental mode) -->
-      <div class="duration-section" id="duration-section">
-        <div class="duration-label">⏱️ משך ההשכרה</div>
-        <div class="duration-slider-wrap">
-          <input type="range" class="duration-slider" id="duration-slider" min="1" max="12" value="3" oninput="updateDuration(this.value)">
-          <div class="duration-value" id="duration-display">3 חודשים</div>
-        </div>
-      </div>
-
-      <div class="step-nav">
-        <div></div>
-        <button class="btn-next" id="next-1" onclick="goToStep(2)" disabled>
-          לשלב הבא — ציוד <span>→</span>
-        </button>
       </div>
     </div>
 
-    <!-- STEP 2: EQUIPMENT -->
-    <div class="step-container" id="step-2">
-      <div class="equipment-header">
-        <div>
-          <div class="step-title">ציוד משלים</div>
-          <div class="step-subtitle">בחרו פריטים נוספים לטיול שלכם</div>
-        </div>
-        <button class="bundle-btn" onclick="selectBundle()">
-          ✨ חבילה מומלצת
-        </button>
+    <!-- Right column: Order form -->
+    <div class="card">
+      <div class="card-header">
+        <h2>📋 פרטים לאישור ההזמנה</h2>
       </div>
+      <div class="card-body">
+        <form id="order-form" novalidate>
 
-      <div class="equipment-grid" id="equipment-grid">
-        <!-- cards injected by JS -->
-      </div>
+          <div class="form-group">
+            <label for="customer-name">שם מלא <span class="req">*</span></label>
+            <input type="text" id="customer-name" placeholder="ישראל ישראלי" required autocomplete="name">
+          </div>
 
-      <div class="step-nav">
-        <button class="btn-back" onclick="goToStep(1)">← חזרה</button>
-        <button class="btn-next" onclick="goToStep(3)">
-          לשלב הבא — שירותים <span>→</span>
-        </button>
-      </div>
-    </div>
+          <div class="form-group">
+            <label for="customer-phone">מספר טלפון <span class="req">*</span></label>
+            <input type="tel" id="customer-phone" placeholder="050-000-0000" required autocomplete="tel">
+          </div>
 
-    <!-- STEP 3: SERVICES + FORM -->
-    <div class="step-container" id="step-3">
-      <div class="step-title">שירותים להכנת הטיול</div>
-      <div class="step-subtitle">הוסיפו שירותים שיעשו את הטיול מושלם</div>
+          <div class="form-group">
+            <label for="customer-email">כתובת מייל</label>
+            <input type="email" id="customer-email" placeholder="israel@example.com" autocomplete="email">
+          </div>
 
-      <div class="services-grid" id="services-grid">
-        <!-- injected by JS -->
-      </div>
+          <div class="form-group">
+            <label>מין</label>
+            <div class="gender-group">
+              <input type="radio" id="gender-male"   name="customer-gender" value="male">
+              <label class="gender-label" for="gender-male">👨 זכר</label>
 
-      <!-- Customer Details Form -->
-      <div class="form-section active">
-        <div class="form-title">פרטים לאישור ההזמנה</div>
-        <form id="order-form" onsubmit="submitOrder(event)">
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label" for="full-name">שם מלא <span class="req">*</span></label>
-              <input class="form-input" type="text" id="full-name" placeholder="ישראל ישראלי" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="phone">טלפון <span class="req">*</span></label>
-              <input class="form-input" type="tel" id="phone" placeholder="050-0000000" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="email">מייל <span class="req">*</span></label>
-              <input class="form-input" type="email" id="email" placeholder="you@example.com" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="flight-date">תאריך טיסה <span class="req">*</span></label>
-              <input class="form-input" type="date" id="flight-date" required>
-            </div>
-            <div class="form-group full">
-              <label class="form-label" for="address">כתובת למשלוח <span class="req">*</span></label>
-              <input class="form-input" type="text" id="address" placeholder="רחוב, מספר, עיר" required>
-            </div>
-            <div class="form-group full">
-              <label class="form-label">מין</label>
-              <div class="gender-row">
-                <label class="gender-option">
-                  <input type="radio" name="gender" value="male"> זכר
-                </label>
-                <label class="gender-option">
-                  <input type="radio" name="gender" value="female"> נקבה
-                </label>
-              </div>
-            </div>
-            <div class="form-group full">
-              <label class="form-label" for="notes">הערות</label>
-              <textarea class="form-textarea" id="notes" placeholder="כל הערה שתרצו..."></textarea>
+              <input type="radio" id="gender-female" name="customer-gender" value="female">
+              <label class="gender-label" for="gender-female">👩 נקבה</label>
             </div>
           </div>
 
-          <div class="step-nav">
-            <button type="button" class="btn-back" onclick="goToStep(2)">← חזרה</button>
-            <button type="submit" class="btn-next" style="background:#16A34A;box-shadow:0 4px 14px rgba(22,163,74,0.4)">
-              ✅ שלח הזמנה
-            </button>
+          <div class="form-group">
+            <label for="customer-flight-date">תאריך טיסה</label>
+            <input type="date" id="customer-flight-date">
           </div>
+
+          <div class="form-group">
+            <label for="customer-address">כתובת למשלוח</label>
+            <textarea id="customer-address" rows="2" placeholder="רחוב, עיר, מיקוד"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="customer-notes">הערות נוספות</label>
+            <textarea id="customer-notes" rows="3" placeholder="כל מידע נוסף שיעזור לנו לשרת אותך טוב יותר..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">שלח הזמנה 🎒</button>
+
+          <div class="submit-footer">
+            <span>🔒 הזמנה מאובטחת</span>
+            <span class="sep">|</span>
+            <span>💬 שאלות? <a href="https://wa.me/972501234567" target="_blank" rel="noopener">WhatsApp</a></span>
+          </div>
+
         </form>
       </div>
     </div>
 
-  </div><!-- /main-content -->
-
-  <!-- STICKY SUMMARY PANEL -->
-  <aside class="summary-panel">
-    <div class="summary-header">
-      🛒 סיכום הזמנה
-      <span id="panel-item-count" style="font-size:14px;opacity:0.8">0 פריטים</span>
-    </div>
-    <div class="summary-body">
-      <div class="summary-items" id="summary-items">
-        <div class="summary-empty" id="summary-empty">עדיין לא בחרתם שום דבר 👆</div>
-      </div>
-      <hr class="summary-divider">
-      <div class="summary-total-row">
-        <div class="summary-total-label">סה"כ לתשלום:</div>
-        <div class="summary-total-price" id="panel-total">0₪</div>
-      </div>
-      <div class="summary-note" id="panel-note"></div>
-      <button class="summary-cta" onclick="scrollToOrder()">📋 להשלמת ההזמנה</button>
-      <div class="trust-badges">
-        <div class="trust-badge"><div class="trust-badge-icon">🔒</div>תשלום מאובטח</div>
-        <div class="trust-badge"><div class="trust-badge-icon">🚚</div>משלוח חינם</div>
-        <div class="trust-badge"><div class="trust-badge-icon">↩️</div>החזרה קלה</div>
-      </div>
-    </div>
-  </aside>
-
-</div><!-- /page-wrapper -->
-
-<!-- MOBILE BOTTOM BAR -->
-<div class="mobile-total-bar" id="mobile-total-bar">
-  <div class="mobile-total-info">
-    <div class="mobile-total-label">סה"כ לתשלום</div>
-    <div class="mobile-total-price" id="mobile-total">0₪</div>
   </div>
-  <button class="mobile-order-btn" onclick="scrollToOrder()">להשלמת הזמנה →</button>
-</div>
 
-<script>
-// ===== STATE =====
-const state = {
-  step: 1,
-  backpackMode: 'rent',
-  selectedBackpack: null,
-  duration: 3,
-  equipment: {},     // { id: { mode: 'rent'|'buy' } }
-  services: new Set(),
-};
-
-const BACKPACKS = {
-  osprey65:  { name: 'Osprey Atmos AG 65L',   rentPrice: 140, buyPrice: 890 },
-  deuter60:  { name: 'Deuter Aircontact 60L', rentPrice: 120, buyPrice: 750 },
-  farpoint40:{ name: 'Osprey Farpoint 40L',   rentPrice: 80,  buyPrice: 590 },
-};
-
-const EQUIPMENT = [
-  { id: 'charger',    name: 'מטען נייד 20,000mAh',  icon: '🔋', rentPrice: 25,  buyPrice: 180 },
-  { id: 'liner',      name: 'ליינר שק שינה',         icon: '🛏️', rentPrice: 20,  buyPrice: 90  },
-  { id: 'laundry',    name: 'שק כביסה',              icon: '👕', rentPrice: 10,  buyPrice: 45  },
-  { id: 'filter',     name: 'בקבוק מסנן',            icon: '🫗', rentPrice: 15,  buyPrice: 120 },
-  { id: 'lock',       name: 'מנעול TSA',             icon: '🔒', rentPrice: 10,  buyPrice: 60  },
-  { id: 'adapter',    name: 'מתאם אוניברסלי',        icon: '🔌', rentPrice: 10,  buyPrice: 55  },
-  { id: 'organizers', name: 'ארגוניות (סט 4)',        icon: '🗂️', rentPrice: 15,  buyPrice: 85  },
-  { id: 'raincover',  name: 'כיסוי גשם למוצילה',     icon: '🌧️', rentPrice: 10,  buyPrice: 70  },
-];
-
-const BUNDLE_IDS = ['charger', 'liner', 'laundry', 'filter'];
-
-const SERVICES = [
-  { id: 'insurance', name: 'ביטוח נסיעות',      icon: '🛡️', price: 180, desc: 'אנחנו מסדרים הכל' },
-  { id: 'dummy',     name: 'כרטיסים פיקטיביים', icon: '✈️', price: 120, desc: 'להגשה לשגרירות/ויזה' },
-  { id: 'consult',   name: 'ייעוץ אישי 1 שעה',  icon: '💬', price: 150, desc: 'עם מטייל מנוסה' },
-  { id: 'sim',       name: 'כרטיס SIM בינלאומי',icon: '📱', price: 90,  desc: 'גלישה בכל העולם' },
-  { id: 'guide',     name: 'מדריך טיול דיגיטלי', icon: '📖', price: 50,  desc: 'מותאם ליעד שלכם' },
-];
-
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded', () => {
-  renderEquipment();
-  renderServices();
-  updateSummary();
-  // default select first equipment mode based on backpack mode
-});
-
-// ===== STEP NAVIGATION =====
-function goToStep(n) {
-  if (n === 2 && !state.selectedBackpack) return;
-  state.step = n;
-  document.querySelectorAll('.step-container').forEach((el, i) => {
-    el.classList.toggle('active', i + 1 === n);
-  });
-  document.querySelectorAll('.progress-step').forEach((el, i) => {
-    el.classList.remove('active', 'done');
-    if (i + 1 === n) el.classList.add('active');
-    if (i + 1 < n) el.classList.add('done');
-  });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ===== BACKPACK MODE =====
-function setBackpackMode(mode) {
-  state.backpackMode = mode;
-  document.getElementById('mode-rent').classList.toggle('active', mode === 'rent');
-  document.getElementById('mode-buy').classList.toggle('active', mode === 'buy');
-  document.getElementById('duration-section').style.display = mode === 'rent' ? 'block' : 'none';
-
-  // Update price display
-  Object.entries(BACKPACKS).forEach(([id, bp]) => {
-    const priceEl = document.getElementById(`bp-price-${id}`);
-    const returnEl = document.getElementById(`bp-return-${id}`);
-    const compareEl = document.getElementById(`bp-compare-${id}`);
-    if (mode === 'rent') {
-      priceEl.innerHTML = `${bp.rentPrice}₪<span class="backpack-price-sub">/חודש</span>`;
-      returnEl.style.display = 'none';
-      compareEl.style.display = 'none';
-    } else {
-      priceEl.innerHTML = `${bp.buyPrice}₪<span class="backpack-price-sub"> לקנייה</span>`;
-      returnEl.style.display = 'inline-flex';
-      compareEl.style.display = 'block';
-    }
-  });
-
-  // Update equipment cards default mode
-  EQUIPMENT.forEach(eq => {
-    if (state.equipment[eq.id]) {
-      state.equipment[eq.id].mode = mode;
-    }
-    const rentPill = document.getElementById(`pill-rent-${eq.id}`);
-    const buyPill = document.getElementById(`pill-buy-${eq.id}`);
-    if (rentPill && buyPill) {
-      rentPill.classList.toggle('active', mode === 'rent');
-      buyPill.classList.toggle('active', mode === 'buy');
-    }
-  });
-
-  updateSummary();
-}
-
-// ===== SELECT BACKPACK =====
-function selectBackpack(id) {
-  state.selectedBackpack = id;
-  document.querySelectorAll('.backpack-card').forEach(c => c.classList.remove('selected'));
-  document.getElementById(`bp-${id}`).classList.add('selected');
-  document.getElementById('next-1').disabled = false;
-  updateSummary();
-}
-
-// ===== DURATION =====
-function updateDuration(val) {
-  state.duration = parseInt(val);
-  document.getElementById('duration-display').textContent = val + (val == 1 ? ' חודש' : ' חודשים');
-  updateSummary();
-}
-
-// ===== RENDER EQUIPMENT =====
-function renderEquipment() {
-  const grid = document.getElementById('equipment-grid');
-  grid.innerHTML = EQUIPMENT.map(eq => `
-    <div class="equip-card" id="eq-${eq.id}" onclick="toggleEquip('${eq.id}')">
-      <div class="equip-card-top">
-        <div class="equip-icon">${eq.icon}</div>
-        <div class="equip-check" id="eq-check-${eq.id}">✓</div>
-      </div>
-      <div class="equip-name">${eq.name}</div>
-      <div class="equip-price-row">
-        <div class="equip-price-rent">השכרה: ${eq.rentPrice}₪/חודש</div>
-        <div class="equip-price-buy">קנייה: ${eq.buyPrice}₪</div>
-      </div>
-      <div class="equip-mode-picker" id="picker-${eq.id}">
-        <button class="mode-pill ${state.backpackMode === 'rent' ? 'active' : ''}" id="pill-rent-${eq.id}"
-          onclick="setEquipMode(event,'${eq.id}','rent')">🎒 שכירה</button>
-        <button class="mode-pill ${state.backpackMode === 'buy' ? 'active' : ''}" id="pill-buy-${eq.id}"
-          onclick="setEquipMode(event,'${eq.id}','buy')">🛍️ קנייה</button>
-      </div>
+  <!-- ── Trust badges ── -->
+  <div class="trust-row">
+    <div class="trust-badge">
+      <span class="badge-icon">🔒</span>
+      <div class="badge-title">מאובטח לחלוטין</div>
+      <div class="badge-sub">פרטיכם שמורים בבטחה</div>
     </div>
-  `).join('');
-}
-
-function toggleEquip(id) {
-  if (state.equipment[id]) {
-    delete state.equipment[id];
-    document.getElementById(`eq-${id}`).classList.remove('selected');
-  } else {
-    state.equipment[id] = { mode: state.backpackMode };
-    document.getElementById(`eq-${id}`).classList.add('selected');
-    // Set pill
-    const rentPill = document.getElementById(`pill-rent-${id}`);
-    const buyPill = document.getElementById(`pill-buy-${id}`);
-    rentPill.classList.toggle('active', state.backpackMode === 'rent');
-    buyPill.classList.toggle('active', state.backpackMode === 'buy');
-  }
-  updateSummary();
-}
-
-function setEquipMode(e, id, mode) {
-  e.stopPropagation();
-  if (!state.equipment[id]) return;
-  state.equipment[id].mode = mode;
-  const rentPill = document.getElementById(`pill-rent-${id}`);
-  const buyPill = document.getElementById(`pill-buy-${id}`);
-  rentPill.classList.toggle('active', mode === 'rent');
-  buyPill.classList.toggle('active', mode === 'buy');
-  updateSummary();
-}
-
-function selectBundle() {
-  BUNDLE_IDS.forEach(id => {
-    if (!state.equipment[id]) {
-      state.equipment[id] = { mode: state.backpackMode };
-      document.getElementById(`eq-${id}`).classList.add('selected');
-      const rentPill = document.getElementById(`pill-rent-${id}`);
-      const buyPill = document.getElementById(`pill-buy-${id}`);
-      if (rentPill) rentPill.classList.toggle('active', state.backpackMode === 'rent');
-      if (buyPill) buyPill.classList.toggle('active', state.backpackMode === 'buy');
-    }
-  });
-  updateSummary();
-}
-
-// ===== RENDER SERVICES =====
-function renderServices() {
-  const grid = document.getElementById('services-grid');
-  grid.innerHTML = SERVICES.map(s => `
-    <div class="service-card" id="svc-${s.id}" onclick="toggleService('${s.id}')">
-      <div class="service-checkbox" id="svc-check-${s.id}">✓</div>
-      <div class="service-icon">${s.icon}</div>
-      <div class="service-info">
-        <div class="service-name">${s.name}</div>
-        <div class="service-desc">${s.desc}</div>
-      </div>
-      <div class="service-price">${s.price}₪</div>
+    <div class="trust-badge">
+      <span class="badge-icon">⭐</span>
+      <div class="badge-title">שירות אישי</div>
+      <div class="badge-sub">אנחנו כאן בשבילכם</div>
     </div>
-  `).join('');
-}
+    <div class="trust-badge">
+      <span class="badge-icon">🎒</span>
+      <div class="badge-title">ניסיון של שנים</div>
+      <div class="badge-sub">המומחים לציוד טיולים</div>
+    </div>
+  </div>
 
-function toggleService(id) {
-  if (state.services.has(id)) {
-    state.services.delete(id);
-    document.getElementById(`svc-${id}`).classList.remove('selected');
-  } else {
-    state.services.add(id);
-    document.getElementById(`svc-${id}`).classList.add('selected');
-  }
-  updateSummary();
-}
-
-// ===== SUMMARY =====
-function updateSummary() {
-  const items = [];
-  let total = 0;
-  let rentNote = false;
-
-  // Backpack
-  if (state.selectedBackpack) {
-    const bp = BACKPACKS[state.selectedBackpack];
-    if (state.backpackMode === 'rent') {
-      const price = bp.rentPrice * state.duration;
-      items.push({ name: bp.name, sub: `השכרה × ${state.duration} חודשים`, price });
-      total += price;
-      rentNote = true;
-    } else {
-      items.push({ name: bp.name, sub: 'קנייה + אפשרות החזרה', price: bp.buyPrice });
-      total += bp.buyPrice;
+  <script>
+    /* ── Helpers ── */
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
     }
-  }
 
-  // Equipment
-  EQUIPMENT.forEach(eq => {
-    if (state.equipment[eq.id]) {
-      const mode = state.equipment[eq.id].mode;
-      let price, sub;
-      if (mode === 'rent') {
-        price = eq.rentPrice * state.duration;
-        sub = `השכרה × ${state.duration} חודשים`;
-        rentNote = true;
-      } else {
-        price = eq.buyPrice;
-        sub = 'קנייה';
+    function formatPrice(n) {
+      return Number(n).toLocaleString('he-IL');
+    }
+
+    /* ── Load cart ── */
+    var cart = [];
+    try {
+      cart = JSON.parse(localStorage.getItem('smartCart') || '[]');
+      if (!Array.isArray(cart)) cart = [];
+    } catch(e) { cart = []; }
+
+    /* ── Render cart ── */
+    function renderCart() {
+      var container = document.getElementById('cart-items');
+
+      if (cart.length === 0) {
+        container.innerHTML =
+          '<div class="cart-empty">' +
+            '<div style="font-size:52px;margin-bottom:14px">🛒</div>' +
+            '<p style="font-size:18px;font-weight:700;color:#475569;">העגלה ריקה</p>' +
+            '<p style="margin-top:10px"><a href="index.html">← חזרה לחנות</a></p>' +
+          '</div>';
+        return;
       }
-      items.push({ name: eq.name, sub, price });
-      total += price;
+
+      var total = 0;
+      var html  = '';
+
+      cart.forEach(function(item) {
+        var qty       = item.qty || 1;
+        var linePrice = (item.price || 0) * qty;
+        total += linePrice;
+
+        var modeLabel, badgeCls;
+        if (item.mode === 'rent') {
+          modeLabel = '🔄 השכרה'; badgeCls = 'badge-rent';
+        } else if (item.mode === 'free') {
+          modeLabel = '🎁 חינם';   badgeCls = 'badge-free';
+        } else {
+          modeLabel = '🛍️ קנייה'; badgeCls = 'badge-buy';
+        }
+
+        html +=
+          '<div class="cart-row">' +
+            '<div class="cart-item-info">' +
+              '<span class="cart-item-name">' +
+                escHtml(item.name) + (qty > 1 ? ' &times; ' + qty : '') +
+              '</span>' +
+              '<div class="badges-row">' +
+                '<span class="cart-badge ' + badgeCls + '">' + modeLabel + '</span>' +
+                (item.duration
+                  ? '<span class="cart-duration">' + item.duration + ' חודשים</span>'
+                  : '') +
+              '</div>' +
+            '</div>' +
+            '<span class="cart-item-price">₪' + formatPrice(linePrice) + '</span>' +
+          '</div>';
+      });
+
+      html += '<hr class="cart-divider">';
+      html +=
+        '<div class="cart-total">' +
+          '<span>סה"כ לתשלום</span>' +
+          '<span>₪' + formatPrice(total) + '</span>' +
+        '</div>';
+
+      container.innerHTML = html;
     }
-  });
 
-  // Services
-  SERVICES.forEach(s => {
-    if (state.services.has(s.id)) {
-      items.push({ name: s.name, sub: 'שירות חד-פעמי', price: s.price });
-      total += s.price;
+    /* ── Form validation helpers ── */
+    function markError(el) {
+      el.classList.add('input-error');
+      el.addEventListener('input', function() {
+        el.classList.remove('input-error');
+      }, { once: true });
     }
-  });
 
-  // Render panel
-  const container = document.getElementById('summary-items');
-  const emptyEl = document.getElementById('summary-empty');
+    /* ── Form submit ── */
+    document.getElementById('order-form').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-  if (items.length === 0) {
-    container.innerHTML = '<div class="summary-empty">עדיין לא בחרתם שום דבר 👆</div>';
-  } else {
-    container.innerHTML = items.map(it => `
-      <div class="summary-item">
-        <div>
-          <div class="summary-item-name">${it.name}</div>
-          <div class="summary-item-sub">${it.sub}</div>
-        </div>
-        <div class="summary-item-price">${it.price}₪</div>
-      </div>
-    `).join('');
-  }
+      var nameEl  = document.getElementById('customer-name');
+      var phoneEl = document.getElementById('customer-phone');
+      var name    = nameEl.value.trim();
+      var phone   = phoneEl.value.trim();
 
-  document.getElementById('panel-total').textContent = total + '₪';
-  document.getElementById('mobile-total').textContent = total + '₪';
-  document.getElementById('panel-item-count').textContent = items.length + ' פריטים';
-  document.getElementById('panel-note').textContent = rentNote
-    ? `* מחיר השכרה מחושב ל-${state.duration} חודשים` : '';
-}
+      var valid = true;
+      if (!name)  { markError(nameEl);  valid = false; }
+      if (!phone) { markError(phoneEl); valid = false; }
+      if (!valid) {
+        (!name ? nameEl : phoneEl).focus();
+        return;
+      }
 
-// ===== SCROLL TO FORM =====
-function scrollToOrder() {
-  if (state.step !== 3) {
-    goToStep(3);
-    setTimeout(() => {
-      document.getElementById('full-name').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 400);
-  } else {
-    document.getElementById('full-name').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
+      var btn = document.getElementById('submit-btn');
+      btn.disabled    = true;
+      btn.textContent = '⏳ שולח...';
 
-// ===== SUBMIT =====
-function submitOrder(e) {
-  e.preventDefault();
+      var genderEl = document.querySelector('input[name="customer-gender"]:checked');
 
-  // Build smartCart
-  const cart = [];
+      var order = {
+        name:       name,
+        phone:      phone,
+        email:      document.getElementById('customer-email').value.trim(),
+        gender:     genderEl ? genderEl.value : '',
+        flightDate: document.getElementById('customer-flight-date').value,
+        address:    document.getElementById('customer-address').value.trim(),
+        notes:      document.getElementById('customer-notes').value.trim(),
+        cart:       cart
+      };
 
-  if (state.selectedBackpack) {
-    const bp = BACKPACKS[state.selectedBackpack];
-    if (state.backpackMode === 'rent') {
-      cart.push({ name: bp.name, price: bp.rentPrice * state.duration, qty: 1, mode: 'rent', duration: state.duration });
-    } else {
-      cart.push({ name: bp.name, price: bp.buyPrice, qty: 1, mode: 'buy', duration: null });
-    }
-  }
+      fetch('/api/send-order', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(order)
+      }).catch(function() {}).finally(function() {
+        localStorage.removeItem('smartCart');
+        window.location.href = 'thank-you.html?name=' + encodeURIComponent(order.name);
+      });
+    });
 
-  EQUIPMENT.forEach(eq => {
-    if (state.equipment[eq.id]) {
-      const mode = state.equipment[eq.id].mode;
-      const price = mode === 'rent' ? eq.rentPrice * state.duration : eq.buyPrice;
-      cart.push({ name: eq.name, price, qty: 1, mode, duration: mode === 'rent' ? state.duration : null });
-    }
-  });
-
-  SERVICES.forEach(s => {
-    if (state.services.has(s.id)) {
-      cart.push({ name: s.name, price: s.price, qty: 1, mode: 'buy', duration: null });
-    }
-  });
-
-  localStorage.setItem('smartCart', JSON.stringify(cart));
-
-  const formData = {
-    fullName: document.getElementById('full-name').value,
-    phone: document.getElementById('phone').value,
-    email: document.getElementById('email').value,
-    flightDate: document.getElementById('flight-date').value,
-    address: document.getElementById('address').value,
-    gender: document.querySelector('input[name="gender"]:checked')?.value || '',
-    notes: document.getElementById('notes').value,
-    cart,
-  };
-
-  fetch('/api/send-order', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData),
-  }).catch(() => {}); // don't block redirect on error
-
-  window.location.href = 'thank-you.html';
-}
-</script>
-
+    /* ── Init ── */
+    renderCart();
+  </script>
 </body>
 </html>
