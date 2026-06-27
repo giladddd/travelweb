@@ -18,44 +18,57 @@
 
     /* ── HEADER ── */
     .site-header {
-      background: #0F172B;
+      background: #fff;
       height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 32px;
+      padding: 0 24px;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+      z-index: 1000;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.08);
     }
-    .site-logo {
-      color: #fff;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      text-decoration: none;
+    .header-logo img { height: 44px; display: block; }
+    .header-nav { display: flex; gap: 24px; align-items: center; }
+    .header-nav a { color: #0F172B; font-size: 15px; font-weight: 600; text-decoration: none; transition: color 0.2s; }
+    .header-nav a:hover { color: #F97316; }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .header-cart { color: #0F172B; font-size: 15px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 6px; border: none; background: none;
     }
-    .whatsapp-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #25D366;
-      color: #fff;
-      font-family: 'Assistant', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      padding: 9px 20px;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 12px rgba(37,211,102,0.35);
+    .hamburger span { display: block; width: 24px; height: 2px; background: #0F172B; border-radius: 2px; }
+    @media (max-width: 768px) {
+      .header-nav { display: none; }
+      .hamburger { display: flex; }
     }
-    .whatsapp-btn:hover {
-      background: #1ebe5d;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(37,211,102,0.45);
+    /* ── SIDE MENU ── */
+    .side-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 10000;
     }
+    .side-overlay.open { display: block; }
+    .side-panel {
+      position: fixed; top: 0; right: -320px; width: 300px; height: 100vh;
+      background: #0F172B; z-index: 10001; overflow-y: auto;
+      transition: right 0.3s ease; padding: 20px 24px;
+    }
+    .side-panel.open { right: 0; }
+    .side-close-btn {
+      background: none; border: none; color: #94A3B8; font-size: 26px;
+      cursor: pointer; display: block; text-align: left; width: 100%; padding: 4px 0 16px;
+    }
+    .side-close-btn:hover { color: white; }
+    .side-nav a {
+      display: block; color: #CBD5E1; font-size: 16px; font-weight: 600;
+      padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .side-nav a:hover { color: #F97316; }
+    .side-social { display: flex; gap: 20px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .side-social a { font-size: 22px; }
 
     /* ── PAGE HERO ── */
     .page-hero {
@@ -489,12 +502,53 @@
 </head>
 <body>
 
+<!-- ── SIDE MENU ── -->
+<div class="side-overlay" id="side-overlay"></div>
+<div class="side-panel" id="side-panel">
+  <button class="side-close-btn" id="side-close">✕</button>
+  <nav class="side-nav">
+    <a href="index.html">דף הבית</a>
+    <a href="categories/bags-rental.html">מוצ'ילות להשכרה</a>
+    <a href="categories/day-bags.html">תיקי יום להשכרה</a>
+    <a href="categories/rental.html">ציוד טיולים להשכרה</a>
+    <a href="categories/general-equipment.html">ציוד כללי לקנייה</a>
+    <a href="categories/field.html">ציוד שטח לקנייה</a>
+    <a href="categories/hygiene.html">מוצרי היגיינה לקנייה</a>
+    <a href="guide.html">המדריך המלא לטיול</a>
+    <a href="categories/benefits.html">הטבות</a>
+    <a href="about.html">אודות</a>
+    <a href="order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
+    <a href="https://wa.me/972523960215" target="_blank" style="color:#25D366">לשיחה עם מומחה 💬</a>
+  </nav>
+  <div class="side-social">
+    <a href="https://www.facebook.com/share/14hoGSftwcy/" target="_blank">📘</a>
+    <a href="https://www.instagram.com/the_smart_traveler_il" target="_blank">📷</a>
+    <a href="https://www.tiktok.com/@the_smart_traveller" target="_blank">🎵</a>
+  </div>
+</div>
+
 <!-- ── HEADER ── -->
 <header class="site-header">
-  <a href="index.html" class="site-logo">🎒 המטייל החכם</a>
-  <a href="https://wa.me/972500000000" target="_blank" class="whatsapp-btn">
-    <span>💬</span> WhatsApp
-  </a>
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="hamburger" id="hamburger" aria-label="תפריט">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="header-logo">
+      <img src="assets/images/2024_03_cropped-logo.png" alt="המטייל החכם">
+    </a>
+  </div>
+  <nav class="header-nav">
+    <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="categories/rental.html">ציוד</a>
+    <a href="guide.html">מדריך</a>
+    <a href="about.html">אודות</a>
+    <a href="https://wa.me/972523960215" target="_blank">WhatsApp</a>
+  </nav>
+  <div class="header-left">
+    <a href="order-summary.html" class="header-cart">
+      🛒&nbsp;<span class="woocommerce-Price-amount amount">0.00 ₪</span>
+    </a>
+  </div>
 </header>
 
 <!-- ── HERO ── -->
@@ -796,6 +850,19 @@
   });
 
   renderCart();
+})();
+</script>
+<script>
+(function(){
+  var panel = document.getElementById('side-panel');
+  var overlay = document.getElementById('side-overlay');
+  var hamburger = document.getElementById('hamburger');
+  var closeBtn = document.getElementById('side-close');
+  function open(){ panel.classList.add('open'); overlay.classList.add('open'); }
+  function close(){ panel.classList.remove('open'); overlay.classList.remove('open'); }
+  if(hamburger) hamburger.addEventListener('click', open);
+  if(closeBtn) closeBtn.addEventListener('click', close);
+  if(overlay) overlay.addEventListener('click', close);
 })();
 </script>
 </body>
