@@ -161,6 +161,24 @@
     .step-btn.green { background: #25D366; }
     .step-btn.green:hover { background: #1DAA56; }
 
+    /* BUDGET SLIDER */
+    .budget-slider-wrap { margin: 14px 0 0; overflow: hidden; }
+    .budget-slider { display: flex; transition: transform 0.35s ease; }
+    .budget-slide { flex: 0 0 100%; padding: 0 20px 4px; }
+    .budget-slide-label { font-size: 14px; font-weight: 800; color: #F97316; margin-bottom: 10px; }
+    .budget-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .budget-table th { background: #0F172B; color: white; padding: 10px 8px; text-align: center; font-weight: 700; }
+    .budget-table th:first-child { text-align: right; border-radius: 0 8px 0 0; }
+    .budget-table th:last-child { border-radius: 8px 0 0 0; }
+    .budget-table td { padding: 10px 8px; text-align: center; border-bottom: 1px solid #F1F5F9; font-weight: 600; }
+    .budget-table td:first-child { text-align: right; font-weight: 700; color: #0F172B; }
+    .budget-table tr:nth-child(even) td { background: #FFF7ED; }
+    .budget-table tr:last-child td:first-child { border-radius: 0 0 8px 0; }
+    .budget-table tr:last-child td:last-child { border-radius: 0 0 0 8px; }
+    .budget-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0 4px; }
+    .budget-dot { width: 28px; height: 6px; border-radius: 3px; border: none; background: #E2E8F0; cursor: pointer; transition: background 0.2s; padding: 0; }
+    .budget-dot.active { background: #F97316; width: 44px; }
+
     /* IMAGE CAROUSEL */
     .step-carousel-wrap { position: relative; margin: 14px 0 0; }
     .step-carousel { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
@@ -392,8 +410,62 @@
       <div class="step-title">💰 תכנון תקציב</div>
     </div>
     <div class="step-body">
-      <p class="step-desc">תכנון תקציב הטיול לפי זמן ויעדים — ממוצע תקציב לכל מדינה לפי כל יבשת. חשוב לתכנן מראש כדי להימנע מהפתעות.</p>
+      <p class="step-desc">תקציב חודשי למטייל מוצ'ילר ממוצע לפי יבשת — הזז בין היבשות:</p>
     </div>
+
+    <!-- BUDGET SLIDER -->
+    <div class="budget-slider-wrap">
+      <div class="budget-slider" id="budget-slider">
+
+        <!-- SLIDE 1: מזרח + אמריקה -->
+        <div class="budget-slide">
+          <div class="budget-slide-label">🌏 מזרח ואמריקה</div>
+          <table class="budget-table">
+            <thead>
+              <tr>
+                <th>יבשת</th>
+                <th>💚 חסכן</th>
+                <th>🟡 ממוצע</th>
+                <th>🔴 פזרן</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>מזרח</td><td>₪6,500</td><td>₪8,000</td><td>₪9,500</td></tr>
+              <tr><td>דרום אמריקה</td><td>₪7,000</td><td>₪8,500</td><td>₪10,000</td></tr>
+              <tr><td>מרכז אמריקה</td><td>₪7,500</td><td>₪8,500</td><td>₪10,500</td></tr>
+              <tr><td>צפון אמריקה</td><td>₪8,000</td><td>₪8,500</td><td>₪10,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SLIDE 2: שאר היבשות -->
+        <div class="budget-slide">
+          <div class="budget-slide-label">🌍 אוסטרליה, אפריקה ואירופה</div>
+          <table class="budget-table">
+            <thead>
+              <tr>
+                <th>יבשת</th>
+                <th>💚 חסכן</th>
+                <th>🟡 ממוצע</th>
+                <th>🔴 פזרן</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>ניו זילנד</td><td>₪7,500</td><td>₪9,000</td><td>₪11,000</td></tr>
+              <tr><td>אוסטרליה</td><td>₪7,000</td><td>₪8,500</td><td>₪10,000</td></tr>
+              <tr><td>אפריקה</td><td>₪6,500</td><td>₪7,500</td><td>₪9,000</td></tr>
+              <tr><td>אירופה</td><td>₪9,000</td><td>₪10,000</td><td>₪12,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="budget-dots">
+        <button class="budget-dot active" onclick="goSlide(0)"></button>
+        <button class="budget-dot" onclick="goSlide(1)"></button>
+      </div>
+    </div>
+
     <div class="step-check-row">
       <input type="checkbox" id="chk4" onchange="markDone(this,4)">
       <label for="chk4">תכננתי תקציב ✓</label>
@@ -757,6 +829,26 @@ function updateProgress(){
     });
     updateProgress();
   }catch(e){}
+})();
+
+// BUDGET SLIDER
+var budgetIdx = 0;
+window.goSlide = function(idx) {
+  budgetIdx = idx;
+  var slider = document.getElementById('budget-slider');
+  if(slider) slider.style.transform = 'translateX(' + (idx * 100) + '%)';
+  document.querySelectorAll('.budget-dot').forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+};
+// swipe support
+(function(){
+  var el = document.getElementById('budget-slider');
+  if(!el) return;
+  var startX;
+  el.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  el.addEventListener('touchend', function(e){
+    var diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40) goSlide(diff > 0 ? Math.min(budgetIdx+1,1) : Math.max(budgetIdx-1,0));
+  });
 })();
 
 // CAROUSEL
