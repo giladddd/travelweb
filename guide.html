@@ -161,6 +161,12 @@
     .step-btn.green { background: #25D366; }
     .step-btn.green:hover { background: #1DAA56; }
 
+    /* SHARED SLIDER NAV */
+    .slider-nav { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px 0 4px; }
+    .slider-nav-btn { width: 38px; height: 38px; border-radius: 50%; border: 2px solid #F97316; background: white; color: #F97316; font-size: 20px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; line-height: 1; }
+    .slider-nav-btn:hover { background: #F97316; color: white; }
+    .slider-nav-label { font-size: 13px; font-weight: 700; color: #64748B; min-width: 60px; text-align: center; }
+
     /* BUDGET SLIDER */
     .budget-slider-wrap { margin: 14px 0 0; overflow: hidden; }
     .budget-slider { display: flex; transition: transform 0.35s ease; }
@@ -494,9 +500,10 @@
         </div>
 
       </div>
-      <div class="budget-dots">
-        <button class="budget-dot active" onclick="goSlide(0)"></button>
-        <button class="budget-dot" onclick="goSlide(1)"></button>
+      <div class="slider-nav">
+        <button class="slider-nav-btn" onclick="goSlide(Math.max(budgetIdx-1,0))">›</button>
+        <span class="slider-nav-label" id="budget-label">1 / 2</span>
+        <button class="slider-nav-btn" onclick="goSlide(Math.min(budgetIdx+1,1))">‹</button>
       </div>
     </div>
 
@@ -651,13 +658,10 @@
 
       </div>
       <!-- dots -->
-      <div class="budget-dots" id="cc-dots">
-        <button class="budget-dot active" onclick="goCC(0)"></button>
-        <button class="budget-dot" onclick="goCC(1)"></button>
-        <button class="budget-dot" onclick="goCC(2)"></button>
-        <button class="budget-dot" onclick="goCC(3)"></button>
-        <button class="budget-dot" onclick="goCC(4)"></button>
-        <button class="budget-dot" onclick="goCC(5)"></button>
+      <div class="slider-nav">
+        <button class="slider-nav-btn" onclick="goCC(Math.max(ccIdx-1,0))">›</button>
+        <span class="slider-nav-label" id="cc-label">1 / 6</span>
+        <button class="slider-nav-btn" onclick="goCC(Math.min(ccIdx+1,5))">‹</button>
       </div>
     </div>
 
@@ -1010,7 +1014,8 @@ window.goSlide = function(idx) {
   budgetIdx = idx;
   var slider = document.getElementById('budget-slider');
   if(slider) slider.style.transform = 'translateX(' + (idx * 100) + '%)';
-  document.querySelectorAll('.budget-dot').forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+  var lbl = document.getElementById('budget-label');
+  if(lbl) lbl.textContent = (idx+1) + ' / 2';
 };
 // swipe support
 (function(){
@@ -1030,7 +1035,8 @@ window.goCC = function(idx) {
   ccIdx = idx;
   var slider = document.getElementById('cc-slider');
   if(slider) slider.style.transform = 'translateX(' + (idx * 100) + '%)';
-  document.querySelectorAll('#cc-dots .budget-dot').forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+  var lbl = document.getElementById('cc-label');
+  if(lbl) lbl.textContent = (idx+1) + ' / 6';
 };
 (function(){
   var el = document.getElementById('cc-slider');
