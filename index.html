@@ -2786,17 +2786,99 @@ data-backlink-text="Back">
 				</div>
 				</div>
 				</div>
-		<div class="elementor-element elementor-element-b212c41 e-con-full e-flex e-con e-parent" data-id="b212c41" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-				<div class="elementor-element elementor-element-f61b54d elementor-widget elementor-widget-heading" data-id="f61b54d" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-					<h2 class="elementor-heading-title elementor-size-default">שאלות ותשובות</h2>				</div>
-				</div>
-		<div class="elementor-element elementor-element-31e9a21 e-flex e-con-boxed e-con e-child" data-id="31e9a21" data-element_type="container" data-e-type="container">
-					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-935e01d elementor-widget elementor-widget-n-accordion" data-id="935e01d" data-element_type="widget" data-e-type="widget" data-settings="{&quot;default_state&quot;:&quot;all_collapsed&quot;,&quot;max_items_expended&quot;:&quot;one&quot;,&quot;n_accordion_animation_duration&quot;:{&quot;unit&quot;:&quot;ms&quot;,&quot;size&quot;:400,&quot;sizes&quot;:[]}}" data-widget_type="nested-accordion.default">
-				<div class="elementor-widget-container">
-							<div class="e-n-accordion" aria-label="Accordion. Open links with Enter or Space, close with Escape, and navigate with Arrow Keys">
-						<details id="e-n-accordion-item-1540" class="e-n-accordion-item" >
+		<div id="faq-section-clean">
+<style>
+#faq-section-clean {
+  background: #0F172B;
+  padding: 56px 20px;
+  direction: rtl;
+  font-family: 'Assistant', sans-serif;
+  overflow: hidden;
+}
+#faq-section-clean h2 {
+  text-align: center;
+  color: #F97316;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 32px;
+}
+.faq-item {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.faq-item summary {
+  background: #F97316;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 20px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
+  transition: background 0.2s;
+}
+.faq-item[open] summary {
+  border-radius: 16px 16px 0 0;
+  background: #EA580C;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  font-size: 22px;
+  font-weight: 300;
+  flex-shrink: 0;
+  margin-right: 12px;
+  transition: transform 0.3s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-answer {
+  background: #1E293B;
+  color: #CBD5E1;
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 16px 20px;
+  border-radius: 0 0 16px 16px;
+}
+</style>
+<h2>שאלות ותשובות</h2>
+<details class="faq-item">
+  <summary>מה זה שילוב של קנייה והשכרה?</summary>
+  <div class="faq-answer">מתאימים אישית לפי אורך הטיול והיעד — חלק מהציוד משכירים וחלק קונים, וחוסכים אלפי שקלים ולא נתקעים עם ציוד חסר שימוש.</div>
+</details>
+<details class="faq-item">
+  <summary>מה זה ליווי בהכנה לטיול?</summary>
+  <div class="faq-answer">אנחנו עוברים איתכם על כל הבירוקרטיה — מסמכים, שאלות ועוד — עד שתרגישו מוכנים ב-100%.</div>
+</details>
+<details class="faq-item">
+  <summary>איך עובדת ההשכרה?</summary>
+  <div class="faq-answer">בוחרים מוצילה ותיק יום, מסמנים את מספר החודשים, משתמשים ומחזירים בסוף השימוש.</div>
+</details>
+<details class="faq-item">
+  <summary>האם יש פקדון?</summary>
+  <div class="faq-answer">300 שקלים פקדון שחוזרים בסוף השימוש (מיועדים למקרה שרוצים להאריך את הטיול).</div>
+</details>
+<details class="faq-item">
+  <summary>האם יש ביטוח על התיקים?</summary>
+  <div class="faq-answer">התיקים הם של אוספרי/גרגורי ויש עליהם ביטוח. אנחנו לוקחים מהפקדון עד 50₪ במידה שיש קרע — לא השתמשנו בזה אחרי יותר מ-100 תיקים.</div>
+</details>
+<details class="faq-item">
+  <summary>האם יש משלוחים?</summary>
+  <div class="faq-answer">כן, לכל הארץ — ויש גם החזרות.</div>
+</details>
+<details class="faq-item">
+  <summary>איך עובדת החזרת המוצרים?</summary>
+  <div class="faq-answer">ההזמנה מגיעה בתיק משלוח שאותו אוסף שליח מכם בסוף הטיול, אחרי שאתם מעדכנים אותנו שחזרתם.</div>
+</details>
+<details class="faq-item">
+  <summary>איפה אתם נמצאים?</summary>
+  <div class="faq-answer">הסניף נמצא במושב משען — הכתובת המדויקת נמצאת בתחתית האתר.</div>
+</details>
+		</div><!-- /#faq-section-clean -->
+		<div style="display:none"><!-- old elementor faq hidden -->
 				<summary class="e-n-accordion-item-title" data-accordion-index="1" tabindex="0" aria-expanded="false" aria-controls="e-n-accordion-item-1540" >
 					<span class='e-n-accordion-item-title-header'><div class="e-n-accordion-item-title-text"> מה זה שילוב של קנייה והשכרה? </div></span>
 							<span class='e-n-accordion-item-title-icon'>
@@ -2930,6 +3012,7 @@ data-backlink-text="Back">
 					</div>
 				</div>
 				</div>
+		</div><!-- /old elementor faq hidden -->
 		<div class="elementor-element elementor-element-eb30a0b e-con-full e-flex e-con e-parent" data-id="eb30a0b" data-element_type="container" data-e-type="container">
 				<div class="elementor-element elementor-element-61b0bbe elementor-widget elementor-widget-heading" data-id="61b0bbe" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
