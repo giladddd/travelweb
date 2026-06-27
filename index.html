@@ -595,18 +595,11 @@
     font-size: 13px; font-weight: 700; box-shadow: 0 2px 6px rgba(249,115,22,0.4);
   }
   .sf-prod-card.selected .sf-prod-check { display: flex; }
-  /* dual-price rent card */
-  .sf-dual-prices { padding: 6px 10px 2px; display: flex; flex-direction: column; gap: 3px; }
-  .sf-dual-row { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
-  .sf-dual-label { color: #64748B; font-weight: 600; }
-  .sf-dual-val { font-weight: 800; color: #F97316; font-size: 13px; }
-  .sf-dual-val.buy { color: #0F172B; }
-  .sf-dual-btns { display: flex; gap: 6px; padding: 8px 10px 10px; }
-  .sf-dual-btns button { flex: 1; border: none; border-radius: 50px; padding: 7px 4px; font-family: Assistant,sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-  .sf-dual-btns .btn-rent { background: #FFF7ED; color: #F97316; border: 1.5px solid #F97316; }
-  .sf-dual-btns .btn-rent:hover { background: #F97316; color: white; }
-  .sf-dual-btns .btn-buy { background: #F1F5F9; color: #0F172B; border: 1.5px solid #CBD5E1; }
-  .sf-dual-btns .btn-buy:hover { background: #0F172B; color: white; }
+  /* rentable card toggle */
+  .sf-mode-toggle { display:flex;gap:5px;padding:8px 10px 4px; }
+  .sf-mode-opt { flex:1;border:1.5px solid #CBD5E1;background:white;border-radius:8px;padding:6px 4px;font-family:Assistant,sans-serif;font-size:12px;font-weight:700;color:#64748B;cursor:pointer;transition:all 0.2s; }
+  .sf-mode-opt.active { background:#F97316;color:white;border-color:#F97316; }
+  .sf-rentable-price { padding:3px 10px 6px;font-size:15px;font-weight:900;color:#F97316; }
   .sf-rent-note { display:flex;align-items:center;gap:8px;background:#EFF6FF;border:1.5px solid #3B82F6;border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:13px;font-weight:700;color:#1D4ED8; }
   .sf-services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
   .sf-service-card {
@@ -772,59 +765,51 @@
       <div class="sf-cat-panel active" id="cat-rent">
         <div class="sf-prod-grid">
 
-          <div class="sf-prod-card" data-id="2199" data-name="מתאם אוניברסלי" data-rent="10" data-buy="29">
-            <img src="assets/images/2024_03_Sd6b4e280839646d9ba8350c1d3b5a8a3p-600x600.webp" alt="מתאם אוניברסלי">
-            <div class="sf-prod-name">מתאם אוניברסלי</div>
-            <div class="sf-dual-prices">
-              <div class="sf-dual-row"><span class="sf-dual-label">🔄 השכרה</span><span class="sf-dual-val rent-calc" data-rent="10">₪30 לטיול</span></div>
-              <div class="sf-dual-row"><span class="sf-dual-label">🛒 קנייה</span><span class="sf-dual-val buy">₪29</span></div>
-            </div>
-            <div class="sf-dual-btns">
-              <button class="btn-rent" onclick="addDual(this,'rent','2199','מתאם אוניברסלי',10,29)">🔄 השכרה</button>
-              <button class="btn-buy" onclick="addDual(this,'buy','2199','מתאם אוניברסלי',10,29)">🛒 קנייה</button>
-            </div>
-            <div class="sf-prod-check">✓</div>
-          </div>
-
-          <div class="sf-prod-card" data-id="2136" data-name="מטען נייד 20,000mAh" data-rent="50" data-buy="150">
+          <div class="sf-prod-card sf-rentable" data-id="2136" data-name="מטען נייד 20,000mAh" data-rent="50" data-buy="169" data-mode-sel="rent">
             <img src="assets/images/2024_03_S7694aeeb34064d239a1bb7ed7a3c2e9c2-600x600.webp" alt="מטען נייד">
             <div class="sf-prod-name">מטען נייד 20,000mAh</div>
-            <div class="sf-dual-prices">
-              <div class="sf-dual-row"><span class="sf-dual-label">🔄 השכרה</span><span class="sf-dual-val rent-calc" data-rent="50">₪150 לטיול</span></div>
-              <div class="sf-dual-row"><span class="sf-dual-label">🛒 קנייה</span><span class="sf-dual-val buy">₪150</span></div>
+            <div class="sf-mode-toggle">
+              <button class="sf-mode-opt active" onclick="setCardMode(this,'rent')">🔄 השכרה</button>
+              <button class="sf-mode-opt" onclick="setCardMode(this,'buy')">🛒 קנייה</button>
             </div>
-            <div class="sf-dual-btns">
-              <button class="btn-rent" onclick="addDual(this,'rent','2136','מטען נייד 20,000mAh',50,150)">🔄 השכרה</button>
-              <button class="btn-buy" onclick="addDual(this,'buy','2136','מטען נייד 20,000mAh',50,150)">🛒 קנייה</button>
-            </div>
+            <div class="sf-rentable-price">₪<span class="sf-price-val">50</span><span class="sf-price-sfx"> לטיול</span></div>
+            <button class="sf-add-btn" onclick="addRentable(this.closest('.sf-prod-card'))">+ הוסף לסל</button>
             <div class="sf-prod-check">✓</div>
           </div>
 
-          <div class="sf-prod-card" data-id="2045" data-name="מנעול וכבל" data-rent="15" data-buy="45">
+          <div class="sf-prod-card sf-rentable" data-id="2199" data-name="מתאם אוניברסלי" data-rent="10" data-buy="30" data-mode-sel="rent">
+            <img src="assets/images/2024_03_Sd6b4e280839646d9ba8350c1d3b5a8a3p-600x600.webp" alt="מתאם אוניברסלי">
+            <div class="sf-prod-name">מתאם אוניברסלי</div>
+            <div class="sf-mode-toggle">
+              <button class="sf-mode-opt active" onclick="setCardMode(this,'rent')">🔄 השכרה</button>
+              <button class="sf-mode-opt" onclick="setCardMode(this,'buy')">🛒 קנייה</button>
+            </div>
+            <div class="sf-rentable-price">₪<span class="sf-price-val">10</span><span class="sf-price-sfx"> לטיול</span></div>
+            <button class="sf-add-btn" onclick="addRentable(this.closest('.sf-prod-card'))">+ הוסף לסל</button>
+            <div class="sf-prod-check">✓</div>
+          </div>
+
+          <div class="sf-prod-card sf-rentable" data-id="2045" data-name="מנעול וכבל" data-rent="20" data-buy="49" data-mode-sel="rent">
             <img src="assets/images/2024_03_Saaf0a2e96f7e45ca9a5a40691550442dk-600x695.webp" alt="מנעול">
             <div class="sf-prod-name">מנעול וכבל</div>
-            <div class="sf-dual-prices">
-              <div class="sf-dual-row"><span class="sf-dual-label">🔄 השכרה</span><span class="sf-dual-val rent-calc" data-rent="15">₪45 לטיול</span></div>
-              <div class="sf-dual-row"><span class="sf-dual-label">🛒 קנייה</span><span class="sf-dual-val buy">₪45</span></div>
+            <div class="sf-mode-toggle">
+              <button class="sf-mode-opt active" onclick="setCardMode(this,'rent')">🔄 השכרה</button>
+              <button class="sf-mode-opt" onclick="setCardMode(this,'buy')">🛒 קנייה</button>
             </div>
-            <div class="sf-dual-btns">
-              <button class="btn-rent" onclick="addDual(this,'rent','2045','מנעול וכבל',15,45)">🔄 השכרה</button>
-              <button class="btn-buy" onclick="addDual(this,'buy','2045','מנעול וכבל',15,45)">🛒 קנייה</button>
-            </div>
+            <div class="sf-rentable-price">₪<span class="sf-price-val">20</span><span class="sf-price-sfx"> לטיול</span></div>
+            <button class="sf-add-btn" onclick="addRentable(this.closest('.sf-prod-card'))">+ הוסף לסל</button>
             <div class="sf-prod-check">✓</div>
           </div>
 
-          <div class="sf-prod-card" data-id="1997" data-name="סט 5 ארגוניות" data-rent="50" data-buy="89">
+          <div class="sf-prod-card sf-rentable" data-id="1997" data-name="סט 5 ארגוניות" data-rent="59" data-buy="159" data-mode-sel="rent">
             <img src="assets/images/2024_03_S011edd8498d140358b560abdfffd1ab97-600x762.webp" alt="ארגוניות">
             <div class="sf-prod-name">סט 5 ארגוניות</div>
-            <div class="sf-dual-prices">
-              <div class="sf-dual-row"><span class="sf-dual-label">🔄 השכרה</span><span class="sf-dual-val rent-calc" data-rent="50">₪150 לטיול</span></div>
-              <div class="sf-dual-row"><span class="sf-dual-label">🛒 קנייה</span><span class="sf-dual-val buy">₪89</span></div>
+            <div class="sf-mode-toggle">
+              <button class="sf-mode-opt active" onclick="setCardMode(this,'rent')">🔄 השכרה</button>
+              <button class="sf-mode-opt" onclick="setCardMode(this,'buy')">🛒 קנייה</button>
             </div>
-            <div class="sf-dual-btns">
-              <button class="btn-rent" onclick="addDual(this,'rent','1997','סט 5 ארגוניות',50,89)">🔄 השכרה</button>
-              <button class="btn-buy" onclick="addDual(this,'buy','1997','סט 5 ארגוניות',50,89)">🛒 קנייה</button>
-            </div>
+            <div class="sf-rentable-price">₪<span class="sf-price-val">59</span><span class="sf-price-sfx"> לטיול</span></div>
+            <button class="sf-add-btn" onclick="addRentable(this.closest('.sf-prod-card'))">+ הוסף לסל</button>
             <div class="sf-prod-check">✓</div>
           </div>
 
@@ -1061,15 +1046,24 @@
       el.textContent = '₪' + (perMonth * months) + ' לטיול';
     });
   };
-  window.addDual = function(btn, mode, id, name, rentPerMonth, buyPrice) {
-    var price = mode === 'rent' ? rentPerMonth * months : buyPrice;
-    var label = mode === 'rent' ? name + ' (השכרה)' : name;
-    addItemToCart({ id: id + '-' + mode, name: label, price: price, qty: 1, mode: mode, duration: mode === 'rent' ? months : null });
-    var orig = btn.textContent;
-    btn.textContent = '✓ נוסף!';
-    btn.style.background = '#22c55e'; btn.style.color = 'white'; btn.style.borderColor = '#22c55e';
-    setTimeout(function() { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; }, 2000);
-    showToast('✓ ' + label + ' נוסף לסל');
+  window.setCardMode = function(btn, mode) {
+    var card = btn.closest('.sf-prod-card');
+    card.dataset.modeSel = mode;
+    card.querySelectorAll('.sf-mode-opt').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    var price = mode === 'rent' ? parseInt(card.dataset.rent) : parseInt(card.dataset.buy);
+    card.querySelector('.sf-price-val').textContent = price;
+    card.querySelector('.sf-price-sfx').textContent = mode === 'rent' ? ' לטיול' : '';
+  };
+  window.addRentable = function(card) {
+    var mode = card.dataset.modeSel || 'rent';
+    var price = mode === 'rent' ? parseInt(card.dataset.rent) : parseInt(card.dataset.buy);
+    var name = card.dataset.name + (mode === 'rent' ? ' (השכרה)' : '');
+    addItemToCart({ id: card.dataset.id + '-' + mode, name: name, price: price, qty: 1, mode: mode, duration: mode==='rent'?months:null });
+    var addBtn = card.querySelector('.sf-add-btn');
+    var orig = addBtn.textContent; addBtn.textContent = '✓ נוסף!';
+    setTimeout(function(){ addBtn.textContent = orig; }, 2000);
+    showToast('✓ ' + card.dataset.name + ' נוסף לסל');
   };
   window.selectPack = function(id) {
     selectedPack=id;
