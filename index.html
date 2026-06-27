@@ -563,6 +563,12 @@ a:where(:not(.wp-element-button))
 .xpro-theme-builder-header-nav { position: fixed !important; top: 0; left: 0; right: 0; width: 100%; z-index: 9999; background-color: #FAECE3 !important; }
 .xpro-theme-builder-header { width: 100%; }
 </style><style id="header-critical">/* Critical: header fixed position from first frame, solid dark navy */.xpro-theme-builder-header-nav{position:fixed!important;top:0;left:0;right:0;width:100%;z-index:9999;background-color:#FAECE3!important;}.she-header-transparent-yes,.she-header-transparent-yes .xpro-theme-builder-header-nav{background-color:#FAECE3!important;position:fixed!important;}</style>
+<style id="bug-fixes">
+/* Bug 1: compensate for fixed header so hero isn't hidden behind it */
+body { padding-top: var(--header-height, 70px) !important; }
+/* Bug 2: hide all owl carousel nav buttons globally */
+.owl-nav, .owl-prev, .owl-next, .owl-nav button, .owl-carousel .owl-nav { display: none !important; }
+</style>
 <style>
 /* Guide accordion in mobile menu */
 #menu-item-3516 > .sub-menu { display: none; }
@@ -5668,6 +5674,33 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
   } else {
     initGuideAccordion();
   }
+})();
+</script>
+<script>
+(function() {
+  // Bug 1: measure real header height and update CSS variable
+  function fixHeaderGap() {
+    var h = document.querySelector('.xpro-theme-builder-header-nav');
+    if (h) document.documentElement.style.setProperty('--header-height', h.offsetHeight + 'px');
+  }
+  // Bug 3: add click-outside-to-close for hamburger menu (polyfill doesn't have this)
+  function fixHamburger() {
+    if (typeof jQuery === 'undefined') return;
+    var panel = jQuery('#uc_ue_side_menu_elementor_b991733 .uc-side-menu-wrapper');
+    var btn   = jQuery('#uc_ue_side_menu_elementor_b991733 .open_side_menu, #uc_ue_side_menu_elementor_b991733 .uc-menu-button-wrapper');
+    jQuery(document).on('click', function(e) {
+      if (panel.hasClass('menu-right-open') && !jQuery(e.target).closest('#uc_ue_side_menu_elementor_b991733').length) {
+        panel.removeClass('menu-right-open').addClass('menu-right-close');
+        jQuery('body').removeClass('uc-menu-open');
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){ fixHeaderGap(); fixHamburger(); });
+  } else {
+    fixHeaderGap(); fixHamburger();
+  }
+  window.addEventListener('resize', fixHeaderGap);
 })();
 </script>
 </body>
