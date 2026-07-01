@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html dir="rtl" lang="he-IL">
 <head>
   <meta charset="UTF-8">
@@ -241,6 +241,37 @@
       color: #F97316;
       white-space: nowrap;
     }
+    .cart-thumb {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid #E2E8F0;
+      background: #F8FAFC;
+    }
+    .cart-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .cart-remove-btn {
+      background: #F1F5F9;
+      border: none;
+      cursor: pointer;
+      color: #94A3B8;
+      font-size: 22px;
+      line-height: 1;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+    .cart-remove-btn:hover { background: #FEE2E2; color: #EF4444; }
 
     /* Cart total */
     .cart-total-row {
@@ -261,6 +292,57 @@
       font-weight: 900;
       color: #F97316;
     }
+
+    /* Upsell carousel */
+    .upsell-section { margin-top: 24px; background: #fff; border-radius: 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); overflow: hidden; padding: 20px; }
+    .upsell-title { font-size: 15px; font-weight: 700; color: #0F172B; margin-bottom: 14px; }
+    .upsell-viewport { overflow: hidden; }
+    .upsell-track { display: flex; gap: 12px; transition: transform 0.35s ease; }
+    .upsell-card {
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 12px;
+      flex: 0 0 calc(50% - 6px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+    }
+    .upsell-card img { width: 100%; height: 100px; object-fit: contain; border-radius: 8px; }
+    .upsell-name { font-size: 12px; font-weight: 600; color: #0F172B; line-height: 1.3; }
+    .upsell-price { font-size: 14px; font-weight: 800; color: #F97316; }
+    .upsell-add-btn {
+      background: #F97316;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Assistant', sans-serif;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .upsell-add-btn:hover { background: #ea6c10; }
+    .upsell-add-btn.added { background: #22C55E; }
+    .upsell-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 14px; }
+    .upsell-arrow {
+      background: #F1F5F9;
+      border: none;
+      border-radius: 50%;
+      width: 36px; height: 36px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .upsell-arrow:hover { background: #E2E8F0; }
+    .upsell-dots { display: flex; gap: 6px; }
+    .upsell-dot { width: 8px; height: 8px; border-radius: 50%; background: #CBD5E1; transition: background 0.2s; }
+    .upsell-dot.active { background: #F97316; }
 
     /* Savings card */
     .savings-card {
@@ -321,6 +403,7 @@
       background: #fff;
     }
     .form-textarea { resize: vertical; min-height: 88px; }
+    .form-textarea.small { min-height: 52px; font-size: 14px; padding: 10px 14px; }
 
     /* Gender toggle */
     .gender-row {
@@ -352,21 +435,21 @@
     /* Trust pills */
     .trust-row {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
-      margin: 4px 0 24px;
+      margin: 4px 0 16px;
     }
     .trust-pill {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
       border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 13px;
+      padding: 3px 10px;
+      font-size: 11px;
       font-weight: 600;
-      color: #64748B;
+      color: #94A3B8;
     }
 
     /* Submit button */
@@ -392,22 +475,59 @@
     .submit-btn:active { transform: translateY(0); }
     .submit-btn:disabled { opacity: 0.75; cursor: not-allowed; transform: none; }
 
+    .insurance-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      padding: 12px 14px;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 12px;
+      background: #F8FAFC;
+    }
+    .insurance-checkbox input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: #F97316;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .insurance-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0F172B;
+      line-height: 1.5;
+    }
+    .submit-note {
+      text-align: center;
+      font-size: 12px;
+      color: #94A3B8;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
     .below-btn {
-      margin-top: 16px;
+      margin-top: 20px;
       text-align: center;
     }
     .below-btn p {
       font-size: 13px;
-      color: #94A3B8;
-      margin-bottom: 8px;
+      color: #64748B;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
     .whatsapp-link {
-      color: #25D366;
+      display: inline-block;
+      background: #25D366;
+      color: #fff;
       font-weight: 700;
       font-size: 14px;
       text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 999px;
     }
-    .whatsapp-link:hover { text-decoration: underline; }
+    .whatsapp-link:hover { background: #1db954; }
 
     /* ── FOOTER TRUST BADGES ── */
     .trust-footer {
@@ -505,6 +625,14 @@
     @media (min-width: 801px) {
       .sticky-total { display: none; }
     }
+    .float-btns { position: fixed; left: 16px; bottom: 20px; z-index: 999; display: flex; flex-direction: column; gap: 10px; }
+    .float-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; text-decoration: none; }
+    .float-btn:hover { transform: scale(1.1); }
+    .float-wa { background: #25D366; }
+    .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .float-tt { background: #000; }
+    .float-acc { position: fixed; right: 16px; bottom: 20px; z-index: 999; width: 50px; height: 50px; border-radius: 50%; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; border: none; transition: transform 0.2s; }
+    .float-acc:hover { transform: scale(1.1); }
   </style>
 </head>
 <body>
@@ -515,11 +643,12 @@
   <button class="side-close-btn" id="side-close">✕</button>
   <nav class="side-nav">
     <a href="index.html">דף הבית</a>
-    <a href="categories/bags-rental.html">מוצ'ילות להשכרה</a>
-    <a href="categories/day-bags.html">תיקי יום להשכרה</a>
+    <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+    <a href="categories/day-bags.html">תיקי יום</a>
     <a href="categories/rental.html">ציוד טיולים להשכרה</a>
-    <a href="categories/general-equipment.html">ציוד כללי לקנייה</a>
-    <a href="categories/field.html">ציוד שטח לקנייה</a>
+    <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
+    <a href="categories/field.html">ציוד שטח</a>
     <a href="categories/hygiene.html">מוצרי היגיינה לקנייה</a>
     <a href="guide.html">המדריך המלא לטיול</a>
     <a href="categories/benefits.html">הטבות</a>
@@ -528,9 +657,10 @@
     <a href="https://wa.me/972523960215" target="_blank" style="color:#25D366">לשיחה עם מומחה 💬</a>
   </nav>
   <div class="side-social">
-    <a href="https://www.facebook.com/share/14hoGSftwcy/" target="_blank">📘</a>
-    <a href="https://www.instagram.com/the_smart_traveler_il" target="_blank">📷</a>
-    <a href="https://www.tiktok.com/@the_smart_traveller" target="_blank">🎵</a>
+    <a href="https://www.instagram.com/the_smart_traveler_il" target="_blank" title="אינסטגרם">📷</a>
+    <a href="https://www.tiktok.com/@the_smart_traveller" target="_blank" title="טיקטוק">🎵</a>
+    <a href="https://wa.me/972523960215" target="_blank" title="ווצאפ">💬</a>
+    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank" title="וויז">🚗</a>
   </div>
 </div>
 
@@ -546,6 +676,7 @@
   </div>
   <nav class="header-nav">
     <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
     <a href="categories/rental.html">ציוד</a>
     <a href="guide.html">מדריך</a>
     <a href="about.html">אודות</a>
@@ -607,13 +738,75 @@
       </div>
 
       <!-- Savings -->
-      <div id="savings-section" style="display:none">
-        <div class="savings-card">
-          <div class="savings-icon">💰</div>
-          <div>
-            <div class="savings-text-title">חסכתם ביחס לחנות רגילה!</div>
-            <div class="savings-text-sub" id="savings-text">השכרה חכמה חוסכת לכם מאות שקלים</div>
+
+      <!-- Upsell carousel -->
+      <div class="upsell-section">
+        <div class="upsell-title">מוצרים נוספים שכדאי לצרף</div>
+        <div class="upsell-viewport">
+          <div class="upsell-track" id="upsell-track">
+
+            <div class="upsell-card">
+              <img src="assets/images/2024_03_S7694aeeb34064d239a1bb7ed7a3c2e9c2-600x600.webp" alt="מטען נייד">
+              <div class="upsell-name">מטען נייד 20,000mAh</div>
+              <div class="upsell-price">₪150</div>
+              <button class="upsell-add-btn" onclick="addUpsell(this,'upsell-charger','מטען נייד 20,000mAh',150)">+ הוסף לסל</button>
+            </div>
+
+            <div class="upsell-card">
+              <img src="assets/images/2024_03_Saaf0a2e96f7e45ca9a5a40691550442dk-600x695.webp" alt="מנעול וכבל">
+              <div class="upsell-name">מנעול וכבל</div>
+              <div class="upsell-price">₪45</div>
+              <button class="upsell-add-btn" onclick="addUpsell(this,'upsell-lock','מנעול וכבל',45)">+ הוסף לסל</button>
+            </div>
+
+            <div class="upsell-card">
+              <img src="assets/images/2024_03_Sd6b4e280839646d9ba8350c1d3b5a8a3p-600x600.webp" alt="מתאם אוניברסלי">
+              <div class="upsell-name">מתאם אוניברסלי</div>
+              <div class="upsell-price">₪29</div>
+              <button class="upsell-add-btn" onclick="addUpsell(this,'upsell-adapter','מתאם אוניברסלי',29)">+ הוסף לסל</button>
+            </div>
+
+            <div class="upsell-card">
+              <img src="assets/images/2024_03_S011edd8498d140358b560abdfffd1ab97-600x762.webp" alt="סט 5 ארגוניות">
+              <div class="upsell-name">סט 5 ארגוניות</div>
+              <div class="upsell-price">₪150</div>
+              <button class="upsell-add-btn" onclick="addUpsell(this,'upsell-organizers','סט 5 ארגוניות',150)">+ הוסף לסל</button>
+            </div>
+
+            <div class="upsell-card">
+              <img src="assets/images/2024_03_S00d8742083024e3cb84b8f17a32cc82an-600x600.webp" alt="פאוץ כסף">
+              <div class="upsell-name">פאוץ כסף</div>
+              <div class="upsell-price">₪39</div>
+              <button class="upsell-add-btn" onclick="addUpsell(this,'upsell-pouch','פאוץ כסף',39)">+ הוסף לסל</button>
+            </div>
+
+            <div class="upsell-card">
+              <img src="assets/images/2024_03_Sa15dbbb195874b6ca8dfcd66b3a7601dp-600x517.webp" alt="כרית מתנפחת">
+              <div class="upsell-name">כרית מתנפחת</div>
+              <div class="upsell-price">₪49</div>
+              <button class="upsell-add-btn" onclick="addUpsell(this,'upsell-pillow','כרית מתנפחת',49)">+ הוסף לסל</button>
+            </div>
+
+            <div class="upsell-card">
+              <img src="assets/images/2024_03_S04b7bbf0ee294ec9be5d98f18fce81c3B-600x600.webp" alt="פנס ראש">
+              <div class="upsell-name">פנס ראש</div>
+              <div class="upsell-price">₪50</div>
+              <button class="upsell-add-btn" onclick="addUpsell(this,'upsell-headlamp','פנס ראש',50)">+ הוסף לסל</button>
+            </div>
+
+            <div class="upsell-card">
+              <img src="assets/images/2024_03_Sb59013377a664438b4b1beddd72a6c83m-600x600.webp" alt="שקית נגד מים">
+              <div class="upsell-name">שקית נגד מים</div>
+              <div class="upsell-price">₪39</div>
+              <button class="upsell-add-btn" onclick="addUpsell(this,'upsell-drybag','שקית נגד מים',39)">+ הוסף לסל</button>
+            </div>
+
           </div>
+        </div>
+        <div class="upsell-nav">
+          <button class="upsell-arrow" id="upsell-prev" onclick="upsellMove(-1)">›</button>
+          <div class="upsell-dots" id="upsell-dots"></div>
+          <button class="upsell-arrow" id="upsell-next" onclick="upsellMove(1)">‹</button>
         </div>
       </div>
 
@@ -649,10 +842,11 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label">מין</label>
+              <label class="form-label">מין <span style="font-weight:400;color:#94A3B8">(להתאמת מבנה התיק)</span></label>
               <div class="gender-row">
                 <button type="button" class="gender-pill" data-value="זכר">👨 זכר</button>
                 <button type="button" class="gender-pill" data-value="נקבה">👩 נקבה</button>
+                <button type="button" class="gender-pill" data-value="אחר">אחר</button>
               </div>
               <input type="hidden" id="gender-input" name="gender" value="">
             </div>
@@ -666,30 +860,46 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="customer-address">כתובת למשלוח</label>
-              <textarea class="form-textarea" id="customer-address" name="address" rows="3" placeholder="רחוב, עיר, מיקוד..."></textarea>
+              <label class="form-label" for="customer-city">עיר</label>
+              <input class="form-input" type="text" id="customer-city" name="city" placeholder="תל אביב" autocomplete="address-level2">
+            </div>
+
+            <div class="form-group" style="display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end">
+              <div>
+                <label class="form-label" for="customer-street">רחוב</label>
+                <input class="form-input" type="text" id="customer-street" name="street" placeholder="שם הרחוב" autocomplete="address-line1">
+              </div>
+              <div style="width:80px">
+                <label class="form-label" for="customer-streetnum">מספר</label>
+                <input class="form-input" type="text" id="customer-streetnum" name="street_number" placeholder="12">
+              </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="customer-notes">הערות</label>
-              <textarea class="form-textarea" id="customer-notes" name="notes" rows="3" placeholder="כל הערה חשובה לנו..."></textarea>
+              <label class="form-label" for="customer-notes">הערות <span style="font-weight:400;color:#94A3B8;font-size:12px">(מומלץ לרשום שמות מדינות שנדע לוודא שאין ויזה, בירוקרטיה וכו' שפספסתם)</span></label>
+              <textarea class="form-textarea small" id="customer-notes" name="notes" rows="2" placeholder="כל הערה חשובה לנו..."></textarea>
             </div>
 
             <!-- Trust pills -->
-            <div class="trust-row">
-              <span class="trust-pill">🔒 תשלום מאובטח</span>
-              <span class="trust-pill">⭐ שירות אישי</span>
-              <span class="trust-pill">🚚 משלוח עד הבית</span>
+            <div class="form-group">
+              <label class="form-label" for="referral-source">דרך מי הגעתי</label>
+              <input class="form-input" type="text" id="referral-source" name="referral_source" placeholder="למשל: חבר/ה, אינסטגרם, גוגל...">
             </div>
+
+            <label class="insurance-checkbox">
+              <input type="checkbox" id="insurance-opt" name="insurance" value="yes">
+              <span class="insurance-label">🛡️ אני רוצה לעשות ביטוח דרכם (ללא תוספת עלות בכל החברות) ולקבל סוכן אישי שזמין לי 24/7 לכל שאלה ולהתאמה אישית של הביטוח בחינם</span>
+            </label>
 
             <!-- Submit -->
             <button type="submit" class="submit-btn" id="submit-btn">
-              שלח הזמנה ← 🎒
+              שליחת הזמנה ללא תשלום ←
             </button>
+            <p class="submit-note">נחזור אליכם עד יום עסקים אחד להתאמת ציוד ומעבר על כל ההכנה, הבירוקרטיה והדגשים הבטיחותיים בהתאם ליעד שלכם — שתהיו מוכנים ורגועים ב-100%</p>
 
             <div class="below-btn">
-              <p>🔒 הזמנה מאובטחת ומוצפנת</p>
-              <a href="https://wa.me/972500000000" target="_blank" class="whatsapp-link">שאלות? דברו איתנו ב-WhatsApp 💬</a>
+              <p>רוצים לוודא שקבלנו את ההזמנה?</p>
+              <a href="https://wa.me/972523960215" target="_blank" class="whatsapp-link">💬 פנייה בוואטסאפ</a>
             </div>
 
           </form>
@@ -704,19 +914,19 @@
 <div class="trust-footer">
   <div class="trust-badges-row">
     <div class="trust-badge-card">
-      <div class="trust-badge-icon">🔒</div>
-      <div class="trust-badge-title">מאובטח ב-100%</div>
-      <div class="trust-badge-sub">כל הנתונים מוצפנים ומאובטחים ברמה הגבוהה ביותר</div>
+      <div class="trust-badge-icon">🎒</div>
+      <div class="trust-badge-title">ניסיון של מאות מטיילים</div>
+      <div class="trust-badge-sub">ליווינו מאות מטיילים ברחבי העולם ויודעים בדיוק מה צריך לכל יעד</div>
+    </div>
+    <div class="trust-badge-card">
+      <div class="trust-badge-icon">🚚</div>
+      <div class="trust-badge-title">משלוחים והחזרות עד הדלת</div>
+      <div class="trust-badge-sub">מביאים אליכם הביתה ואוספים בחזרה — בלי טרחה ובלי עלויות נסתרות</div>
     </div>
     <div class="trust-badge-card">
       <div class="trust-badge-icon">🌟</div>
-      <div class="trust-badge-title">שירות אישי</div>
-      <div class="trust-badge-sub">צוות מסור שמלווה אתכם לאורך כל הדרך עד שוב הביתה</div>
-    </div>
-    <div class="trust-badge-card">
-      <div class="trust-badge-icon">✈️</div>
-      <div class="trust-badge-title">ניסיון של שנים</div>
-      <div class="trust-badge-sub">מאות נוסעים מרוצים שסמכו עלינו ברחבי העולם</div>
+      <div class="trust-badge-title">שירות אישי ואמין</div>
+      <div class="trust-badge-sub">צוות מסור שזמין לכם לאורך כל הדרך — מההזמנה ועד שוב הביתה</div>
     </div>
   </div>
 </div>
@@ -726,6 +936,83 @@
   <span style="font-size:15px;font-weight:700;color:#0F172B">סה״כ לתשלום</span>
   <span style="font-size:20px;font-weight:900;color:#F97316" id="total-amount">₪0</span>
 </div>
+
+<script>
+window.addUpsell = function(btn, id, name, price) {
+  var cart = [];
+  try { cart = JSON.parse(localStorage.getItem('smartCart') || '[]'); } catch(e) {}
+  if (!Array.isArray(cart)) cart = [];
+  var ex = cart.find(function(i){ return i.id == id; });
+  var imgEl = btn && btn.closest('.upsell-card') && btn.closest('.upsell-card').querySelector('img');
+  var imgSrc = imgEl ? imgEl.src : '';
+  if (ex) { ex.qty = (ex.qty || 1) + 1; } else { cart.push({id: id, name: name, price: price, qty: 1, img: imgSrc}); }
+  localStorage.setItem('smartCart', JSON.stringify(cart));
+  btn.textContent = '✓ נוסף לסל';
+  btn.classList.add('added');
+  btn.disabled = true;
+};
+
+(function() {
+  var currentPage = 0;
+  var perPage = 2;
+  var cards, pages, dotsEl;
+
+  function initUpsell() {
+    var track = document.getElementById('upsell-track');
+    dotsEl = document.getElementById('upsell-dots');
+    if (!track || !dotsEl) return;
+    cards = Array.prototype.slice.call(track.querySelectorAll('.upsell-card'));
+    pages = Math.ceil(cards.length / perPage);
+
+    dotsEl.innerHTML = '';
+    for (var i = 0; i < pages; i++) {
+      var d = document.createElement('span');
+      d.className = 'upsell-dot';
+      (function(idx) { d.onclick = function() { goToPage(idx); }; })(i);
+      dotsEl.appendChild(d);
+    }
+
+    goToPage(0);
+  }
+
+  function goToPage(page) {
+    currentPage = page;
+    cards.forEach(function(card, i) {
+      var cardPage = Math.floor(i / perPage);
+      card.style.display = cardPage === page ? 'flex' : 'none';
+    });
+    var dots = dotsEl.querySelectorAll('.upsell-dot');
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === page); });
+    document.getElementById('upsell-prev').disabled = page <= 0;
+    document.getElementById('upsell-next').disabled = page >= pages - 1;
+  }
+
+  window.upsellMove = function(dir) {
+    clearInterval(autoTimer);
+    var next = currentPage + dir;
+    if (next < 0) next = 0;
+    if (next >= pages) next = pages - 1;
+    goToPage(next);
+    startAuto();
+  };
+
+  var autoTimer;
+  function startAuto() {
+    autoTimer = setInterval(function() {
+      var next = currentPage + 1;
+      if (next >= pages) next = 0;
+      goToPage(next);
+    }, 4000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { initUpsell(); startAuto(); });
+  } else {
+    initUpsell();
+    startAuto();
+  }
+})();
+</script>
 
 <script>
 (function() {
@@ -778,9 +1065,13 @@
       var modeBg   = item.mode === 'rent' ? '#DBEAFE' : item.mode === 'free' ? '#DCFCE7' : '#FFF7ED';
       var modeColor= item.mode === 'rent' ? '#1D4ED8' : item.mode === 'free' ? '#15803D' : '#EA580C';
 
+      var thumbHtml = item.img
+        ? '<div class="cart-thumb"><img src="' + esc(item.img) + '" alt=""></div>'
+        : '<div class="cart-icon-circle" style="background:' + modeBg + '">' + modeIcon + '</div>';
+
       html +=
         '<div class="cart-row">' +
-          '<div class="cart-icon-circle" style="background:' + modeBg + '">' + modeIcon + '</div>' +
+          thumbHtml +
           '<div class="cart-item-details">' +
             '<div class="cart-item-name">' + esc(item.name) + '</div>' +
             '<span class="cart-mode-badge" style="background:' + modeBg + ';color:' + modeColor + '">' +
@@ -791,6 +1082,7 @@
           '<div class="cart-item-price">' +
             (price === 0 ? '<span style="color:#15803D;font-weight:800">חינם</span>' : '₪' + price.toLocaleString('he-IL')) +
           '</div>' +
+          '<button class="cart-remove-btn" data-id="' + esc(String(item.id)) + '" onclick="removeCartItem(this.dataset.id)" title="הסר מהסל">×</button>' +
         '</div>';
     });
 
@@ -801,8 +1093,12 @@
     var totalStr = '₪' + total.toLocaleString('he-IL');
     if (totalEl) totalEl.textContent = totalStr;
     if (totalAmountEl) totalAmountEl.textContent = totalStr;
-    if (totalRowEl) totalRowEl.style.display = 'flex';
-    if (stickyEl) stickyEl.style.display = 'flex';
+    if (totalRowEl) totalRowEl.style.display = cart.length > 0 ? 'flex' : 'none';
+    if (stickyEl) stickyEl.style.display = cart.length > 0 ? 'flex' : 'none';
+
+    document.querySelectorAll('.woocommerce-Price-amount.amount').forEach(function(el) {
+      el.innerHTML = total.toFixed(2) + ' &#8362;';
+    });
 
     if (rentCount > 0 && savingsSection) {
       savingsSection.style.display = 'block';
@@ -856,6 +1152,12 @@
     });
   });
 
+  window.removeCartItem = function(id) {
+    cart = cart.filter(function(i){ return String(i.id) !== String(id); });
+    localStorage.setItem('smartCart', JSON.stringify(cart));
+    renderCart();
+  };
+
   renderCart();
 })();
 </script>
@@ -883,5 +1185,13 @@
   } catch(e) {}
 })();
 </script>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-btns">
+  <a href="https://wa.me/972523960215" target="_blank" class="float-btn float-wa">💬</a>
+  
+  
+</div>
+<button class="float-acc" onclick="document.body.style.fontSize=document.body.style.fontSize==='120%'?'':'120%'" title="נגישות" aria-label="נגישות">♿</button>
 </body>
 </html>

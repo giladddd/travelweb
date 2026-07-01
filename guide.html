@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html dir="rtl" lang="he-IL">
 <head>
   <meta charset="UTF-8">
@@ -101,7 +101,7 @@
     .guide-progress-bar span.filled { background: #F97316; }
 
     /* STEPS SECTION */
-    .steps-wrap { max-width: 720px; margin: 0 auto; padding: 48px 16px 80px; }
+    .steps-wrap { max-width: 720px; margin: 0 auto; padding: 48px 16px 80px; padding-top: 124px; }
 
     /* STEP CARD */
     .step-card {
@@ -147,6 +147,29 @@
     .step-docs li { font-size: 14px; color: #475569; line-height: 1.8; list-style: none; }
     .step-docs li::before { content: '✦ '; color: #F97316; font-size: 11px; }
 
+    /* App carousel */
+    .app-carousel-wrap { margin-top: 16px; position: relative; }
+    .app-carousel-viewport { overflow: hidden; border-radius: 16px; }
+    .app-carousel-track { display: flex; transition: transform 0.4s ease; }
+    .app-card {
+      flex: 0 0 100%;
+      background: #fff;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 28px 20px 22px;
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;
+    }
+    .app-icon { width: 80px; height: 80px; border-radius: 20px; object-fit: contain; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+    .app-name { font-size: 20px; font-weight: 900; color: #0F172B; }
+    .app-category { font-size: 14px; color: #94A3B8; font-weight: 600; }
+    .app-tip { font-size: 14px; color: #92400E; background: #FFFBEB; border: 1.5px solid #FDE68A; border-radius: 12px; padding: 12px 16px; line-height: 1.6; width: 100%; }
+    .app-carousel-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 14px; }
+    .app-carousel-arrow { background: #F1F5F9; border: none; border-radius: 50%; width: 38px; height: 38px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .app-carousel-arrow:hover { background: #E2E8F0; }
+    .app-carousel-dots { display: flex; gap: 6px; }
+    .app-carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: #CBD5E1; cursor: pointer; transition: background 0.2s; }
+    .app-carousel-dot.active { background: #F97316; width: 20px; border-radius: 4px; }
+
     .step-btns { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 20px 0; }
     .step-btn {
       display: inline-flex; align-items: center; gap: 6px;
@@ -168,9 +191,11 @@
     .slider-nav-label { font-size: 13px; font-weight: 700; color: #64748B; min-width: 60px; text-align: center; }
 
     /* CLIMATE TABLE */
-    .climate-wrap { margin: 14px 0 0; overflow: hidden; }
-    .climate-slider { display: flex; transition: transform 0.35s ease; }
-    .climate-slide { flex: 0 0 100%; padding: 0 16px 4px; }
+    .climate-wrap { margin: 14px 0 0; }
+    .climate-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; cursor: grab; direction: ltr; }
+    .climate-slider::-webkit-scrollbar { display: none; }
+    .climate-slider.dragging { cursor: grabbing; scroll-behavior: auto; }
+    .climate-slide { flex: 0 0 100%; scroll-snap-align: start; padding: 0 16px 4px; min-width: 0; direction: rtl; }
     .climate-title { font-size: 15px; font-weight: 900; color: #0F172B; margin-bottom: 10px; }
     .climate-legend { display: flex; align-items: center; gap: 12px; padding: 8px 16px 0; font-size: 12px; font-weight: 600; color: #64748B; }
     .cl-dot { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-left: 4px; }
@@ -192,9 +217,11 @@
     .ct tbody tr:hover td.r { background: #FCA5A5; }
 
     /* BUDGET SLIDER */
-    .budget-slider-wrap { margin: 14px 0 0; overflow: hidden; }
-    .budget-slider { display: flex; transition: transform 0.35s ease; }
-    .budget-slide { flex: 0 0 100%; padding: 0 20px 4px; }
+    .budget-slider-wrap { margin: 14px 0 0; }
+    .budget-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; cursor: grab; direction: ltr; }
+    .budget-slider::-webkit-scrollbar { display: none; }
+    .budget-slider.dragging { cursor: grabbing; scroll-behavior: auto; }
+    .budget-slide { flex: 0 0 100%; scroll-snap-align: start; padding: 0 20px 4px; min-width: 0; direction: rtl; }
     .budget-slide-label { font-size: 14px; font-weight: 800; color: #F97316; margin-bottom: 10px; }
     .budget-table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .budget-table th { background: #0F172B; color: white; padding: 10px 8px; text-align: center; font-weight: 700; }
@@ -210,9 +237,11 @@
     .budget-dot.active { background: #F97316; width: 44px; }
 
     /* CREDIT CARD SLIDER */
-    .cc-slider-wrap { margin: 14px 0 0; overflow: hidden; }
-    .cc-slider { display: flex; transition: transform 0.35s ease; }
-    .cc-card { flex: 0 0 100%; padding: 0 20px 4px; }
+    .cc-slider-wrap { margin: 14px 0 0; }
+    .cc-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; cursor: grab; direction: ltr; }
+    .cc-slider::-webkit-scrollbar { display: none; }
+    .cc-slider.dragging { cursor: grabbing; scroll-behavior: auto; }
+    .cc-card { flex: 0 0 100%; scroll-snap-align: start; padding: 0 20px 4px; min-width: 0; direction: rtl; }
     .cc-card-header { color: white; font-size: 17px; font-weight: 900; padding: 12px 16px; border-radius: 12px 12px 0 0; text-align: center; }
     .cc-blue  { background: linear-gradient(135deg,#1D4ED8,#2563EB); }
     .cc-orange{ background: linear-gradient(135deg,#EA580C,#F97316); }
@@ -269,7 +298,7 @@
 
     /* STICKY PROGRESS */
     .sticky-progress {
-      position: sticky; top: 70px; z-index: 100;
+      position: fixed; top: 70px; right: 0; left: 0; z-index: 998;
       background: white;
       border-bottom: 3px solid #F97316;
       padding: 10px 16px;
@@ -289,12 +318,36 @@
     .footer-bottom a { color: #F97316; }
 
     /* FLOATING BUTTONS */
+    /* VISA TABLE */
+    .visa-wrap { margin-top: 4px; }
+    .visa-passport-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+    .vp-tab { flex: 1; padding: 8px 0; font-size: 14px; font-weight: 700; font-family: 'Assistant', sans-serif; border: 2px solid #F97316; border-radius: 8px; background: white; color: #F97316; cursor: pointer; transition: background 0.2s, color 0.2s; }
+    .vp-tab.active { background: #F97316; color: white; }
+    .visa-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; direction: ltr; cursor: grab; }
+    .visa-slider::-webkit-scrollbar { display: none; }
+    .visa-slider.dragging { cursor: grabbing; scroll-behavior: auto; }
+    .visa-slide { flex: 0 0 100%; scroll-snap-align: start; direction: rtl; padding: 0 4px; min-width: 0; }
+    .visa-slide-title { font-size: 15px; font-weight: 900; color: #0F172B; margin-bottom: 10px; }
+    .visa-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .visa-table td { padding: 8px 6px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; line-height: 1.3; }
+    .visa-table td:first-child { font-weight: 700; color: #0F172B; width: 38%; }
+    .visa-note { font-size: 11px; color: #94A3B8; margin-top: 8px; }
+    .visa-wrap[data-passport="eu"] .v-il, .visa-wrap[data-passport="eu"] .v-us { display: none; }
+    .visa-wrap[data-passport="us"] .v-il, .visa-wrap[data-passport="us"] .v-eu { display: none; }
+    .visa-wrap[data-passport="il"] .v-eu, .visa-wrap[data-passport="il"] .v-us { display: none; }
+    .vf { color: #16A34A; font-weight: 700; }
+    .ve { color: #B45309; font-weight: 700; }
+    .vr { color: #DC2626; font-weight: 700; }
+    .visaway-box { background: #FFF7ED; border: 1.5px solid #FDBA74; border-radius: 12px; padding: 14px 16px; margin-top: 16px; font-size: 14px; color: #0F172B; line-height: 1.6; }
+    .visaway-box strong { color: #F97316; }
+
     .float-btns { position: fixed; left: 16px; bottom: 20px; z-index: 999; display: flex; flex-direction: column; gap: 10px; }
-    .float-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; }
+    .float-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; text-decoration: none; }
     .float-btn:hover { transform: scale(1.1); }
     .float-wa { background: #25D366; }
     .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
     .float-tt { background: #000; }
+    .float-acc { position: fixed; right: 16px; bottom: 20px; z-index: 999; width: 50px; height: 50px; border-radius: 50%; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; border: none; transition: transform 0.2s; }
   </style>
 </head>
 <body>
@@ -306,8 +359,9 @@
   <nav class="side-nav">
     <a href="index.html">דף הבית</a>
     <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
     <a href="categories/day-bags.html">תיקי יום</a>
-    <a href="categories/general-equipment.html">ציוד כללי</a>
+    <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
     <a href="categories/hygiene.html">ציוד היגיינה</a>
     <a href="categories/field.html">ציוד שטח</a>
     <a href="categories/benefits.html">הטבות בהכנה בחינם</a>
@@ -339,9 +393,10 @@
     </nav>
   </div>
   <div class="side-social">
-    <a href="https://www.facebook.com/share/14hoGSftwcy/" target="_blank">📘</a>
-    <a href="https://www.instagram.com/the_smart_traveler_il" target="_blank">📷</a>
-    <a href="https://www.tiktok.com/@the_smart_traveller" target="_blank">🎵</a>
+    <a href="https://www.instagram.com/the_smart_traveler_il" target="_blank" title="אינסטגרם">📷</a>
+    <a href="https://www.tiktok.com/@the_smart_traveller" target="_blank" title="טיקטוק">🎵</a>
+    <a href="https://wa.me/972523960215" target="_blank" title="ווצאפ">💬</a>
+    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank" title="וויז">🚗</a>
   </div>
 </div>
 
@@ -357,6 +412,7 @@
   </div>
   <nav class="header-nav">
     <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
     <a href="categories/rental.html">ציוד</a>
     <a href="guide.html" style="color:#F97316">מדריך</a>
     <a href="about.html">אודות</a>
@@ -446,7 +502,7 @@
               <tr><td>הודו צפון</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
               <tr><td>גואה / הודו דרום</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td></tr>
               <tr><td>נפאל</td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td></tr>
-              <tr><td>בלי</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
+              <tr><td>בלי</td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="r"></td></tr>
               <tr><td>פיליפינים</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="y"></td><td class="g"></td></tr>
             </tbody>
           </table></div>
@@ -510,8 +566,8 @@
             <thead><tr><th>יעד</th><th>ינו</th><th>פבר</th><th>מרץ</th><th>אפר</th><th>מאי</th><th>יונ</th><th>יול</th><th>אוג</th><th>ספט</th><th>אוק</th><th>נוב</th><th>דצמ</th></tr></thead>
             <tbody>
               <tr><td>מרוקו</td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td></tr>
-              <tr><td>קניה (ספארי)</td><td class="y"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="y"></td></tr>
-              <tr><td>טנזניה</td><td class="y"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="y"></td></tr>
+              <tr><td>קניה (ספארי)</td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="g"></td></tr>
+              <tr><td>טנזניה</td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="g"></td></tr>
               <tr><td>דרום אפריקה</td><td class="y"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="y"></td><td class="y"></td></tr>
               <tr><td>זמביה/זימבבואה</td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="g"></td><td class="y"></td><td class="r"></td><td class="r"></td><td class="r"></td></tr>
               <tr><td>אתיופיה</td><td class="g"></td><td class="g"></td><td class="g"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="y"></td><td class="g"></td><td class="g"></td><td class="g"></td></tr>
@@ -795,7 +851,307 @@
       <div class="step-title">🛂 דרישות ויזה</div>
     </div>
     <div class="step-body">
-      <p class="step-desc">בודקים אם יש דרישת ויזה ליעד. סידרנו לכם <strong>10% הנחה ב-VISAWAY</strong> — המקום שעושה סדר בוויזות לכל העולם בעברית ובצורה פשוטה. בלחיצה על הכפתור ההנחה אוטומטית. ניתן גם להקליד קוד קופון <strong>SMART10</strong>.</p>
+      <p class="step-desc">בדקו אם ליעד שלכם צריך ויזה לפי סוג הדרכון. <strong>המידע נכון לתחילת 2025 — תמיד אמתו מול גורם רשמי לפני הטיסה.</strong></p>
+
+      <div class="visa-wrap" id="visa-wrap" data-passport="il">
+        <div class="visa-passport-tabs">
+          <button class="vp-tab active" onclick="setPassport('il',this)">🇮🇱 ישראלי</button>
+          <button class="vp-tab" onclick="setPassport('eu',this)">🇪🇺 אירופאי</button>
+          <button class="vp-tab" onclick="setPassport('us',this)">🇺🇸 אמריקאי</button>
+        </div>
+
+        <div class="visa-slider" id="visa-slider">
+
+          <!-- אסיה -->
+          <div class="visa-slide">
+            <div class="visa-slide-title">🌏 אסיה</div>
+            <table class="visa-table"><tbody>
+              <tr><td>תאילנד</td>
+                <td class="v-il vf">✅ ללא ויזה (60 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (30–90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (60 יום)</td></tr>
+              <tr><td>פיליפינים</td>
+                <td class="v-il vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (30 יום)</td></tr>
+              <tr><td>לאוס</td>
+                <td class="v-il ve">🟡 ויזה בכניסה / e-Visa</td>
+                <td class="v-eu ve">🟡 ויזה בכניסה / e-Visa</td>
+                <td class="v-us ve">🟡 ויזה בכניסה / e-Visa</td></tr>
+              <tr><td>קמבודיה</td>
+                <td class="v-il ve">🟡 ויזה בכניסה / e-Visa</td>
+                <td class="v-eu ve">🟡 ויזה בכניסה / e-Visa</td>
+                <td class="v-us ve">🟡 ויזה בכניסה / e-Visa</td></tr>
+              <tr><td>נפאל</td>
+                <td class="v-il ve">🟡 ויזה בכניסה / e-Visa</td>
+                <td class="v-eu ve">🟡 ויזה בכניסה / e-Visa</td>
+                <td class="v-us ve">🟡 ויזה בכניסה / e-Visa</td></tr>
+              <tr><td>ויאטנם</td>
+                <td class="v-il ve">🟡 e-Visa מקוון</td>
+                <td class="v-eu ve">🟡 e-Visa מקוון</td>
+                <td class="v-us ve">🟡 e-Visa מקוון</td></tr>
+              <tr><td>הודו</td>
+                <td class="v-il ve">🟡 e-Visa מקוון</td>
+                <td class="v-eu ve">🟡 e-Visa מקוון</td>
+                <td class="v-us ve">🟡 e-Visa מקוון</td></tr>
+              <tr><td>יפן</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>סין</td>
+                <td class="v-il vr">🔴 ויזה נדרשת מראש</td>
+                <td class="v-eu ve">🟡 ויזה בכניסה / e-Visa</td>
+                <td class="v-us vr">🔴 ויזה נדרשת מראש</td></tr>
+              <tr><td>דרום קוריאה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>מונגוליה</td>
+                <td class="v-il ve">🟡 e-Visa מקוון</td>
+                <td class="v-eu ve">🟡 e-Visa מקוון</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>אינדונזיה</td>
+                <td class="v-il vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (30 יום)</td></tr>
+              <tr><td>סרי לנקה</td>
+                <td class="v-il ve">🟡 ETA מקוון</td>
+                <td class="v-eu ve">🟡 ETA מקוון</td>
+                <td class="v-us ve">🟡 ETA מקוון</td></tr>
+              <tr><td>טיוואן</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+            </tbody></table>
+          </div>
+
+          <!-- דרום אמריקה -->
+          <div class="visa-slide">
+            <div class="visa-slide-title">🌎 דרום אמריקה</div>
+            <table class="visa-table"><tbody>
+              <tr><td>ארגנטינה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>צ'ילה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>ברזיל</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>בוליביה</td>
+                <td class="v-il ve">🟡 ויזה בכניסה</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us ve">🟡 ויזה בכניסה</td></tr>
+              <tr><td>פרו</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>קולומביה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>אקוודור</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>אורוגוואי</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>פרגוואי</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+            </tbody></table>
+          </div>
+
+          <!-- מרכז אמריקה -->
+          <div class="visa-slide">
+            <div class="visa-slide-title">🌴 מרכז אמריקה וצפון אמריקה</div>
+            <table class="visa-table"><tbody>
+              <tr><td>מקסיקו</td>
+                <td class="v-il vf">✅ ללא ויזה (180 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (180 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (180 יום)</td></tr>
+              <tr><td>ארה"ב / קנדה</td>
+                <td class="v-il ve">🟡 ESTA / eTA מקוון</td>
+                <td class="v-eu ve">🟡 ESTA / eTA מקוון</td>
+                <td class="v-us vf">✅ אזרח / 🟡 eTA לקנדה</td></tr>
+              <tr><td>גואטמלה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>אל סלוודור</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>קובה</td>
+                <td class="v-il ve">🟡 Tourist Card ($25)</td>
+                <td class="v-eu ve">🟡 Tourist Card</td>
+                <td class="v-us vr">🔴 מוגבל — בדקו מראש</td></tr>
+              <tr><td>הונדורס</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>ניקרגואה</td>
+                <td class="v-il ve">🟡 ויזה בכניסה ($10)</td>
+                <td class="v-eu ve">🟡 ויזה בכניסה</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>קוסטה ריקה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>פנמה</td>
+                <td class="v-il vf">✅ ללא ויזה (180 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (180 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (180 יום)</td></tr>
+            </tbody></table>
+          </div>
+
+          <!-- אפריקה -->
+          <div class="visa-slide">
+            <div class="visa-slide-title">🌍 אפריקה</div>
+            <table class="visa-table"><tbody>
+              <tr><td>טנזניה</td>
+                <td class="v-il ve">🟡 e-Visa / ויזה בכניסה</td>
+                <td class="v-eu ve">🟡 e-Visa / ויזה בכניסה</td>
+                <td class="v-us ve">🟡 e-Visa / ויזה בכניסה</td></tr>
+              <tr><td>קניה</td>
+                <td class="v-il ve">🟡 eTA מקוון (חינם)</td>
+                <td class="v-eu ve">🟡 eTA מקוון (חינם)</td>
+                <td class="v-us ve">🟡 eTA מקוון (חינם)</td></tr>
+              <tr><td>אוגנדה</td>
+                <td class="v-il ve">🟡 e-Visa מקוון</td>
+                <td class="v-eu ve">🟡 e-Visa מקוון</td>
+                <td class="v-us ve">🟡 e-Visa מקוון</td></tr>
+              <tr><td>אתיופיה</td>
+                <td class="v-il ve">🟡 e-Visa מקוון</td>
+                <td class="v-eu ve">🟡 e-Visa מקוון</td>
+                <td class="v-us ve">🟡 e-Visa מקוון</td></tr>
+              <tr><td>דרום אפריקה</td>
+                <td class="v-il vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (30 יום)</td></tr>
+              <tr><td>נמיביה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>רואנדה</td>
+                <td class="v-il ve">🟡 e-Visa / ויזה בכניסה</td>
+                <td class="v-eu ve">🟡 e-Visa / ויזה בכניסה</td>
+                <td class="v-us ve">🟡 e-Visa / ויזה בכניסה</td></tr>
+              <tr><td>מרוקו</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>סיישל</td>
+                <td class="v-il vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (30 יום)</td></tr>
+              <tr><td>גאנה</td>
+                <td class="v-il ve">🟡 e-Visa מקוון</td>
+                <td class="v-eu ve">🟡 e-Visa מקוון</td>
+                <td class="v-us ve">🟡 e-Visa מקוון</td></tr>
+              <tr><td>זנזיבר</td>
+                <td class="v-il ve">🟡 ויזה בכניסה / e-Visa</td>
+                <td class="v-eu ve">🟡 ויזה בכניסה / e-Visa</td>
+                <td class="v-us ve">🟡 ויזה בכניסה / e-Visa</td></tr>
+            </tbody></table>
+          </div>
+
+          <!-- אירופה -->
+          <div class="visa-slide">
+            <div class="visa-slide-title">🇪🇺 אירופה</div>
+            <table class="visa-table"><tbody>
+              <tr><td>יוון</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (אזרח EU)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>ספרד</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (אזרח EU)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>איטליה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (אזרח EU)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>צרפת</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (אזרח EU)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>שוויץ</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (שנגן)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>אוסטריה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (אזרח EU)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>גיאורגיה</td>
+                <td class="v-il vf">✅ ללא ויזה (365 יום!)</td>
+                <td class="v-eu vf">✅ ללא ויזה (365 יום!)</td>
+                <td class="v-us vf">✅ ללא ויזה (365 יום!)</td></tr>
+              <tr><td>קזחסטן</td>
+                <td class="v-il vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (30 יום)</td></tr>
+              <tr><td>סלובניה</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (אזרח EU)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>איסלנד</td>
+                <td class="v-il vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (שנגן)</td>
+                <td class="v-us vf">✅ ללא ויזה (90 יום)</td></tr>
+              <tr><td>בריטניה</td>
+                <td class="v-il vf">✅ ללא ויזה (6 חודשים)</td>
+                <td class="v-eu ve">🟡 ETA מקוון (פוסט-Brexit)</td>
+                <td class="v-us ve">🟡 ETA מקוון</td></tr>
+            </tbody></table>
+          </div>
+
+          <!-- אוסטרליה וניו זילנד -->
+          <div class="visa-slide">
+            <div class="visa-slide-title">🦘 אוסטרליה, ניו זילנד ואוקיינוס</div>
+            <table class="visa-table"><tbody>
+              <tr><td>אוסטרליה</td>
+                <td class="v-il ve">🟡 eVisitor (חינם, מקוון)</td>
+                <td class="v-eu ve">🟡 eVisitor (חינם, מקוון)</td>
+                <td class="v-us ve">🟡 ETA (חינם, מקוון)</td></tr>
+              <tr><td>ניו זילנד</td>
+                <td class="v-il ve">🟡 NZeTA (מקוון)</td>
+                <td class="v-eu ve">🟡 NZeTA (מקוון)</td>
+                <td class="v-us ve">🟡 NZeTA (מקוון)</td></tr>
+              <tr><td>פיג'י</td>
+                <td class="v-il vf">✅ ללא ויזה (4 חודשים)</td>
+                <td class="v-eu vf">✅ ללא ויזה (4 חודשים)</td>
+                <td class="v-us vf">✅ ללא ויזה (4 חודשים)</td></tr>
+              <tr><td>ונואטו</td>
+                <td class="v-il vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (30 יום)</td></tr>
+              <tr><td>פולינזיה הצרפתית</td>
+                <td class="v-il vf">✅ ללא ויזה (30 יום)</td>
+                <td class="v-eu vf">✅ ללא ויזה (90 יום)</td>
+                <td class="v-us vf">✅ ללא ויזה (30 יום)</td></tr>
+            </tbody></table>
+          </div>
+
+        </div>
+        <div class="slider-nav" style="padding:10px 20px 4px">
+          <button class="slider-nav-btn" onclick="goVisa(Math.max(visaIdx-1,0))">›</button>
+          <span class="slider-nav-label" id="visa-label">1 / 6</span>
+          <button class="slider-nav-btn" onclick="goVisa(Math.min(visaIdx+1,5))">‹</button>
+        </div>
+        <p class="visa-note">✅ ללא ויזה &nbsp;|&nbsp; 🟡 e-Visa / אישור אלקטרוני / ויזה בכניסה &nbsp;|&nbsp; 🔴 ויזה נדרשת מראש. המידע להכוונה בלבד.</p>
+      </div>
+
+      <div class="visaway-box">
+        צריכים ויזה? <strong>סידרנו לכם 10% הנחה ב-VISAWAY</strong> — המקום שעושה סדר בוויזות לכל העולם בעברית ובצורה פשוטה. קוד קופון: <strong>SMART10</strong>
+      </div>
     </div>
     <div class="step-btns">
       <a href="https://visaway.co.il/?sld=thesmartsravel" target="_blank" class="step-btn">🎟️ 10% הנחה ב-VISAWAY</a>
@@ -901,14 +1257,67 @@
     </div>
     <div class="step-body">
       <p class="step-desc">מורידים את האפליקציות המומלצות לטיול הגדול — ניווט, תקשורת, כסף ועוד:</p>
-      <ul class="step-docs">
-        <li>Google Maps / Maps.me — ניווט אופליין</li>
-        <li>WhatsApp — תקשורת</li>
-        <li>XE Currency — המרת מטבע</li>
-        <li>Booking / Hostelworld — לינה</li>
-        <li>Google Translate — תרגום</li>
-        <li>iOverlander — דיווחי מטיילים</li>
-      </ul>
+      <div class="app-carousel-wrap">
+        <div class="app-carousel-viewport">
+          <div class="app-carousel-track" id="app-track">
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=maps.google.com&sz=128" alt="Google Maps" class="app-icon">
+              <div class="app-name">Google Maps / Maps.me</div>
+              <div class="app-category">ניווט אופליין</div>
+              <div class="app-tip">💛 טיפ זהב: הורידו את המפה של כל מדינה לאופליין לפני היציאה — עובד גם ללא אינטרנט בכלל</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=web.whatsapp.com&sz=128" alt="WhatsApp" class="app-icon">
+              <div class="app-name">WhatsApp</div>
+              <div class="app-category">תקשורת</div>
+              <div class="app-tip">💛 טיפ זהב: צרו קבוצה עם כל הטיילים שלכם וצרפו גם הורה/בן משפחה — לשקט נפשי של כולם</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=xe.com&sz=128" alt="XE Currency" class="app-icon">
+              <div class="app-name">XE Currency</div>
+              <div class="app-category">המרת מטבע</div>
+              <div class="app-tip">💛 טיפ זהב: בדקו את שער המטבע לפני כל המרה בשטח — חוסך לא מעט כסף לאורך כל הטיול</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=booking.com&sz=128" alt="Booking" class="app-icon">
+              <div class="app-name">Booking / Hostelworld</div>
+              <div class="app-category">לינה</div>
+              <div class="app-tip">💛 טיפ זהב: הזמינו רק את הלילה הראשון מראש — שאר הנסיעה כדאי להשאיר גמיש לפי הדרך</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=translate.google.com&sz=128" alt="Google Translate" class="app-icon">
+              <div class="app-name">Google Translate</div>
+              <div class="app-category">תרגום</div>
+              <div class="app-tip">💛 טיפ זהב: הורידו לאופליין עברית, אנגלית והשפה המקומית של כל מדינה שתבקרו בה</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=ioverlander.com&sz=128" alt="iOverlander" class="app-icon">
+              <div class="app-name">iOverlander</div>
+              <div class="app-category">דיווחי מטיילים</div>
+              <div class="app-tip">💛 טיפ זהב: בדקו חוות דעת מטיילים לפני כניסה לאזורים מרוחקים — מידע עדכני ישר מהשטח</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=uber.com&sz=128" alt="Uber" class="app-icon">
+              <div class="app-name">Uber</div>
+              <div class="app-category">מוניות בטוחות</div>
+              <div class="app-tip">💛 טיפ זהב: הכניסו כרטיס אשראי לאפליקציה כבר בארץ — חוסך בלבול ותלות בנהג בחו"ל</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="app-carousel-nav">
+          <button class="app-carousel-arrow" onclick="appCarouselMove(-1)">›</button>
+          <div class="app-carousel-dots" id="app-dots"></div>
+          <button class="app-carousel-arrow" onclick="appCarouselMove(1)">‹</button>
+        </div>
+      </div>
     </div>
     <div class="step-check-row">
       <input type="checkbox" id="chk11" onchange="markDone(this,11)">
@@ -1070,9 +1479,10 @@
 <!-- FLOATING BUTTONS -->
 <div class="float-btns">
   <a href="https://wa.me/972523960215" target="_blank" class="float-btn float-wa">💬</a>
-  <a href="https://www.instagram.com/the_smart_traveler_il" target="_blank" class="float-btn float-ig">📷</a>
-  <a href="https://www.tiktok.com/@the_smart_traveller" target="_blank" class="float-btn float-tt">🎵</a>
+  
+  
 </div>
+<button class="float-acc" onclick="document.body.style.fontSize=document.body.style.fontSize==='120%'?'':' 120%'" title="נגישות" aria-label="נגישות">♿</button>
 
 <script>
 // SIDE MENU
@@ -1124,66 +1534,62 @@ function updateProgress(){
   }catch(e){}
 })();
 
-// CLIMATE SLIDER
+// GENERIC DRAG-SCROLL SLIDER
+function makeSlider(id, total, labelId) {
+  var el = document.getElementById(id);
+  if(!el) return { go: function(){} };
+  var idx = 0;
+  var lbl = document.getElementById(labelId);
+  function updateLabel() { if(lbl) lbl.textContent = (idx+1) + ' / ' + total; }
+  function go(i) {
+    idx = Math.max(0, Math.min(i, total-1));
+    el.scrollTo({ left: idx * el.offsetWidth, behavior: 'smooth' });
+    updateLabel();
+  }
+  // sync label when user scrolls manually
+  el.addEventListener('scroll', function() {
+    var i = Math.round(el.scrollLeft / (el.offsetWidth || 1));
+    if(i !== idx) { idx = i; updateLabel(); }
+  }, { passive: true });
+  // mouse drag
+  var dragStartX, dragScrollLeft, dragging = false;
+  el.addEventListener('mousedown', function(e) {
+    dragging = true; dragStartX = e.pageX; dragScrollLeft = el.scrollLeft;
+    el.classList.add('dragging'); e.preventDefault();
+  });
+  document.addEventListener('mousemove', function(e) {
+    if(!dragging) return;
+    el.scrollLeft = dragScrollLeft - (e.pageX - dragStartX);
+  });
+  document.addEventListener('mouseup', function() {
+    if(!dragging) return;
+    dragging = false; el.classList.remove('dragging');
+    var i = Math.round(el.scrollLeft / (el.offsetWidth || 1));
+    go(i);
+  });
+  return { go: go };
+}
+
+var climateSlider = makeSlider('climate-slider', 5, 'climate-label');
 var climateIdx = 0;
-window.goClimate = function(idx) {
-  climateIdx = idx;
-  var slider = document.getElementById('climate-slider');
-  if(slider) slider.style.transform = 'translateX(' + (idx * 100) + '%)';
-  var lbl = document.getElementById('climate-label');
-  if(lbl) lbl.textContent = (idx+1) + ' / 5';
-};
-(function(){
-  var el = document.getElementById('climate-slider');
-  if(!el) return;
-  var startX;
-  el.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
-  el.addEventListener('touchend', function(e){
-    var diff = startX - e.changedTouches[0].clientX;
-    if(Math.abs(diff) > 40) goClimate(diff > 0 ? Math.min(climateIdx+1,4) : Math.max(climateIdx-1,0));
-  });
-})();
+window.goClimate = function(i){ climateIdx = i; climateSlider.go(i); };
 
-// BUDGET SLIDER
+var budgetSliderObj = makeSlider('budget-slider', 2, 'budget-label');
 var budgetIdx = 0;
-window.goSlide = function(idx) {
-  budgetIdx = idx;
-  var slider = document.getElementById('budget-slider');
-  if(slider) slider.style.transform = 'translateX(' + (idx * 100) + '%)';
-  var lbl = document.getElementById('budget-label');
-  if(lbl) lbl.textContent = (idx+1) + ' / 2';
-};
-// swipe support
-(function(){
-  var el = document.getElementById('budget-slider');
-  if(!el) return;
-  var startX;
-  el.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
-  el.addEventListener('touchend', function(e){
-    var diff = startX - e.changedTouches[0].clientX;
-    if(Math.abs(diff) > 40) goSlide(diff > 0 ? Math.min(budgetIdx+1,1) : Math.max(budgetIdx-1,0));
-  });
-})();
+window.goSlide = function(i){ budgetIdx = i; budgetSliderObj.go(i); };
 
-// CREDIT CARD SLIDER
+var ccSliderObj = makeSlider('cc-slider', 6, 'cc-label');
 var ccIdx = 0;
-window.goCC = function(idx) {
-  ccIdx = idx;
-  var slider = document.getElementById('cc-slider');
-  if(slider) slider.style.transform = 'translateX(' + (idx * 100) + '%)';
-  var lbl = document.getElementById('cc-label');
-  if(lbl) lbl.textContent = (idx+1) + ' / 6';
+window.goCC = function(i){ ccIdx = i; ccSliderObj.go(i); };
+
+var visaSliderObj = makeSlider('visa-slider', 6, 'visa-label');
+var visaIdx = 0;
+window.goVisa = function(i){ visaIdx = i; visaSliderObj.go(i); };
+window.setPassport = function(type, btn) {
+  document.getElementById('visa-wrap').setAttribute('data-passport', type);
+  document.querySelectorAll('.vp-tab').forEach(function(b){ b.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
 };
-(function(){
-  var el = document.getElementById('cc-slider');
-  if(!el) return;
-  var startX;
-  el.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
-  el.addEventListener('touchend', function(e){
-    var diff = startX - e.changedTouches[0].clientX;
-    if(Math.abs(diff) > 40) goCC(diff > 0 ? Math.min(ccIdx+1,5) : Math.max(ccIdx-1,0));
-  });
-})();
 
 // CAROUSEL
 window.slideCarousel = function(id, dir) {
@@ -1202,6 +1608,35 @@ window.slideCarousel = function(id, dir) {
     var el = document.getElementById('header-cart-total');
     if(el) el.textContent = total.toFixed(2)+' ₪';
   }catch(e){}
+})();
+
+// App carousel
+(function() {
+  var current = 0;
+  function init() {
+    var track = document.getElementById('app-track');
+    var dotsEl = document.getElementById('app-dots');
+    if (!track || !dotsEl) return;
+    var cards = track.querySelectorAll('.app-card');
+    var total = cards.length;
+    dotsEl.innerHTML = '';
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('span');
+      d.className = 'app-carousel-dot' + (i === 0 ? ' active' : '');
+      (function(idx){ d.onclick = function(){ goTo(idx); }; })(i);
+      dotsEl.appendChild(d);
+    }
+    function goTo(n) {
+      current = n;
+      track.style.transform = 'translateX(' + (n * 100) + '%)';
+      dotsEl.querySelectorAll('.app-carousel-dot').forEach(function(d,i){ d.classList.toggle('active', i===n); });
+    }
+    window.appCarouselMove = function(dir) {
+      goTo((current - dir + total) % total);
+    };
+    goTo(0);
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
 })();
 </script>
 </body>

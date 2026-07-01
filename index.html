@@ -95,43 +95,58 @@
       min-height: 100vh; padding-top: 70px;
       background-image: url('assets/images/2026_04_pexels-ridwan-afriandy-1601285899-37127285-scaled.jpg');
       background-size: cover; background-position: center;
-      display: flex; align-items: center; position: relative;
+      display: flex; align-items: center; justify-content: center; position: relative;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(15,23,43,0.45) 0%, rgba(15,23,43,0.15) 100%);
+      background: linear-gradient(to bottom, rgba(15,23,43,0.55) 0%, rgba(15,23,43,0.35) 50%, rgba(15,23,43,0.6) 100%);
     }
     .hero-content {
       position: relative; z-index: 1;
-      max-width: 680px; padding: 40px 32px; color: white;
+      width: 100%; max-width: 560px;
+      padding: 48px 28px;
+      color: white;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
     }
     .hero h1 {
-      font-size: clamp(30px, 5vw, 54px); font-weight: 800;
-      line-height: 1.15; margin-bottom: 24px; letter-spacing: -0.5px;
+      font-size: clamp(32px, 6vw, 56px); font-weight: 900;
+      line-height: 1.15; margin-bottom: 28px; letter-spacing: -0.5px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
     .hero h1 span { color: #F97316; }
-    .hero-checks { list-style: none; margin-bottom: 32px; display: flex; flex-direction: column; gap: 10px; }
-    .hero-checks li { font-size: 17px; font-weight: 600; display: flex; align-items: flex-start; gap: 10px; }
-    .hero-checks li::before { content: '✅'; flex-shrink: 0; margin-top: 1px; }
-    .hero-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-checks {
+      list-style: none; margin-bottom: 36px;
+      display: flex; flex-direction: column; gap: 12px; align-items: center;
+    }
+    .hero-checks li {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; gap: 10px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+    .hero-checks li::before { content: '✅'; font-size: 17px; flex-shrink: 0; }
+    .hero-btns {
+      display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%;
+    }
     .btn-orange {
       background: #F97316; color: white; border: none; cursor: pointer;
-      border-radius: 50px; padding: 15px 30px;
-      font-family: 'Assistant', sans-serif; font-size: 17px; font-weight: 700;
-      transition: all 0.25s; box-shadow: 0 4px 20px rgba(249,115,22,0.4);
-      display: inline-block;
+      border-radius: 50px; padding: 16px 36px;
+      font-family: 'Assistant', sans-serif; font-size: 18px; font-weight: 800;
+      transition: all 0.25s; box-shadow: 0 6px 24px rgba(249,115,22,0.5);
+      display: inline-block; width: 100%; text-align: center;
     }
-    .btn-orange:hover { background: #EA580C; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,0.5); }
+    .btn-orange:hover { background: #EA580C; transform: translateY(-2px); box-shadow: 0 10px 32px rgba(249,115,22,0.6); }
     .btn-wa {
       background: #25D366; color: white;
-      border-radius: 50px; padding: 15px 30px;
-      font-size: 17px; font-weight: 700;
-      transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px;
+      border-radius: 50px; padding: 14px 36px;
+      font-size: 17px; font-weight: 800; width: 100%; text-align: center;
+      transition: all 0.25s; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
     }
     .btn-wa:hover { background: #1ebe5d; transform: translateY(-2px); }
     @media (max-width: 600px) {
-      .hero-content { padding: 32px 20px; }
-      .btn-orange, .btn-wa { width: 100%; justify-content: center; text-align: center; }
+      .hero-content { padding: 36px 20px; }
+      .hero-checks li { font-size: 17px; }
     }
 
     /* ===== VIDEOS SECTION ===== */
@@ -261,6 +276,15 @@
 
     /* ===== DIVIDER ===== */
     .orange-divider { height: 4px; background: linear-gradient(90deg,#F97316,#EA580C,#F97316); }
+    /* FLOATING BUTTONS */
+    .float-btns { position: fixed; left: 16px; bottom: 20px; z-index: 999; display: flex; flex-direction: column; gap: 10px; }
+    .float-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; text-decoration: none; }
+    .float-btn:hover { transform: scale(1.1); }
+    .float-wa { background: #25D366; }
+    .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .float-tt { background: #000; }
+    .float-acc { position: fixed; right: 16px; bottom: 20px; z-index: 999; width: 50px; height: 50px; border-radius: 50%; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; border: none; transition: transform 0.2s; }
+    .float-acc:hover { transform: scale(1.1); }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PZ6FXSGN"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GT-PZ6FXSGN');</script>
@@ -274,8 +298,9 @@
   <nav class="side-nav">
     <a href="index.html">דף הבית</a>
     <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
     <a href="categories/day-bags.html">תיקי יום</a>
-    <a href="categories/general-equipment.html">ציוד כללי</a>
+    <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
     <a href="categories/hygiene.html">ציוד היגיינה</a>
     <a href="categories/field.html">ציוד שטח</a>
     <a href="categories/benefits.html">הטבות בהכנה בחינם</a>
@@ -309,9 +334,10 @@
     </nav>
   </div>
   <div class="side-social">
-    <a href="https://www.facebook.com/share/14hoGSftwcy/" target="_blank">📘</a>
-    <a href="https://www.instagram.com/the_smart_traveler_il" target="_blank">📷</a>
-    <a href="https://www.tiktok.com/@the_smart_traveller" target="_blank">🎵</a>
+    <a href="https://www.instagram.com/the_smart_traveler_il" target="_blank" title="אינסטגרם">📷</a>
+    <a href="https://www.tiktok.com/@the_smart_traveller" target="_blank" title="טיקטוק">🎵</a>
+    <a href="https://wa.me/972523960215" target="_blank" title="ווצאפ">💬</a>
+    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank" title="וויז">🚗</a>
   </div>
 </div>
 
@@ -327,6 +353,7 @@
   </div>
   <nav class="header-nav">
     <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
     <a href="categories/rental.html">ציוד</a>
     <a href="guide.html">מדריך</a>
     <a href="about.html">אודות</a>
@@ -349,8 +376,8 @@
       <li>ליווי והכנה אישית לטיול – בחינם</li>
     </ul>
     <div class="hero-btns">
-      <a href="#formpack" class="btn-orange" id="hero-cta">סדרו אותי 360° לטיול</a>
-      <a href="https://wa.me/972523960215" target="_blank" class="btn-wa">💬 לייעוץ בחינם</a>
+      <a href="#formpack" class="btn-orange" id="hero-cta">הזמנת חבילה 360° לטיול</a>
+      <a href="https://wa.me/972523960215" target="_blank" class="btn-wa">💬 שיחה עם מומחה לטיול בחינם</a>
     </div>
   </div>
 </section>
@@ -453,12 +480,12 @@
   .sf-progress .sf-step.active {
     border-color: #F97316;
     color: #F97316;
-    background: #FFF7ED;
+    background: white;
   }
   .sf-progress .sf-step.done {
     border-color: #F97316;
-    color: white;
-    background: #F97316;
+    color: #F97316;
+    background: white;
   }
   .sf-layout {
     display: flex;
@@ -667,6 +694,9 @@
   }
   .sf-add-btn:hover { background: #EA580C; transform: scale(1.02); }
   .sf-add-btn.added { background: #22c55e !important; }
+  .sf-benefit-btn { margin-top:auto;width:100%;background:#F97316;color:white;border:none;border-radius:8px;padding:9px 0;font-size:13px;font-weight:700;font-family:'Assistant',sans-serif;cursor:pointer;transition:background 0.2s; }
+  .sf-benefit-btn:hover { background:#EA580C; }
+  .sf-benefit-btn.added { background:#16A34A; }
   @media (max-width: 768px) {
     .sf-layout { flex-direction: column; }
     #smart-form-360 { padding: 40px 16px 80px; }
@@ -708,6 +738,7 @@
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <button class="sf-subtype-btn active" id="sf-subtype-pack" onclick="setSubtype('pack')">🎒 מוצילה בלבד</button>
             <button class="sf-subtype-btn" id="sf-subtype-both" onclick="setSubtype('both')">🎒+👜 מוצילה + תיק יום</button>
+            <button class="sf-subtype-btn" id="sf-subtype-daypack" onclick="setSubtype('daypack')">👜 תיק יום בלבד</button>
           </div>
         </div>
 
@@ -721,36 +752,51 @@
               <option value="3" selected>3 חודשים</option>
               <option value="4">4 חודשים</option>
               <option value="5">5 חודשים</option>
-              <option value="6">6 חודשים</option>
-              <option value="7">7 חודשים</option>
-              <option value="8">8 חודשים</option>
+              <option value="6">6 עד 8 חודשים</option>
             </select>
           </div>
-          <input type="range" id="sf-months" min="1" max="8" value="3" oninput="updateMonths(this.value)" style="width:100%">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-top:4px"><span>חודש 1</span><span>8 חודשים</span></div>
+          <input type="range" id="sf-months" min="1" max="6" value="3" oninput="updateMonths(this.value)" style="width:100%">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-top:4px"><span>חודש 1</span><span>6–8 חודשים</span></div>
           <div id="sf-price-display" style="background:#FFF7ED;border:1.5px solid #F97316;border-radius:10px;padding:10px 16px;margin-top:12px;text-align:center;font-weight:700;font-size:16px;color:#C2410C"></div>
         </div>
 
         <!-- gender selection for מוצילה -->
-        <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 10px">בחרו דגם:</p>
-        <div class="sf-cards-grid">
-          <div class="sf-card" id="pack-rent-women" onclick="selectPack('rent-women')">
-            <div class="sf-badge-popular">👩 דגם נשים</div>
-            <div class="sf-card-img">🎒</div>
-            <h3>מוצילה לנשים 60–70L</h3>
-            <p class="sf-card-desc">מוצילה עם פתיחת מזוודה — אוספרי או גרגורי בלבד</p>
-            <div class="sf-price-rent" id="price-rent-women">₪<strong id="pw-val">369</strong> סה״כ</div>
-            <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('rent-women')">+ הוסף לסל</button>
+        <div id="sf-mocila-cards">
+        <div class="sf-card" id="pack-rent-women" style="padding:16px;cursor:default">
+
+          <!-- Carousel -->
+          <div style="position:relative;margin-bottom:12px">
+            <div id="rent-carousel" style="overflow:hidden;border-radius:12px;background:#f8fafc">
+              <div id="rent-carousel-track" style="display:flex;transition:transform 0.35s ease">
+                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-4-600x722.jpeg" alt="Gregory Deva 60" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-3.jpeg" alt="Osprey Aura 65" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.00-2.jpeg" alt="Kyte 68" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg" alt="Kestrel LT 65" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.25.30-1-600x596.jpeg" alt="Osprey Kestrel 68" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+              </div>
+            </div>
+            <button onclick="rentCarouselMove(-1)" style="position:absolute;top:50%;right:6px;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1">›</button>
+            <button onclick="rentCarouselMove(1)" style="position:absolute;top:50%;left:6px;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1">‹</button>
+            <div id="rent-carousel-name" style="text-align:center;font-size:12px;color:#64748B;margin-top:6px">Gregory Deva 60</div>
           </div>
-          <div class="sf-card" id="pack-rent-men" onclick="selectPack('rent-men')">
-            <div class="sf-badge-popular">👨 דגם גברים</div>
-            <div class="sf-card-img">🎒</div>
-            <h3>מוצילה לגברים 60–70L</h3>
-            <p class="sf-card-desc">מוצילה עם פתיחת מזוודה — אוספרי או גרגורי בלבד</p>
-            <div class="sf-price-rent" id="price-rent-men">₪<strong id="pm-val">369</strong> סה״כ</div>
-            <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('rent-men')">+ הוסף לסל</button>
+
+          <h3 style="font-size:15px;font-weight:800;color:#0F172B;margin-bottom:4px">מוצ'ילה עם פתיחת מזוודה 60–70L</h3>
+          <p style="font-size:13px;color:#64748B;margin-bottom:14px">התאמה אישית לפי מבנה הגוף — אוספרי / גרגורי</p>
+
+          <!-- Gender toggle -->
+          <div style="margin-bottom:14px">
+            <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</p>
+            <div style="display:flex;gap:8px">
+              <button id="rent-gender-women" onclick="setRentGender('women')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
+              <button id="rent-gender-men" onclick="setRentGender('men')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
+            </div>
           </div>
+
+          <div class="sf-price-rent" id="price-rent-women" style="margin-bottom:12px">₪<strong id="pw-val">369</strong> סה״כ</div>
+          <button class="sf-add-btn" onclick="addRentMocila()">+ הוסף לסל</button>
         </div>
+        </div><!-- /#sf-mocila-cards -->
 
         <!-- תיק יום — רק ב"מוצילה + תיק יום" -->
         <div id="sf-daypack-section" style="display:none;margin-top:20px">
@@ -765,27 +811,80 @@
             </div>
           </div>
         </div>
-      </div>
+
+        <!-- תיק יום בלבד -->
+        <div id="sf-daypack-only-section" style="display:none;margin-top:4px">
+          <div class="sf-cards-grid">
+            <div class="sf-card" id="pack-daypack-only" onclick="selectPack('daypack-only')">
+              <div class="sf-badge-popular">👜 תיק יום</div>
+              <div class="sf-card-img">👜</div>
+              <h3>תיק יום 30–35L</h3>
+              <p class="sf-card-desc">Osprey Skarab 34L — פתיחת מזוודה, 34 ליטר</p>
+              <div class="sf-price-rent" id="price-rent-dayonly">₪<strong id="pd-val">99</strong> סה״כ</div>
+              <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('daypack-only')">+ הוסף לסל</button>
+            </div>
+          </div>
+        </div>
+      </div><!-- /#sf-rent-flow -->
 
       <!-- BUY FLOW -->
       <div id="sf-buy-flow" style="display:none">
-        <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 12px">בחרו דגם:</p>
-        <div class="sf-cards-grid">
-          <div class="sf-card" id="pack-buy-women" onclick="selectPack('buy-women')">
-            <div class="sf-badge-popular">👩 דגם נשים</div>
-            <div class="sf-card-img">🎒</div>
-            <h3>Osprey Eja 65L — נשים</h3>
-            <p class="sf-card-desc">מוצילה מקצועית לנשים — גב מותאם, מערכת אוורור מתקדמת, 65 ליטר</p>
-            <div class="sf-price-buy">₪<strong>1,119</strong></div>
-            <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('buy-women')">+ הוסף לסל</button>
+        <!-- sub-choice -->
+        <div style="margin-bottom:20px">
+          <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 10px">מה תרצו לקנות?</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="sf-subtype-btn active" id="sf-buy-subtype-pack" onclick="setBuySubtype('pack')">🎒 מוצילה בלבד</button>
+            <button class="sf-subtype-btn" id="sf-buy-subtype-both" onclick="setBuySubtype('both')">🎒+👜 מוצילה + תיק יום</button>
+            <button class="sf-subtype-btn" id="sf-buy-subtype-daypack" onclick="setBuySubtype('daypack')">👜 תיק יום בלבד</button>
           </div>
-          <div class="sf-card" id="pack-buy-men" onclick="selectPack('buy-men')">
-            <div class="sf-badge-popular">👨 דגם גברים</div>
-            <div class="sf-card-img">🎒</div>
-            <h3>Osprey Atmos AG 65L — גברים</h3>
-            <p class="sf-card-desc">המוצילה הפופולרית ביותר לגברים — מערכת אוורור AG, 65 ליטר</p>
-            <div class="sf-price-buy">₪<strong>1,119</strong></div>
-            <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('buy-men')">+ הוסף לסל</button>
+        </div>
+
+        <!-- מוצילה בלבד -->
+        <div id="sf-buy-pack-section">
+          <div class="sf-cards-grid" style="grid-template-columns:1fr">
+            <div class="sf-card selected" id="pack-buy-women" style="border-color:#F97316;background:#FFF7ED">
+              <img id="buy-pack-img" src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65" style="width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;margin-bottom:12px">
+              <h3 id="buy-pack-name">Kyte LT 65</h3>
+              <p class="sf-card-desc" id="buy-pack-desc">מוצילה לנשים 65L — פתיחת מזוודה, גב מותאם</p>
+              <!-- gender toggle -->
+              <div style="display:flex;gap:8px;margin:10px 0">
+                <button id="buy-gender-w" onclick="setBuyGender('women',event)" style="flex:1;padding:8px 0;font-size:14px;font-weight:700;font-family:Assistant,sans-serif;border:2px solid #F97316;border-radius:8px;background:#F97316;color:white;cursor:pointer">👩 נשים</button>
+                <button id="buy-gender-m" onclick="setBuyGender('men',event)" style="flex:1;padding:8px 0;font-size:14px;font-weight:700;font-family:Assistant,sans-serif;border:2px solid #F97316;border-radius:8px;background:white;color:#F97316;cursor:pointer">👨 גברים</button>
+              </div>
+              <div class="sf-price-buy">₪<strong>1,119</strong></div>
+              <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('buy-women')">+ הוסף לסל</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- מוצילה + תיק יום -->
+        <div id="sf-buy-both-section" style="display:none">
+          <div class="sf-cards-grid" style="grid-template-columns:1fr">
+            <div class="sf-card" id="pack-buy-combo" onclick="selectPack('buy-combo')">
+              <div class="sf-badge-popular">🔥 הקומבו הפופולרי</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="מוצילה" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px">
+                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.33.29-2-600x731.jpeg" alt="תיק יום" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px">
+              </div>
+              <h3>מוצילה 65L + תיק יום 34L</h3>
+              <p class="sf-card-desc">מוצילה גדולה לאחסון + תיק יום לטיולים יומיים — מותאם אישית לכל לקוח</p>
+              <div class="sf-price-buy">₪<strong>1,799</strong> <span style="font-size:12px;color:#64748B">לשניהם יחד</span></div>
+              <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('buy-combo')">+ הוסף לסל</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- תיק יום בלבד -->
+        <div id="sf-buy-daypack-section" style="display:none">
+          <div class="sf-cards-grid">
+            <div class="sf-card" id="pack-buy-daypack" onclick="selectPack('buy-daypack')">
+              <div class="sf-badge-popular">👜 תיק יום</div>
+              <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.33.29-2-600x731.jpeg" alt="תיק יום" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;margin-bottom:8px">
+              <h3>תיק יום 34L</h3>
+              <p class="sf-card-desc">Osprey Skarab 34L — פתיחת מזוודה, מושלם לטיולי יום</p>
+              <div class="sf-price-buy">₪<strong>579</strong></div>
+              <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('buy-daypack')">+ הוסף לסל</button>
+            </div>
           </div>
         </div>
       </div>
@@ -941,34 +1040,62 @@
       </div>
       <div style="text-align:center;margin-top:24px;display:flex;gap:12px;justify-content:center">
         <button class="sf-btn-secondary" onclick="goStep(1)">← חזרה</button>
-        <button class="sf-btn-main" onclick="goStep(3)">המשך לשירותים ←</button>
+        <button class="sf-btn-main" onclick="goStep(3)">להטבות (שלב אחרון) ←</button>
       </div>
     </div>
 
     <div class="sf-step-panel" id="sf-panel-3">
-      <h2 class="sf-heading">שלב 3: בירוקרטיה והטבות</h2>
-      <p class="sf-sub">🎁 עוזרים לכם עם כל הבירוקרטיה בחינם — הוסיפו את ההטבות שאתם רוצים</p>
-      <div class="sf-services-grid">
-        <label class="sf-service-card">
-          <input type="checkbox" data-id="3055" data-name="רשימת וויזות" data-price="0" onchange="toggleService(this)">
-          <div class="sf-service-icon">📋</div>
-          <div class="sf-service-name">רשימת וויזות</div>
-          <div class="sf-service-price sf-free">חינם!</div>
-        </label>
-        <label class="sf-service-card">
-          <input type="checkbox" data-id="3054" data-name='סים אינטרנט לחו"ל' data-price="0" onchange="toggleService(this)">
-          <div class="sf-service-icon">📱</div>
-          <div class="sf-service-name">סים אינטרנט לחו"ל</div>
-          <div class="sf-service-price sf-free">חינם!</div>
-        </label>
-        <label class="sf-service-card">
-          <input type="checkbox" data-id="3053" data-name="כרטיס טיסה פיקטיבי" data-price="0" onchange="toggleService(this)">
-          <div class="sf-service-icon">✈️</div>
-          <div class="sf-service-name">כרטיס טיסה פיקטיבי אמין</div>
-          <div class="sf-service-price sf-free">חינם!</div>
-        </label>
+      <h2 class="sf-heading">שלב 3: הטבות בחינם</h2>
+      <p class="sf-sub">🎁 כל ההטבות האלה ניתנות לכם בחינם כחלק מחבילת המטייל החכם</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px">
+
+        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
+          <img src="assets/images/2026_04_8-600x600.png" alt="רשימת וויזות" style="width:100%;aspect-ratio:1;object-fit:cover">
+          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
+            <div style="font-size:13px;font-weight:700;color:#0F172B">רשימת וויזות</div>
+            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
+            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3055','רשימת וויזות')">הוסף הטבה בחינם</button>
+          </div>
+        </div>
+
+        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
+          <img src="assets/images/2026_04_7-600x600.png" alt='סים אינטרנט לחו"ל' style="width:100%;aspect-ratio:1;object-fit:cover">
+          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
+            <div style="font-size:13px;font-weight:700;color:#0F172B">סים אינטרנט לחו"ל</div>
+            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
+            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3054','סים אינטרנט לחו&quot;ל')">הוסף הטבה בחינם</button>
+          </div>
+        </div>
+
+        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
+          <img src="assets/images/2026_04_6-600x600.png" alt="כרטיס טיסה פיקטיבי אמין" style="width:100%;aspect-ratio:1;object-fit:cover">
+          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
+            <div style="font-size:13px;font-weight:700;color:#0F172B">כרטיס טיסה פיקטיבי אמין</div>
+            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
+            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3053','כרטיס טיסה פיקטיבי אמין')">הוסף הטבה בחינם</button>
+          </div>
+        </div>
+
+        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
+          <img src="assets/images/2026_04_5-600x600.png" alt="סוכן ביטוח אישי ללא תוספת עלות" style="width:100%;aspect-ratio:1;object-fit:cover">
+          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
+            <div style="font-size:13px;font-weight:700;color:#0F172B">סוכן ביטוח אישי ללא תוספת עלות</div>
+            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
+            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3052','סוכן ביטוח אישי ללא תוספת עלות')">הוסף הטבה בחינם</button>
+          </div>
+        </div>
+
+        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
+          <img src="assets/images/2026_04_4-600x600.png" alt="המדריך המלא לטיול" style="width:100%;aspect-ratio:1;object-fit:cover">
+          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
+            <div style="font-size:13px;font-weight:700;color:#0F172B">המדריך המלא לטיול</div>
+            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
+            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3051','המדריך המלא לטיול')">הוסף הטבה בחינם</button>
+          </div>
+        </div>
+
       </div>
-      <div style="text-align:center;margin-top:32px;display:flex;gap:12px;justify-content:center">
+      <div style="text-align:center;display:flex;gap:12px;justify-content:center">
         <button class="sf-btn-secondary" onclick="goStep(2)">← חזרה</button>
         <button class="sf-btn-main" onclick="submitForm()">המשך לסיכום הזמנה 🎒</button>
       </div>
@@ -984,14 +1111,12 @@
   var subtype = 'pack'; // 'pack' or 'both'
   var months = 3;
   var selectedPack = null;
-  var packBuyPrices = { 'buy-women': 1119, 'buy-men': 1119 };
+  var packBuyPrices = { 'buy-women': 1119, 'buy-men': 1119, 'buy-combo': 1799, 'buy-daypack': 579, 'daypack-only': 99 };
 
-  // מוצילה בלבד: 169 לחודש 1, +100 לכל חודש נוסף, מחיר max = 6 חודשים (669)
-  // מוצילה + תיק יום: 269 לחודש 1, +100 לכל חודש נוסף, max = 6 חודשים (769)
   function calcRentPrice(m) {
+    if (subtype === 'daypack') return 99 + (m - 1) * 49;
     var base = subtype === 'both' ? 269 : 169;
-    var capped = Math.min(m, 6);
-    return base + (capped - 1) * 100;
+    return base + (m - 1) * 100;
   }
 
   function getCart() { try { return JSON.parse(localStorage.getItem('smartCart') || '[]'); } catch(e) { return []; } }
@@ -1063,19 +1188,25 @@
   };
   function refreshPriceDisplay() {
     var price = calcRentPrice(months);
-    var suffix = months >= 6 ? ' (מחיר חצי שנה)' : '';
+    var suffix = months >= 6 ? ' (6–8 חודשים)' : '';
     var txt = '💰 סה״כ לתשלום: ₪' + price + suffix;
     var el = document.getElementById('sf-price-display');
     if (el) el.textContent = txt;
-    // update card price labels
     var pw = document.getElementById('pw-val'); if(pw) pw.textContent = price;
     var pm = document.getElementById('pm-val'); if(pm) pm.textContent = price;
+    var pd = document.getElementById('pd-val'); if(pd) pd.textContent = price;
   }
   window.setSubtype = function(t) {
     subtype = t;
     document.getElementById('sf-subtype-pack').classList.toggle('active', t==='pack');
     document.getElementById('sf-subtype-both').classList.toggle('active', t==='both');
+    document.getElementById('sf-subtype-daypack').classList.toggle('active', t==='daypack');
+    document.getElementById('sf-mocila-cards').style.display = t==='daypack' ? 'none' : '';
     document.getElementById('sf-daypack-section').style.display = t==='both' ? '' : 'none';
+    document.getElementById('sf-daypack-only-section').style.display = t==='daypack' ? '' : 'none';
+    selectedPack = null;
+    document.getElementById('sf-next-1').disabled = true;
+    document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
     refreshPriceDisplay();
   };
   window.updateMonths = function(v) {
@@ -1099,6 +1230,13 @@
     var price = mode === 'rent' ? parseInt(card.dataset.rent) : parseInt(card.dataset.buy);
     card.querySelector('.sf-price-val').textContent = price;
     card.querySelector('.sf-price-sfx').textContent = mode === 'rent' ? ' לכל הטיול' : '';
+  };
+  window.addBenefitToCart = function(btn, id, name) {
+    addItemToCart({ id: 'benefit-' + id, name: name, price: 0, qty: 1, mode: 'free' });
+    btn.textContent = '✓ נוסף!';
+    btn.classList.add('added');
+    btn.disabled = true;
+    showToast('✓ ' + name + ' נוסף בחינם');
   };
   window.addRentable = function(card) {
     var mode = card.dataset.modeSel || 'rent';
@@ -1135,18 +1273,104 @@
     injectAddButtons();
   };
   var allPackNames = {
-    'rent-women': 'מוצילה לנשים 60–70L (אוספרי/גרגורי)',
-    'rent-men':   'מוצילה לגברים 60–70L (אוספרי/גרגורי)',
-    'buy-women':  'מוצילה לנשים — קנייה',
-    'buy-men':    'מוצילה לגברים — קנייה'
+    'rent-women':   'מוצילה לנשים 60–70L (אוספרי/גרגורי)',
+    'rent-men':     'מוצילה לגברים 60–70L (אוספרי/גרגורי)',
+    'buy-women':    'מוצילה לנשים 65L — קנייה',
+    'buy-men':      'מוצילה לגברים 65L — קנייה',
+    'buy-combo':    'מוצילה 65L + תיק יום 34L — קנייה',
+    'buy-daypack':  'תיק יום 34L (Osprey Skarab) — קנייה',
+    'daypack-only': 'תיק יום 30–35L (Osprey Skarab)'
+  };
+  var buySubtype = 'pack';
+  var buyGender = 'women';
+  var buyPackData = {
+    women: { name: 'Kyte LT 65', desc: 'פתיחת מזוודה ומערכת גב מתכווננת לכל המידות והגבהים O/S', img: 'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg', id: 'buy-women' },
+    men:   { name: 'Kestrel LT 65', desc: 'פתיחת מזוודה ומערכת גב מתכווננת לכל המידות והגבהים O/S', img: 'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg', id: 'buy-men' }
+  };
+  // Rent carousel & gender
+  var rentCarouselIndex = 0;
+  var rentCarouselItems = [
+    { img: 'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg', name: 'Kyte LT 65', gender: 'women' },
+    { img: 'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-4-600x722.jpeg', name: 'Gregory Deva 60', gender: 'women' },
+    { img: 'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-3.jpeg', name: 'Osprey Aura 65', gender: 'women' },
+    { img: 'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.00-2.jpeg', name: 'Kyte 68', gender: 'women' },
+    { img: 'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg', name: 'Kestrel LT 65', gender: 'men' },
+    { img: 'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.25.30-1-600x596.jpeg', name: 'Osprey Kestrel 68', gender: 'men' }
+  ];
+  var rentGender = 'women';
+
+  window.addRentMocila = function() {
+    addPackToCart(rentGender === 'men' ? 'rent-men' : 'rent-women');
+  };
+
+  window.rentCarouselMove = function(dir) {
+    var track = document.getElementById('rent-carousel-track');
+    if (!track) return;
+    var count = track.children.length;
+    rentCarouselIndex = (rentCarouselIndex + dir + count) % count;
+    track.style.transform = 'translateX(' + (rentCarouselIndex * 100) + '%)';
+    var nameEl = document.getElementById('rent-carousel-name');
+    if (nameEl && rentCarouselItems[rentCarouselIndex]) nameEl.textContent = rentCarouselItems[rentCarouselIndex].name;
+  };
+
+  window.setRentGender = function(gender) {
+    rentGender = gender;
+    var wBtn = document.getElementById('rent-gender-women');
+    var mBtn = document.getElementById('rent-gender-men');
+    if (wBtn) { wBtn.style.borderColor = gender==='women' ? '#F97316' : '#E2E8F0'; wBtn.style.background = gender==='women' ? '#FFF7ED' : '#fff'; wBtn.style.color = gender==='women' ? '#F97316' : '#64748B'; }
+    if (mBtn) { mBtn.style.borderColor = gender==='men' ? '#F97316' : '#E2E8F0'; mBtn.style.background = gender==='men' ? '#FFF7ED' : '#fff'; mBtn.style.color = gender==='men' ? '#F97316' : '#64748B'; }
+    // jump carousel to first matching image
+    var idx = rentCarouselItems.findIndex(function(i){ return i.gender === gender; });
+    if (idx >= 0) {
+      rentCarouselIndex = idx;
+      var track = document.getElementById('rent-carousel-track');
+      if (track) track.style.transform = 'translateX(' + (idx * 100) + '%)';
+      var nameEl = document.getElementById('rent-carousel-name');
+      if (nameEl) nameEl.textContent = rentCarouselItems[idx].name;
+    }
+  };
+
+  window.setBuyGender = function(gender, e) {
+    if (e) e.stopPropagation();
+    buyGender = gender;
+    var d = buyPackData[gender];
+    document.getElementById('buy-pack-img').src = d.img;
+    document.getElementById('buy-pack-img').alt = d.name;
+    document.getElementById('buy-pack-name').textContent = d.name;
+    document.getElementById('buy-pack-desc').textContent = d.desc;
+    var wBtn = document.getElementById('buy-gender-w');
+    var mBtn = document.getElementById('buy-gender-m');
+    wBtn.style.background = gender==='women' ? '#F97316' : 'white';
+    wBtn.style.color      = gender==='women' ? 'white'   : '#F97316';
+    mBtn.style.background = gender==='men'   ? '#F97316' : 'white';
+    mBtn.style.color      = gender==='men'   ? 'white'   : '#F97316';
+    // update the add-to-cart button
+    var addBtn = document.querySelector('#sf-buy-pack-section .sf-add-btn');
+    if (addBtn) addBtn.onclick = function(ev){ ev.stopPropagation(); addPackToCart(d.id); };
+    selectedPack = d.id;
+    document.getElementById('sf-next-1').disabled = false;
+  };
+  window.setBuySubtype = function(t) {
+    buySubtype = t;
+    ['pack','both','daypack'].forEach(function(k){
+      document.getElementById('sf-buy-subtype-'+k).classList.toggle('active', k===t);
+    });
+    document.getElementById('sf-buy-pack-section').style.display    = t==='pack'    ? '' : 'none';
+    document.getElementById('sf-buy-both-section').style.display    = t==='both'    ? '' : 'none';
+    document.getElementById('sf-buy-daypack-section').style.display = t==='daypack' ? '' : 'none';
+    selectedPack = null;
+    document.getElementById('sf-next-1').disabled = true;
+    document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
   };
   window.submitForm = function() {
     if(!selectedPack){ alert('אנא בחרו מוצילה בשלב 1'); goStep(1); return; }
     var packPrice = mode==='rent' ? calcRentPrice(months) : packBuyPrices[selectedPack];
     var name = allPackNames[selectedPack] || selectedPack;
     if (mode==='rent' && subtype==='both') name += ' + תיק יום 30–35L';
+    var monthLabel = months === 6 ? '6–8 חודשים' : months + (months===1?' חודש':' חודשים');
+    if (mode==='rent') name += ' — ' + monthLabel;
     addItemToCart({id:selectedPack, name:name, price:packPrice, qty:1, mode:mode, duration:mode==='rent'?months:null});
-    showToast('✓ המוצילה נוספה לסל!');
+    showToast('✓ נוסף לסל!');
     setTimeout(function(){ window.location.href='order-summary.html'; },1000);
   };
   window.addPackToCart = function(id) {
@@ -1156,10 +1380,11 @@
     var packPrice = mode==='rent' ? calcRentPrice(months) : packBuyPrices[id];
     var name = allPackNames[id] || id;
     if (mode==='rent' && subtype==='both') name += ' + תיק יום 30–35L';
-    addItemToCart({id:id, name:name, price:packPrice, qty:1, mode:mode, duration:mode==='rent'?months:null});
-    showToast('✓ ' + name + ' נוספה לסל');
+    var monthLabel = months === 6 ? '6–8 חודשים' : months + (months===1?' חודש':' חודשים');
+    if (mode==='rent') name += ' — ' + monthLabel;
+    addItemToCart({id:id+'-m'+months, name:name, price:packPrice, qty:1, mode:mode, duration:mode==='rent'?months:null});
+    showToast('✓ ' + (allPackNames[id]||id) + ' נוסף לסל');
     document.getElementById('sf-next-1').disabled = false;
-    document.getElementById('sf-next-1').disabled=false;
   };
   injectAddButtons();
   updateHeader();
@@ -1319,5 +1544,13 @@ document.getElementById('hero-cta').addEventListener('click', function(e){
   document.getElementById('formpack').scrollIntoView({behavior:'smooth'});
 });
 </script>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-btns">
+  <a href="https://wa.me/972523960215" target="_blank" class="float-btn float-wa">💬</a>
+  
+  
+</div>
+<button class="float-acc" onclick="document.body.style.fontSize=document.body.style.fontSize==='120%'?'':'120%'" title="נגישות" aria-label="נגישות">♿</button>
 </body>
 </html>
