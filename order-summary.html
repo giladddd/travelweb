@@ -888,14 +888,14 @@
 
             <label class="insurance-checkbox">
               <input type="checkbox" id="insurance-opt" name="insurance" value="yes">
-              <span class="insurance-label">🛡️ אני רוצה לעשות ביטוח דרכם (ללא תוספת עלות בכל החברות) ולקבל סוכן אישי שזמין לי 24/7 לכל שאלה ולהתאמה אישית של הביטוח בחינם</span>
+              <span class="insurance-label">🛡️ אני רוצה לעשות ביטוח דרככם (ללא תוספת עלות בכל החברות) ולקבל סוכן אישי 24/7 — וגם בונוס: הטבת אחריות מלאה על נזקים לתיק בהשכרה (עד ₪100)</span>
             </label>
 
             <!-- Submit -->
             <button type="submit" class="submit-btn" id="submit-btn">
               שליחת הזמנה ללא תשלום ←
             </button>
-            <p class="submit-note">נחזור אליכם עד יום עסקים אחד להתאמת ציוד ומעבר על כל ההכנה, הבירוקרטיה והדגשים הבטיחותיים בהתאם ליעד שלכם — שתהיו מוכנים ורגועים ב-100%</p>
+            <p class="submit-note">נחזור אליכם בהקדם ונסגור אתכם לטיול מהציוד ועד הבירוקרטיה</p>
 
             <div class="below-btn">
               <p>רוצים לוודא שקבלנו את ההזמנה?</p>
@@ -1131,19 +1131,27 @@ window.addUpsell = function(btn, id, name, price) {
     btn.innerHTML = '⏳ שולח הזמנה...';
     btn.style.opacity = '0.8';
 
+    var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhs0aCkgoxwD5jamPjWy_4E42TalcJDDWj2ilgnbQ_198F9-4uCSPHHlPv68x6Q3nNQA/exec';
+
     var order = {
       name: name,
       phone: phone,
       email: document.getElementById('customer-email').value,
       gender: document.getElementById('gender-input').value,
+      city: document.getElementById('customer-city') ? document.getElementById('customer-city').value : '',
+      street: document.getElementById('customer-street') ? document.getElementById('customer-street').value : '',
+      streetNumber: document.getElementById('customer-streetnum') ? document.getElementById('customer-streetnum').value : '',
       flightDate: document.getElementById('customer-flight-date').value,
-      address: document.getElementById('customer-address').value,
       notes: document.getElementById('customer-notes').value,
+      insurance: document.getElementById('insurance-opt') ? document.getElementById('insurance-opt').checked : false,
+      referral: document.getElementById('referral-source') ? document.getElementById('referral-source').value : '',
+      hasDelivery: !!(document.getElementById('customer-city') && document.getElementById('customer-city').value),
       cart: cart
     };
 
-    fetch('/api/send-order', {
+    fetch(SCRIPT_URL, {
       method: 'POST',
+      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(order)
     }).catch(function(){}).finally(function() {
@@ -1188,7 +1196,7 @@ window.addUpsell = function(btn, id, name, price) {
 
 <!-- FLOATING BUTTONS -->
 <div class="float-btns">
-  <a href="https://wa.me/972523960215" target="_blank" class="float-btn float-wa">💬</a>
+  <a href="https://wa.me/972523960215" target="_blank" class="float-btn float-wa"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.852L0 24l6.343-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.007-1.374l-.359-.214-3.724.885.936-3.617-.234-.372A9.794 9.794 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg></a>
   
   
 </div>
