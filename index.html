@@ -884,14 +884,27 @@
 
         <!-- תיק יום בלבד -->
         <div id="sf-daypack-only-section" style="display:none;margin-top:4px">
-          <div class="sf-cards-grid">
-            <div class="sf-card" id="pack-daypack-only" onclick="selectPack('daypack-only')">
+          <div class="sf-cards-grid" style="grid-template-columns:1fr">
+            <div class="sf-card" id="pack-daypack-only" style="cursor:default">
               <div class="sf-badge-popular">👜 תיק יום</div>
               <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;margin-bottom:8px;background:#f8f8f8">
               <h3>תיק יום 30L</h3>
               <p class="sf-card-desc">Osprey Sportlite 30 — פתיחת מזוודה, 30 ליטר</p>
-              <div class="sf-price-rent" id="price-rent-dayonly">₪<strong id="pd-val">99</strong> סה״כ</div>
-              <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('daypack-only')">+ הוסף לסל</button>
+              <div style="margin-bottom:14px">
+                <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">מספר חודשי השכרה:</p>
+                <select id="sf-months-select-day" onchange="updateMonths(this.value)" style="width:100%;border:2px solid #F97316;border-radius:8px;padding:8px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
+                  <option value="1">1 חודש — ₪99</option>
+                  <option value="2">2 חודשים — ₪148</option>
+                  <option value="3" selected>3 חודשים — ₪197</option>
+                  <option value="4">4 חודשים — ₪246</option>
+                  <option value="5">5 חודשים — ₪295</option>
+                  <option value="6">6 חודשים — ₪344</option>
+                  <option value="7">7 חודשים — ₪344</option>
+                  <option value="8">8 חודשים — ₪344</option>
+                </select>
+              </div>
+              <div class="sf-price-rent" id="price-rent-dayonly" style="margin-bottom:12px">₪<strong id="pd-val">197</strong> סה״כ</div>
+              <button class="sf-add-btn" onclick="addPackToCart('daypack-only')">+ הוסף לסל</button>
             </div>
           </div>
         </div>
@@ -1299,8 +1312,10 @@
     months = parseInt(v);
     var sel = document.getElementById('sf-months-select');
     var selBoth = document.getElementById('sf-months-select-both');
+    var selDay = document.getElementById('sf-months-select-day');
     if (sel && sel.value != months) sel.value = months;
     if (selBoth && selBoth.value != months) selBoth.value = months;
+    if (selDay && selDay.value != months) selDay.value = months;
     refreshPriceDisplay();
     // update dual-price rent labels in step 2
     document.querySelectorAll('.rent-calc').forEach(function(el) {
