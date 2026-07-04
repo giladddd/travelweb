@@ -777,15 +777,6 @@
 
       <!-- RENT FLOW -->
       <div id="sf-rent-flow">
-        <!-- sub-choice -->
-        <div style="margin-bottom:20px">
-          <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 10px">מה תרצו להשכיר?</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <button class="sf-subtype-btn active" id="sf-subtype-pack" onclick="setSubtype('pack')">🎒 מוצילה בלבד</button>
-            <button class="sf-subtype-btn" id="sf-subtype-both" onclick="setSubtype('both')">🎒+👜 מוצילה + תיק יום</button>
-            <button class="sf-subtype-btn" id="sf-subtype-daypack" onclick="setSubtype('daypack')">👜 תיק יום בלבד</button>
-          </div>
-        </div>
 
         <!-- bags: mochila + optional day bag side-by-side -->
         <div id="sf-combo-wrap" style="display:block">
@@ -871,8 +862,6 @@
               <option value="8">8 חודשים</option>
             </select>
           </div>
-          <input type="range" id="sf-months" min="1" max="8" value="3" oninput="updateMonths(this.value)" style="width:100%">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-top:4px"><span>חודש 1</span><span>8 חודשים</span></div>
           <div id="sf-price-display" style="background:#FFF7ED;border:1.5px solid #F97316;border-radius:10px;padding:10px 16px;margin-top:12px;text-align:center;font-weight:700;font-size:16px;color:#C2410C"></div>
           <!-- add-to-cart for "both" mode — shown below the combined price -->
           <button id="sf-both-add-btn" class="sf-add-btn" style="display:none;width:100%;margin-top:12px" onclick="addRentMocila()">+ הוסף לסל</button>
