@@ -1,5 +1,7 @@
-# Assets folder is too large for GitHub (193MB)
-assets/
+# Videos are hosted on YouTube — excluded from git
+assets/images/2026_05_המטייל-דף-בית.mp4
+assets/images/2026_05_סרטון-אודות-מטייל.mp4
+assets/images/2026_05_קאנדי-קראש.mp4
 
 # Node
 node_modules/
