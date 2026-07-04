@@ -26,13 +26,7 @@
     .header-nav a { font-size: 15px; font-weight: 600; color: #0F172B; transition: color 0.2s; }
     .header-nav a:hover { color: #F97316; }
     .header-left { display: flex; align-items: center; gap: 12px; }
-    .header-cart {
-      display: flex; align-items: center; gap: 6px;
-      background: #F97316; color: white;
-      border-radius: 50px; padding: 8px 16px;
-      font-size: 14px; font-weight: 700; transition: background 0.2s;
-      white-space: nowrap;
-    }
+    .header-cart { position: relative; display: inline-flex; align-items: center; background: #F97316; color: white; border-radius: 50px; padding: 7px 14px 7px 26px; font-size: 14px; font-weight: 700; white-space: nowrap; }
     .header-cart:hover { background: #EA580C; }
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
@@ -210,8 +204,11 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.2); transition: background 0.2s; z-index: 2;
     }
     .carousel-btn:hover { background: #EA580C; }
-    .carousel-btn.prev { right: 4px; }
-    .carousel-btn.next { left: 4px; }
+    .carousel-btn.prev { left: 4px; }
+    .carousel-btn.next { right: 4px; }
+    .carousel-dots { display: flex; justify-content: center; gap: 7px; margin-top: 14px; }
+    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: #CBD5E1; border: none; padding: 0; cursor: pointer; transition: background 0.2s, transform 0.2s; flex-shrink: 0; }
+    .carousel-dot.active { background: #F97316; transform: scale(1.35); }
     /* shared hscroll for testimonials */
     .hscroll {
       display: flex; gap: 14px; overflow-x: auto;
@@ -328,7 +325,11 @@
     .float-tt { background: #000; }
     .float-acc { position: fixed; right: 16px; bottom: 20px; z-index: 999; width: 50px; height: 50px; border-radius: 50%; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; border: none; transition: transform 0.2s; }
     .float-acc:hover { transform: scale(1.1); }
-  </style>
+      .header-progress { display:flex; flex-direction:column; align-items:center; text-decoration:none; gap:1px; }
+    .header-progress-ring { position:relative; display:inline-block; }
+    .header-progress-ring svg { display:block; }
+    .header-progress-ring-num { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:9px; font-weight:800; color:#0F172B; pointer-events:none; }
+    .header-progress-lbl { font-size:8px; color:#64748B; font-weight:700; white-space:nowrap; }</style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PZ6FXSGN"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GT-PZ6FXSGN');</script>
 </head>
@@ -340,18 +341,17 @@
   <button class="side-close-btn" id="side-close">✕</button>
   <nav class="side-nav">
     <a href="index.html">דף הבית</a>
-    <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="index.html#formpack">חבילה 360° לטיול</a>
     <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+    <a href="categories/bags-rental.html">מוצ'ילות</a>
     <a href="categories/day-bags.html">תיקי יום</a>
     <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
+    <a href="categories/hygiene.html">ציוד היגיינה</a>
     <a href="categories/field.html">ציוד שטח</a>
-    <a href="index.html#formpack" style="font-weight:800;">חבילה 360° לטיול</a>
-    <a href="categories/hygiene.html">מוצרי היגיינה</a>
-    <a href="categories/benefits.html">הטבות בהכנה בחינם</a>
+    <a href="categories/benefits.html">הטבות בביורוקרטיה בחינם</a>
     <a href="about.html">אודות</a>
-    <a href="order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
-    <a href="https://wa.me/972523960215" target="_blank" style="color:#25D366">לשיחה עם מומחי הטיול 💬</a>
     <button class="side-guide-btn" onclick="openGuideMenu()">המדריך המלא לטיול <span style="font-size:12px">◀</span></button>
+    <a href="order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
   </nav>
 
   <!-- GUIDE SUB-MENU -->
@@ -377,6 +377,12 @@
       <a href="guide.html#TG_17">שלב 17: ביטוח לאומי</a>
     </nav>
   </div>
+  <div class="side-social">
+    <a href="https://www.instagram.com/thesmarttraveller.il/" target="_blank" title="אינסטגרם"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><defs><radialGradient id="ig_grad" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig_grad)"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="white" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="white"/></svg></a>
+    <a href="https://www.tiktok.com/@thesmarttraveller" target="_blank" title="טיקטוק"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#000"/><path d="M17 6.5c-.9-.4-1.6-1.2-1.9-2.1h-1.9v9.1c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.2 0 .4 0 .6.1V9.6c-.2 0-.4-.1-.6-.1-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4V9.1c.8.5 1.7.8 2.7.8V7.1c-.3 0-.6-.2-.9-.6z" fill="white"/></svg></a>
+    <a href="https://wa.me/972523960215" target="_blank" title="ווצאפ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 4a8 8 0 00-6.93 12L4 20l4.1-1.04A8 8 0 1012 4zm0 14.4a6.38 6.38 0 01-3.26-.9l-.23-.14-2.43.62.64-2.37-.15-.24A6.4 6.4 0 1112 18.4zm3.5-4.76c-.18-.09-1.08-.53-1.25-.59-.17-.06-.29-.09-.41.09-.12.18-.48.59-.59.71-.1.12-.22.13-.4.04-.18-.09-.77-.28-1.46-.9-.54-.48-.9-1.07-1.01-1.25-.1-.18-.01-.28.08-.37.09-.08.18-.2.28-.29.09-.1.12-.17.18-.28.06-.11.03-.21-.01-.29-.05-.09-.41-.99-.56-1.36-.15-.35-.3-.3-.41-.31h-.35c-.12 0-.32.05-.49.23-.17.18-.65.64-.65 1.55s.67 1.8.76 1.92c.1.12 1.32 2.01 3.19 2.82.44.19.79.31 1.06.39.44.14.85.12 1.17.07.36-.05 1.08-.44 1.23-.87.15-.43.15-.8.1-.87-.04-.08-.16-.12-.34-.21z" fill="white"/></svg></a>
+    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank" title="וויז"><img src="https://www.gstatic.com/images/branding/product/1x/waze_48dp.png" width="26" height="26" alt="Waze" style="display:block;border-radius:50%"></a>
+  </div>
   </div>
 </div>
 
@@ -398,9 +404,19 @@
     <a href="about.html">אודות</a>
     <a href="https://wa.me/972523960215" target="_blank">WhatsApp</a>
   </nav>
+  <a href="guide.html" class="header-progress" title="הכנה לטיול">
+    <div class="header-progress-ring">
+      <svg width="34" height="34" viewBox="0 0 34 34">
+        <circle cx="17" cy="17" r="13" fill="none" stroke="#E2E8F0" stroke-width="3"/>
+        <circle id="progress-ring" cx="17" cy="17" r="13" fill="none" stroke="#F97316" stroke-width="3" stroke-dasharray="81.68" stroke-dashoffset="81.68" stroke-linecap="round" transform="rotate(-90 17 17)"/>
+      </svg>
+      <span id="progress-num" class="header-progress-ring-num">0/18</span>
+    </div>
+    <div class="header-progress-lbl">מד מוכנות לטיול</div>
+  </a>
   <div class="header-left">
     <a href="order-summary.html" class="header-cart">
-      🛒&nbsp;<span class="woocommerce-Price-amount amount">0.00 ₪</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="12" height="12" style="position:absolute;top:4px;left:8px;opacity:0.9"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="white" stroke-width="1.5" fill="none"/><line x1="3" y1="6" x2="21" y2="6" stroke="white" stroke-width="1.5"/><path d="M16 10a4 4 0 01-8 0" stroke="white" stroke-width="1.5" fill="none"/></svg><span class="woocommerce-Price-amount amount">0.00 ₪</span>
     </a>
   </div>
 </header>
@@ -416,7 +432,10 @@
       <li>מעבר אישי על כל ההכנות</li>
     </ul>
     <div class="hero-btns">
-      <a href="#formpack" class="btn-orange" id="hero-cta">הזמנת חבילה 360° לטיול</a>
+      <div class="btn-proof-wrap">
+        <span class="btn-proof-tag">🔥 57 מטיילים הזמינו חבילה לטיול החודש — הצטרפו אליהם</span>
+        <a href="#formpack" class="btn-orange" id="hero-cta">הזמנת חבילה 360° לטיול</a>
+      </div>
       <a href="https://wa.me/972523960215" target="_blank" class="btn-wa"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="22" height="22" style="vertical-align:middle;margin-left:8px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.852L0 24l6.343-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.007-1.374l-.359-.214-3.724.885.936-3.617-.234-.372A9.794 9.794 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg> שלחו לנו הודעה לפרטים נוספים</a>
     </div>
   </div>
@@ -425,7 +444,7 @@
 <!-- VIDEOS -->
 <section class="videos-section">
   <div class="videos-carousel-wrap">
-    <button class="carousel-btn prev" id="vid-prev" aria-label="הקודם">&#8250;</button>
+    <button class="carousel-btn prev" id="vid-prev" aria-label="הקודם">&#8249;</button>
     <div class="videos-carousel" id="vid-carousel">
       <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'fSsq85RNXV0')"><img src="https://img.youtube.com/vi/fSsq85RNXV0/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
       <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'xhEm2fqTYqU')"><img src="https://img.youtube.com/vi/xhEm2fqTYqU/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
@@ -445,58 +464,69 @@
       <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'_oi6O20To7E')"><img src="https://img.youtube.com/vi/_oi6O20To7E/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
       <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'atGmAGxGVTA')"><img src="https://img.youtube.com/vi/atGmAGxGVTA/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
       <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'TUv_keZsjE8')"><img src="https://img.youtube.com/vi/TUv_keZsjE8/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+      <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'1rVk4oMzEC0')"><img src="https://img.youtube.com/vi/1rVk4oMzEC0/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+      <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'M-RdCePZHe0')"><img src="https://img.youtube.com/vi/M-RdCePZHe0/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+      <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'gJ3k0Jk10bc')"><img src="https://img.youtube.com/vi/gJ3k0Jk10bc/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+      <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'loD_DQs4Ldk')"><img src="https://img.youtube.com/vi/loD_DQs4Ldk/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+      <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'KenvKFhb4Aw')"><img src="https://img.youtube.com/vi/KenvKFhb4Aw/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+      <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'y6C3qXWIDO0')"><img src="https://img.youtube.com/vi/y6C3qXWIDO0/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
+      <div class="video-slide"><div class="yt-facade" onclick="ytPlay(this,'1nWqVwWiKe0')"><img src="https://img.youtube.com/vi/1nWqVwWiKe0/hqdefault.jpg" alt="סרטון" loading="lazy"><span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span></div></div>
     </div>
-    <button class="carousel-btn next" id="vid-next" aria-label="הבא">&#8249;</button>
+    <button class="carousel-btn next" id="vid-next" aria-label="הבא">&#8250;</button>
   </div>
+  <div class="carousel-dots" id="vid-dots"></div>
 </section>
 
 <!-- 3-STEP FORM -->
 <div id="formpack">
-<div style="background:#fff;padding:56px 20px 0;text-align:center;border-top:4px solid #F97316;position:relative">
+<div style="background:#fff;padding:32px 20px 16px;text-align:center;border-top:4px solid #F97316;position:relative">
   <div style="position:absolute;top:-1px;left:0;right:0;height:4px;background:linear-gradient(90deg,#F97316,#EA580C)"></div>
-  <h2 style="font-size:clamp(26px,5vw,40px);font-weight:900;color:#0F172B;margin:0 0 6px;letter-spacing:-0.5px">הכל לטיול בחבילה אחת</h2>
-  <p style="font-size:17px;color:#64748B;margin:0 0 40px;font-weight:500">מציוד עד בירוקרטיה</p>
+  <h2 style="font-size:clamp(26px,5vw,40px);font-weight:900;color:#0F172B;margin:0 0 6px;letter-spacing:-0.5px">חבילה 360° לטיול</h2>
+  <p style="font-size:17px;color:#64748B;margin:0;font-weight:500">הכל לטיול במקום אחד — מציוד ועד בירוקרטיה</p>
 </div>
 <div id="smart-form-360">
 <style>
   /* ===== SMART FORM 360 ===== */
   #smart-form-360 {
     background: #F8FAFC;
-    padding: 60px 20px;
+    padding: 20px 20px;
     font-family: 'Assistant', sans-serif;
     direction: rtl;
   }
-  .sf-banner {
-    background: linear-gradient(135deg, #FFF7ED, #FFEDD5);
-    border: 1.5px solid #F97316;
-    border-radius: 50px;
-    text-align: center;
-    padding: 12px 24px;
-    font-size: 15px;
-    font-weight: 700;
+  .btn-proof-wrap { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 6px; }
+  .btn-proof-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.97);
     color: #C2410C;
-    max-width: 600px;
-    margin: 0 auto 32px;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 6px 18px;
+    border-radius: 50px;
+    border: 1.5px solid #F97316;
+    text-align: center;
+    font-family: 'Assistant', sans-serif;
+    box-shadow: 0 2px 8px rgba(249,115,22,0.25);
   }
+  .btn-proof-wrap .btn-orange { width: 100%; }
   .sf-progress {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
     position: sticky;
     top: 0;
     background: #F8FAFC;
     z-index: 100;
-    padding: 16px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #E2E8F0;
   }
   .sf-progress .sf-step {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
     color: #94A3B8;
     padding: 8px 20px;
     border-radius: 50px;
@@ -746,9 +776,12 @@
     .sf-progress .sf-step { padding: 7px 12px; font-size: 12px; }
     .sf-progress .sf-step::after { width: 20px; }
   }
-</style>
+    .header-progress { display:flex; flex-direction:column; align-items:center; text-decoration:none; gap:1px; }
+    .header-progress-ring { position:relative; display:inline-block; }
+    .header-progress-ring svg { display:block; }
+    .header-progress-ring-num { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:9px; font-weight:800; color:#0F172B; pointer-events:none; }
+    .header-progress-lbl { font-size:8px; color:#64748B; font-weight:700; white-space:nowrap; }</style>
 
-<div class="sf-banner">🔥 57 מטיילים הזמינו חבילה לטיול החודש — הצטרפו אליהם</div>
 
 <div class="sf-progress">
   <div class="sf-step active" data-step="1" onclick="goStep(1)" style="cursor:pointer">1 מוצילה 🎒</div>
@@ -1728,23 +1761,92 @@ function ytPlay(el, id) {
   slide.appendChild(closeBtn);
 }
 
-// Video carousel
+// Video carousel — seamless infinite loop + auto-advance + dots
 (function(){
   var carousel = document.getElementById('vid-carousel');
-  var prev = document.getElementById('vid-prev');
-  var next = document.getElementById('vid-next');
+  var prevBtn = document.getElementById('vid-prev');
+  var nextBtn = document.getElementById('vid-next');
+  var dotsEl = document.getElementById('vid-dots');
   if(!carousel) return;
-  function slideWidth(){
-    var slide = carousel.querySelector('.video-slide');
-    if(!slide) return 0;
-    return slide.offsetWidth + parseInt(getComputedStyle(carousel).gap || 16);
+
+  var origSlides = Array.from(carousel.querySelectorAll('.video-slide'));
+  var N = origSlides.length;
+  // Append clones for seamless forward wrap (clone[i] = copy of slide[i])
+  origSlides.forEach(function(s){ carousel.appendChild(s.cloneNode(true)); });
+
+  var cur = 0;
+  var paused = false;
+  var busy = false;
+
+  // Build dots
+  var dots = [];
+  if(dotsEl){
+    for(var i=0;i<N;i++){
+      var d=document.createElement('span');
+      d.className='carousel-dot';
+      (function(i){ d.addEventListener('click',function(){ snapTo(i); paused=true; }); })(i);
+      dotsEl.appendChild(d);
+      dots.push(d);
+    }
   }
-  if(prev) prev.addEventListener('click', function(){
-    carousel.scrollBy({ left: slideWidth(), behavior: 'smooth' });
+
+  function updateDots(){
+    dots.forEach(function(d,i){ d.classList.toggle('active',i===cur); });
+  }
+
+  function allSlides(){ return carousel.querySelectorAll('.video-slide'); }
+
+  function snapTo(idx){
+    // Instant jump with no animation
+    cur = ((idx%N)+N)%N;
+    allSlides()[cur].scrollIntoView({ block:'nearest', inline:'start', behavior:'instant' });
+    updateDots();
+  }
+
+  function advance(){
+    if(busy) return;
+    var slides = allSlides();
+    if(cur === N-1){
+      // Seamlessly scroll into clone[0] (=slides[N]), then silently reset to real slide 0
+      busy = true;
+      slides[N].scrollIntoView({ block:'nearest', inline:'start', behavior:'smooth' });
+      cur = 0;
+      updateDots();
+      setTimeout(function(){
+        slides[0].scrollIntoView({ block:'nearest', inline:'start', behavior:'instant' });
+        busy = false;
+      }, 600);
+    } else {
+      cur++;
+      slides[cur].scrollIntoView({ block:'nearest', inline:'start', behavior:'smooth' });
+      updateDots();
+    }
+  }
+
+  function goBack(){
+    if(busy) return;
+    var slides = allSlides();
+    if(cur === 0){
+      cur = N-1;
+    } else {
+      cur--;
+    }
+    slides[cur].scrollIntoView({ block:'nearest', inline:'start', behavior:'smooth' });
+    updateDots();
+  }
+
+  if(prevBtn) prevBtn.addEventListener('click',function(){ goBack(); paused=true; });
+  if(nextBtn) nextBtn.addEventListener('click',function(){ advance(); paused=true; });
+
+  setInterval(function(){ if(!paused) advance(); }, 3500);
+
+  carousel.addEventListener('touchstart',function(){
+    paused=true;
+    clearTimeout(carousel._resumeTimer);
+    carousel._resumeTimer=setTimeout(function(){ paused=false; },8000);
   });
-  if(next) next.addEventListener('click', function(){
-    carousel.scrollBy({ left: -slideWidth(), behavior: 'smooth' });
-  });
+
+  snapTo(0);
 })();
 
 // Smooth scroll for hero CTA
@@ -1752,7 +1854,17 @@ document.getElementById('hero-cta').addEventListener('click', function(e){
   e.preventDefault();
   document.getElementById('formpack').scrollIntoView({behavior:'smooth'});
 });
-</script>
+  (function(){
+    try{
+      var saved=JSON.parse(localStorage.getItem('guideProgress')||'{}');
+      var count=Object.keys(saved).length, total=18;
+      var circ=81.68;
+      var ring=document.getElementById('progress-ring');
+      if(ring) ring.style.strokeDashoffset=(circ*(1-count/total)).toFixed(2);
+      var num=document.getElementById('progress-num');
+      if(num) num.textContent=count+'/'+total;
+    }catch(e){}
+  })();</script>
 
 <!-- FLOATING BUTTONS -->
 <div class="float-btns">

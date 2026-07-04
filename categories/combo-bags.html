@@ -15,7 +15,7 @@
 
     .site-header { position: fixed; top: 0; right: 0; left: 0; z-index: 9999; background: #FAECE3; height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; box-shadow: 0 1px 8px rgba(0,0,0,0.1); }
     .header-logo img { height: 48px; width: auto; display: block; }
-    .header-cart { display: flex; align-items: center; gap: 6px; background: #F97316; color: white; border-radius: 50px; padding: 8px 16px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+    .header-cart { position: relative; display: inline-flex; align-items: center; background: #F97316; color: white; border-radius: 50px; padding: 7px 14px 7px 26px; font-size: 14px; font-weight: 700; white-space: nowrap; }
     .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; border: none; background: none; }
     .hamburger span { display: block; width: 24px; height: 2px; background: #0F172B; border-radius: 2px; }
 
@@ -50,43 +50,29 @@
     .rental-notice { background: #FFF7ED; border: 1.5px solid #FDBA74; border-radius: 10px; padding: 10px 14px; margin-bottom: 20px; font-size: 13px; color: #92400E; line-height: 1.5; }
     .rental-notice strong { color: #F97316; }
 
-    /* Combo rental card — full width single card */
-    .combo-rental-card { background: white; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; }
+    /* Pack-card (same style as bags-rental) */
+    .pack-card { background: white; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.1); padding: 16px; max-width: 480px; margin: 0 auto; }
+    .pack-card h3 { font-size: 15px; font-weight: 800; color: #0F172B; margin-bottom: 4px; }
+    .pack-card p { font-size: 13px; color: #64748B; margin-bottom: 14px; }
+    .months-block { margin-bottom: 14px; }
+    .months-block p { font-size: 13px; font-weight: 700; color: #0F172B; margin-bottom: 8px; }
+    .months-select-full { width: 100%; border: 2px solid #F97316; border-radius: 8px; padding: 8px 12px; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 700; color: #0F172B; background: white; cursor: pointer; outline: none; }
+    .pack-price { font-size: 20px; font-weight: 900; color: #F97316; margin-bottom: 12px; }
+    .pack-add-btn { width: 100%; background: #F97316; color: white; border: none; border-radius: 10px; padding: 14px 0; font-size: 16px; font-weight: 700; font-family: 'Assistant', sans-serif; cursor: pointer; transition: background 0.2s; }
+    .pack-add-btn:hover { background: #EA580C; }
+    .pack-add-btn.added { background: #16A34A; }
 
-    /* Images row: mocila (right) + day bag (left) */
-    .combo-images-row { display: grid; grid-template-columns: 1fr 1fr; }
-    .combo-mocila-side { position: relative; background: #F8F8F8; }
-    .combo-mocila-side .carousel-imgs { position: relative; overflow: hidden; }
-    .combo-mocila-side .carousel-imgs img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: none; }
-    .combo-mocila-side .carousel-imgs img.active { display: block; }
-    .combo-daybag-side { background: #F1F5F9; display: flex; flex-direction: column; }
-    .combo-daybag-side img { width: 100%; flex: 1; object-fit: contain; aspect-ratio: 2/3; background: white; padding: 8px; }
-
-    /* Carousel nav */
-    .carousel-nav { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px 0; }
-    .carousel-nav-btn { background: white; border: 1.5px solid #E2E8F0; border-radius: 50%; width: 28px; height: 28px; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
-    .carousel-nav-btn:hover { border-color: #F97316; color: #F97316; }
-    .carousel-dots { display: flex; gap: 5px; }
-    .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: #CBD5E1; cursor: pointer; transition: background 0.2s; }
-    .carousel-dot.active { background: #F97316; }
-
-    /* Labels under images */
-    .combo-img-labels { display: grid; grid-template-columns: 1fr 1fr; }
-    .combo-img-label { padding: 8px 12px 0; }
-    .combo-img-label .img-label-title { font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; }
-    .combo-img-label .img-label-name { font-size: 13px; font-weight: 700; color: #0F172B; margin-top: 2px; }
-
-    /* Bottom controls */
-    .combo-bottom { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-    .combo-months-row { display: flex; align-items: center; gap: 10px; }
-    .combo-months-label { font-size: 14px; font-weight: 700; color: #0F172B; white-space: nowrap; }
-    .combo-months-select { flex: 1; border: 2px solid #F97316; border-radius: 10px; padding: 8px 12px; font-size: 15px; font-family: 'Assistant', sans-serif; color: #0F172B; background: white; cursor: pointer; outline: none; font-weight: 600; }
-    .combo-price-row { display: flex; align-items: baseline; gap: 8px; }
-    .combo-total-price { font-size: 28px; font-weight: 900; color: #F97316; }
-    .combo-price-detail { font-size: 13px; color: #64748B; }
-    .combo-add-btn { width: 100%; background: #F97316; color: white; border: none; border-radius: 12px; padding: 14px 0; font-size: 17px; font-weight: 800; font-family: 'Assistant', sans-serif; cursor: pointer; transition: background 0.2s; }
-    .combo-add-btn:hover { background: #EA580C; }
-    .combo-add-btn.added { background: #16A34A; }
+    /* Two-carousel row */
+    .duo-carousels { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+    .mini-carousel-wrap { position: relative; }
+    .mini-carousel-box { overflow: hidden; border-radius: 10px; background: #f8fafc; aspect-ratio: 3/4; }
+    .mini-carousel-track { display: flex; transition: transform 0.35s ease; height: 100%; }
+    .mini-carousel-track img { min-width: 100%; height: 100%; object-fit: cover; }
+    .mini-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.15); padding: 0; }
+    .mini-arrow-right { right: 4px; }
+    .mini-arrow-left { left: 4px; }
+    .mini-label { text-align: center; font-size: 11px; font-weight: 700; color: #64748B; margin-top: 5px; }
+    .mini-sublabel { text-align: center; font-size: 10px; font-weight: 600; color: #94A3B8; }
 
     /* Sale card */
     .combo-sale-card { background: linear-gradient(135deg, #0F172B 0%, #1E293B 100%); border-radius: 20px; padding: 28px 24px; color: white; display: flex; flex-direction: column; gap: 14px; }
@@ -109,7 +95,11 @@
     .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
     .float-tt { background: #000; }
     .float-acc { position: fixed; right: 16px; bottom: 20px; z-index: 999; width: 50px; height: 50px; border-radius: 50%; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; border: none; }
-  </style>
+      .header-progress { display:flex; flex-direction:column; align-items:center; text-decoration:none; gap:1px; }
+    .header-progress-ring { position:relative; display:inline-block; }
+    .header-progress-ring svg { display:block; }
+    .header-progress-ring-num { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:9px; font-weight:800; color:#0F172B; pointer-events:none; }
+    .header-progress-lbl { font-size:8px; color:#64748B; font-weight:700; white-space:nowrap; }</style>
 </head>
 <body>
 
@@ -118,18 +108,17 @@
   <button class="side-close-btn" id="side-close">✕</button>
   <nav class="side-nav">
     <a href="../index.html">דף הבית</a>
-    <a href="../categories/bags-rental.html">מוצ'ילות</a>
+    <a href="../index.html#formpack">חבילה 360° לטיול</a>
     <a href="../categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+    <a href="../categories/bags-rental.html">מוצ'ילות</a>
     <a href="../categories/day-bags.html">תיקי יום</a>
     <a href="../categories/general-equipment.html">ציוד כללי לטיול</a>
+    <a href="../categories/hygiene.html">ציוד היגיינה</a>
     <a href="../categories/field.html">ציוד שטח</a>
-    <a href="../index.html#formpack" style="font-weight:800;">חבילה 360° לטיול</a>
-    <a href="../categories/hygiene.html">מוצרי היגיינה</a>
-    <a href="../categories/benefits.html">הטבות בהכנה בחינם</a>
+    <a href="../categories/benefits.html">הטבות בביורוקרטיה בחינם</a>
     <a href="../about.html">אודות</a>
-    <a href="../order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
-    <a href="https://wa.me/972523960215" target="_blank" style="color:#25D366">לשיחה עם מומחי הטיול 💬</a>
     <button class="side-guide-btn" onclick="openGuideMenu()">המדריך המלא לטיול <span style="font-size:12px">◀</span></button>
+    <a href="../order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
   </nav>
   <div class="side-sub-panel" id="side-guide-panel">
     <button class="side-back-btn" onclick="closeGuideMenu()">▶ חזרה לתפריט</button>
@@ -154,8 +143,10 @@
     </nav>
   </div>
   <div class="side-social">
-    <a href="https://wa.me/972523960215" target="_blank">💬</a>
-    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank">🚗</a>
+    <a href="https://www.instagram.com/thesmarttraveller.il/" target="_blank" title="אינסטגרם"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><defs><radialGradient id="ig_grad" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig_grad)"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="white" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="white"/></svg></a>
+    <a href="https://www.tiktok.com/@thesmarttraveller" target="_blank" title="טיקטוק"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#000"/><path d="M17 6.5c-.9-.4-1.6-1.2-1.9-2.1h-1.9v9.1c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.2 0 .4 0 .6.1V9.6c-.2 0-.4-.1-.6-.1-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4V9.1c.8.5 1.7.8 2.7.8V7.1c-.3 0-.6-.2-.9-.6z" fill="white"/></svg></a>
+    <a href="https://wa.me/972523960215" target="_blank" title="ווצאפ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 4a8 8 0 00-6.93 12L4 20l4.1-1.04A8 8 0 1012 4zm0 14.4a6.38 6.38 0 01-3.26-.9l-.23-.14-2.43.62.64-2.37-.15-.24A6.4 6.4 0 1112 18.4zm3.5-4.76c-.18-.09-1.08-.53-1.25-.59-.17-.06-.29-.09-.41.09-.12.18-.48.59-.59.71-.1.12-.22.13-.4.04-.18-.09-.77-.28-1.46-.9-.54-.48-.9-1.07-1.01-1.25-.1-.18-.01-.28.08-.37.09-.08.18-.2.28-.29.09-.1.12-.17.18-.28.06-.11.03-.21-.01-.29-.05-.09-.41-.99-.56-1.36-.15-.35-.3-.3-.41-.31h-.35c-.12 0-.32.05-.49.23-.17.18-.65.64-.65 1.55s.67 1.8.76 1.92c.1.12 1.32 2.01 3.19 2.82.44.19.79.31 1.06.39.44.14.85.12 1.17.07.36-.05 1.08-.44 1.23-.87.15-.43.15-.8.1-.87-.04-.08-.16-.12-.34-.21z" fill="white"/></svg></a>
+    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank" title="וויז"><img src="https://www.gstatic.com/images/branding/product/1x/waze_48dp.png" width="26" height="26" alt="Waze" style="display:block;border-radius:50%"></a>
   </div>
 </div>
 
@@ -166,8 +157,18 @@
       <img src="../assets/images/2024_03_cropped-logo.png" alt="המטייל החכם">
     </a>
   </div>
+  <a href="../guide.html" class="header-progress" title="הכנה לטיול">
+    <div class="header-progress-ring">
+      <svg width="34" height="34" viewBox="0 0 34 34">
+        <circle cx="17" cy="17" r="13" fill="none" stroke="#E2E8F0" stroke-width="3"/>
+        <circle id="progress-ring" cx="17" cy="17" r="13" fill="none" stroke="#F97316" stroke-width="3" stroke-dasharray="81.68" stroke-dashoffset="81.68" stroke-linecap="round" transform="rotate(-90 17 17)"/>
+      </svg>
+      <span id="progress-num" class="header-progress-ring-num">0/18</span>
+    </div>
+    <div class="header-progress-lbl">מד מוכנות לטיול</div>
+  </a>
   <a href="../order-summary.html" class="header-cart">
-    🛒&nbsp;<span id="cart-total">0.00 ₪</span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="12" height="12" style="position:absolute;top:4px;left:8px;opacity:0.9"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="white" stroke-width="1.5" fill="none"/><line x1="3" y1="6" x2="21" y2="6" stroke="white" stroke-width="1.5"/><path d="M16 10a4 4 0 01-8 0" stroke="white" stroke-width="1.5" fill="none"/></svg><span id="cart-total">0.00 ₪</span>
   </a>
 </header>
 
@@ -186,88 +187,103 @@
       <strong>שימו לב:</strong> הדגמים להמחשה בלבד — תיק מתאים יותאם באופן אישי לכל לקוח.
     </div>
 
-    <div class="combo-rental-card">
-
-      <!-- Images: mocila carousel (right) + day bag (left) -->
-      <div class="combo-images-row">
-        <!-- Right: mocila carousel -->
-        <div class="combo-mocila-side">
-          <div class="carousel-imgs" id="mocila-carousel">
-            <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-4-600x722.jpeg" alt="Gregory Deva 60" class="active" data-name="Gregory Deva 60" data-price="269">
-            <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-3.jpeg" alt="Osprey Aura 65" data-name="Osprey Aura 65" data-price="269">
-            <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65" data-name="Kyte LT 65" data-price="449">
-            <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg" alt="Kestrel LT 65" data-name="Kestrel LT 65" data-price="449">
-          </div>
-          <div class="carousel-nav">
-            <button class="carousel-nav-btn" onclick="mosilaCarousel(-1)">◀</button>
-            <div class="carousel-dots" id="mocila-dots">
-              <div class="carousel-dot active" onclick="mosilaCarousel(0, true)"></div>
-              <div class="carousel-dot" onclick="mosilaCarousel(1, true)"></div>
-              <div class="carousel-dot" onclick="mosilaCarousel(2, true)"></div>
-              <div class="carousel-dot" onclick="mosilaCarousel(3, true)"></div>
+    <div class="pack-card">
+      <!-- Two carousels side by side -->
+      <div class="duo-carousels">
+        <!-- Mochila carousel -->
+        <div class="mini-carousel-wrap">
+          <div class="mini-carousel-box">
+            <div class="mini-carousel-track" id="combo-mochila-track">
+              <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65" loading="lazy">
+              <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg" alt="Kestrel LT 65" loading="lazy">
+              <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-4-600x722.jpeg" alt="Gregory Deva 60" loading="lazy">
+              <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-3.jpeg" alt="Osprey Aura 65" loading="lazy">
+              <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.00-2.jpeg" alt="Kyte 68" loading="lazy">
+              <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.25.30-1-600x596.jpeg" alt="Osprey Kestrel 68" loading="lazy">
             </div>
-            <button class="carousel-nav-btn" onclick="mosilaCarousel(1)">▶</button>
           </div>
+          <button class="mini-arrow mini-arrow-right" onclick="comboMochilaMove(-1)">›</button>
+          <button class="mini-arrow mini-arrow-left" onclick="comboMochilaMove(1)">‹</button>
+          <div class="mini-label">🎒 מוצ'ילה</div>
+          <div class="mini-sublabel" id="combo-mochila-name">Kyte LT 65</div>
         </div>
-        <!-- Left: day bag fixed -->
-        <div class="combo-daybag-side">
-          <img src="../assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30">
-        </div>
-      </div>
-
-      <!-- Labels under images -->
-      <div class="combo-img-labels">
-        <div class="combo-img-label">
-          <div class="img-label-title">🎒 מוצ'ילה גדולה</div>
-          <div class="img-label-name" id="mocila-name">Gregory Deva 60</div>
-        </div>
-        <div class="combo-img-label">
-          <div class="img-label-title">🏃 תיק יום</div>
-          <div class="img-label-name">Osprey Sportlite 30</div>
+        <!-- Day bag carousel -->
+        <div class="mini-carousel-wrap">
+          <div class="mini-carousel-box">
+            <div class="mini-carousel-track" id="combo-daybag-track">
+              <img src="../assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" loading="lazy">
+            </div>
+          </div>
+          <div class="mini-label">👜 תיק יום</div>
+          <div class="mini-sublabel">Osprey Sportlite 30</div>
         </div>
       </div>
 
-      <!-- Bottom controls -->
-      <div class="combo-bottom">
-        <div class="combo-months-row">
-          <label class="combo-months-label">מספר חודשים:</label>
-          <select class="combo-months-select" id="combo-months" onchange="updateComboPrice()">
-            <option value="1">1 חודש</option>
-            <option value="2">2 חודשים</option>
-            <option value="3">3 חודשים</option>
-            <option value="4">4 חודשים</option>
-            <option value="5">5 חודשים</option>
-            <option value="6">6 חודשים</option>
-              <option value="7">7 חודשים</option>
-              <option value="8">8 חודשים</option>
-          </select>
-        </div>
-        <div class="combo-price-row">
-          <div class="combo-total-price">₪<span id="combo-price-display">269</span></div>
-          <div class="combo-price-detail" id="combo-price-detail">מוצ'ילה + תיק יום — 1 חודש</div>
-        </div>
-        <button class="combo-add-btn" id="combo-add-btn" onclick="addComboToCart(this)">+ הוסף לסל</button>
+      <h3>מוצ'ילה + תיק יום להשכרה</h3>
+      <p>הקומבו המושלם — מוצ'ילה גדולה + תיק יום, מותאמים אישית</p>
+
+      <!-- Gender toggle -->
+      <div style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</div>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button id="combo-women-btn" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif" onclick="setComboGender('women')">👩 נשים</button>
+        <button id="combo-men-btn" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif" onclick="setComboGender('men')">👨 גברים</button>
       </div>
+
+      <!-- Months -->
+      <div class="months-block">
+        <p>מספר חודשי השכרה:</p>
+        <select id="combo-months" class="months-select-full" onchange="updateComboPrice()">
+          <option value="1">חודש 1 — ₪269</option>
+          <option value="2">חודשים 2 — ₪369</option>
+          <option value="3" selected>חודשים 3 — ₪469</option>
+          <option value="4">חודשים 4 — ₪569</option>
+          <option value="5">חודשים 5 — ₪669</option>
+          <option value="6">חודשים 6 — ₪769</option>
+          <option value="7">חודשים 7 — ₪769</option>
+          <option value="8">חודשים 8 — ₪769</option>
+        </select>
+      </div>
+
+      <!-- Price + button -->
+      <div class="pack-price">₪<strong id="combo-price-display">469</strong> סה"כ</div>
+      <button class="pack-add-btn" id="combo-add-btn" onclick="addComboToCart(this)">+ הוסף לסל</button>
     </div>
   </div>
 
   <!-- לשונית מכירה -->
   <div class="tab-content" id="content-sale">
-    <div class="combo-sale-card">
-      <div class="combo-sale-imgs">
-        <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65">
-        <img src="../assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30">
+    <div class="pack-card">
+      <!-- Two images side by side -->
+      <div class="duo-carousels">
+        <div class="mini-carousel-wrap">
+          <div class="mini-carousel-box">
+            <img id="combo-sale-mochila-img" src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65" style="width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="mini-label">🎒 מוצ'ילה</div>
+          <div class="mini-sublabel" id="combo-sale-mochila-name">Kyte LT 65</div>
+        </div>
+        <div class="mini-carousel-wrap">
+          <div class="mini-carousel-box">
+            <img src="../assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;height:100%;object-fit:contain;background:white;padding:8px">
+          </div>
+          <div class="mini-label">👜 תיק יום</div>
+          <div class="mini-sublabel">Osprey Sportlite 30</div>
+        </div>
       </div>
-      <div class="combo-title">🎒 קומבו מוצ'ילה + תיק יום</div>
-      <div class="combo-includes">
-        כולל: <span>מוצ'ילה גדולה (65 ליטר)</span> + <span>תיק יום (34 ליטר)</span><br>
-        מותאם אישית לכל לקוח · כולל ייעוץ מקצועי · איסוף מהחנות
+
+      <h3>קומבו מוצ'ילה + תיק יום — למכירה</h3>
+      <p>65L + 30L · מותאם אישית · כולל ייעוץ מקצועי</p>
+
+      <!-- Gender toggle -->
+      <div style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</div>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button id="combo-sale-women-btn" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif" onclick="setComboSaleGender('women')">👩 נשים</button>
+        <button id="combo-sale-men-btn" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif" onclick="setComboSaleGender('men')">👨 גברים</button>
       </div>
-      <div class="sale-price-row">
-        <div class="sale-price">₪1,799</div>
-        <div class="sale-price-sfx">לשני התיקים יחד</div>
-      </div>
-      <button class="sale-cta" onclick="addToCart(this, 'combo-sale-full', 'קומבו מוצ\'ילה + תיק יום (קנייה)', 1799)">+ הוסף לסל</button>
+
+      <!-- Price + button -->
+      <div class="pack-price">₪1,799</div>
+      <button class="pack-add-btn" onclick="addComboSaleToCart(this)">+ הוסף לסל</button>
     </div>
   </div>
 </div>
@@ -300,41 +316,67 @@ window.addToCart = function(btn, id, name, price) {
 };
 updateCartDisplay();
 
-/* ---- Mocila carousel ---- */
-var mosilaIdx = 0;
-var mosilaImgs = document.querySelectorAll('#mocila-carousel img');
-var mosilaDots = document.querySelectorAll('#mocila-dots .carousel-dot');
+/* ---- Combo carousels ---- */
+var comboMochilaNames = ['Kyte LT 65','Kestrel LT 65','Gregory Deva 60','Osprey Aura 65','Kyte 68','Osprey Kestrel 68'];
+var comboMochilaIdx = 0;
+var comboMochilaTotal = 6;
 
-window.mosilaCarousel = function(val, absolute) {
-  mosilaImgs[mosilaIdx].classList.remove('active');
-  mosilaDots[mosilaIdx].classList.remove('active');
-  if (absolute) {
-    mosilaIdx = val;
+function comboMochilaGoTo(idx) {
+  comboMochilaIdx = (idx + comboMochilaTotal) % comboMochilaTotal;
+  var track = document.getElementById('combo-mochila-track');
+  if (track) track.style.transform = 'translateX(' + (comboMochilaIdx * 100) + '%)';
+  var nameEl = document.getElementById('combo-mochila-name');
+  if (nameEl) nameEl.textContent = comboMochilaNames[comboMochilaIdx];
+}
+window.comboMochilaMove = function(dir) { comboMochilaGoTo(comboMochilaIdx + dir); };
+window.setComboGender = function(g) {
+  var wBtn = document.getElementById('combo-women-btn');
+  var mBtn = document.getElementById('combo-men-btn');
+  if (g === 'women') {
+    wBtn.style.borderColor = '#F97316'; wBtn.style.background = '#FFF7ED'; wBtn.style.color = '#F97316';
+    mBtn.style.borderColor = '#E2E8F0'; mBtn.style.background = '#fff'; mBtn.style.color = '#64748B';
+    comboMochilaGoTo(0);
   } else {
-    mosilaIdx = (mosilaIdx + val + mosilaImgs.length) % mosilaImgs.length;
+    mBtn.style.borderColor = '#F97316'; mBtn.style.background = '#FFF7ED'; mBtn.style.color = '#F97316';
+    wBtn.style.borderColor = '#E2E8F0'; wBtn.style.background = '#fff'; wBtn.style.color = '#64748B';
+    comboMochilaGoTo(1);
   }
-  mosilaImgs[mosilaIdx].classList.add('active');
-  mosilaDots[mosilaIdx].classList.add('active');
-  document.getElementById('mocila-name').textContent = mosilaImgs[mosilaIdx].dataset.name;
-  updateComboPrice();
 };
 
 window.updateComboPrice = function() {
   var months = parseInt(document.getElementById('combo-months').value);
   var total = 269 + (Math.min(months,6) - 1) * 100;
-  var label = months === 1 ? '1 חודש' : months + ' חודשים';
   document.getElementById('combo-price-display').textContent = total.toLocaleString('he-IL');
-  document.getElementById('combo-price-detail').textContent = 'מוצ\'ילה + תיק יום — ' + label;
 };
 
 window.addComboToCart = function(btn) {
-  var mosilaName = mosilaImgs[mosilaIdx].dataset.name;
   var months = parseInt(document.getElementById('combo-months').value);
   var total = 269 + (Math.min(months,6) - 1) * 100;
   var label = months === 1 ? '1 חודש' : months + ' חודשים';
-  var id = 'combo-r-' + mosilaIdx + '-m' + months;
-  var name = mosilaName + ' + Sportlite 30 — ' + label;
-  addToCart(btn, id, name, total);
+  var name = comboMochilaNames[comboMochilaIdx] + ' + Sportlite 30 — ' + label;
+  addToCart(btn, 'combo-r-' + comboMochilaIdx + '-m' + months, name, total);
+};
+
+window.setComboSaleGender = function(g) {
+  var wBtn = document.getElementById('combo-sale-women-btn');
+  var mBtn = document.getElementById('combo-sale-men-btn');
+  var imgs = { women: '../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg', men: '../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg' };
+  var names = { women: 'Kyte LT 65', men: 'Kestrel LT 65' };
+  if (g === 'women') {
+    wBtn.style.borderColor='#F97316'; wBtn.style.background='#FFF7ED'; wBtn.style.color='#F97316';
+    mBtn.style.borderColor='#E2E8F0'; mBtn.style.background='#fff'; mBtn.style.color='#64748B';
+  } else {
+    mBtn.style.borderColor='#F97316'; mBtn.style.background='#FFF7ED'; mBtn.style.color='#F97316';
+    wBtn.style.borderColor='#E2E8F0'; wBtn.style.background='#fff'; wBtn.style.color='#64748B';
+  }
+  document.getElementById('combo-sale-mochila-img').src = imgs[g];
+  document.getElementById('combo-sale-mochila-name').textContent = names[g];
+};
+window.addComboSaleToCart = function(btn) {
+  var g = document.getElementById('combo-sale-women-btn').style.borderColor === 'rgb(249, 115, 22)' ? 'women' : 'men';
+  var names = { women: 'Kyte LT 65', men: 'Kestrel LT 65' };
+  var name = 'קומבו ' + names[g] + ' + Sportlite 30 (קנייה)';
+  addToCart(btn, 'combo-sale-' + g, name, 1799);
 };
 
 /* ---- Tabs ---- */
@@ -359,6 +401,16 @@ window.switchTab = function(tab) {
 })();
 window.openGuideMenu = function(){ document.getElementById('side-guide-panel').classList.add('open'); };
 window.closeGuideMenu = function(){ document.getElementById('side-guide-panel').classList.remove('open'); };
-</script>
+  (function(){
+    try{
+      var saved=JSON.parse(localStorage.getItem('guideProgress')||'{}');
+      var count=Object.keys(saved).length, total=18;
+      var circ=81.68;
+      var ring=document.getElementById('progress-ring');
+      if(ring) ring.style.strokeDashoffset=(circ*(1-count/total)).toFixed(2);
+      var num=document.getElementById('progress-num');
+      if(num) num.textContent=count+'/'+total;
+    }catch(e){}
+  })();</script>
 </body>
 </html>

@@ -15,7 +15,7 @@
 
     .site-header { position: fixed; top: 0; right: 0; left: 0; z-index: 9999; background: #FAECE3; height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; box-shadow: 0 1px 8px rgba(0,0,0,0.1); }
     .header-logo img { height: 48px; width: auto; display: block; }
-    .header-cart { display: flex; align-items: center; gap: 6px; background: #F97316; color: white; border-radius: 50px; padding: 8px 16px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+    .header-cart { position: relative; display: inline-flex; align-items: center; background: #F97316; color: white; border-radius: 50px; padding: 7px 14px 7px 26px; font-size: 14px; font-weight: 700; white-space: nowrap; }
     .cart-count { background: white; color: #F97316; border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
     .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; border: none; background: none; }
     .hamburger span { display: block; width: 24px; height: 2px; background: #0F172B; border-radius: 2px; }
@@ -42,30 +42,26 @@
     .info-banner { background: #FFF7ED; border: 1.5px solid #FDBA74; border-radius: 12px; padding: 14px 16px; margin-bottom: 24px; font-size: 14px; color: #0F172B; line-height: 1.6; }
     .info-banner strong { color: #F97316; }
 
-    .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (min-width: 600px) { .prod-grid { grid-template-columns: repeat(3, 1fr); } }
-    .prod-card { background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; }
-    .prod-card img { width: 100%; aspect-ratio: 1; object-fit: cover; }
-    .prod-card-body { padding: 12px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-    .prod-name { font-size: 14px; font-weight: 700; color: #0F172B; line-height: 1.3; }
-    .prod-price { font-size: 16px; font-weight: 800; color: #F97316; }
-    .prod-price-sfx { font-size: 12px; font-weight: 600; color: #64748B; }
-    .prod-add-btn { margin-top: auto; width: 100%; background: #F97316; color: white; border: none; border-radius: 8px; padding: 9px 0; font-size: 14px; font-weight: 700; font-family: 'Assistant', sans-serif; cursor: pointer; transition: background 0.2s; }
-    .prod-add-btn:hover { background: #EA580C; }
-    .prod-add-btn.added { background: #16A34A; }
-
     .tab-bar { display: flex; gap: 0; margin-bottom: 24px; border-radius: 12px; overflow: hidden; border: 2px solid #F97316; }
     .tab-btn { flex: 1; padding: 12px 0; font-size: 16px; font-weight: 700; font-family: 'Assistant', sans-serif; border: none; cursor: pointer; transition: background 0.2s, color 0.2s; background: white; color: #F97316; }
     .tab-btn.active { background: #F97316; color: white; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (min-width: 600px) { .prod-grid { grid-template-columns: repeat(3, 1fr); } }
-    .months-row { display: flex; align-items: center; gap: 6px; }
-    .months-label { font-size: 12px; font-weight: 600; color: #64748B; white-space: nowrap; }
-    .months-select { flex: 1; border: 1.5px solid #F97316; border-radius: 8px; padding: 5px 8px; font-size: 13px; font-family: 'Assistant', sans-serif; color: #0F172B; background: white; cursor: pointer; outline: none; }
     .rental-notice { background: #FFF7ED; border: 1.5px solid #FDBA74; border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: 13px; color: #92400E; line-height: 1.5; }
     .rental-notice strong { color: #F97316; }
+    .pack-card { background: white; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.1); padding: 16px; max-width: 480px; margin: 0 auto; }
+    .pack-card h3 { font-size: 15px; font-weight: 800; color: #0F172B; margin-bottom: 4px; }
+    .pack-card p { font-size: 13px; color: #64748B; margin-bottom: 14px; }
+    .gender-row { display: flex; gap: 8px; margin-bottom: 14px; }
+    .gender-btn { flex: 1; padding: 8px; border-radius: 8px; border: 2px solid #F97316; background: #FFF7ED; color: #F97316; font-weight: 700; font-size: 13px; cursor: pointer; font-family: 'Assistant', sans-serif; transition: all 0.2s; }
+    .gender-btn.inactive { border-color: #E2E8F0; background: #fff; color: #64748B; }
+    .months-block { margin-bottom: 14px; }
+    .months-block p { font-size: 13px; font-weight: 700; color: #0F172B; margin-bottom: 8px; }
+    .months-select-full { width: 100%; border: 2px solid #F97316; border-radius: 8px; padding: 8px 12px; font-family: 'Assistant', sans-serif; font-size: 15px; font-weight: 700; color: #0F172B; background: white; cursor: pointer; outline: none; }
+    .pack-price { font-size: 20px; font-weight: 900; color: #F97316; margin-bottom: 12px; }
+    .pack-add-btn { width: 100%; background: #F97316; color: white; border: none; border-radius: 10px; padding: 14px 0; font-size: 16px; font-weight: 700; font-family: 'Assistant', sans-serif; cursor: pointer; transition: background 0.2s; }
+    .pack-add-btn:hover { background: #EA580C; }
+    .pack-add-btn.added { background: #16A34A; }
 
     .float-btns { position: fixed; left: 16px; bottom: 20px; z-index: 999; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
     .float-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; text-decoration: none; }
@@ -74,7 +70,11 @@
     .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
     .float-tt { background: #000; }
     .float-acc { position: fixed; right: 16px; bottom: 20px; z-index: 999; width: 50px; height: 50px; border-radius: 50%; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; border: none; transition: transform 0.2s; }
-  </style>
+      .header-progress { display:flex; flex-direction:column; align-items:center; text-decoration:none; gap:1px; }
+    .header-progress-ring { position:relative; display:inline-block; }
+    .header-progress-ring svg { display:block; }
+    .header-progress-ring-num { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:9px; font-weight:800; color:#0F172B; pointer-events:none; }
+    .header-progress-lbl { font-size:8px; color:#64748B; font-weight:700; white-space:nowrap; }</style>
 </head>
 <body>
 
@@ -83,18 +83,17 @@
   <button class="side-close-btn" id="side-close">✕</button>
   <nav class="side-nav">
     <a href="../index.html">דף הבית</a>
-    <a href="../categories/bags-rental.html">מוצ'ילות</a>
+    <a href="../index.html#formpack">חבילה 360° לטיול</a>
     <a href="../categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+    <a href="../categories/bags-rental.html">מוצ'ילות</a>
     <a href="../categories/day-bags.html">תיקי יום</a>
     <a href="../categories/general-equipment.html">ציוד כללי לטיול</a>
+    <a href="../categories/hygiene.html">ציוד היגיינה</a>
     <a href="../categories/field.html">ציוד שטח</a>
-    <a href="../index.html#formpack" style="font-weight:800;">חבילה 360° לטיול</a>
-    <a href="../categories/hygiene.html">מוצרי היגיינה</a>
-    <a href="../categories/benefits.html">הטבות בהכנה בחינם</a>
+    <a href="../categories/benefits.html">הטבות בביורוקרטיה בחינם</a>
     <a href="../about.html">אודות</a>
-    <a href="../order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
-    <a href="https://wa.me/972523960215" target="_blank" style="color:#25D366">לשיחה עם מומחי הטיול 💬</a>
     <button class="side-guide-btn" onclick="openGuideMenu()">המדריך המלא לטיול <span style="font-size:12px">◀</span></button>
+    <a href="../order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
   </nav>
   <div class="side-sub-panel" id="side-guide-panel">
     <button class="side-back-btn" onclick="closeGuideMenu()">▶ חזרה לתפריט</button>
@@ -119,7 +118,10 @@
     </nav>
   </div>
   <div class="side-social">
-    <a href="https://wa.me/972523960215" target="_blank" title="ווצאפ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.852L0 24l6.343-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.007-1.374l-.359-.214-3.724.885.936-3.617-.234-.372A9.794 9.794 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg></a>
+    <a href="https://www.instagram.com/thesmarttraveller.il/" target="_blank" title="אינסטגרם"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><defs><radialGradient id="ig_grad" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig_grad)"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="white" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="white"/></svg></a>
+    <a href="https://www.tiktok.com/@thesmarttraveller" target="_blank" title="טיקטוק"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#000"/><path d="M17 6.5c-.9-.4-1.6-1.2-1.9-2.1h-1.9v9.1c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.2 0 .4 0 .6.1V9.6c-.2 0-.4-.1-.6-.1-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4V9.1c.8.5 1.7.8 2.7.8V7.1c-.3 0-.6-.2-.9-.6z" fill="white"/></svg></a>
+    <a href="https://wa.me/972523960215" target="_blank" title="ווצאפ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 4a8 8 0 00-6.93 12L4 20l4.1-1.04A8 8 0 1012 4zm0 14.4a6.38 6.38 0 01-3.26-.9l-.23-.14-2.43.62.64-2.37-.15-.24A6.4 6.4 0 1112 18.4zm3.5-4.76c-.18-.09-1.08-.53-1.25-.59-.17-.06-.29-.09-.41.09-.12.18-.48.59-.59.71-.1.12-.22.13-.4.04-.18-.09-.77-.28-1.46-.9-.54-.48-.9-1.07-1.01-1.25-.1-.18-.01-.28.08-.37.09-.08.18-.2.28-.29.09-.1.12-.17.18-.28.06-.11.03-.21-.01-.29-.05-.09-.41-.99-.56-1.36-.15-.35-.3-.3-.41-.31h-.35c-.12 0-.32.05-.49.23-.17.18-.65.64-.65 1.55s.67 1.8.76 1.92c.1.12 1.32 2.01 3.19 2.82.44.19.79.31 1.06.39.44.14.85.12 1.17.07.36-.05 1.08-.44 1.23-.87.15-.43.15-.8.1-.87-.04-.08-.16-.12-.34-.21z" fill="white"/></svg></a>
+    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank" title="וויז"><img src="https://www.gstatic.com/images/branding/product/1x/waze_48dp.png" width="26" height="26" alt="Waze" style="display:block;border-radius:50%"></a>
   </div>
   </div>
 </div>
@@ -131,8 +133,18 @@
       <img src="../assets/images/2024_03_cropped-logo.png" alt="המטייל החכם">
     </a>
   </div>
+  <a href="../guide.html" class="header-progress" title="הכנה לטיול">
+    <div class="header-progress-ring">
+      <svg width="34" height="34" viewBox="0 0 34 34">
+        <circle cx="17" cy="17" r="13" fill="none" stroke="#E2E8F0" stroke-width="3"/>
+        <circle id="progress-ring" cx="17" cy="17" r="13" fill="none" stroke="#F97316" stroke-width="3" stroke-dasharray="81.68" stroke-dashoffset="81.68" stroke-linecap="round" transform="rotate(-90 17 17)"/>
+      </svg>
+      <span id="progress-num" class="header-progress-ring-num">0/18</span>
+    </div>
+    <div class="header-progress-lbl">מד מוכנות לטיול</div>
+  </a>
   <a href="../order-summary.html" class="header-cart">
-    🛒&nbsp;<span id="cart-total">0.00 ₪</span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="12" height="12" style="position:absolute;top:4px;left:8px;opacity:0.9"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="white" stroke-width="1.5" fill="none"/><line x1="3" y1="6" x2="21" y2="6" stroke="white" stroke-width="1.5"/><path d="M16 10a4 4 0 01-8 0" stroke="white" stroke-width="1.5" fill="none"/></svg><span id="cart-total">0.00 ₪</span>
   </a>
 </header>
 
@@ -149,43 +161,51 @@
     <div class="rental-notice">
       <strong>שימו לב:</strong> הדגמים להמחשה בלבד — תיק מתאים יותאם באופן אישי לכל לקוח.
     </div>
-    <div class="prod-grid">
-      <div class="prod-card" data-base-price="99" data-prod-id="day-rental-skarab" data-prod-name="Osprey Sportlite 30 (השכרה)">
-        <img src="../assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" loading="lazy">
-        <div class="prod-card-body">
-          <div class="prod-name">Osprey Sportlite 30</div>
-          <div class="months-row">
-            <label class="months-label">חודשים:</label>
-            <select class="months-select" onchange="updateDayBagPrice(this)">
-              <option value="1">1 חודש</option>
-              <option value="2">2 חודשים</option>
-              <option value="3">3 חודשים</option>
-              <option value="4">4 חודשים</option>
-              <option value="5">5 חודשים</option>
-              <option value="6">6 חודשים</option>
-              <option value="7">7 חודשים</option>
-              <option value="8">8 חודשים</option>
-            </select>
-          </div>
-          <div class="prod-price">₪<span class="price-display">99</span> <span class="prod-price-sfx">סה"כ</span></div>
-          <button class="prod-add-btn" onclick="addDayBagToCart(this)">+ הוסף לסל</button>
-        </div>
+    <div class="pack-card">
+      <div style="overflow:hidden;border-radius:12px;background:#f8fafc;aspect-ratio:1/1;margin-bottom:14px">
+        <img src="../assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;height:100%;object-fit:contain;padding:16px">
       </div>
+      <h3>Osprey Sportlite 30</h3>
+      <p>תיק יום 30L — קל, נוח, מושלם לטיולים יומיים</p>
+      <div style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</div>
+      <div class="gender-row">
+        <button id="day-rent-women-btn" class="gender-btn" onclick="setDayRentGender('women')">👩 נשים</button>
+        <button id="day-rent-men-btn" class="gender-btn inactive" onclick="setDayRentGender('men')">👨 גברים</button>
+      </div>
+      <div class="months-block">
+        <p>מספר חודשי השכרה:</p>
+        <select id="day-rent-months" class="months-select-full" onchange="updateDayRentPrice()">
+          <option value="1">חודש 1 — ₪99</option>
+          <option value="2">חודשים 2 — ₪148</option>
+          <option value="3" selected>חודשים 3 — ₪197</option>
+          <option value="4">חודשים 4 — ₪246</option>
+          <option value="5">חודשים 5 — ₪295</option>
+          <option value="6">חודשים 6 — ₪344</option>
+          <option value="7">חודשים 7 — ₪344</option>
+          <option value="8">חודשים 8 — ₪344</option>
+        </select>
+      </div>
+      <div class="pack-price">₪<strong id="day-rent-price">197</strong> סה"כ</div>
+      <button class="pack-add-btn" onclick="addDayRentToCart(this)">+ הוסף לסל</button>
     </div>
   </div>
 
   <!-- לשונית מכירה -->
   <div class="tab-content" id="content-sale">
-
-    <div class="prod-card">
-      <img src="../assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" loading="lazy">
-      <div class="prod-card-body">
-        <div class="prod-name">Osprey Sportlite 30</div>
-        <div class="prod-price">₪499</div>
-        <button class="prod-add-btn" onclick="addToCart(this, 'day-sale-skarab34', 'Osprey Sportlite 30 (קנייה)', 499)">+ הוסף לסל</button>
+    <div class="pack-card">
+      <div style="overflow:hidden;border-radius:12px;background:#f8fafc;aspect-ratio:1/1;margin-bottom:14px">
+        <img src="../assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;height:100%;object-fit:contain;padding:16px">
       </div>
+      <h3>Osprey Sportlite 30</h3>
+      <p>תיק יום 30L — קל, נוח, מושלם לטיולים יומיים</p>
+      <div style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</div>
+      <div class="gender-row">
+        <button id="day-sale-women-btn" class="gender-btn" onclick="setDaySaleGender('women')">👩 נשים</button>
+        <button id="day-sale-men-btn" class="gender-btn inactive" onclick="setDaySaleGender('men')">👨 גברים</button>
+      </div>
+      <div class="pack-price">₪499</div>
+      <button class="pack-add-btn" onclick="addDaySaleToCart(this)">+ הוסף לסל</button>
     </div>
-
   </div>
 
 </div>
@@ -205,18 +225,35 @@ function updateCartDisplay() {
   var total = cart.reduce(function(s,i){ return s+(i.price||0)*(i.qty||1); }, 0);
   var ct = document.getElementById('cart-total'); if(ct) ct.textContent = total.toFixed(2) + ' ₪';
 }
+var dayRentGender = 'women';
+var daySaleGender = 'women';
+
 function calcDayBagPrice(months) { return 99 + (Math.min(months,6) - 1) * 49; }
-window.updateDayBagPrice = function(select) {
-  var card = select.closest('.prod-card');
-  var months = parseInt(select.value);
-  card.querySelector('.price-display').textContent = calcDayBagPrice(months).toLocaleString('he-IL');
+
+window.setDayRentGender = function(g) {
+  dayRentGender = g;
+  document.getElementById('day-rent-women-btn').className = 'gender-btn' + (g==='women' ? '' : ' inactive');
+  document.getElementById('day-rent-men-btn').className = 'gender-btn' + (g==='men' ? '' : ' inactive');
 };
-window.addDayBagToCart = function(btn) {
-  var card = btn.closest('.prod-card');
-  var months = parseInt(card.querySelector('.months-select').value);
-  var price = calcDayBagPrice(months);
-  var label = months + (months === 1 ? ' חודש' : ' חודשים');
-  addToCart(btn, 'day-rental-skarab-m' + months, 'Osprey Sportlite 30 (השכרה) — ' + label, price);
+window.setDaySaleGender = function(g) {
+  daySaleGender = g;
+  document.getElementById('day-sale-women-btn').className = 'gender-btn' + (g==='women' ? '' : ' inactive');
+  document.getElementById('day-sale-men-btn').className = 'gender-btn' + (g==='men' ? '' : ' inactive');
+};
+window.updateDayRentPrice = function() {
+  var m = parseInt(document.getElementById('day-rent-months').value);
+  document.getElementById('day-rent-price').textContent = calcDayBagPrice(m);
+};
+window.addDayRentToCart = function(btn) {
+  var m = parseInt(document.getElementById('day-rent-months').value);
+  var price = calcDayBagPrice(m);
+  var gLabel = dayRentGender === 'women' ? 'נשים' : 'גברים';
+  var mLabel = m + (m === 1 ? ' חודש' : ' חודשים');
+  addToCart(btn, 'day-rent-' + dayRentGender + '-m' + m, 'Osprey Sportlite 30 (' + gLabel + ') השכרה — ' + mLabel, price);
+};
+window.addDaySaleToCart = function(btn) {
+  var gLabel = daySaleGender === 'women' ? 'נשים' : 'גברים';
+  addToCart(btn, 'day-sale-' + daySaleGender, 'Osprey Sportlite 30 (' + gLabel + ') קנייה', 499);
 };
 window.addToCart = function(btn, id, name, price) {
   var cart = getCart();
@@ -249,6 +286,16 @@ window.switchTab = function(tab) {
 };
 window.openGuideMenu = function(){ document.getElementById('side-guide-panel').classList.add('open'); };
 window.closeGuideMenu = function(){ document.getElementById('side-guide-panel').classList.remove('open'); };
-</script>
+  (function(){
+    try{
+      var saved=JSON.parse(localStorage.getItem('guideProgress')||'{}');
+      var count=Object.keys(saved).length, total=18;
+      var circ=81.68;
+      var ring=document.getElementById('progress-ring');
+      if(ring) ring.style.strokeDashoffset=(circ*(1-count/total)).toFixed(2);
+      var num=document.getElementById('progress-num');
+      if(num) num.textContent=count+'/'+total;
+    }catch(e){}
+  })();</script>
 </body>
 </html>

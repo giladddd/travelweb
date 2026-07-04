@@ -34,13 +34,7 @@
     .header-nav a { color: #0F172B; font-size: 15px; font-weight: 600; text-decoration: none; transition: color 0.2s; }
     .header-nav a:hover { color: #F97316; }
     .header-left { display: flex; align-items: center; gap: 12px; }
-    .header-cart {
-      display: flex; align-items: center; gap: 6px;
-      background: #F97316; color: white;
-      border-radius: 50px; padding: 8px 16px;
-      font-size: 14px; font-weight: 700; transition: background 0.2s;
-      white-space: nowrap; text-decoration: none;
-    }
+    .header-cart { position: relative; display: inline-flex; align-items: center; background: #F97316; color: white; border-radius: 50px; padding: 7px 14px 7px 26px; font-size: 14px; font-weight: 700; white-space: nowrap; }
     .header-cart:hover { background: #EA580C; }
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
@@ -633,7 +627,11 @@
     .float-tt { background: #000; }
     .float-acc { position: fixed; right: 16px; bottom: 20px; z-index: 999; width: 50px; height: 50px; border-radius: 50%; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; border: none; transition: transform 0.2s; }
     .float-acc:hover { transform: scale(1.1); }
-  </style>
+      .header-progress { display:flex; flex-direction:column; align-items:center; text-decoration:none; gap:1px; }
+    .header-progress-ring { position:relative; display:inline-block; }
+    .header-progress-ring svg { display:block; }
+    .header-progress-ring-num { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:9px; font-weight:800; color:#0F172B; pointer-events:none; }
+    .header-progress-lbl { font-size:8px; color:#64748B; font-weight:700; white-space:nowrap; }</style>
 </head>
 <body>
 
@@ -643,19 +641,24 @@
   <button class="side-close-btn" id="side-close">✕</button>
   <nav class="side-nav">
     <a href="index.html">דף הבית</a>
-    <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="index.html#formpack">חבילה 360° לטיול</a>
     <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+    <a href="categories/bags-rental.html">מוצ'ילות</a>
     <a href="categories/day-bags.html">תיקי יום</a>
     <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
+    <a href="categories/hygiene.html">ציוד היגיינה</a>
     <a href="categories/field.html">ציוד שטח</a>
-    <a href="index.html#formpack" style="font-weight:800;">חבילה 360° לטיול</a>
-    <a href="categories/hygiene.html">מוצרי היגיינה</a>
-    <a href="categories/benefits.html">הטבות בהכנה בחינם</a>
+    <a href="categories/benefits.html">הטבות בביורוקרטיה בחינם</a>
     <a href="about.html">אודות</a>
-    <a href="order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
-    <a href="https://wa.me/972523960215" target="_blank" style="color:#25D366">לשיחה עם מומחי הטיול 💬</a>
     <button class="side-guide-btn" onclick="openGuideMenu()">המדריך המלא לטיול <span style="font-size:12px">◀</span></button>
+    <a href="order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
   </nav>
+  <div class="side-social">
+    <a href="https://www.instagram.com/thesmarttraveller.il/" target="_blank" title="אינסטגרם"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><defs><radialGradient id="ig_grad" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig_grad)"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="white" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="white"/></svg></a>
+    <a href="https://www.tiktok.com/@thesmarttraveller" target="_blank" title="טיקטוק"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#000"/><path d="M17 6.5c-.9-.4-1.6-1.2-1.9-2.1h-1.9v9.1c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.2 0 .4 0 .6.1V9.6c-.2 0-.4-.1-.6-.1-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4V9.1c.8.5 1.7.8 2.7.8V7.1c-.3 0-.6-.2-.9-.6z" fill="white"/></svg></a>
+    <a href="https://wa.me/972523960215" target="_blank" title="ווצאפ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 4a8 8 0 00-6.93 12L4 20l4.1-1.04A8 8 0 1012 4zm0 14.4a6.38 6.38 0 01-3.26-.9l-.23-.14-2.43.62.64-2.37-.15-.24A6.4 6.4 0 1112 18.4zm3.5-4.76c-.18-.09-1.08-.53-1.25-.59-.17-.06-.29-.09-.41.09-.12.18-.48.59-.59.71-.1.12-.22.13-.4.04-.18-.09-.77-.28-1.46-.9-.54-.48-.9-1.07-1.01-1.25-.1-.18-.01-.28.08-.37.09-.08.18-.2.28-.29.09-.1.12-.17.18-.28.06-.11.03-.21-.01-.29-.05-.09-.41-.99-.56-1.36-.15-.35-.3-.3-.41-.31h-.35c-.12 0-.32.05-.49.23-.17.18-.65.64-.65 1.55s.67 1.8.76 1.92c.1.12 1.32 2.01 3.19 2.82.44.19.79.31 1.06.39.44.14.85.12 1.17.07.36-.05 1.08-.44 1.23-.87.15-.43.15-.8.1-.87-.04-.08-.16-.12-.34-.21z" fill="white"/></svg></a>
+    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank" title="וויז"><img src="https://www.gstatic.com/images/branding/product/1x/waze_48dp.png" width="26" height="26" alt="Waze" style="display:block;border-radius:50%"></a>
+  </div>
 </div>
 
 <!-- ── HEADER ── -->
@@ -676,9 +679,19 @@
     <a href="about.html">אודות</a>
     <a href="https://wa.me/972523960215" target="_blank">WhatsApp</a>
   </nav>
+  <a href="guide.html" class="header-progress" title="הכנה לטיול">
+    <div class="header-progress-ring">
+      <svg width="34" height="34" viewBox="0 0 34 34">
+        <circle cx="17" cy="17" r="13" fill="none" stroke="#E2E8F0" stroke-width="3"/>
+        <circle id="progress-ring" cx="17" cy="17" r="13" fill="none" stroke="#F97316" stroke-width="3" stroke-dasharray="81.68" stroke-dashoffset="81.68" stroke-linecap="round" transform="rotate(-90 17 17)"/>
+      </svg>
+      <span id="progress-num" class="header-progress-ring-num">0/18</span>
+    </div>
+    <div class="header-progress-lbl">מד מוכנות לטיול</div>
+  </a>
   <div class="header-left">
     <a href="order-summary.html" class="header-cart">
-      🛒&nbsp;<span class="woocommerce-Price-amount amount">0.00 ₪</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="12" height="12" style="position:absolute;top:4px;left:8px;opacity:0.9"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="white" stroke-width="1.5" fill="none"/><line x1="3" y1="6" x2="21" y2="6" stroke="white" stroke-width="1.5"/><path d="M16 10a4 4 0 01-8 0" stroke="white" stroke-width="1.5" fill="none"/></svg><span class="woocommerce-Price-amount amount">0.00 ₪</span>
     </a>
   </div>
 </header>
@@ -1186,7 +1199,17 @@ window.addUpsell = function(btn, id, name, price) {
     }
   } catch(e) {}
 })();
-</script>
+  (function(){
+    try{
+      var saved=JSON.parse(localStorage.getItem('guideProgress')||'{}');
+      var count=Object.keys(saved).length, total=18;
+      var circ=81.68;
+      var ring=document.getElementById('progress-ring');
+      if(ring) ring.style.strokeDashoffset=(circ*(1-count/total)).toFixed(2);
+      var num=document.getElementById('progress-num');
+      if(num) num.textContent=count+'/'+total;
+    }catch(e){}
+  })();</script>
 
 <!-- FLOATING BUTTONS -->
 <div class="float-btns">
