@@ -808,6 +808,7 @@
         </div>
 
         <!-- gender selection for מוצילה -->
+        <div id="sf-combo-wrap" style="display:block">
         <div id="sf-mocila-cards">
         <div class="sf-card" id="pack-rent-women" style="padding:16px;cursor:default">
 
@@ -846,18 +847,18 @@
         </div><!-- /#sf-mocila-cards -->
 
         <!-- תיק יום — רק ב"מוצילה + תיק יום" -->
-        <div id="sf-daypack-section" style="display:none;margin-top:20px">
-          <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 10px">תיק יום (כלול בחבילה):</p>
-          <div class="sf-cards-grid">
-            <div class="sf-card selected" id="pack-daypack" style="border-color:#F97316;background:#FFF7ED">
-              <div class="sf-badge-popular">✅ כלול</div>
-              <div class="sf-card-img">👜</div>
-              <h3>תיק יום 30L</h3>
-              <p class="sf-card-desc">תיק יום עם פתיחת מזוודה — אוספרי או גרגורי בלבד</p>
-              <div class="sf-price-rent">כלול במחיר החבילה</div>
-            </div>
+
+        <div id="sf-daypack-section" style="display:none;margin-top:12px">
+          <p style="font-size:13px;font-weight:700;color:#64748B;margin:0 0 8px">תיק יום (כלול בחבילה):</p>
+          <div style="background:#fff;border:2px solid #F97316;border-radius:14px;padding:12px;text-align:center">
+            <div style="display:inline-block;background:#16A34A;color:white;font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:8px">✅ כלול</div>
+            <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;aspect-ratio:1;object-fit:contain;background:#f8f8f8;border-radius:8px;margin-bottom:8px">
+            <div style="font-size:14px;font-weight:800;color:#0F172B">Osprey Sportlite 30</div>
+            <div style="font-size:12px;color:#64748B;margin-top:2px">כלול במחיר החבילה</div>
           </div>
         </div>
+
+        </div><!-- /#sf-combo-wrap -->
 
         <!-- תיק יום בלבד -->
         <div id="sf-daypack-only-section" style="display:none;margin-top:4px">
@@ -1248,8 +1249,15 @@
     document.getElementById('sf-subtype-pack').classList.toggle('active', t==='pack');
     document.getElementById('sf-subtype-both').classList.toggle('active', t==='both');
     document.getElementById('sf-subtype-daypack').classList.toggle('active', t==='daypack');
-    document.getElementById('sf-mocila-cards').style.display = t==='daypack' ? 'none' : '';
-    document.getElementById('sf-daypack-section').style.display = t==='both' ? '' : 'none';
+    var mosilaEl = document.getElementById('sf-mocila-cards');
+    var dayEl = document.getElementById('sf-daypack-section');
+    mosilaEl.style.display = t==='daypack' ? 'none' : '';
+    dayEl.style.display = t==='both' ? '' : 'none';
+    // side-by-side layout when both shown
+    var wrap = document.getElementById('sf-combo-wrap');
+    if(wrap) wrap.style.display = t==='both' ? 'grid' : 'block';
+    if(wrap) wrap.style.gridTemplateColumns = t==='both' ? '1fr 1fr' : '1fr';
+    if(wrap) wrap.style.gap = t==='both' ? '10px' : '0';
     document.getElementById('sf-daypack-only-section').style.display = t==='daypack' ? '' : 'none';
     selectedPack = null;
     document.getElementById('sf-next-1').disabled = true;
