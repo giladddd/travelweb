@@ -132,21 +132,31 @@
 
 <header class="site-header">
   <div style="display:flex;align-items:center;gap:12px">
-    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburger" aria-label="תפריט"><span></span><span></span><span></span></button>
     <a href="index.html" class="header-logo">
       <img src="assets/images/2024_03_cropped-logo.png" alt="המטייל החכם">
     </a>
   </div>
-  <a href="order-summary.html" class="header-cart">
-    🛒&nbsp;<span id="cart-total">0.00 ₪</span>
-  </a>
+  <nav class="header-nav">
+    <a href="categories/bags-rental.html">מוצ'ילות</a>
+    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+    <a href="categories/rental.html">ציוד</a>
+    <a href="guide.html">מדריך</a>
+    <a href="about.html">אודות</a>
+    <a href="https://wa.me/972523960215" target="_blank">WhatsApp</a>
+  </nav>
+  <div class="header-left">
+    <a href="order-summary.html" class="header-cart">
+      🛒&nbsp;<span id="cart-total">0.00 ₪</span>
+    </a>
+  </div>
 </header>
 
 <!-- Hero + Video -->
 <div class="hero-section">
   <h1 class="hero-title">הסיפור של <span>המטייל החכם</span></h1>
   <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/m0eCZXGswDo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;aspect-ratio:9/16;border-radius:12px"></iframe>
+    <iframe src="https://www.youtube.com/embed/m0eCZXGswDo?rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%;aspect-ratio:9/16;border-radius:12px;display:block"></iframe>
   </div>
 </div>
 
