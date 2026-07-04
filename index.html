@@ -850,7 +850,7 @@
             <div class="sf-card selected" id="pack-daypack" style="border-color:#F97316;background:#FFF7ED">
               <div class="sf-badge-popular">✅ כלול</div>
               <div class="sf-card-img">👜</div>
-              <h3>תיק יום 30–35L</h3>
+              <h3>תיק יום 30L</h3>
               <p class="sf-card-desc">תיק יום עם פתיחת מזוודה — אוספרי או גרגורי בלבד</p>
               <div class="sf-price-rent">כלול במחיר החבילה</div>
             </div>
@@ -863,8 +863,8 @@
             <div class="sf-card" id="pack-daypack-only" onclick="selectPack('daypack-only')">
               <div class="sf-badge-popular">👜 תיק יום</div>
               <div class="sf-card-img">👜</div>
-              <h3>תיק יום 30–35L</h3>
-              <p class="sf-card-desc">Osprey Skarab 34L — פתיחת מזוודה, 34 ליטר</p>
+              <h3>תיק יום 30L</h3>
+              <p class="sf-card-desc">Osprey Sportlite 30 — פתיחת מזוודה, 34 ליטר</p>
               <div class="sf-price-rent" id="price-rent-dayonly">₪<strong id="pd-val">99</strong> סה״כ</div>
               <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('daypack-only')">+ הוסף לסל</button>
             </div>
@@ -909,9 +909,9 @@
               <div class="sf-badge-popular">🔥 הקומבו הפופולרי</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
                 <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="מוצילה" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px">
-                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.33.29-2-600x731.jpeg" alt="תיק יום" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px">
+                <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="תיק יום" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px">
               </div>
-              <h3>מוצילה 65L + תיק יום 34L</h3>
+              <h3>מוצילה 65L + תיק יום 30L</h3>
               <p class="sf-card-desc">מוצילה גדולה לאחסון + תיק יום לטיולים יומיים — מותאם אישית לכל לקוח</p>
               <div class="sf-price-buy">₪<strong>1,799</strong> <span style="font-size:12px;color:#64748B">לשניהם יחד</span></div>
               <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('buy-combo')">+ הוסף לסל</button>
@@ -924,9 +924,9 @@
           <div class="sf-cards-grid">
             <div class="sf-card" id="pack-buy-daypack" onclick="selectPack('buy-daypack')">
               <div class="sf-badge-popular">👜 תיק יום</div>
-              <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.33.29-2-600x731.jpeg" alt="תיק יום" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;margin-bottom:8px">
-              <h3>תיק יום 34L</h3>
-              <p class="sf-card-desc">Osprey Skarab 34L — פתיחת מזוודה, מושלם לטיולי יום</p>
+              <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="תיק יום" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;margin-bottom:8px">
+              <h3>תיק יום 30L</h3>
+              <p class="sf-card-desc">Osprey Sportlite 30 — פתיחת מזוודה, מושלם לטיולי יום</p>
               <div class="sf-price-buy">₪<strong>579</strong></div>
               <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('buy-daypack')">+ הוסף לסל</button>
             </div>
@@ -1322,9 +1322,9 @@
     'rent-men':     'מוצילה לגברים 60–70L (אוספרי/גרגורי)',
     'buy-women':    'מוצילה לנשים 65L — קנייה',
     'buy-men':      'מוצילה לגברים 65L — קנייה',
-    'buy-combo':    'מוצילה 65L + תיק יום 34L — קנייה',
-    'buy-daypack':  'תיק יום 34L (Osprey Skarab) — קנייה',
-    'daypack-only': 'תיק יום 30–35L (Osprey Skarab)'
+    'buy-combo':    'מוצילה 65L + תיק יום 30L — קנייה',
+    'buy-daypack':  'תיק יום 30L (Osprey Sportlite 30) — קנייה',
+    'daypack-only': 'תיק יום 30L (Osprey Sportlite 30)'
   };
   var buySubtype = 'pack';
   var buyGender = 'women';
@@ -1411,7 +1411,7 @@
     if(!selectedPack){ alert('אנא בחרו מוצילה בשלב 1'); goStep(1); return; }
     var packPrice = mode==='rent' ? calcRentPrice(months) : packBuyPrices[selectedPack];
     var name = allPackNames[selectedPack] || selectedPack;
-    if (mode==='rent' && subtype==='both') name += ' + תיק יום 30–35L';
+    if (mode==='rent' && subtype==='both') name += ' + תיק יום 30L';
     var monthLabel = months + (months===1?' חודש':' חודשים');
     if (mode==='rent') name += ' — ' + monthLabel;
     addItemToCart({id:selectedPack, name:name, price:packPrice, qty:1, mode:mode, duration:mode==='rent'?months:null});
@@ -1424,7 +1424,7 @@
     var el = document.getElementById('pack-'+id); if(el) el.classList.add('selected');
     var packPrice = mode==='rent' ? calcRentPrice(months) : packBuyPrices[id];
     var name = allPackNames[id] || id;
-    if (mode==='rent' && subtype==='both') name += ' + תיק יום 30–35L';
+    if (mode==='rent' && subtype==='both') name += ' + תיק יום 30L';
     var monthLabel = months + (months===1?' חודש':' חודשים');
     if (mode==='rent') name += ' — ' + monthLabel;
     addItemToCart({id:id+'-m'+months, name:name, price:packPrice, qty:1, mode:mode, duration:mode==='rent'?months:null});
