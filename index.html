@@ -708,6 +708,19 @@
   .sf-cat-tab.active { background: #F97316; color: white; }
   .sf-cat-panel { display: none; }
   .sf-cat-panel.active { display: block; }
+  /* duo carousels in form */
+  .sf-duo-carousels { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .sf-mini-wrap { position: relative; }
+  .sf-mini-box { overflow: hidden; border-radius: 10px; background: #f8fafc; aspect-ratio: 3/4; }
+  .sf-mini-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sf-mini-track { display: flex; transition: transform 0.35s ease; height: 100%; }
+  .sf-mini-track img { min-width: 100%; height: 100%; object-fit: cover; }
+  .sf-mini-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.15); padding: 0; z-index: 1; }
+  .sf-mini-arrow-r { right: 4px; }
+  .sf-mini-arrow-l { left: 4px; }
+  .sf-mini-label { text-align: center; font-size: 11px; font-weight: 700; color: #64748B; margin-top: 5px; }
+  .sf-mini-sublabel { text-align: center; font-size: 10px; font-weight: 600; color: #94A3B8; }
+  .sf-pack-card { background: white; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 16px; }
   .sf-prod-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -804,142 +817,137 @@
 
       <!-- RENT FLOW -->
       <div id="sf-rent-flow">
-        <!-- sub-choice -->
+        <!-- sub-choice (reordered: combo first) -->
         <div style="margin-bottom:16px">
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="sf-subtype-btn active" id="sf-subtype-pack" onclick="setSubtype('pack')">🎒 מוצילה</button>
-            <button class="sf-subtype-btn" id="sf-subtype-both" onclick="setSubtype('both')">🎒+👜 מוצילה + תיק יום</button>
+            <button class="sf-subtype-btn active" id="sf-subtype-both" onclick="setSubtype('both')">🎒+👜 מוצ'ילה + תיק יום</button>
+            <button class="sf-subtype-btn" id="sf-subtype-pack" onclick="setSubtype('pack')">🎒 מוצ'ילה</button>
             <button class="sf-subtype-btn" id="sf-subtype-daypack" onclick="setSubtype('daypack')">👜 תיק יום</button>
           </div>
         </div>
 
-        <!-- bags: mochila + optional day bag side-by-side -->
-        <div id="sf-combo-wrap" style="display:block">
-        <div id="sf-mocila-cards">
-        <div class="sf-card" id="pack-rent-women" style="padding:16px;cursor:default">
-
-          <!-- label shown only in "both" mode -->
-          <div id="sf-mochila-label" style="display:none;font-size:12px;font-weight:700;color:#F97316;margin-bottom:8px">🎒 מוצילה גדולה</div>
-
-          <!-- Carousel -->
-          <div style="position:relative;margin-bottom:12px">
-            <div id="rent-carousel" style="overflow:hidden;border-radius:12px;background:#f8fafc">
-              <div id="rent-carousel-track" style="display:flex;transition:transform 0.35s ease">
-                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
-                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-4-600x722.jpeg" alt="Gregory Deva 60" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
-                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-3.jpeg" alt="Osprey Aura 65" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
-                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.00-2.jpeg" alt="Kyte 68" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
-                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg" alt="Kestrel LT 65" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
-                <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.25.30-1-600x596.jpeg" alt="Osprey Kestrel 68" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+        <!-- SECTION: מוצ'ילה + תיק יום (default) -->
+        <div id="sf-rent-both">
+          <div style="background:#FFF7ED;border:1.5px solid #FDBA74;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#92400E;line-height:1.5">
+            <strong>שימו לב:</strong> הדגמים להמחשה בלבד — תיק מתאים יותאם באופן אישי לכל לקוח
+          </div>
+          <div class="sf-pack-card">
+            <div class="sf-duo-carousels">
+              <!-- Mochila carousel -->
+              <div class="sf-mini-wrap">
+                <div class="sf-mini-box">
+                  <div class="sf-mini-track" id="sf-combo-mochila-track">
+                    <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65" loading="lazy">
+                    <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg" alt="Kestrel LT 65" loading="lazy">
+                    <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-4-600x722.jpeg" alt="Gregory Deva 60" loading="lazy">
+                    <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-3.jpeg" alt="Osprey Aura 65" loading="lazy">
+                    <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.00-2.jpeg" alt="Kyte 68" loading="lazy">
+                    <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.25.30-1-600x596.jpeg" alt="Osprey Kestrel 68" loading="lazy">
+                  </div>
+                </div>
+                <button class="sf-mini-arrow sf-mini-arrow-r" onclick="sfComboMochilaMove(-1)">›</button>
+                <button class="sf-mini-arrow sf-mini-arrow-l" onclick="sfComboMochilaMove(1)">‹</button>
+                <div class="sf-mini-label">🎒 מוצ'ילה</div>
+                <div class="sf-mini-sublabel" id="sf-combo-mochila-name">Kyte LT 65</div>
+              </div>
+              <!-- Day bag -->
+              <div class="sf-mini-wrap">
+                <div class="sf-mini-box" style="background:white">
+                  <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="object-fit:contain;padding:8px">
+                </div>
+                <div class="sf-mini-label">👜 תיק יום</div>
+                <div class="sf-mini-sublabel">Osprey Sportlite 30</div>
               </div>
             </div>
-            <button onclick="rentCarouselMove(-1)" style="position:absolute;top:50%;right:6px;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1">›</button>
-            <button onclick="rentCarouselMove(1)" style="position:absolute;top:50%;left:6px;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1">‹</button>
-            <div id="rent-carousel-name" style="text-align:center;font-size:12px;color:#64748B;margin-top:6px">Gregory Deva 60</div>
-          </div>
 
-          <!-- hidden in "both" mode -->
-          <div id="sf-pack-details">
+            <h3 style="font-size:15px;font-weight:800;color:#0F172B;margin-bottom:4px">מוצ'ילה + תיק יום להשכרה</h3>
+            <p style="font-size:13px;color:#64748B;margin-bottom:14px">הקומבו המושלם — מוצ'ילה גדולה + תיק יום, מותאמים אישית</p>
+
+            <div style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</div>
+            <div style="display:flex;gap:8px;margin-bottom:14px">
+              <button id="sf-combo-gender-w" onclick="setSfComboGender('women')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
+              <button id="sf-combo-gender-m" onclick="setSfComboGender('men')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
+            </div>
+
+            <div style="margin-bottom:14px">
+              <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">מספר חודשי השכרה:</p>
+              <select id="sf-months-select-both" onchange="updateMonths(this.value)" style="width:100%;border:2px solid #F97316;border-radius:8px;padding:8px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
+                <option value="1">חודש 1 — ₪269</option>
+                <option value="2">חודשים 2 — ₪369</option>
+                <option value="3" selected>חודשים 3 — ₪469</option>
+                <option value="4">חודשים 4 — ₪569</option>
+                <option value="5">חודשים 5 — ₪669</option>
+                <option value="6">חודשים 6 — ₪769</option>
+                <option value="7">חודשים 7 — ₪769</option>
+                <option value="8">חודשים 8 — ₪769</option>
+              </select>
+            </div>
+            <div style="font-size:28px;font-weight:900;color:#F97316;margin-bottom:4px">₪<strong id="pb-val">469</strong></div>
+            <div id="sf-both-subtitle" style="font-size:13px;color:#64748B;margin-bottom:14px">מוצ'ילה + תיק יום — 3 חודשים</div>
+            <button class="sf-add-btn" style="width:100%" onclick="addRentMocila()">+ הוסף לסל</button>
+          </div>
+        </div>
+
+        <!-- SECTION: מוצ'ילה בלבד -->
+        <div id="sf-rent-pack" style="display:none">
+          <div class="sf-pack-card" id="pack-rent-women" style="cursor:default">
+            <div style="position:relative;margin-bottom:12px">
+              <div id="rent-carousel" style="overflow:hidden;border-radius:12px;background:#f8fafc">
+                <div id="rent-carousel-track" style="display:flex;transition:transform 0.35s ease">
+                  <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                  <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-4-600x722.jpeg" alt="Gregory Deva 60" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                  <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-3.jpeg" alt="Osprey Aura 65" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                  <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.00-2.jpeg" alt="Kyte 68" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                  <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg" alt="Kestrel LT 65" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                  <img src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.25.30-1-600x596.jpeg" alt="Osprey Kestrel 68" style="width:100%;flex-shrink:0;height:220px;object-fit:contain">
+                </div>
+              </div>
+              <button onclick="rentCarouselMove(-1)" style="position:absolute;top:50%;right:6px;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1">›</button>
+              <button onclick="rentCarouselMove(1)" style="position:absolute;top:50%;left:6px;transform:translateY(-50%);background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1">‹</button>
+              <div id="rent-carousel-name" style="text-align:center;font-size:12px;color:#64748B;margin-top:6px">Kyte LT 65</div>
+            </div>
             <h3 style="font-size:15px;font-weight:800;color:#0F172B;margin-bottom:4px">מוצ'ילה עם פתיחת מזוודה 60–70L</h3>
             <p style="font-size:13px;color:#64748B;margin-bottom:14px">התאמה אישית לפי מבנה הגוף — אוספרי / גרגורי</p>
-
-            <!-- Gender toggle -->
-            <div id="sf-gender-row" style="margin-bottom:14px">
+            <div style="margin-bottom:14px">
               <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</p>
               <div style="display:flex;gap:8px">
                 <button id="rent-gender-women" onclick="setRentGender('women')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
                 <button id="rent-gender-men" onclick="setRentGender('men')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
               </div>
             </div>
-
-            <!-- months selector inside card (pack-only mode) -->
-            <div id="sf-months-in-card" style="margin-bottom:14px">
+            <div style="margin-bottom:14px">
               <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">מספר חודשי השכרה:</p>
               <select id="sf-months-select" onchange="updateMonths(this.value)" style="width:100%;border:2px solid #F97316;border-radius:8px;padding:8px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
-                <option value="1">1 חודש</option>
-                <option value="2">2 חודשים</option>
-                <option value="3" selected>3 חודשים</option>
-                <option value="4">4 חודשים</option>
-                <option value="5">5 חודשים</option>
-                <option value="6">6 חודשים</option>
-                <option value="7">7 חודשים</option>
-                <option value="8">8 חודשים</option>
+                <option value="1">1 חודש</option><option value="2">2 חודשים</option><option value="3" selected>3 חודשים</option><option value="4">4 חודשים</option><option value="5">5 חודשים</option><option value="6">6 חודשים</option><option value="7">7 חודשים</option><option value="8">8 חודשים</option>
               </select>
             </div>
-
-            <div id="sf-pack-price-row">
-              <div class="sf-price-rent" id="price-rent-women" style="margin-bottom:12px">₪<strong id="pw-val">369</strong> סה״כ</div>
-              <button class="sf-add-btn" onclick="addRentMocila()">+ הוסף לסל</button>
-            </div>
-          </div>
-        </div>
-        </div><!-- /#sf-mocila-cards -->
-
-        <!-- תיק יום — רק ב"מוצילה + תיק יום" -->
-        <div id="sf-daypack-section" style="display:none">
-          <div style="background:#fff;border:2px solid #F97316;border-radius:14px;padding:12px;text-align:center;height:100%;box-sizing:border-box">
-            <div style="font-size:12px;font-weight:700;color:#F97316;margin-bottom:8px">👜 תיק יום</div>
-            <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;aspect-ratio:1;object-fit:contain;background:#f8f8f8;border-radius:8px;margin-bottom:8px">
-            <div style="font-size:13px;font-weight:800;color:#0F172B">Osprey Sportlite 30</div>
+            <div class="sf-price-rent" style="margin-bottom:12px">₪<strong id="pw-val">369</strong> סה״כ</div>
+            <button class="sf-add-btn" onclick="addRentMocila()">+ הוסף לסל</button>
           </div>
         </div>
 
-        </div><!-- /#sf-combo-wrap -->
-
-        <!-- bottom controls for "both" mode -->
-        <div id="sf-both-bottom" style="display:none;margin-top:16px">
-          <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#92400E;text-align:center">
-            שימו לב: הדגמים להמחשה בלבד — חיוב מותאם יותאם באופן אישי לכל לקוח
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap">
-            <label style="font-weight:700;color:#0F172B;font-size:14px">מספר חודשים:</label>
-            <select id="sf-months-select-both" onchange="updateMonths(this.value)" style="border:2px solid #F97316;border-radius:8px;padding:6px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
-              <option value="1">1 חודש</option>
-              <option value="2">2 חודשים</option>
-              <option value="3" selected>3 חודשים</option>
-              <option value="4">4 חודשים</option>
-              <option value="5">5 חודשים</option>
-              <option value="6">6 חודשים</option>
-              <option value="7">7 חודשים</option>
-              <option value="8">8 חודשים</option>
-            </select>
-          </div>
-          <div style="font-size:28px;font-weight:900;color:#F97316;margin-bottom:4px">₪<strong id="pb-val">269</strong></div>
-          <div id="sf-both-subtitle" style="font-size:13px;color:#64748B;margin-bottom:14px">מוצילה + תיק יום — 3 חודשים</div>
-          <button class="sf-add-btn" style="width:100%" onclick="addRentMocila()">+ הוסף לסל</button>
-        </div>
-
-        <!-- תיק יום בלבד -->
-        <div id="sf-daypack-only-section" style="display:none;margin-top:4px">
-          <div class="sf-cards-grid" style="grid-template-columns:1fr">
-            <div class="sf-card" id="pack-daypack-only" style="cursor:default">
-              <div class="sf-badge-popular">👜 תיק יום</div>
-              <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;margin-bottom:8px;background:#f8f8f8">
-              <h3>תיק יום 30L</h3>
-              <p class="sf-card-desc">Osprey Sportlite 30 — פתיחת מזוודה, 30 ליטר</p>
-              <div style="margin-bottom:14px">
-                <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</p>
-                <div style="display:flex;gap:8px">
-                  <button id="day-gender-women" onclick="setDayGender('women')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
-                  <button id="day-gender-men" onclick="setDayGender('men')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
-                </div>
+        <!-- SECTION: תיק יום בלבד -->
+        <div id="sf-rent-daypack" style="display:none">
+          <div class="sf-pack-card" id="pack-daypack-only" style="cursor:default">
+            <div class="sf-badge-popular">👜 תיק יום</div>
+            <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;margin-bottom:8px;background:#f8f8f8">
+            <h3>תיק יום 30L</h3>
+            <p class="sf-card-desc">Osprey Sportlite 30 — פתיחת מזוודה, 30 ליטר</p>
+            <div style="margin-bottom:14px">
+              <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</p>
+              <div style="display:flex;gap:8px">
+                <button id="day-gender-women" onclick="setDayGender('women')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
+                <button id="day-gender-men" onclick="setDayGender('men')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
               </div>
-              <div style="margin-bottom:14px">
-                <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">מספר חודשי השכרה:</p>
-                <select id="sf-months-select-day" onchange="updateMonths(this.value)" style="width:100%;border:2px solid #F97316;border-radius:8px;padding:8px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
-                  <option value="1">1 חודש — ₪99</option>
-                  <option value="2">2 חודשים — ₪148</option>
-                  <option value="3" selected>3 חודשים — ₪197</option>
-                  <option value="4">4 חודשים — ₪246</option>
-                  <option value="5">5 חודשים — ₪295</option>
-                  <option value="6">6 חודשים — ₪344</option>
-                  <option value="7">7 חודשים — ₪344</option>
-                  <option value="8">8 חודשים — ₪344</option>
-                </select>
-              </div>
-              <div class="sf-price-rent" id="price-rent-dayonly" style="margin-bottom:12px">₪<strong id="pd-val">197</strong> סה״כ</div>
-              <button class="sf-add-btn" onclick="addPackToCart('daypack-only')">+ הוסף לסל</button>
             </div>
+            <div style="margin-bottom:14px">
+              <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">מספר חודשי השכרה:</p>
+              <select id="sf-months-select-day" onchange="updateMonths(this.value)" style="width:100%;border:2px solid #F97316;border-radius:8px;padding:8px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
+                <option value="1">1 חודש — ₪99</option><option value="2">2 חודשים — ₪148</option><option value="3" selected>3 חודשים — ₪197</option><option value="4">4 חודשים — ₪246</option><option value="5">5 חודשים — ₪295</option><option value="6">6 חודשים — ₪344</option><option value="7">7 חודשים — ₪344</option><option value="8">8 חודשים — ₪344</option>
+              </select>
+            </div>
+            <div class="sf-price-rent" id="price-rent-dayonly" style="margin-bottom:12px">₪<strong id="pd-val">197</strong> סה״כ</div>
+            <button class="sf-add-btn" onclick="addPackToCart('daypack-only')">+ הוסף לסל</button>
           </div>
         </div>
       </div><!-- /#sf-rent-flow -->
@@ -950,14 +958,14 @@
         <div style="margin-bottom:20px">
           <p style="font-size:14px;font-weight:700;color:#0F172B;margin:0 0 10px">מה תרצו לקנות?</p>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <button class="sf-subtype-btn active" id="sf-buy-subtype-pack" onclick="setBuySubtype('pack')">🎒 מוצילה בלבד</button>
-            <button class="sf-subtype-btn" id="sf-buy-subtype-both" onclick="setBuySubtype('both')">🎒+👜 מוצילה + תיק יום</button>
-            <button class="sf-subtype-btn" id="sf-buy-subtype-daypack" onclick="setBuySubtype('daypack')">👜 תיק יום בלבד</button>
+            <button class="sf-subtype-btn active" id="sf-buy-subtype-both" onclick="setBuySubtype('both')">🎒+👜 מוצ'ילה + תיק יום</button>
+            <button class="sf-subtype-btn" id="sf-buy-subtype-pack" onclick="setBuySubtype('pack')">🎒 מוצ'ילה</button>
+            <button class="sf-subtype-btn" id="sf-buy-subtype-daypack" onclick="setBuySubtype('daypack')">👜 תיק יום</button>
           </div>
         </div>
 
-        <!-- מוצילה בלבד -->
-        <div id="sf-buy-pack-section">
+        <!-- מוצ'ילה בלבד -->
+        <div id="sf-buy-pack-section" style="display:none">
           <div class="sf-cards-grid" style="grid-template-columns:1fr">
             <div class="sf-card" id="pack-buy-women" style="cursor:default">
               <img id="buy-pack-img" src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="Kyte LT 65" style="width:100%;aspect-ratio:3/4;object-fit:contain;border-radius:10px;margin-bottom:12px;background:#f8f8f8">
@@ -977,32 +985,42 @@
           </div>
         </div>
 
-        <!-- מוצילה + תיק יום -->
-        <div id="sf-buy-both-section" style="display:none">
-          <div class="sf-cards-grid" style="grid-template-columns:1fr">
-            <div class="sf-card" id="pack-buy-combo" style="cursor:default">
-              <div class="sf-badge-popular">🔥 הקומבו הפופולרי</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-                <img id="buy-combo-pack-img" src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="מוצילה" style="width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;background:#f8f8f8">
-                <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="תיק יום" style="width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;background:#f8f8f8">
-              </div>
-              <h3>מוצילה 65L + תיק יום 30L</h3>
-              <p class="sf-card-desc">מוצילה גדולה לאחסון + תיק יום לטיולים יומיים — מותאם אישית לכל לקוח</p>
-              <div style="margin-bottom:14px">
-                <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם מוצילה:</p>
-                <div style="display:flex;gap:8px">
-                  <button id="buy-combo-gender-w" onclick="setBuyComboGender('women',event)" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
-                  <button id="buy-combo-gender-m" onclick="setBuyComboGender('men',event)" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
+        <!-- מוצ'ילה + תיק יום -->
+        <div id="sf-buy-both-section">
+          <div class="sf-pack-card" id="pack-buy-combo" style="cursor:default">
+            <div class="sf-badge-popular">🔥 הקומבו הפופולרי</div>
+            <div class="sf-duo-carousels" style="margin-top:10px">
+              <div class="sf-mini-wrap">
+                <div class="sf-mini-box">
+                  <img id="buy-combo-pack-img" src="assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg" alt="מוצ'ילה" style="object-fit:contain">
                 </div>
+                <div class="sf-mini-label">🎒 מוצ'ילה</div>
+                <div class="sf-mini-sublabel" id="buy-combo-mochila-name">Kyte LT 65</div>
               </div>
-              <div class="sf-price-buy">₪<strong>1,799</strong> <span style="font-size:12px;color:#64748B">לשניהם יחד</span></div>
-              <button class="sf-add-btn" onclick="addPackToCart('buy-combo')">+ הוסף לסל</button>
+              <div class="sf-mini-wrap">
+                <div class="sf-mini-box" style="background:white">
+                  <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="תיק יום" style="object-fit:contain;padding:8px">
+                </div>
+                <div class="sf-mini-label">👜 תיק יום</div>
+                <div class="sf-mini-sublabel">Osprey Sportlite 30</div>
+              </div>
             </div>
+            <h3 style="font-size:15px;font-weight:800;color:#0F172B;margin-bottom:4px">מוצ'ילה 65L + תיק יום 30L</h3>
+            <p class="sf-card-desc">מוצ'ילה גדולה לאחסון + תיק יום לטיולים יומיים — מותאם אישית לכל לקוח</p>
+            <div style="margin-bottom:14px">
+              <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם מוצ'ילה:</p>
+              <div style="display:flex;gap:8px">
+                <button id="buy-combo-gender-w" onclick="setBuyComboGender('women',event)" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
+                <button id="buy-combo-gender-m" onclick="setBuyComboGender('men',event)" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
+              </div>
+            </div>
+            <div class="sf-price-buy">₪<strong>1,799</strong> <span style="font-size:12px;color:#64748B">לשניהם יחד</span></div>
+            <button class="sf-add-btn" onclick="addPackToCart('buy-combo')">+ הוסף לסל</button>
           </div>
         </div>
 
         <!-- תיק יום בלבד -->
-        <div id="sf-buy-daypack-section" style="display:none">
+        <div id="sf-buy-daypack-section" style="display:none;">
           <div class="sf-cards-grid">
             <div class="sf-card" id="pack-buy-daypack" onclick="selectPack('buy-daypack')">
               <div class="sf-badge-popular">👜 תיק יום</div>
@@ -1327,30 +1345,62 @@
   }
   window.setSubtype = function(t) {
     subtype = t;
-    document.getElementById('sf-subtype-pack').classList.toggle('active', t==='pack');
-    document.getElementById('sf-subtype-both').classList.toggle('active', t==='both');
-    document.getElementById('sf-subtype-daypack').classList.toggle('active', t==='daypack');
-    var mosilaEl = document.getElementById('sf-mocila-cards');
-    var dayEl = document.getElementById('sf-daypack-section');
-    mosilaEl.style.display = t==='daypack' ? 'none' : '';
-    dayEl.style.display = t==='both' ? '' : 'none';
-    // side-by-side layout when both shown
-    var wrap = document.getElementById('sf-combo-wrap');
-    if(wrap) wrap.style.display = t==='both' ? 'grid' : 'block';
-    if(wrap) wrap.style.gridTemplateColumns = t==='both' ? '1fr 1fr' : '1fr';
-    if(wrap) wrap.style.gap = t==='both' ? '10px' : '0';
-    document.getElementById('sf-daypack-only-section').style.display = t==='daypack' ? '' : 'none';
-    // toggle pack details vs both-bottom
-    var packDetails = document.getElementById('sf-pack-details');
-    var bothBottom = document.getElementById('sf-both-bottom');
-    var mochilaLabel = document.getElementById('sf-mochila-label');
-    if (packDetails) packDetails.style.display = t==='both' ? 'none' : '';
-    if (bothBottom) bothBottom.style.display = t==='both' ? '' : 'none';
-    if (mochilaLabel) mochilaLabel.style.display = t==='both' ? '' : 'none';
+    ['both','pack','daypack'].forEach(function(k){
+      document.getElementById('sf-subtype-'+k).classList.toggle('active', k===t);
+    });
+    document.getElementById('sf-rent-both').style.display    = t==='both'    ? '' : 'none';
+    document.getElementById('sf-rent-pack').style.display    = t==='pack'    ? '' : 'none';
+    document.getElementById('sf-rent-daypack').style.display = t==='daypack' ? '' : 'none';
     selectedPack = null;
     document.getElementById('sf-next-1').disabled = true;
     document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
     refreshPriceDisplay();
+  };
+
+  // combo mochila carousel in rent-both section
+  var sfComboMochilaIdx = 0;
+  var sfComboMochilaNames = ['Kyte LT 65','Kestrel LT 65','Gregory Deva 60','Osprey Aura 65','Kyte 68','Osprey Kestrel 68'];
+  window.sfComboMochilaMove = function(dir) {
+    var track = document.getElementById('sf-combo-mochila-track');
+    if(!track) return;
+    var total = track.children.length;
+    sfComboMochilaIdx = (sfComboMochilaIdx + dir + total) % total;
+    track.style.transform = 'translateX(' + (sfComboMochilaIdx * 100) + '%)';
+    var nameEl = document.getElementById('sf-combo-mochila-name');
+    if(nameEl) nameEl.textContent = sfComboMochilaNames[sfComboMochilaIdx] || '';
+  };
+
+  // gender toggle for rent-both section (updates mochila image)
+  var sfComboGender = 'women';
+  var sfComboWomenImgs = [
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-4-600x722.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-3.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.00-2.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.25.30-1-600x596.jpeg'
+  ];
+  var sfComboMenImgs = [
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.25.30-1-600x596.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.21-3.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-3.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.20-1-600x575.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.26.00-2.jpeg',
+    'assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.27.00-4-600x722.jpeg'
+  ];
+  window.setSfComboGender = function(g) {
+    sfComboGender = g;
+    document.getElementById('sf-combo-gender-w').style.borderColor = g==='women' ? '#F97316' : '#E2E8F0';
+    document.getElementById('sf-combo-gender-w').style.background  = g==='women' ? '#FFF7ED' : '#fff';
+    document.getElementById('sf-combo-gender-w').style.color       = g==='women' ? '#F97316' : '#64748B';
+    document.getElementById('sf-combo-gender-m').style.borderColor = g==='men'   ? '#F97316' : '#E2E8F0';
+    document.getElementById('sf-combo-gender-m').style.background  = g==='men'   ? '#FFF7ED' : '#fff';
+    document.getElementById('sf-combo-gender-m').style.color       = g==='men'   ? '#F97316' : '#64748B';
+    var imgs = g==='women' ? sfComboWomenImgs : sfComboMenImgs;
+    var track = document.getElementById('sf-combo-mochila-track');
+    if(track) Array.from(track.children).forEach(function(img,i){ img.src = imgs[i] || imgs[0]; });
+    sfComboMochilaIdx = 0;
+    if(track) track.style.transform = 'translateX(0)';
   };
   window.updateMonths = function(v) {
     months = parseInt(v);
@@ -1522,7 +1572,7 @@
   };
   window.setBuySubtype = function(t) {
     buySubtype = t;
-    ['pack','both','daypack'].forEach(function(k){
+    ['both','pack','daypack'].forEach(function(k){
       document.getElementById('sf-buy-subtype-'+k).classList.toggle('active', k===t);
     });
     document.getElementById('sf-buy-pack-section').style.display    = t==='pack'    ? '' : 'none';
@@ -1558,6 +1608,8 @@
   };
   injectAddButtons();
   updateHeader();
+  setSubtype('both');
+  setBuySubtype('both');
   refreshPriceDisplay();
 })();
 </script>
