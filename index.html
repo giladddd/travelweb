@@ -791,6 +791,9 @@
         <div id="sf-mocila-cards">
         <div class="sf-card" id="pack-rent-women" style="padding:16px;cursor:default">
 
+          <!-- label shown only in "both" mode -->
+          <div id="sf-mochila-label" style="display:none;font-size:12px;font-weight:700;color:#F97316;margin-bottom:8px">🎒 מוצילה גדולה</div>
+
           <!-- Carousel -->
           <div style="position:relative;margin-bottom:12px">
             <div id="rent-carousel" style="overflow:hidden;border-radius:12px;background:#f8fafc">
@@ -808,22 +811,62 @@
             <div id="rent-carousel-name" style="text-align:center;font-size:12px;color:#64748B;margin-top:6px">Gregory Deva 60</div>
           </div>
 
-          <h3 style="font-size:15px;font-weight:800;color:#0F172B;margin-bottom:4px">מוצ'ילה עם פתיחת מזוודה 60–70L</h3>
-          <p style="font-size:13px;color:#64748B;margin-bottom:14px">התאמה אישית לפי מבנה הגוף — אוספרי / גרגורי</p>
+          <!-- hidden in "both" mode -->
+          <div id="sf-pack-details">
+            <h3 style="font-size:15px;font-weight:800;color:#0F172B;margin-bottom:4px">מוצ'ילה עם פתיחת מזוודה 60–70L</h3>
+            <p style="font-size:13px;color:#64748B;margin-bottom:14px">התאמה אישית לפי מבנה הגוף — אוספרי / גרגורי</p>
 
-          <!-- Gender toggle -->
-          <div style="margin-bottom:14px">
-            <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</p>
-            <div style="display:flex;gap:8px">
-              <button id="rent-gender-women" onclick="setRentGender('women')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
-              <button id="rent-gender-men" onclick="setRentGender('men')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
+            <!-- Gender toggle -->
+            <div id="sf-gender-row" style="margin-bottom:14px">
+              <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</p>
+              <div style="display:flex;gap:8px">
+                <button id="rent-gender-women" onclick="setRentGender('women')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
+                <button id="rent-gender-men" onclick="setRentGender('men')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
+              </div>
+            </div>
+
+            <!-- months selector inside card (pack-only mode) -->
+            <div id="sf-months-in-card" style="margin-bottom:14px">
+              <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">מספר חודשי השכרה:</p>
+              <select id="sf-months-select" onchange="updateMonths(this.value)" style="width:100%;border:2px solid #F97316;border-radius:8px;padding:8px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
+                <option value="1">1 חודש</option>
+                <option value="2">2 חודשים</option>
+                <option value="3" selected>3 חודשים</option>
+                <option value="4">4 חודשים</option>
+                <option value="5">5 חודשים</option>
+                <option value="6">6 חודשים</option>
+                <option value="7">7 חודשים</option>
+                <option value="8">8 חודשים</option>
+              </select>
+            </div>
+
+            <div id="sf-pack-price-row">
+              <div class="sf-price-rent" id="price-rent-women" style="margin-bottom:12px">₪<strong id="pw-val">369</strong> סה״כ</div>
+              <button class="sf-add-btn" onclick="addRentMocila()">+ הוסף לסל</button>
             </div>
           </div>
+        </div>
+        </div><!-- /#sf-mocila-cards -->
 
-          <!-- months selector inside card -->
-          <div style="margin-bottom:14px">
-            <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">מספר חודשי השכרה:</p>
-            <select id="sf-months-select" onchange="updateMonths(this.value)" style="width:100%;border:2px solid #F97316;border-radius:8px;padding:8px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
+        <!-- תיק יום — רק ב"מוצילה + תיק יום" -->
+        <div id="sf-daypack-section" style="display:none">
+          <div style="background:#fff;border:2px solid #F97316;border-radius:14px;padding:12px;text-align:center;height:100%;box-sizing:border-box">
+            <div style="font-size:12px;font-weight:700;color:#F97316;margin-bottom:8px">👜 תיק יום</div>
+            <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;aspect-ratio:1;object-fit:contain;background:#f8f8f8;border-radius:8px;margin-bottom:8px">
+            <div style="font-size:13px;font-weight:800;color:#0F172B">Osprey Sportlite 30</div>
+          </div>
+        </div>
+
+        </div><!-- /#sf-combo-wrap -->
+
+        <!-- bottom controls for "both" mode -->
+        <div id="sf-both-bottom" style="display:none;margin-top:16px">
+          <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#92400E;text-align:center">
+            שימו לב: הדגמים להמחשה בלבד — חיוב מותאם יותאם באופן אישי לכל לקוח
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap">
+            <label style="font-weight:700;color:#0F172B;font-size:14px">מספר חודשים:</label>
+            <select id="sf-months-select-both" onchange="updateMonths(this.value)" style="border:2px solid #F97316;border-radius:8px;padding:6px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
               <option value="1">1 חודש</option>
               <option value="2">2 חודשים</option>
               <option value="3" selected>3 חודשים</option>
@@ -834,29 +877,10 @@
               <option value="8">8 חודשים</option>
             </select>
           </div>
-
-          <!-- shown for pack-only mode; hidden when both selected -->
-          <div id="sf-pack-price-row">
-            <div class="sf-price-rent" id="price-rent-women" style="margin-bottom:12px">₪<strong id="pw-val">369</strong> סה״כ</div>
-            <button class="sf-add-btn" onclick="addRentMocila()">+ הוסף לסל</button>
-          </div>
-          <!-- add-to-cart for "both" mode -->
-          <button id="sf-both-add-btn" class="sf-add-btn" style="display:none;width:100%" onclick="addRentMocila()">+ הוסף לסל</button>
+          <div style="font-size:28px;font-weight:900;color:#F97316;margin-bottom:4px">₪<strong id="pb-val">269</strong></div>
+          <div id="sf-both-subtitle" style="font-size:13px;color:#64748B;margin-bottom:14px">מוצילה + תיק יום — 3 חודשים</div>
+          <button class="sf-add-btn" style="width:100%" onclick="addRentMocila()">+ הוסף לסל</button>
         </div>
-        </div><!-- /#sf-mocila-cards -->
-
-        <!-- תיק יום — רק ב"מוצילה + תיק יום" -->
-        <div id="sf-daypack-section" style="display:none;margin-top:12px">
-          <p style="font-size:13px;font-weight:700;color:#64748B;margin:0 0 8px">תיק יום (כלול בחבילה):</p>
-          <div style="background:#fff;border:2px solid #F97316;border-radius:14px;padding:12px;text-align:center">
-            <div style="display:inline-block;background:#16A34A;color:white;font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:8px">✅ כלול</div>
-            <img src="assets/images/ae541a0249c5087982aff7d20d7b6b771ed4abb4_E26OSPRACC551159_OSPR1275364_0.webp" alt="Osprey Sportlite 30" style="width:100%;aspect-ratio:1;object-fit:contain;background:#f8f8f8;border-radius:8px;margin-bottom:8px">
-            <div style="font-size:14px;font-weight:800;color:#0F172B">Osprey Sportlite 30</div>
-            <div style="font-size:12px;color:#64748B;margin-top:2px">כלול במחיר החבילה</div>
-          </div>
-        </div>
-
-        </div><!-- /#sf-combo-wrap -->
 
         <!-- תיק יום בלבד -->
         <div id="sf-daypack-only-section" style="display:none;margin-top:4px">
@@ -1234,13 +1258,15 @@
   };
   function refreshPriceDisplay() {
     var price = calcRentPrice(months);
-    var suffix = '';
-    var txt = '💰 סה״כ לתשלום: ₪' + price + suffix;
-    var el = document.getElementById('sf-price-display');
-    if (el) el.textContent = txt;
     var pw = document.getElementById('pw-val'); if(pw) pw.textContent = price;
     var pm = document.getElementById('pm-val'); if(pm) pm.textContent = price;
     var pd = document.getElementById('pd-val'); if(pd) pd.textContent = price;
+    var pb = document.getElementById('pb-val'); if(pb) pb.textContent = price;
+    var subtitle = document.getElementById('sf-both-subtitle');
+    if (subtitle) {
+      var label = months === 1 ? '1 חודש' : months + ' חודשים';
+      subtitle.textContent = 'מוצילה + תיק יום — ' + label;
+    }
   }
   window.setSubtype = function(t) {
     subtype = t;
@@ -1257,10 +1283,13 @@
     if(wrap) wrap.style.gridTemplateColumns = t==='both' ? '1fr 1fr' : '1fr';
     if(wrap) wrap.style.gap = t==='both' ? '10px' : '0';
     document.getElementById('sf-daypack-only-section').style.display = t==='daypack' ? '' : 'none';
-    var packRow = document.getElementById('sf-pack-price-row');
-    var bothBtn = document.getElementById('sf-both-add-btn');
-    if (packRow) packRow.style.display = t==='both' ? 'none' : '';
-    if (bothBtn) bothBtn.style.display = t==='both' ? '' : 'none';
+    // toggle pack details vs both-bottom
+    var packDetails = document.getElementById('sf-pack-details');
+    var bothBottom = document.getElementById('sf-both-bottom');
+    var mochilaLabel = document.getElementById('sf-mochila-label');
+    if (packDetails) packDetails.style.display = t==='both' ? 'none' : '';
+    if (bothBottom) bothBottom.style.display = t==='both' ? '' : 'none';
+    if (mochilaLabel) mochilaLabel.style.display = t==='both' ? '' : 'none';
     selectedPack = null;
     document.getElementById('sf-next-1').disabled = true;
     document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
@@ -1269,9 +1298,9 @@
   window.updateMonths = function(v) {
     months = parseInt(v);
     var sel = document.getElementById('sf-months-select');
-    var rng = document.getElementById('sf-months');
+    var selBoth = document.getElementById('sf-months-select-both');
     if (sel && sel.value != months) sel.value = months;
-    if (rng && rng.value != months) rng.value = months;
+    if (selBoth && selBoth.value != months) selBoth.value = months;
     refreshPriceDisplay();
     // update dual-price rent labels in step 2
     document.querySelectorAll('.rent-calc').forEach(function(el) {
