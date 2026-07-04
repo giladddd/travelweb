@@ -70,6 +70,26 @@
     .side-nav a:hover { color: #F97316; }
     .side-social { display: flex; gap: 20px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
     .side-social a { font-size: 22px; }
+    .side-guide-btn {
+      display: block; width: 100%; text-align: right;
+      background: none; border: none; border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: #CBD5E1; font-size: 16px; font-weight: 600; font-family: 'Assistant',sans-serif;
+      padding: 11px 0; cursor: pointer; transition: color 0.2s;
+    }
+    .side-guide-btn:hover { color: #F97316; }
+    .side-sub-panel {
+      position: absolute; top: 0; right: -100%; width: 100%; height: 100%;
+      background: #0F172B; padding: 20px 24px; overflow-y: auto;
+      transition: right 0.3s ease;
+    }
+    .side-sub-panel.open { right: 0; }
+    .side-back-btn {
+      display: block; width: 100%; text-align: right;
+      background: none; border: none; border-bottom: 2px solid #F97316;
+      color: #F97316; font-size: 15px; font-weight: 700; font-family: 'Assistant',sans-serif;
+      padding: 10px 0 14px; cursor: pointer; margin-bottom: 8px;
+    }
+    .side-panel { overflow-y: auto; }
 
     /* ── PAGE HERO ── */
     .page-hero {
@@ -653,6 +673,29 @@
     <button class="side-guide-btn" onclick="openGuideMenu()">המדריך המלא לטיול <span style="font-size:12px">◀</span></button>
     <a href="order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
   </nav>
+  <!-- GUIDE SUB-MENU -->
+  <div class="side-sub-panel" id="side-guide-panel">
+    <button class="side-back-btn" onclick="closeGuideMenu()">▶ חזרה לתפריט</button>
+    <nav class="side-nav">
+      <a href="guide.html">📋 כל המדריך</a>
+      <a href="guide.html#TG_2">שלב 2: בוחרים יבשת ויעדים</a>
+      <a href="guide.html#TG_3">שלב 3: קבוצות וואטסאפ</a>
+      <a href="guide.html#TG_4">שלב 4: תכנון תקציב</a>
+      <a href="guide.html#TG_5">שלב 5: מזמינים אשראי</a>
+      <a href="guide.html#TG_6">שלב 6: דרישות ויזה</a>
+      <a href="guide.html#TG_7">שלב 7: חיסונים</a>
+      <a href="guide.html#TG_8">שלב 8: ביטוח נסיעות</a>
+      <a href="guide.html#TG_9">שלב 9: חברים מחלצים</a>
+      <a href="guide.html#TG_10">שלב 10: מסמכים</a>
+      <a href="guide.html#TG_11">שלב 11: אפליקציות לטיול</a>
+      <a href="guide.html#TG_12">שלב 12: ציוד</a>
+      <a href="guide.html#TG_13">שלב 13: הזמנת סים</a>
+      <a href="guide.html#TG_14">שלב 14: כרטיס טיסה פיקטיבי</a>
+      <a href="guide.html#TG_15">שלב 15: הזמנת טיסה</a>
+      <a href="guide.html#TG_16">שלב 16: מקום לינה ראשון</a>
+      <a href="guide.html#TG_17">שלב 17: ביטוח לאומי</a>
+    </nav>
+  </div>
   <div class="side-social">
     <a href="https://www.instagram.com/thesmarttraveller.il/" target="_blank" title="אינסטגרם"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><defs><radialGradient id="ig_grad" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig_grad)"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="white" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="white"/></svg></a>
     <a href="https://www.tiktok.com/@thesmarttraveller" target="_blank" title="טיקטוק"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#000"/><path d="M17 6.5c-.9-.4-1.6-1.2-1.9-2.1h-1.9v9.1c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.2 0 .4 0 .6.1V9.6c-.2 0-.4-.1-.6-.1-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4V9.1c.8.5 1.7.8 2.7.8V7.1c-.3 0-.6-.2-.9-.6z" fill="white"/></svg></a>
@@ -1187,7 +1230,16 @@ window.addUpsell = function(btn, id, name, price) {
   if(hamburger) hamburger.addEventListener('click', open);
   if(closeBtn) closeBtn.addEventListener('click', close);
   if(overlay) overlay.addEventListener('click', close);
+})();
 
+window.openGuideMenu = function() {
+  document.getElementById('side-guide-panel').classList.add('open');
+};
+window.closeGuideMenu = function() {
+  document.getElementById('side-guide-panel').classList.remove('open');
+};
+
+(function(){
   // Update header cart total from localStorage
   try {
     var cart = JSON.parse(localStorage.getItem('smartCart') || '[]');
