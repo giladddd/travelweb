@@ -891,6 +891,13 @@
               <h3>תיק יום 30L</h3>
               <p class="sf-card-desc">Osprey Sportlite 30 — פתיחת מזוודה, 30 ליטר</p>
               <div style="margin-bottom:14px">
+                <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">בחרו דגם:</p>
+                <div style="display:flex;gap:8px">
+                  <button id="day-gender-women" onclick="setDayGender('women')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #F97316;background:#FFF7ED;color:#F97316;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👩 נשים</button>
+                  <button id="day-gender-men" onclick="setDayGender('men')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #E2E8F0;background:#fff;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;font-family:'Assistant',sans-serif">👨 גברים</button>
+                </div>
+              </div>
+              <div style="margin-bottom:14px">
                 <p style="font-size:13px;font-weight:700;color:#0F172B;margin-bottom:8px">מספר חודשי השכרה:</p>
                 <select id="sf-months-select-day" onchange="updateMonths(this.value)" style="width:100%;border:2px solid #F97316;border-radius:8px;padding:8px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
                   <option value="1">1 חודש — ₪99</option>
@@ -1412,6 +1419,15 @@
     track.style.transform = 'translateX(' + (rentCarouselIndex * 100) + '%)';
     var nameEl = document.getElementById('rent-carousel-name');
     if (nameEl && rentCarouselItems[rentCarouselIndex]) nameEl.textContent = rentCarouselItems[rentCarouselIndex].name;
+  };
+
+  var dayGender = 'women';
+  window.setDayGender = function(gender) {
+    dayGender = gender;
+    var wBtn = document.getElementById('day-gender-women');
+    var mBtn = document.getElementById('day-gender-men');
+    if (wBtn) { wBtn.style.borderColor = gender==='women' ? '#F97316' : '#E2E8F0'; wBtn.style.background = gender==='women' ? '#FFF7ED' : '#fff'; wBtn.style.color = gender==='women' ? '#F97316' : '#64748B'; }
+    if (mBtn) { mBtn.style.borderColor = gender==='men' ? '#F97316' : '#E2E8F0'; mBtn.style.background = gender==='men' ? '#FFF7ED' : '#fff'; mBtn.style.color = gender==='men' ? '#F97316' : '#64748B'; }
   };
 
   window.setRentGender = function(gender) {
