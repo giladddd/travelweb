@@ -150,10 +150,10 @@
       <strong>שימו לב:</strong> הדגמים להמחשה בלבד — תיק מתאים יותאם באופן אישי לכל לקוח.
     </div>
     <div class="prod-grid">
-      <div class="prod-card" data-base-price="99" data-prod-id="day-rental-skarab" data-prod-name="Osprey Skarab 34L (השכרה)">
-        <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.33.29-2-600x731.jpeg" alt="Osprey Skarab 34L" loading="lazy">
+      <div class="prod-card" data-base-price="99" data-prod-id="day-rental-skarab" data-prod-name="Osprey Sportlite 30 (השכרה)">
+        <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.33.29-2-600x731.jpeg" alt="Osprey Sportlite 30" loading="lazy">
         <div class="prod-card-body">
-          <div class="prod-name">Osprey Skarab 34L</div>
+          <div class="prod-name">Osprey Sportlite 30</div>
           <div class="months-row">
             <label class="months-label">חודשים:</label>
             <select class="months-select" onchange="updateDayBagPrice(this)">
@@ -178,11 +178,11 @@
   <div class="tab-content" id="content-sale">
 
     <div class="prod-card">
-      <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.33.29-2-600x731.jpeg" alt="Osprey Skarab 34L" loading="lazy">
+      <img src="../assets/images/2026_04_WhatsApp-Image-2026-04-09-at-21.33.29-2-600x731.jpeg" alt="Osprey Sportlite 30" loading="lazy">
       <div class="prod-card-body">
-        <div class="prod-name">Osprey Skarab 34L</div>
+        <div class="prod-name">Osprey Sportlite 30</div>
         <div class="prod-price">₪499</div>
-        <button class="prod-add-btn" onclick="addToCart(this, 'day-sale-skarab34', 'Osprey Skarab 34L (קנייה)', 499)">+ הוסף לסל</button>
+        <button class="prod-add-btn" onclick="addToCart(this, 'day-sale-skarab34', 'Osprey Sportlite 30 (קנייה)', 499)">+ הוסף לסל</button>
       </div>
     </div>
 
@@ -216,7 +216,7 @@ window.addDayBagToCart = function(btn) {
   var months = parseInt(card.querySelector('.months-select').value);
   var price = calcDayBagPrice(months);
   var label = months + (months === 1 ? ' חודש' : ' חודשים');
-  addToCart(btn, 'day-rental-skarab-m' + months, 'Osprey Skarab 34L (השכרה) — ' + label, price);
+  addToCart(btn, 'day-rental-skarab-m' + months, 'Osprey Sportlite 30 (השכרה) — ' + label, price);
 };
 window.addToCart = function(btn, id, name, price) {
   var cart = getCart();
