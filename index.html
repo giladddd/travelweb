@@ -787,27 +787,7 @@
           </div>
         </div>
 
-        <!-- duration: slider + dropdown synced -->
-        <div class="sf-duration" id="sf-duration-block">
-          <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap">
-            <label style="font-weight:700;color:#0F172B;white-space:nowrap">מספר חודשי השכרה:</label>
-            <select id="sf-months-select" onchange="updateMonths(this.value)" style="border:2px solid #F97316;border-radius:8px;padding:6px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
-              <option value="1">1 חודש</option>
-              <option value="2">2 חודשים</option>
-              <option value="3" selected>3 חודשים</option>
-              <option value="4">4 חודשים</option>
-              <option value="5">5 חודשים</option>
-              <option value="6">6 חודשים</option>
-              <option value="7">7 חודשים</option>
-              <option value="8">8 חודשים</option>
-            </select>
-          </div>
-          <input type="range" id="sf-months" min="1" max="8" value="3" oninput="updateMonths(this.value)" style="width:100%">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-top:4px"><span>חודש 1</span><span>8 חודשים</span></div>
-          <div id="sf-price-display" style="background:#FFF7ED;border:1.5px solid #F97316;border-radius:10px;padding:10px 16px;margin-top:12px;text-align:center;font-weight:700;font-size:16px;color:#C2410C"></div>
-        </div>
-
-        <!-- gender selection for מוצילה -->
+        <!-- bags: mochila + optional day bag side-by-side -->
         <div id="sf-combo-wrap" style="display:block">
         <div id="sf-mocila-cards">
         <div class="sf-card" id="pack-rent-women" style="padding:16px;cursor:default">
@@ -841,13 +821,15 @@
             </div>
           </div>
 
-          <div class="sf-price-rent" id="price-rent-women" style="margin-bottom:12px">₪<strong id="pw-val">369</strong> סה״כ</div>
-          <button class="sf-add-btn" onclick="addRentMocila()">+ הוסף לסל</button>
+          <!-- shown for pack-only mode; hidden when both selected -->
+          <div id="sf-pack-price-row">
+            <div class="sf-price-rent" id="price-rent-women" style="margin-bottom:12px">₪<strong id="pw-val">369</strong> סה״כ</div>
+            <button class="sf-add-btn" onclick="addRentMocila()">+ הוסף לסל</button>
+          </div>
         </div>
         </div><!-- /#sf-mocila-cards -->
 
         <!-- תיק יום — רק ב"מוצילה + תיק יום" -->
-
         <div id="sf-daypack-section" style="display:none;margin-top:12px">
           <p style="font-size:13px;font-weight:700;color:#64748B;margin:0 0 8px">תיק יום (כלול בחבילה):</p>
           <div style="background:#fff;border:2px solid #F97316;border-radius:14px;padding:12px;text-align:center">
@@ -872,6 +854,28 @@
               <button class="sf-add-btn" onclick="event.stopPropagation();addPackToCart('daypack-only')">+ הוסף לסל</button>
             </div>
           </div>
+        </div>
+
+        <!-- duration: slider + dropdown synced — shown below bags -->
+        <div class="sf-duration" id="sf-duration-block">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap">
+            <label style="font-weight:700;color:#0F172B;white-space:nowrap">מספר חודשי השכרה:</label>
+            <select id="sf-months-select" onchange="updateMonths(this.value)" style="border:2px solid #F97316;border-radius:8px;padding:6px 12px;font-family:Assistant,sans-serif;font-size:15px;font-weight:700;color:#0F172B;background:white;cursor:pointer">
+              <option value="1">1 חודש</option>
+              <option value="2">2 חודשים</option>
+              <option value="3" selected>3 חודשים</option>
+              <option value="4">4 חודשים</option>
+              <option value="5">5 חודשים</option>
+              <option value="6">6 חודשים</option>
+              <option value="7">7 חודשים</option>
+              <option value="8">8 חודשים</option>
+            </select>
+          </div>
+          <input type="range" id="sf-months" min="1" max="8" value="3" oninput="updateMonths(this.value)" style="width:100%">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#94A3B8;margin-top:4px"><span>חודש 1</span><span>8 חודשים</span></div>
+          <div id="sf-price-display" style="background:#FFF7ED;border:1.5px solid #F97316;border-radius:10px;padding:10px 16px;margin-top:12px;text-align:center;font-weight:700;font-size:16px;color:#C2410C"></div>
+          <!-- add-to-cart for "both" mode — shown below the combined price -->
+          <button id="sf-both-add-btn" class="sf-add-btn" style="display:none;width:100%;margin-top:12px" onclick="addRentMocila()">+ הוסף לסל</button>
         </div>
       </div><!-- /#sf-rent-flow -->
 
@@ -1259,6 +1263,10 @@
     if(wrap) wrap.style.gridTemplateColumns = t==='both' ? '1fr 1fr' : '1fr';
     if(wrap) wrap.style.gap = t==='both' ? '10px' : '0';
     document.getElementById('sf-daypack-only-section').style.display = t==='daypack' ? '' : 'none';
+    var packRow = document.getElementById('sf-pack-price-row');
+    var bothBtn = document.getElementById('sf-both-add-btn');
+    if (packRow) packRow.style.display = t==='both' ? 'none' : '';
+    if (bothBtn) bothBtn.style.display = t==='both' ? '' : 'none';
     selectedPack = null;
     document.getElementById('sf-next-1').disabled = true;
     document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
