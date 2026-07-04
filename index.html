@@ -1796,10 +1796,19 @@ function ytPlay(el, id) {
 
   function allSlides(){ return carousel.querySelectorAll('.video-slide'); }
 
+  // Scroll ONLY within the carousel container (never the page)
+  // Uses getBoundingClientRect delta so RTL direction is handled automatically
+  function scrollTo(slide, smooth){
+    var sr = slide.getBoundingClientRect();
+    var cr = carousel.getBoundingClientRect();
+    // In RTL the "start" edge is the right side
+    var delta = sr.right - cr.right;
+    carousel.scrollBy({ left: delta, behavior: smooth ? 'smooth' : 'instant' });
+  }
+
   function snapTo(idx){
-    // Instant jump with no animation
     cur = ((idx%N)+N)%N;
-    allSlides()[cur].scrollIntoView({ block:'nearest', inline:'start', behavior:'instant' });
+    scrollTo(allSlides()[cur], false);
     updateDots();
   }
 
@@ -1807,31 +1816,26 @@ function ytPlay(el, id) {
     if(busy) return;
     var slides = allSlides();
     if(cur === N-1){
-      // Seamlessly scroll into clone[0] (=slides[N]), then silently reset to real slide 0
+      // Scroll into clone[0] seamlessly, then silently reset to real slide 0
       busy = true;
-      slides[N].scrollIntoView({ block:'nearest', inline:'start', behavior:'smooth' });
+      scrollTo(slides[N], true);
       cur = 0;
       updateDots();
       setTimeout(function(){
-        slides[0].scrollIntoView({ block:'nearest', inline:'start', behavior:'instant' });
+        scrollTo(slides[0], false);
         busy = false;
       }, 600);
     } else {
       cur++;
-      slides[cur].scrollIntoView({ block:'nearest', inline:'start', behavior:'smooth' });
+      scrollTo(slides[cur], true);
       updateDots();
     }
   }
 
   function goBack(){
     if(busy) return;
-    var slides = allSlides();
-    if(cur === 0){
-      cur = N-1;
-    } else {
-      cur--;
-    }
-    slides[cur].scrollIntoView({ block:'nearest', inline:'start', behavior:'smooth' });
+    cur = cur === 0 ? N-1 : cur-1;
+    scrollTo(allSlides()[cur], true);
     updateDots();
   }
 
