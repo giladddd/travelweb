@@ -281,7 +281,31 @@ window.toggleAboutVideo = function(){ ytAboutPlaying ? ytAboutPlayer.pauseVideo(
   
   
 </div>
-<button class="float-acc" onclick="document.body.style.fontSize=document.body.style.fontSize==='120%'?'':'120%'" title="נגישות">♿</button>
+<div id="acc-panel" class="acc-panel">
+  <div class="acc-panel-title">♿ נגישות</div>
+  <div class="acc-row">
+    <span>גודל טקסט</span>
+    <div class="acc-font-btns">
+      <button class="acc-font-btn" onclick="accFontDown(event)">א-</button>
+      <span class="acc-fontsize-label" id="acc-fontsize">16px</span>
+      <button class="acc-font-btn" onclick="accFontUp(event)">א+</button>
+    </div>
+  </div>
+  <div class="acc-row" onclick="accToggle('dim')">
+    <span>🌑 הנמך בהירות</span>
+    <div class="acc-toggle" id="acc-toggle-dim"></div>
+  </div>
+  <div class="acc-row" onclick="accToggle('contrast')">
+    <span>◑ ניגודיות גבוהה</span>
+    <div class="acc-toggle" id="acc-toggle-contrast"></div>
+  </div>
+  <div class="acc-row" onclick="accToggle('links')">
+    <span>🔗 הדגשת קישורים</span>
+    <div class="acc-toggle" id="acc-toggle-links"></div>
+  </div>
+  <button class="acc-reset-btn" onclick="accReset(event)">↺ איפוס הגדרות</button>
+</div>
+<button class="float-acc" id="acc-btn" onclick="toggleAccPanel()" title="נגישות" aria-label="נגישות">♿</button>
 
 <script>
 function getCart() { try { return JSON.parse(localStorage.getItem('smartCart') || '[]'); } catch(e) { return []; } }

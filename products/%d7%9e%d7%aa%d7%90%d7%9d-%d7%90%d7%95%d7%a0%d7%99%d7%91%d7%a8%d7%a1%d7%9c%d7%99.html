@@ -2879,6 +2879,38 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 			})();
 		</script>
 			<script src='../assets/js/local-submenu-fix.js?v=27'></script>
+<script>
+// Accessibility widget
+(function(){
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem('accState')||'{}'); } catch(e){}
+  function save(){ try{ localStorage.setItem('accState',JSON.stringify(state)); }catch(e){} }
+  function apply(){
+    var fs = state.fontSize || 16;
+    document.documentElement.style.fontSize = fs + 'px';
+    document.body.classList.toggle('acc-dim', !!state.dim);
+    document.body.classList.toggle('acc-contrast', !!state.contrast);
+    document.body.classList.toggle('acc-links', !!state.links);
+    var el;
+    el = document.getElementById('acc-toggle-dim'); if(el) el.classList.toggle('on', !!state.dim);
+    el = document.getElementById('acc-toggle-contrast'); if(el) el.classList.toggle('on', !!state.contrast);
+    el = document.getElementById('acc-toggle-links'); if(el) el.classList.toggle('on', !!state.links);
+    el = document.getElementById('acc-fontsize'); if(el) el.textContent = fs + 'px';
+  }
+  window.toggleAccPanel = function(){ var p = document.getElementById('acc-panel'); if(p) p.classList.toggle('open'); };
+  window.accFontUp = function(e){ if(e) e.stopPropagation(); state.fontSize = Math.min((state.fontSize||16)+2,24); save(); apply(); };
+  window.accFontDown = function(e){ if(e) e.stopPropagation(); state.fontSize = Math.max((state.fontSize||16)-2,12); save(); apply(); };
+  window.accToggle = function(k){ state[k] = !state[k]; save(); apply(); };
+  window.accReset = function(e){ if(e) e.stopPropagation(); state={}; save(); apply(); };
+  document.addEventListener('click', function(e){
+    var p = document.getElementById('acc-panel');
+    var b = document.getElementById('acc-btn');
+    if(p && p.classList.contains('open') && !p.contains(e.target) && b && !b.contains(e.target)) p.classList.remove('open');
+  });
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',apply); } else { apply(); }
+})();
+
+</script>
 </body>
 </html>
 

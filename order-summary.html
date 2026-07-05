@@ -647,6 +647,24 @@
     .float-tt { background: #000; }
     .float-acc { position: fixed; right: 16px; bottom: 20px; z-index: 999; width: 50px; height: 50px; border-radius: 50%; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; border: none; transition: transform 0.2s; }
     .float-acc:hover { transform: scale(1.1); }
+    .acc-panel { position: fixed; right: 16px; bottom: 80px; z-index: 1001; background: white; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.25); padding: 16px 14px; width: 215px; direction: rtl; display: none; font-family: 'Assistant',sans-serif; }
+    .acc-panel.open { display: block; }
+    .acc-panel-title { font-weight: 800; font-size: 14px; color: #0F172B; margin-bottom: 10px; border-bottom: 1px solid #F1F5F9; padding-bottom: 8px; }
+    .acc-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 4px; border-bottom: 1px solid #F8FAFC; cursor: pointer; font-size: 13px; font-weight: 600; color: #334155; border-radius: 8px; }
+    .acc-row:hover { background: #F8FAFC; }
+    .acc-toggle { width: 36px; height: 20px; border-radius: 10px; background: #CBD5E1; position: relative; transition: background 0.2s; flex-shrink: 0; pointer-events: none; }
+    .acc-toggle.on { background: #F97316; }
+    .acc-toggle::after { content: ''; position: absolute; width: 16px; height: 16px; border-radius: 50%; background: white; top: 2px; right: 2px; transition: right 0.2s; }
+    .acc-toggle.on::after { right: 18px; }
+    .acc-font-btns { display: flex; gap: 6px; align-items: center; }
+    .acc-font-btn { background: #F1F5F9; border: none; border-radius: 8px; width: 32px; height: 28px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Assistant',sans-serif; }
+    .acc-font-btn:hover { background: #E2E8F0; }
+    .acc-fontsize-label { font-size: 11px; color: #94A3B8; min-width: 28px; text-align: center; }
+    .acc-reset-btn { width: 100%; margin-top: 10px; background: #F1F5F9; border: none; border-radius: 10px; padding: 8px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Assistant',sans-serif; color: #64748B; }
+    .acc-reset-btn:hover { background: #E2E8F0; }
+    body.acc-dim::after { content: ''; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 998; pointer-events: none; }
+    body.acc-contrast { filter: contrast(1.6) brightness(0.95); }
+    body.acc-links a { text-decoration: underline !important; font-weight: 700 !important; color: #1A56DB !important; }
       .header-progress { display:flex; flex-direction:column; align-items:center; text-decoration:none; gap:1px; }
     .header-progress-ring { position:relative; display:inline-block; }
     .header-progress-ring svg { display:block; }
@@ -1269,7 +1287,31 @@ window.closeGuideMenu = function() {
   
   
 </div>
-<button class="float-acc" onclick="document.body.style.fontSize=document.body.style.fontSize==='120%'?'':'120%'" title="נגישות" aria-label="נגישות">♿</button>
+<div id="acc-panel" class="acc-panel">
+  <div class="acc-panel-title">♿ נגישות</div>
+  <div class="acc-row">
+    <span>גודל טקסט</span>
+    <div class="acc-font-btns">
+      <button class="acc-font-btn" onclick="accFontDown(event)">א-</button>
+      <span class="acc-fontsize-label" id="acc-fontsize">16px</span>
+      <button class="acc-font-btn" onclick="accFontUp(event)">א+</button>
+    </div>
+  </div>
+  <div class="acc-row" onclick="accToggle('dim')">
+    <span>🌑 הנמך בהירות</span>
+    <div class="acc-toggle" id="acc-toggle-dim"></div>
+  </div>
+  <div class="acc-row" onclick="accToggle('contrast')">
+    <span>◑ ניגודיות גבוהה</span>
+    <div class="acc-toggle" id="acc-toggle-contrast"></div>
+  </div>
+  <div class="acc-row" onclick="accToggle('links')">
+    <span>🔗 הדגשת קישורים</span>
+    <div class="acc-toggle" id="acc-toggle-links"></div>
+  </div>
+  <button class="acc-reset-btn" onclick="accReset(event)">↺ איפוס הגדרות</button>
+</div>
+<button class="float-acc" id="acc-btn" onclick="toggleAccPanel()" title="נגישות" aria-label="נגישות">♿</button>
 </body>
 </html>
 
