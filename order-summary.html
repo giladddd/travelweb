@@ -760,7 +760,7 @@
 <!-- ── HERO ── -->
 <section class="page-hero">
   <h1 class="hero-title">🛒 סיכום הזמנה שלך</h1>
-  <p class="hero-subtitle">בדקו את הפריטים, מלאו פרטים ואנחנו נדאג לכל השאר</p>
+  <p class="hero-subtitle">בוחרים את הפריטים, שולחים אלינו את ההזמנה ללא תשלום לשמירת ההזמנה — ואנחנו חוזרים אליכם עם כל הפרטים והתאמה אישית</p>
   <div class="steps-row">
     <div class="step-item active">
       <div class="step-circle">1</div>
@@ -909,15 +909,7 @@
               <input class="form-input" type="email" id="customer-email" name="email" placeholder="email@example.com" autocomplete="email" dir="ltr" style="text-align:right">
             </div>
 
-            <div class="form-group">
-              <label class="form-label">מין <span style="font-weight:400;color:#94A3B8">(להתאמת מבנה התיק)</span></label>
-              <div class="gender-row">
-                <button type="button" class="gender-pill" data-value="זכר">👨 זכר</button>
-                <button type="button" class="gender-pill" data-value="נקבה">👩 נקבה</button>
-                <button type="button" class="gender-pill" data-value="אחר">אחר</button>
-              </div>
-              <input type="hidden" id="gender-input" name="gender" value="">
-            </div>
+            <input type="hidden" id="gender-input" name="gender" value="">
 
             <div class="form-divider"></div>
             <div class="form-section-label">פרטי נסיעה</div>
@@ -928,17 +920,26 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="customer-city">עיר</label>
+              <label class="form-label">אופן קבלת הציוד <span class="required">*</span></label>
+              <div class="gender-row">
+                <button type="button" class="gender-pill" data-delivery="pickup" onclick="setDelivery('pickup',this)">🏪 איסוף עצמי</button>
+                <button type="button" class="gender-pill" data-delivery="delivery" onclick="setDelivery('delivery',this)">🚚 משלוח עד הבית +₪39</button>
+              </div>
+              <input type="hidden" id="delivery-type" name="deliveryType" value="">
+            </div>
+
+            <div class="form-group" id="address-group" style="display:none">
+              <label class="form-label" for="customer-city">עיר <span class="required">*</span></label>
               <input class="form-input" type="text" id="customer-city" name="city" placeholder="תל אביב" autocomplete="address-level2">
             </div>
 
-            <div class="form-group" style="display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end">
+            <div class="form-group" id="street-group" style="display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;display:none">
               <div>
-                <label class="form-label" for="customer-street">רחוב</label>
+                <label class="form-label" for="customer-street">רחוב <span class="required">*</span></label>
                 <input class="form-input" type="text" id="customer-street" name="street" placeholder="שם הרחוב" autocomplete="address-line1">
               </div>
               <div style="width:80px">
-                <label class="form-label" for="customer-streetnum">מספר</label>
+                <label class="form-label" for="customer-streetnum">מספר <span class="required">*</span></label>
                 <input class="form-input" type="text" id="customer-streetnum" name="street_number" placeholder="12">
               </div>
             </div>
@@ -956,7 +957,7 @@
 
             <label class="insurance-checkbox">
               <input type="checkbox" id="insurance-opt" name="insurance" value="yes">
-              <span class="insurance-label">🛡️ אני רוצה לעשות ביטוח דרככם (ללא תוספת עלות בכל החברות) ולקבל סוכן אישי 24/7 — וגם בונוס: הטבת אחריות מלאה על נזקים לתיק בהשכרה (עד ₪100)</span>
+              <span class="insurance-label">🛡️ אני רוצה לעשות ביטוח דרככם (ללא תוספת עלות בכל החברות) ולקבל סוכן אישי 24/7</span>
             </label>
 
             <!-- Submit -->
@@ -1173,14 +1174,26 @@ window.addUpsell = function(btn, id, name, price) {
     }
   }
 
-  // Gender toggle
-  document.querySelectorAll('.gender-pill').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.gender-pill').forEach(function(b){ b.classList.remove('active'); });
-      btn.classList.add('active');
-      document.getElementById('gender-input').value = btn.dataset.value;
-    });
-  });
+  // Delivery selection
+  var hasRental = cart.some(function(i){ return i.mode === 'rent'; });
+  window.setDelivery = function(type, el) {
+    document.querySelectorAll('[data-delivery]').forEach(function(b){ b.classList.remove('active'); });
+    el.classList.add('active');
+    document.getElementById('delivery-type').value = type;
+    var showAddress = type === 'delivery';
+    var addrGroup = document.getElementById('address-group');
+    var streetGroup = document.getElementById('street-group');
+    if (addrGroup) addrGroup.style.display = showAddress ? '' : 'none';
+    if (streetGroup) streetGroup.style.display = showAddress ? 'grid' : 'none';
+    // if rental items exist, address is also required when delivery selected
+  };
+  // If rental items exist, show address fields by default and require
+  if (hasRental) {
+    var addrGroup = document.getElementById('address-group');
+    var streetGroup = document.getElementById('street-group');
+    if (addrGroup) addrGroup.style.display = '';
+    if (streetGroup) streetGroup.style.display = 'grid';
+  }
 
   // Form submit
   document.getElementById('order-form').addEventListener('submit', function(e) {
@@ -1192,6 +1205,31 @@ window.addUpsell = function(btn, id, name, price) {
     if (!name || !phone) {
       document.getElementById(name ? 'customer-phone' : 'customer-name').focus();
       return;
+    }
+
+    var deliveryType = document.getElementById('delivery-type').value;
+    if (!deliveryType) {
+      alert('נא לבחור אופן קבלת הציוד');
+      return;
+    }
+    if (deliveryType === 'delivery') {
+      var city = document.getElementById('customer-city').value.trim();
+      var street = document.getElementById('customer-street').value.trim();
+      var streetnum = document.getElementById('customer-streetnum').value.trim();
+      if (!city || !street || !streetnum) {
+        alert('נא למלא כתובת מלאה למשלוח');
+        return;
+      }
+    }
+    var hasRentalForCheck = cart.some(function(i){ return i.mode === 'rent'; });
+    if (hasRentalForCheck) {
+      var city2 = document.getElementById('customer-city').value.trim();
+      var street2 = document.getElementById('customer-street').value.trim();
+      var streetnum2 = document.getElementById('customer-streetnum').value.trim();
+      if (!city2 || !street2 || !streetnum2) {
+        alert('יש בסל פריטים להשכרה — נא למלא כתובת מלאה לאיסוף והחזרה');
+        return;
+      }
     }
 
     var btn = document.getElementById('submit-btn');
@@ -1213,7 +1251,9 @@ window.addUpsell = function(btn, id, name, price) {
       notes: document.getElementById('customer-notes').value,
       insurance: document.getElementById('insurance-opt') ? document.getElementById('insurance-opt').checked : false,
       referral: document.getElementById('referral-source') ? document.getElementById('referral-source').value : '',
-      hasDelivery: !!(document.getElementById('customer-city') && document.getElementById('customer-city').value),
+      deliveryType: deliveryType,
+      deliveryCost: deliveryType === 'delivery' ? 39 : 0,
+      hasDelivery: deliveryType === 'delivery',
       cart: cart
     };
 
