@@ -170,8 +170,12 @@
     .gear-panel { display: none; }
     .gear-panel.active { display: block; }
     .gear-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
-    .gear-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; color: #0F172B; line-height: 1.4; }
+    .gear-list li { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #0F172B; line-height: 1.4; cursor: pointer; padding: 3px 0; border-radius: 6px; transition: opacity 0.2s; }
     .gear-list li span.gi { font-size: 16px; line-height: 1.3; flex-shrink: 0; }
+    .gear-check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #CBD5E1; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: background 0.2s, border-color 0.2s; margin-right: auto; }
+    .gear-list li.checked .gear-check { background: #22C55E; border-color: #22C55E; color: white; }
+    .gear-list li.checked .gear-check::after { content: '✓'; }
+    .gear-list li.checked > span:not(.gear-check) { opacity: 0.45; text-decoration: line-through; }
     .step-btns { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 20px 0; }
     .step-btn {
       display: inline-flex; align-items: center; gap: 6px;
@@ -1381,7 +1385,7 @@
       <div class="step-title">🎒 ציוד</div>
     </div>
     <div class="step-body">
-      <p class="step-desc">מתארגנים על כל הציוד לטיול — לחצו על קטגוריה לראות את רשימת הציוד המלאה:</p>
+      <p class="step-desc">רשימת ציוד אינטראקטיבית שנשמרת 💾 — מוזמנים לסמן מה יש לכם ומה עדיין לא:</p>
       <div class="gear-tabs">
         <button class="gear-tab active" onclick="showGear('gear')">🎒 ציוד</button>
         <button class="gear-tab" onclick="showGear('hygiene')">🪥 היגיינה</button>
@@ -1496,6 +1500,7 @@
     </div>
     <div class="step-btns">
       <a href="index.html#formpack" class="step-btn">🛒 תתארגנו על ציוד במטייל החכם</a>
+      <a href="categories/bags-rental.html" class="step-btn outline">🏪 הכל זמין בחנות שלנו</a>
     </div>
     <div class="step-check-row">
       <input type="checkbox" id="chk12" onchange="markDone(this,12)">
@@ -1899,6 +1904,34 @@ window.showGear = function(cat) {
   var panel = document.getElementById('gear-' + cat);
   if(panel) panel.classList.add('active');
 };
+
+// Gear checklist
+(function(){
+  function initGearList() {
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem('gearChecked') || '{}'); } catch(e){}
+    document.querySelectorAll('.gear-list li').forEach(function(li, idx) {
+      // build stable key from panel id + index
+      var panel = li.closest('.gear-panel');
+      var key = (panel ? panel.id : 'g') + '_' + idx;
+      li.dataset.gkey = key;
+      // add circle
+      var circle = document.createElement('span');
+      circle.className = 'gear-check';
+      li.appendChild(circle);
+      if (saved[key]) li.classList.add('checked');
+      li.addEventListener('click', function() {
+        li.classList.toggle('checked');
+        try {
+          var s = JSON.parse(localStorage.getItem('gearChecked') || '{}');
+          if (li.classList.contains('checked')) s[key] = 1; else delete s[key];
+          localStorage.setItem('gearChecked', JSON.stringify(s));
+        } catch(e){}
+      });
+    });
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initGearList); } else { initGearList(); }
+})();
 
 // Vol carousel
 (function() {
