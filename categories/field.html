@@ -65,7 +65,25 @@
     .header-progress-ring { position:relative; display:inline-block; }
     .header-progress-ring svg { display:block; }
     .header-progress-ring-num { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:9px; font-weight:800; color:#0F172B; pointer-events:none; }
-    .header-progress-lbl { font-size:8px; color:#64748B; font-weight:700; white-space:nowrap; }</style>
+    .header-progress-lbl { font-size:8px; color:#64748B; font-weight:700; white-space:nowrap; }    .acc-panel { position: fixed; right: 16px; bottom: 80px; z-index: 1001; background: white; border-radius: 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.13), 0 1.5px 6px rgba(0,0,0,0.07); padding: 18px 16px 14px; width: 220px; direction: rtl; display: none; font-family: 'Assistant',sans-serif; opacity: 0; transform: translateY(8px); transition: opacity 0.18s ease, transform 0.18s ease; pointer-events: none; }
+    .acc-panel.open { display: block; opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .acc-panel-title { font-weight: 800; font-size: 14px; color: #0F172B; margin-bottom: 10px; border-bottom: 1px solid #F1F5F9; padding-bottom: 8px; }
+    .acc-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 4px; border-bottom: 1px solid #F8FAFC; cursor: pointer; font-size: 13px; font-weight: 600; color: #334155; border-radius: 8px; }
+    .acc-row:hover { background: #F8FAFC; }
+    .acc-toggle { width: 36px; height: 20px; border-radius: 10px; background: #CBD5E1; position: relative; transition: background 0.2s; flex-shrink: 0; pointer-events: none; }
+    .acc-toggle.on { background: #F97316; }
+    .acc-toggle::after { content: ''; position: absolute; width: 16px; height: 16px; border-radius: 50%; background: white; top: 2px; right: 2px; transition: right 0.2s; }
+    .acc-toggle.on::after { right: 18px; }
+    .acc-font-btns { display: flex; gap: 6px; align-items: center; }
+    .acc-font-btn { background: #F1F5F9; border: none; border-radius: 8px; width: 32px; height: 28px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Assistant',sans-serif; }
+    .acc-font-btn:hover { background: #E2E8F0; }
+    .acc-fontsize-label { font-size: 11px; color: #94A3B8; min-width: 28px; text-align: center; }
+    .acc-reset-btn { width: 100%; margin-top: 10px; background: #F1F5F9; border: none; border-radius: 10px; padding: 8px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Assistant',sans-serif; color: #64748B; }
+    .acc-reset-btn:hover { background: #E2E8F0; }
+    body.acc-dim::after { content: ''; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 998; pointer-events: none; }
+    body.acc-contrast { filter: contrast(1.6) brightness(0.95); }
+    body.acc-links a { text-decoration: underline !important; font-weight: 700 !important; color: #1A56DB !important; }
+  </style>
 </head>
 <body>
 
@@ -311,5 +329,37 @@ window.closeGuideMenu = function(){ document.getElementById('side-guide-panel').
       if(num) num.textContent=count+'/'+total;
     }catch(e){}
   })();</script>
+<script>
+// Accessibility widget
+(function(){
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem('accState')||'{}'); } catch(e){}
+  function save(){ try{ localStorage.setItem('accState',JSON.stringify(state)); }catch(e){} }
+  function apply(){
+    var fs = state.fontSize || 16;
+    document.documentElement.style.fontSize = fs + 'px';
+    document.body.classList.toggle('acc-dim', !!state.dim);
+    document.body.classList.toggle('acc-contrast', !!state.contrast);
+    document.body.classList.toggle('acc-links', !!state.links);
+    var el;
+    el = document.getElementById('acc-toggle-dim'); if(el) el.classList.toggle('on', !!state.dim);
+    el = document.getElementById('acc-toggle-contrast'); if(el) el.classList.toggle('on', !!state.contrast);
+    el = document.getElementById('acc-toggle-links'); if(el) el.classList.toggle('on', !!state.links);
+    el = document.getElementById('acc-fontsize'); if(el) el.textContent = fs + 'px';
+  }
+  window.toggleAccPanel = function(){ var p = document.getElementById('acc-panel'); if(p) p.classList.toggle('open'); };
+  window.accFontUp = function(e){ if(e) e.stopPropagation(); state.fontSize = Math.min((state.fontSize||16)+2,24); save(); apply(); };
+  window.accFontDown = function(e){ if(e) e.stopPropagation(); state.fontSize = Math.max((state.fontSize||16)-2,12); save(); apply(); };
+  window.accToggle = function(k){ state[k] = !state[k]; save(); apply(); };
+  window.accReset = function(e){ if(e) e.stopPropagation(); state={}; save(); apply(); };
+  document.addEventListener('click', function(e){
+    var p = document.getElementById('acc-panel');
+    var b = document.getElementById('acc-btn');
+    if(p && p.classList.contains('open') && !p.contains(e.target) && b && !b.contains(e.target)) p.classList.remove('open');
+  });
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',apply); } else { apply(); }
+})();
+
+</script>
 </body>
 </html>
