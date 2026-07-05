@@ -1929,6 +1929,31 @@ document.getElementById('hero-cta').addEventListener('click', function(e){
   
 </div>
 <button class="float-acc" onclick="document.body.style.fontSize=document.body.style.fontSize==='120%'?'':'120%'" title="נגישות" aria-label="נגישות">♿</button>
+
+<!-- Cookie Consent -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#0F172B;color:#CBD5E1;padding:14px 20px;font-family:'Assistant',sans-serif;font-size:14px;direction:rtl;box-shadow:0 -2px 16px rgba(0,0,0,0.3);align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between">
+  <span style="flex:1;min-width:200px;line-height:1.5">🍪 אנחנו משתמשים בעוגיות לשיפור חוויית הגלישה ולניתוח תנועה באתר.</span>
+  <div style="display:flex;gap:8px;flex-shrink:0">
+    <button onclick="cookieDecline()" style="background:transparent;border:1.5px solid #475569;color:#94A3B8;border-radius:8px;padding:8px 16px;font-family:'Assistant',sans-serif;font-size:13px;font-weight:600;cursor:pointer">דחייה</button>
+    <button onclick="cookieAccept()" style="background:#F97316;border:none;color:white;border-radius:8px;padding:8px 20px;font-family:'Assistant',sans-serif;font-size:13px;font-weight:700;cursor:pointer">אישור</button>
+  </div>
+</div>
+<script>
+(function(){
+  if(!localStorage.getItem('cookieConsent')){
+    var b = document.getElementById('cookie-banner');
+    b.style.display = 'flex';
+  }
+})();
+window.cookieAccept = function(){
+  localStorage.setItem('cookieConsent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+};
+window.cookieDecline = function(){
+  localStorage.setItem('cookieConsent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+};
+</script>
 </body>
 </html>
 
