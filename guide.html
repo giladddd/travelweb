@@ -164,6 +164,14 @@
     .app-carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: #CBD5E1; cursor: pointer; transition: background 0.2s; }
     .app-carousel-dot.active { background: #F97316; width: 20px; border-radius: 4px; }
 
+    .gear-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .gear-tab { background: #F1F5F9; border: none; border-radius: 20px; padding: 6px 12px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Assistant', sans-serif; color: #64748B; transition: background 0.2s, color 0.2s; }
+    .gear-tab.active { background: #F97316; color: white; }
+    .gear-panel { display: none; }
+    .gear-panel.active { display: block; }
+    .gear-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+    .gear-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; color: #0F172B; line-height: 1.4; }
+    .gear-list li span.gi { font-size: 16px; line-height: 1.3; flex-shrink: 0; }
     .step-btns { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 20px 0; }
     .step-btn {
       display: inline-flex; align-items: center; gap: 6px;
@@ -1373,7 +1381,118 @@
       <div class="step-title">🎒 ציוד</div>
     </div>
     <div class="step-body">
-      <p class="step-desc">מתארגנים על כל הציוד לטיול — מוצ'ילה, תיק יום, ציוד כללי, היגיינה וציוד שטח. אנחנו ב"המטייל החכם" מספקים הכל עם ייעוץ אישי חינם.</p>
+      <p class="step-desc">מתארגנים על כל הציוד לטיול — לחצו על קטגוריה לראות את רשימת הציוד המלאה:</p>
+      <div class="gear-tabs">
+        <button class="gear-tab active" onclick="showGear('gear')">🎒 ציוד</button>
+        <button class="gear-tab" onclick="showGear('hygiene')">🪥 היגיינה</button>
+        <button class="gear-tab" onclick="showGear('electronics')">🔋 אלקטרוניקה</button>
+        <button class="gear-tab" onclick="showGear('clothing')">👕 ביגוד</button>
+        <button class="gear-tab" onclick="showGear('field')">🍳 שטח</button>
+        <button class="gear-tab" onclick="showGear('meds')">💊 תרופות</button>
+        <button class="gear-tab" onclick="showGear('docs')">📄 מסמכים</button>
+      </div>
+
+      <div class="gear-panel active" id="gear-gear">
+        <ul class="gear-list">
+          <li><span class="gi">🎒</span><span>מוצ'ילה</span></li>
+          <li><span class="gi">🎽</span><span>תיק יום</span></li>
+          <li><span class="gi">📦</span><span>ארגוניות (packing cubes)</span></li>
+          <li><span class="gi">🧢</span><span>כובע</span></li>
+          <li><span class="gi">🔒</span><span>מנעול + כבל נעילה</span></li>
+          <li><span class="gi">👜</span><span>פאוץ (לכסף ומסמכים)</span></li>
+          <li><span class="gi">💧</span><span>שקית נגד מים</span></li>
+          <li><span class="gi">🛏️</span><span>כרית נסיעות</span></li>
+        </ul>
+      </div>
+
+      <div class="gear-panel" id="gear-hygiene">
+        <ul class="gear-list">
+          <li><span class="gi">🧳</span><span>תיק רחצה</span></li>
+          <li><span class="gi">🪥</span><span>מברשת שיניים + כיסוי מברשת</span></li>
+          <li><span class="gi">👕</span><span>שק כביסה רשת</span></li>
+          <li><span class="gi">💧</span><span>LifeStraw — בקבוק מסנן מים</span></li>
+          <li><span class="gi">🛌</span><span>ליינר (sleeping bag liner)</span></li>
+          <li><span class="gi">🪤</span><span>פינצטה</span></li>
+          <li><span class="gi">✂️</span><span>גוזז ציפורנים</span></li>
+          <li><span class="gi">🧴</span><span>בקבוקון לבושם</span></li>
+          <li><span class="gi">🧻</span><span>מגבונים לחים</span></li>
+          <li><span class="gi">☀️</span><span>קרם הגנה</span></li>
+          <li><span class="gi">🪒</span><span>מכונת גילוח (גברים)</span></li>
+          <li><span class="gi">💄</span><span>תיק איפור (נשים)</span></li>
+        </ul>
+      </div>
+
+      <div class="gear-panel" id="gear-electronics">
+        <ul class="gear-list">
+          <li><span class="gi">🔋</span><span>מטען נייד (powerbank)</span></li>
+          <li><span class="gi">🔌</span><span>מתאם אוניברסלי לשקעים</span></li>
+          <li><span class="gi">📱</span><span>מטען לטלפון + כבל</span></li>
+          <li><span class="gi">🎧</span><span>אוזניות</span></li>
+          <li><span class="gi">🔦</span><span>פנס ראש</span></li>
+          <li><span class="gi">📍</span><span>AirTag (לתוך המוצ'ילה)</span></li>
+          <li><span class="gi">🔊</span><span>רמקול</span></li>
+        </ul>
+      </div>
+
+      <div class="gear-panel" id="gear-clothing">
+        <ul class="gear-list">
+          <li><span class="gi">👟</span><span>נעלי טיולים</span></li>
+          <li><span class="gi">🩴</span><span>סנדלי שורש / כפכפים</span></li>
+          <li><span class="gi">👠</span><span>נעלי יומיום (עדיפות לנעל שתתאים ליציאה וספורט)</span></li>
+          <li><span class="gi">👕</span><span>6 חולצות קצרות</span></li>
+          <li><span class="gi">🏃</span><span>2 חולצות טיולים (dryfit)</span></li>
+          <li><span class="gi">👖</span><span>מכנס ארוך</span></li>
+          <li><span class="gi">🩳</span><span>ג'ינס קצר</span></li>
+          <li><span class="gi">🥾</span><span>2 מכנסי טיולים</span></li>
+          <li><span class="gi">🩱</span><span>בגד ים</span></li>
+          <li><span class="gi">🧦</span><span>6 גרביים רגילות + 3 גרבי טיולים</span></li>
+          <li><span class="gi">🩲</span><span>10 תחתונים</span></li>
+          <li><span class="gi">🧥</span><span>מעיל טיולים / softshell</span></li>
+          <li><span class="gi">🫧</span><span>פליז (fleece)</span></li>
+          <li><span class="gi">🥶</span><span>חולצה תרמית + מכנס תרמי</span></li>
+          <li><span class="gi">🧤</span><span>כפפות + באפר (buff)</span></li>
+        </ul>
+      </div>
+
+      <div class="gear-panel" id="gear-field">
+        <ul class="gear-list">
+          <li><span class="gi">🍽️</span><span>צלחת מתקפלת</span></li>
+          <li><span class="gi">🥄</span><span>סכום מתקפל</span></li>
+          <li><span class="gi">🥤</span><span>כוס מתקפלת</span></li>
+          <li><span class="gi">🔥</span><span>גזייה</span></li>
+          <li><span class="gi">🔧</span><span>מתאם לגזייה</span></li>
+          <li><span class="gi">🍳</span><span>סט בישול (מחבת + סיר)</span></li>
+          <li><span class="gi">🔪</span><span>אולר</span></li>
+        </ul>
+      </div>
+
+      <div class="gear-panel" id="gear-meds">
+        <ul class="gear-list">
+          <li><span class="gi">💊</span><span>כדורי גובה</span></li>
+          <li><span class="gi">💊</span><span>אקמול</span></li>
+          <li><span class="gi">💊</span><span>קל בטן</span></li>
+          <li><span class="gi">💊</span><span>קל גרון</span></li>
+          <li><span class="gi">🧴</span><span>וזלין</span></li>
+          <li><span class="gi">💊</span><span>אדוויל</span></li>
+          <li><span class="gi">💊</span><span>כדורי מלריה (לפי יעד)</span></li>
+          <li><span class="gi">🩹</span><span>ערכת עזרה ראשונה (פלסטרים, פולידין וכו')</span></li>
+          <li><span class="gi">🏥</span><span>תרופות בהמלצת מרפאת מטיילים מור</span></li>
+        </ul>
+      </div>
+
+      <div class="gear-panel" id="gear-docs">
+        <ul class="gear-list">
+          <li><span class="gi">🛂</span><span>דרכון</span></li>
+          <li><span class="gi">🛡️</span><span>ביטוח נסיעות</span></li>
+          <li><span class="gi">📋</span><span>ויזה (אם נדרשת)</span></li>
+          <li><span class="gi">💳</span><span>2 כרטיסי אשראי</span></li>
+          <li><span class="gi">🪪</span><span>רישיון נהיגה בינלאומי</span></li>
+          <li><span class="gi">💉</span><span>פנקס חיסונים</span></li>
+          <li><span class="gi">🤿</span><span>רישיון צלילה (אם רלוונטי)</span></li>
+          <li><span class="gi">🎫</span><span>כרטיס טיסה</span></li>
+          <li><span class="gi">☁️</span><span>צילומים של הכל בגוגל דרייב — שלחו עותק להורים/חברים בארץ</span></li>
+        </ul>
+      </div>
     </div>
     <div class="step-btns">
       <a href="index.html#formpack" class="step-btn">🛒 תתארגנו על ציוד במטייל החכם</a>
@@ -1771,6 +1890,15 @@ window.slideCarousel = function(id, dir) {
   }
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
 })();
+
+// Gear tabs
+window.showGear = function(cat) {
+  document.querySelectorAll('.gear-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.gear-panel').forEach(function(p){ p.classList.remove('active'); });
+  event.currentTarget.classList.add('active');
+  var panel = document.getElementById('gear-' + cat);
+  if(panel) panel.classList.add('active');
+};
 
 // Vol carousel
 (function() {
