@@ -393,7 +393,10 @@
       <a href="#TG_14">שלב 14: כרטיס טיסה פיקטיבי</a>
       <a href="#TG_15">שלב 15: הזמנת טיסה</a>
       <a href="#TG_16">שלב 16: מקום לינה ראשון</a>
-      <a href="#TG_17">שלב 17: ביטוח לאומי</a>
+      <a href="#TG_17">שלב 17: התנדבות בטיול</a>
+      <a href="#TG_18">שלב 18: ביטוח לאומי</a>
+      <a href="#TG_19">שלב 19: צ'ק ליסט יום ראשון</a>
+      <a href="#TG_20">שלב 20: חבילה 360° עם המטייל החכם</a>
     </nav>
   </div>
 </div>
@@ -1464,6 +1467,69 @@
   <div class="step-card" data-step="17">
     <div class="step-header">
       <div class="step-num">17</div>
+      <div class="step-title">🌍 התנדבות בטיול</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">רוצים לתת משמעות לטיול? אפשר להתנדב לכמה ימים/שבועות בדרך — חוויה שמשנה אנשים:</p>
+      <div class="app-carousel-wrap">
+        <div class="app-carousel-viewport">
+          <div class="app-carousel-track" id="vol-track">
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=doctors-without-borders.org&sz=128" alt="לוחמים ללא גבולות" class="app-icon">
+              <div class="app-name">לוחמים ללא גבולות</div>
+              <div class="app-category">הומניטרי</div>
+              <div class="app-tip">💛 ארגון רפואי בינלאומי — מחפשים מתנדבים עם מיומנויות שונות גם ללא רקע רפואי</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=helpup.co.il&sz=128" alt="HelpUp" class="app-icon">
+              <div class="app-name">HelpUp</div>
+              <div class="app-category">פלטפורמת התנדבות</div>
+              <div class="app-tip">💛 פלטפורמה ישראלית שמחברת מטיילים להזדמנויות התנדבות ברחבי העולם</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="בדרכו של עידו" class="app-icon">
+              <div class="app-name">בדרכו של עידו — גואטמלה</div>
+              <div class="app-category">השראה</div>
+              <div class="app-tip">💛 סרט תיעודי מרגש על מטייל ישראלי שהפך חייו בגואטמלה — השראה לכל מי שחושב על התנדבות</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=workaway.info&sz=128" alt="Workaway" class="app-icon">
+              <div class="app-name">Workaway</div>
+              <div class="app-category">עבודה תמורת לינה</div>
+              <div class="app-tip">💛 עבדו כמה שעות ביום בתמורה ללינה וארוחות — אלפי הזדמנויות בכל העולם</div>
+            </div>
+
+            <div class="app-card">
+              <img src="https://www.google.com/s2/favicons?domain=wwoof.net&sz=128" alt="WWOOF" class="app-icon">
+              <div class="app-name">WWOOF</div>
+              <div class="app-category">חקלאות אורגנית</div>
+              <div class="app-tip">💛 עבדו בחוות אורגניות בכל העולם — לינה וארוחות בחינם בתמורה לעבודה חקלאית</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="app-carousel-nav">
+          <button class="app-carousel-arrow" onclick="volCarouselMove(-1)">›</button>
+          <div class="app-carousel-dots" id="vol-dots"></div>
+          <button class="app-carousel-arrow" onclick="volCarouselMove(1)">‹</button>
+        </div>
+      </div>
+    </div>
+    <div class="step-check-row">
+      <input type="checkbox" id="chk17" onchange="markDone(this,17)">
+      <label for="chk17">בדקתי אפשרויות התנדבות ✓</label>
+    </div>
+  </div>
+
+  <!-- שלב 18 -->
+  <span id="TG_18" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
+  <div class="step-card" data-step="18">
+    <div class="step-header">
+      <div class="step-num">18</div>
       <div class="step-title">🏛️ הסדרת ביטוח לאומי</div>
     </div>
     <div class="step-body">
@@ -1473,28 +1539,53 @@
       <a href="https://ps.btl.gov.il/" target="_blank" class="step-btn outline">🌐 אתר הביטוח הלאומי</a>
     </div>
     <div class="step-check-row">
-      <input type="checkbox" id="chk17" onchange="markDone(this,17)">
-      <label for="chk17">הסדרתי תשלום / אסדיר כשאחזור ✓</label>
+      <input type="checkbox" id="chk18" onchange="markDone(this,18)">
+      <label for="chk18">הסדרתי תשלום / אסדיר כשאחזור ✓</label>
     </div>
   </div>
 
-  <!-- שלב 18 — מסיימים! -->
-  <span id="TG_18" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
-  <div class="step-card final" data-step="18">
+  <!-- שלב 19 -->
+  <span id="TG_19" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
+  <div class="step-card" data-step="19">
+    <div class="step-header">
+      <div class="step-num">19</div>
+      <div class="step-title">✅ צ'ק ליסט — יום הטיסה</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">לפני שיוצאים מהבית — וודאו שיש לכם הכל:</p>
+      <ul style="list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:8px;">
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🎫</span><span>כרטיס טיסה — מודפס / שמור במכשיר אופליין</span></li>
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🏨</span><span>צילום הזמנת מקום לינה ראשון — כתובת + שם</span></li>
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">📶</span><span>סים אינטרנטי ליום הראשון — פעיל ומוכן</span></li>
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">📄</span><span>מסמכים בגוגל דרייב — דרכון, ביטוח, כרטיס טיסה</span></li>
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🎟️</span><span>כרטיס פיקטיבי או כרטיס יציאה מהמדינה</span></li>
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🌐</span><span>Google Translate — השפה המקומית מורדת לאופליין</span></li>
+        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🚖</span><span>הזמנת מונית מהשדה להוסטל / הורדת אפליקציית מוניות מקומית</span></li>
+      </ul>
+    </div>
+    <div class="step-check-row">
+      <input type="checkbox" id="chk19" onchange="markDone(this,19)">
+      <label for="chk19">עברתי על הצ'ק ליסט ✓</label>
+    </div>
+  </div>
+
+  <!-- שלב 20 — מסיימים! -->
+  <span id="TG_20" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
+  <div class="step-card final" data-step="20">
     <div class="step-header">
       <div class="step-num" style="background:linear-gradient(135deg,#F97316,#FBBF24);font-size:20px;">🎉</div>
       <div class="step-title" style="font-size:22px;">אתם מוכנים לטיול!</div>
     </div>
     <div class="step-body">
-      <p class="step-desc" style="color:#94A3B8;">סיימתם את כל השלבים — אתם מוכנים לטיול הגדול! תהנו ותחזרו בשלום. מוזמנים לדבר איתנו ומומחה מ"המטייל החכם" יעבור איתכם על כל הציוד וההכנה.</p>
+      <p class="step-desc" style="color:#94A3B8;">רוצים לסגור הכל בחבילה אחת? נעבור איתכם 1:1 ונוודא שיש לכם הכל לטיול — ציוד, בירוקרטיה, בטיחות והכל לפי היעד וסגנון הטיול שלכם. הכל במקום אחד.</p>
     </div>
     <div class="step-btns" style="padding-bottom:4px">
-      <a href="index.html#formpack" class="step-btn">🎒 סדר אותי 360° לטיול</a>
+      <a href="index.html#formpack" class="step-btn">🎒 לחבילה 360°</a>
       <a href="https://wa.link/081ywl" target="_blank" class="step-btn green">💬 דברו איתנו!</a>
     </div>
     <div class="step-check-row" style="border-top-color:rgba(255,255,255,0.1)">
-      <input type="checkbox" id="chk18" onchange="markDone(this,18)">
-      <label for="chk18" style="color:#94A3B8">טיסה נעימה! ✈️</label>
+      <input type="checkbox" id="chk20" onchange="markDone(this,20)">
+      <label for="chk20" style="color:#94A3B8">טיסה נעימה! ✈️</label>
     </div>
   </div>
 
@@ -1540,7 +1631,7 @@ window.closeGuideMenu = function() { document.getElementById('side-guide-panel')
 
 // PROGRESS
 var done = {};
-var TOTAL = 18;
+var TOTAL = 20;
 function markDone(cb, n) {
   var card = cb.closest('.step-card');
   if(cb.checked){ done[n]=true; card.classList.add('done'); }
@@ -1674,6 +1765,35 @@ window.slideCarousel = function(id, dir) {
       dotsEl.querySelectorAll('.app-carousel-dot').forEach(function(d,i){ d.classList.toggle('active', i===n); });
     }
     window.appCarouselMove = function(dir) {
+      goTo((current - dir + total) % total);
+    };
+    goTo(0);
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+})();
+
+// Vol carousel
+(function() {
+  var current = 0;
+  function init() {
+    var track = document.getElementById('vol-track');
+    var dotsEl = document.getElementById('vol-dots');
+    if (!track || !dotsEl) return;
+    var cards = track.querySelectorAll('.app-card');
+    var total = cards.length;
+    dotsEl.innerHTML = '';
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('span');
+      d.className = 'app-carousel-dot' + (i === 0 ? ' active' : '');
+      (function(idx){ d.onclick = function(){ goTo(idx); }; })(i);
+      dotsEl.appendChild(d);
+    }
+    function goTo(n) {
+      current = n;
+      track.style.transform = 'translateX(' + (n * 100) + '%)';
+      dotsEl.querySelectorAll('.app-carousel-dot').forEach(function(d,i){ d.classList.toggle('active', i===n); });
+    }
+    window.volCarouselMove = function(dir) {
       goTo((current - dir + total) % total);
     };
     goTo(0);
