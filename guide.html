@@ -1782,6 +1782,9 @@
   var panel = document.getElementById('side-panel');
   var overlay = document.getElementById('side-overlay');
   var hamburger = document.getElementById('hamburger');
+  // On guide page, open the guide sub-menu automatically when sidebar opens
+  var _origOpen = open;
+  open = function(){ _origOpen(); document.getElementById('side-guide-panel').classList.add('open'); };
   var closeBtn = document.getElementById('side-close');
   function open(){ panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; }
   function close(){ panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; }
