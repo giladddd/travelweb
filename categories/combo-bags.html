@@ -373,6 +373,7 @@ updateCartDisplay();
 var comboMochilaNames = ['Kyte LT 65','Kestrel LT 65','Gregory Deva 60','Osprey Aura 65','Kyte 68','Osprey Kestrel 68'];
 var comboMochilaIdx = 0;
 var comboMochilaTotal = 6;
+var comboGender = 'women';
 
 function comboMochilaGoTo(idx) {
   comboMochilaIdx = (idx + comboMochilaTotal) % comboMochilaTotal;
@@ -383,6 +384,7 @@ function comboMochilaGoTo(idx) {
 }
 window.comboMochilaMove = function(dir) { comboMochilaGoTo(comboMochilaIdx + dir); };
 window.setComboGender = function(g) {
+  comboGender = g;
   var wBtn = document.getElementById('combo-women-btn');
   var mBtn = document.getElementById('combo-men-btn');
   if (g === 'women') {
@@ -406,8 +408,18 @@ window.addComboToCart = function(btn) {
   var months = parseInt(document.getElementById('combo-months').value);
   var total = 269 + (Math.min(months,6) - 1) * 100;
   var label = months === 1 ? '1 חודש' : months + ' חודשים';
-  var name = comboMochilaNames[comboMochilaIdx] + ' + Sportlite 30 — ' + label;
-  addToCart(btn, 'combo-r-' + comboMochilaIdx + '-m' + months, name, total);
+  var genderLabel = comboGender === 'men' ? 'גברים' : 'נשים';
+  var name = comboMochilaNames[comboMochilaIdx] + ' (' + genderLabel + ') + Sportlite 30 — ' + label;
+  var cart = getCart();
+  var id = 'combo-r-' + comboMochilaIdx + '-m' + months;
+  var ex = cart.find(function(i){ return i.id == id; });
+  if (ex) { ex.qty = (ex.qty||1)+1; } else { cart.push({id:id, name:name, price:total, qty:1, mode:'rent'}); }
+  saveCart(cart);
+  updateCartDisplay();
+  var orig = btn.textContent;
+  btn.textContent = '✓ נוסף!';
+  btn.classList.add('added');
+  setTimeout(function(){ btn.textContent = orig; btn.classList.remove('added'); }, 2000);
 };
 
 window.setComboSaleGender = function(g) {
