@@ -1920,8 +1920,8 @@ function ytPlay(el, id) {
     updateDots();
   }
 
-  if(prevBtn) prevBtn.addEventListener('click',function(){ goBack(); paused=true; });
-  if(nextBtn) nextBtn.addEventListener('click',function(){ advance(); paused=true; });
+  if(prevBtn) prevBtn.addEventListener('click',function(){ advance(); paused=true; });
+  if(nextBtn) nextBtn.addEventListener('click',function(){ goBack(); paused=true; });
 
   setInterval(function(){ if(!paused) advance(); }, 3500);
 
@@ -1929,6 +1929,21 @@ function ytPlay(el, id) {
     paused=true;
     clearTimeout(carousel._resumeTimer);
     carousel._resumeTimer=setTimeout(function(){ paused=false; },8000);
+  });
+
+  // Update dots on scroll
+  carousel.addEventListener('scroll', function(){
+    var slides = allSlides();
+    var cr = carousel.getBoundingClientRect();
+    var crMid = cr.left + cr.width/2;
+    var closest = 0, minDist = Infinity;
+    for(var i=0;i<N;i++){
+      var sr = slides[i].getBoundingClientRect();
+      var dist = Math.abs(sr.left + sr.width/2 - crMid);
+      if(dist < minDist){ minDist = dist; closest = i; }
+    }
+    cur = closest;
+    updateDots();
   });
 
   snapTo(0);
