@@ -1687,39 +1687,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ABOUT VIDEO -->
 <section class="about-section" style="padding:40px 20px">
   <h2>מטיילים חכם</h2>
-  <div class="about-video-wrap" id="about-video-wrap" style="max-width:480px">
-    <div id="yt-player-wrap" style="width:100%;aspect-ratio:9/16"></div>
-    <div class="video-click-area" id="video-click-area"></div>
-    <div class="video-play-overlay" id="video-overlay" onclick="toggleAboutVideo()">
-      <svg id="overlay-icon" viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
+  <div class="about-video-wrap" style="max-width:480px;aspect-ratio:9/16">
+    <div class="yt-facade" onclick="ytPlay(this,'DPo_p5_-v-E')">
+      <img src="https://img.youtube.com/vi/DPo_p5_-v-E/hqdefault.jpg" alt="סרטון מבוא" loading="lazy">
+      <span class="yt-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></span>
     </div>
   </div>
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-  var ytPlayer, ytPlaying = false;
-  var wrap = document.getElementById('about-video-wrap');
-  var icon = document.getElementById('overlay-icon');
-  wrap.classList.add('paused');
-  function onYouTubeIframeAPIReady(){
-    ytPlayer = new YT.Player('yt-player-wrap',{
-      videoId:'DPo_p5_-v-E',
-      playerVars:{controls:0,rel:0,modestbranding:1,playsinline:1},
-      events:{
-        onStateChange: function(e){
-          if(e.data===YT.PlayerState.PLAYING){
-            ytPlaying=true; wrap.classList.remove('paused'); wrap.classList.add('playing');
-            icon.innerHTML='<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>';
-          } else {
-            ytPlaying=false; wrap.classList.remove('playing'); wrap.classList.add('paused');
-            icon.innerHTML='<path d="M8 5v14l11-7z"/>';
-          }
-        }
-      }
-    });
-  }
-  document.getElementById('video-click-area').addEventListener('click', function(){ ytPlaying ? ytPlayer.pauseVideo() : ytPlayer.playVideo(); });
-  window.toggleAboutVideo = function(){ ytPlaying ? ytPlayer.pauseVideo() : ytPlayer.playVideo(); };
-  </script>
 </section>
 
 <!-- TESTIMONIALS -->
