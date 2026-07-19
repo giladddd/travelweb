@@ -1805,22 +1805,26 @@ window.closeGuideMenu = function() {
 };
 
 // YouTube facade
+window.__ytPlaying = false; // used by carousel to pause auto-advance while a video is open
 function ytPlay(el, id) {
+  window.__ytPlaying = true;
   var slide = el.parentNode;
   var iframe = document.createElement('iframe');
-  iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&cc_load_policy=0&iv_load_policy=3';
+  iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0&cc_load_policy=0&iv_load_policy=3';
   iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-  iframe.allowFullscreen = true;
+  iframe.setAttribute('allowfullscreen', '');
   iframe.style.cssText = 'width:100%;height:100%;border:0;display:block;position:absolute;inset:0';
   var closeBtn = document.createElement('button');
-  closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="28" height="28"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
-  closeBtn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;background:rgba(0,0,0,0.45);color:white;border:none;border-radius:50%;width:56px;height:56px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s';
+  closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="22" height="22"><line x1="18" y1="6" x2="6" y2="18" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>';
+  closeBtn.title = 'סגור סרטון';
+  closeBtn.style.cssText = 'position:absolute;top:8px;left:8px;z-index:10;background:rgba(0,0,0,0.55);color:white;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s';
   slide.addEventListener('mouseenter', function(){ closeBtn.style.opacity='1'; });
   slide.addEventListener('mouseleave', function(){ closeBtn.style.opacity='0'; });
-  // במובייל — הצג תמיד ברקע
-  if ('ontouchstart' in window) { closeBtn.style.opacity='0.7'; }
+  // במובייל — הצג תמיד
+  if ('ontouchstart' in window) { closeBtn.style.opacity='1'; }
   closeBtn.onclick = function(e) {
     e.stopPropagation();
+    window.__ytPlaying = false;
     slide.innerHTML = '';
     var facade = document.createElement('div');
     facade.className = 'yt-facade';
@@ -1921,7 +1925,7 @@ function ytPlay(el, id) {
   if(prevBtn) prevBtn.addEventListener('click',function(){ advance(); paused=true; });
   if(nextBtn) nextBtn.addEventListener('click',function(){ goBack(); paused=true; });
 
-  setInterval(function(){ if(!paused) advance(); }, 3500);
+  setInterval(function(){ if(!paused && !window.__ytPlaying) advance(); }, 3500);
 
   carousel.addEventListener('touchstart',function(){
     paused=true;
