@@ -939,18 +939,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <input type="hidden" id="delivery-type" name="deliveryType" value="">
             </div>
 
+            <div id="pickup-return-note" style="display:none;font-size:13px;color:#64748b;margin-bottom:2px;padding:0 2px">כתובת להחזרת הציוד בסיום הטיול (לא חובה)</div>
+
             <div class="form-group" id="address-group" style="display:none">
-              <label class="form-label" for="customer-city">עיר <span class="required">*</span></label>
+              <label class="form-label" id="city-label" for="customer-city">עיר <span class="required" id="city-required">*</span></label>
               <input class="form-input" type="text" id="customer-city" name="city" placeholder="תל אביב" autocomplete="address-level2">
             </div>
 
             <div class="form-group" id="street-group" style="display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;display:none">
               <div>
-                <label class="form-label" for="customer-street">רחוב <span class="required">*</span></label>
+                <label class="form-label" for="customer-street">רחוב <span class="required" id="street-required">*</span></label>
                 <input class="form-input" type="text" id="customer-street" name="street" placeholder="שם הרחוב" autocomplete="address-line1">
               </div>
               <div style="width:80px">
-                <label class="form-label" for="customer-streetnum">מספר <span class="required">*</span></label>
+                <label class="form-label" for="customer-streetnum">מספר <span class="required" id="streetnum-required">*</span></label>
                 <input class="form-input" type="text" id="customer-streetnum" name="street_number" placeholder="12">
               </div>
             </div>
@@ -1186,20 +1188,21 @@ window.addUpsell = function(btn, id, name, price) {
     document.querySelectorAll('[data-delivery]').forEach(function(b){ b.classList.remove('active'); });
     el.classList.add('active');
     document.getElementById('delivery-type').value = type;
-    var showAddress = type === 'delivery';
+    var isPickupWithRental = type === 'pickup' && hasRental;
+    var showAddress = type === 'delivery' || isPickupWithRental;
+    var pickupNote = document.getElementById('pickup-return-note');
+    if (pickupNote) pickupNote.style.display = isPickupWithRental ? '' : 'none';
+    // show/hide required stars based on whether address is optional (pickup+rental)
+    ['city-required','street-required','streetnum-required'].forEach(function(id){
+      var el2 = document.getElementById(id);
+      if (el2) el2.style.display = isPickupWithRental ? 'none' : '';
+    });
     var addrGroup = document.getElementById('address-group');
     var streetGroup = document.getElementById('street-group');
     if (addrGroup) addrGroup.style.display = showAddress ? '' : 'none';
     if (streetGroup) streetGroup.style.display = showAddress ? 'grid' : 'none';
     // if rental items exist, address is also required when delivery selected
   };
-  // If rental items exist, show address fields by default and require
-  if (hasRental) {
-    var addrGroup = document.getElementById('address-group');
-    var streetGroup = document.getElementById('street-group');
-    if (addrGroup) addrGroup.style.display = '';
-    if (streetGroup) streetGroup.style.display = 'grid';
-  }
 
   // Form submit
   document.getElementById('order-form').addEventListener('submit', function(e) {
@@ -1231,16 +1234,6 @@ window.addUpsell = function(btn, id, name, price) {
       var streetnum = document.getElementById('customer-streetnum').value.trim();
       if (!city || !street || !streetnum) {
         alert('נא למלא כתובת מלאה למשלוח');
-        return;
-      }
-    }
-    var hasRentalForCheck = cart.some(function(i){ return i.mode === 'rent'; });
-    if (hasRentalForCheck) {
-      var city2 = document.getElementById('customer-city').value.trim();
-      var street2 = document.getElementById('customer-street').value.trim();
-      var streetnum2 = document.getElementById('customer-streetnum').value.trim();
-      if (!city2 || !street2 || !streetnum2) {
-        alert('יש בסל פריטים להשכרה — נא למלא כתובת מלאה לאיסוף והחזרה');
         return;
       }
     }
