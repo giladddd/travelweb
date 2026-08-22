@@ -118,6 +118,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .step-card:hover { box-shadow: 0 4px 24px rgba(249,115,22,0.12); }
     .step-card.done { border: 2px solid #22C55E; }
 
+    /* Lock overlay — visible only for guide-basic users on locked steps */
+    .lock-overlay {
+      display: none;
+      position: absolute; inset: 0; z-index: 10;
+      background: rgba(255,255,255,0.92);
+      border-radius: 18px;
+      flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+      backdrop-filter: blur(2px);
+    }
+    .guide-basic .locked-step .lock-overlay { display: flex; }
+    .guide-basic .locked-step { overflow: hidden; }
+
     /* connector line between cards */
     .step-card:not(:last-child)::after {
       content: '';
@@ -407,15 +419,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <script>
 (function(){
-  var GUIDE_CODE = '5511';
+  var VALID_CODES = {'1000':'basic','1001':'full','5511':'full'};
   var STORAGE_KEY = 'guide_access';
+  function applyAccess(level){
+    if(level === 'basic'){
+      document.body.classList.add('guide-basic');
+    } else {
+      document.body.classList.remove('guide-basic');
+    }
+  }
   function showGate(){ document.getElementById('guide-gate').style.display='flex'; }
   function hideGate(){ document.getElementById('guide-gate').style.display='none'; }
-  if(localStorage.getItem(STORAGE_KEY) !== GUIDE_CODE){ showGate(); }
+  var stored = localStorage.getItem(STORAGE_KEY);
+  if(stored && VALID_CODES[stored]){
+    applyAccess(VALID_CODES[stored]);
+    hideGate();
+  } else {
+    showGate();
+  }
   window.checkGuideCode = function(){
     var val = document.getElementById('guide-code-input').value.trim();
-    if(val === GUIDE_CODE){
-      localStorage.setItem(STORAGE_KEY, GUIDE_CODE);
+    if(VALID_CODES[val]){
+      localStorage.setItem(STORAGE_KEY, val);
+      applyAccess(VALID_CODES[val]);
       hideGate();
     } else {
       document.getElementById('guide-code-error').style.display='block';
@@ -1614,11 +1640,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- שלב 15 -->
-  <span id="TG_15" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
+  <!-- שלב 15 — ביטוח לאומי (הועבר לפני שלבי הטיסה) -->
+  <span id="TG_18" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
   <div class="step-card" data-step="15">
     <div class="step-header">
       <div class="step-num">15</div>
+      <div class="step-title">🏛️ הסדרת ביטוח לאומי</div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">מי שרוצה להסדיר תשלום לביטוח לאומי (לא חובה — אפשר לשלם הכל כשחוזרים. לפעמים יש קנס קטן על איחור אבל רק במקרים נדירים).</p>
+    </div>
+    <div class="step-btns">
+      <a href="https://ps.btl.gov.il/" target="_blank" class="step-btn outline">🌐 אתר הביטוח הלאומי</a>
+    </div>
+    <div class="step-check-row">
+      <input type="checkbox" id="chk18" onchange="markDone(this,18)">
+      <label for="chk18">הסדרתי תשלום / אסדיר כשאחזור ✓</label>
+    </div>
+  </div>
+
+  <!-- שלב 16 — נעול למי שאין קוד 1001 -->
+  <span id="TG_15" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
+  <div class="step-card locked-step" data-step="16">
+    <div class="lock-overlay">
+      <div style="font-size:36px">🔒</div>
+      <div style="font-size:15px;font-weight:700;color:#0F172B;text-align:center">שלב זה זמין למחזיקי<br>המטייל החכם פלוס</div>
+      <a href="index.html#formpack" style="background:#F97316;color:white;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px">שדרגו לפלוס</a>
+    </div>
+    <div class="step-header">
+      <div class="step-num">16</div>
       <div class="step-title">🛫 הזמנת טיסה</div>
     </div>
     <div class="step-body">
@@ -1633,11 +1683,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- שלב 16 -->
+  <!-- שלב 17 — נעול -->
   <span id="TG_16" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
-  <div class="step-card" data-step="16">
+  <div class="step-card locked-step" data-step="17">
+    <div class="lock-overlay">
+      <div style="font-size:36px">🔒</div>
+      <div style="font-size:15px;font-weight:700;color:#0F172B;text-align:center">שלב זה זמין למחזיקי<br>המטייל החכם פלוס</div>
+      <a href="index.html#formpack" style="background:#F97316;color:white;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px">שדרגו לפלוס</a>
+    </div>
     <div class="step-header">
-      <div class="step-num">16</div>
+      <div class="step-num">17</div>
       <div class="step-title">🏨 מקום לינה ללילה הראשון</div>
     </div>
     <div class="step-body">
@@ -1652,11 +1707,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- שלב 17 -->
+  <!-- שלב 18 — נעול -->
   <span id="TG_17" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
-  <div class="step-card" data-step="17">
+  <div class="step-card locked-step" data-step="18">
+    <div class="lock-overlay">
+      <div style="font-size:36px">🔒</div>
+      <div style="font-size:15px;font-weight:700;color:#0F172B;text-align:center">שלב זה זמין למחזיקי<br>המטייל החכם פלוס</div>
+      <a href="index.html#formpack" style="background:#F97316;color:white;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px">שדרגו לפלוס</a>
+    </div>
     <div class="step-header">
-      <div class="step-num">17</div>
+      <div class="step-num">18</div>
       <div class="step-title">🌍 התנדבות בטיול</div>
     </div>
     <div class="step-body">
@@ -1664,42 +1724,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="app-carousel-wrap">
         <div class="app-carousel-viewport">
           <div class="app-carousel-track" id="vol-track">
-
             <div class="app-card">
               <img src="assets/images/unnamed.jpg" alt="לוחמים ללא גבולות" class="app-icon">
               <div class="app-name">לוחמים ללא גבולות</div>
               <div class="app-category">הומניטרי</div>
               <div class="app-tip">💛 ארגון רפואי בינלאומי — מחפשים מתנדבים עם מיומנויות שונות גם ללא רקע רפואי</div>
             </div>
-
             <div class="app-card">
               <img src="https://www.google.com/s2/favicons?domain=helpup.co.il&sz=128" alt="HelpUp" class="app-icon">
               <div class="app-name">HelpUp</div>
               <div class="app-category">פלטפורמת התנדבות</div>
               <div class="app-tip">💛 פלטפורמה ישראלית שמחברת מטיילים להזדמנויות התנדבות ברחבי העולם</div>
             </div>
-
             <div class="app-card">
               <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="בדרכו של עידו" class="app-icon">
               <div class="app-name">בדרכו של עידו — גואטמלה</div>
               <div class="app-category">השראה</div>
               <div class="app-tip">💛 סרט תיעודי מרגש על מטייל ישראלי שהפך חייו בגואטמלה — השראה לכל מי שחושב על התנדבות</div>
             </div>
-
             <div class="app-card">
               <img src="https://www.google.com/s2/favicons?domain=workaway.info&sz=128" alt="Workaway" class="app-icon">
               <div class="app-name">Workaway</div>
               <div class="app-category">עבודה תמורת לינה</div>
               <div class="app-tip">💛 עבדו כמה שעות ביום בתמורה ללינה וארוחות — אלפי הזדמנויות בכל העולם</div>
             </div>
-
             <div class="app-card">
               <img src="https://www.google.com/s2/favicons?domain=wwoof.net&sz=128" alt="WWOOF" class="app-icon">
               <div class="app-name">WWOOF</div>
               <div class="app-category">חקלאות אורגנית</div>
               <div class="app-tip">💛 עבדו בחוות אורגניות בכל העולם — לינה וארוחות בחינם בתמורה לעבודה חקלאית</div>
             </div>
-
           </div>
         </div>
         <div class="app-carousel-nav">
@@ -1715,28 +1769,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- שלב 18 -->
-  <span id="TG_18" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
-  <div class="step-card" data-step="18">
-    <div class="step-header">
-      <div class="step-num">18</div>
-      <div class="step-title">🏛️ הסדרת ביטוח לאומי</div>
-    </div>
-    <div class="step-body">
-      <p class="step-desc">מי שרוצה להסדיר תשלום לביטוח לאומי (לא חובה — אפשר לשלם הכל כשחוזרים. לפעמים יש קנס קטן על איחור אבל רק במקרים נדירים).</p>
-    </div>
-    <div class="step-btns">
-      <a href="https://ps.btl.gov.il/" target="_blank" class="step-btn outline">🌐 אתר הביטוח הלאומי</a>
-    </div>
-    <div class="step-check-row">
-      <input type="checkbox" id="chk18" onchange="markDone(this,18)">
-      <label for="chk18">הסדרתי תשלום / אסדיר כשאחזור ✓</label>
-    </div>
-  </div>
-
-  <!-- שלב 19 -->
+  <!-- שלב 19 — נעול -->
   <span id="TG_19" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
-  <div class="step-card" data-step="19">
+  <div class="step-card locked-step" data-step="19">
+    <div class="lock-overlay">
+      <div style="font-size:36px">🔒</div>
+      <div style="font-size:15px;font-weight:700;color:#0F172B;text-align:center">שלב זה זמין למחזיקי<br>המטייל החכם פלוס</div>
+      <a href="index.html#formpack" style="background:#F97316;color:white;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px">שדרגו לפלוס</a>
+    </div>
     <div class="step-header">
       <div class="step-num">19</div>
       <div class="step-title">✅ צ'ק ליסט — יום הטיסה</div>
