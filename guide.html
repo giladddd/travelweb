@@ -387,6 +387,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </style>
 </head>
 <body>
+<!-- ACCESS GATE -->
+<div id="guide-gate" style="display:none;position:fixed;inset:0;z-index:99999;background:#0F172B;display:flex;align-items:center;justify-content:center;padding:20px">
+  <div style="background:white;border-radius:20px;padding:36px 28px;max-width:380px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.3)">
+    <div style="font-size:48px;margin-bottom:12px">🔒</div>
+    <h2 style="font-size:22px;font-weight:800;color:#0F172B;margin-bottom:8px">המדריך המלא לטיול</h2>
+    <p style="font-size:14px;color:#64748b;margin-bottom:24px">המדריך זמין לחברה שרכשו חבילה מהמטייל החכם.<br>הכניסו את קוד הגישה שקיבלתם.</p>
+    <input id="guide-code-input" type="number" placeholder="קוד גישה" inputmode="numeric"
+      style="width:100%;border:2px solid #E2E8F0;border-radius:10px;padding:12px 16px;font-size:18px;font-family:inherit;text-align:center;outline:none;margin-bottom:8px;direction:ltr"
+      onkeydown="if(event.key==='Enter') checkGuideCode()">
+    <div id="guide-code-error" style="display:none;color:#ef4444;font-size:13px;font-weight:600;margin-bottom:8px">קוד שגוי — נסו שוב</div>
+    <button onclick="checkGuideCode()" style="width:100%;background:#F97316;color:white;border:none;border-radius:10px;padding:13px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer">כניסה למדריך</button>
+    <div style="margin-top:20px">
+      <a href="index.html" style="font-size:13px;color:#64748b;text-decoration:underline">חזרה לדף הבית</a>
+      &nbsp;|&nbsp;
+      <a href="https://wa.link/081ywl" target="_blank" style="font-size:13px;color:#F97316;font-weight:600">קנו חבילה עכשיו</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var GUIDE_CODE = '5511';
+  var STORAGE_KEY = 'guide_access';
+  function showGate(){ document.getElementById('guide-gate').style.display='flex'; }
+  function hideGate(){ document.getElementById('guide-gate').style.display='none'; }
+  if(localStorage.getItem(STORAGE_KEY) !== GUIDE_CODE){ showGate(); }
+  window.checkGuideCode = function(){
+    var val = document.getElementById('guide-code-input').value.trim();
+    if(val === GUIDE_CODE){
+      localStorage.setItem(STORAGE_KEY, GUIDE_CODE);
+      hideGate();
+    } else {
+      document.getElementById('guide-code-error').style.display='block';
+      document.getElementById('guide-code-input').style.borderColor='#ef4444';
+    }
+  };
+})();
+</script>
+<!-- END ACCESS GATE -->
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4Q73BXB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
