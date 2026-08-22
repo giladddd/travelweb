@@ -842,7 +842,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="sf-progress">
   <div class="sf-step active" data-step="1" onclick="goStep(1)" style="cursor:pointer">1 מוצילה 🎒</div>
   <div class="sf-step" data-step="2" onclick="goStep(2)" style="cursor:pointer">2 ציוד 🛒</div>
-  <div class="sf-step" data-step="3" onclick="goStep(3)" style="cursor:pointer">3 בירוקרטיה ✈️</div>
+  <div class="sf-step" data-step="3" onclick="goStep(3)" style="cursor:pointer">3 הכנה 🎯</div>
 </div>
 
 <div class="sf-layout">
@@ -1193,53 +1193,74 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="sf-step-panel" id="sf-panel-3">
-      <h2 class="sf-heading">שלב 3: הטבות בחינם</h2>
-      <p class="sf-sub">🎁 כל ההטבות האלה ניתנות לכם בחינם כחלק מחבילת המטייל החכם</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px">
+      <h2 class="sf-heading">שלב 3: הכנה והתנהלות בטיול</h2>
+      <p class="sf-sub">🎯 בחרו את מסלול ההכנה שמתאים לכם — חובה לבחור כדי להמשיך</p>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:28px">
 
-        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
-          <img src="assets/images/2026_04_8-600x600.png" alt="רשימת וויזות" style="width:100%;aspect-ratio:1;object-fit:cover">
-          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
-            <div style="font-size:13px;font-weight:700;color:#0F172B">רשימת וויזות</div>
-            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
-            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3055','רשימת וויזות')">הוסף הטבה בחינם</button>
+        <!-- צ'ק אפ -->
+        <div class="coaching-card" id="coaching-checkup" onclick="selectCoaching('coaching-checkup','המטייל החכם צ\'ק אפ',169)" style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:18px 20px;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s,background 0.2s">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div>
+              <div style="font-size:16px;font-weight:800;color:#0F172B">המטייל החכם צ'ק אפ</div>
+              <div style="font-size:12px;color:#64748b;margin-top:2px">הכנה מלאה לפני הטיול</div>
+            </div>
+            <div style="font-size:20px;font-weight:800;color:#F97316;white-space:nowrap">₪169</div>
           </div>
+          <ul style="margin:0;padding-right:18px;font-size:13px;color:#374151;line-height:1.8;display:grid;grid-template-columns:1fr 1fr;gap:0 10px">
+            <li>מסמכים ובירוקרטיה</li>
+            <li>ביטוח נסיעות</li>
+            <li>אשראי ותשלומים</li>
+            <li>ציוד לטיול</li>
+            <li>סים ותקשורת</li>
+            <li>בטיחות</li>
+            <li>שאלות וייעוץ אישי</li>
+            <li>ביטוח פיקטיבי</li>
+            <li>טיפים לחסכון</li>
+          </ul>
+          <div class="coaching-check" style="display:none;margin-top:10px;text-align:center;color:#F97316;font-weight:700">✓ נבחר</div>
         </div>
 
-        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
-          <img src="assets/images/2026_04_7-600x600.png" alt='סים אינטרנט לחו"ל' style="width:100%;aspect-ratio:1;object-fit:cover">
-          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
-            <div style="font-size:13px;font-weight:700;color:#0F172B">סים אינטרנט לחו"ל</div>
-            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
-            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3054','סים אינטרנט לחו&quot;ל')">הוסף הטבה בחינם</button>
+        <!-- פלוס -->
+        <div class="coaching-card" id="coaching-plus" onclick="selectCoaching('coaching-plus','המטייל החכם פלוס',799)" style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:18px 20px;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s,background 0.2s;position:relative">
+          <div style="position:absolute;top:-1px;right:16px;background:#F97316;color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:0 0 8px 8px">הכי פופולרי 🔥</div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div>
+              <div style="font-size:16px;font-weight:800;color:#0F172B">המטייל החכם פלוס</div>
+              <div style="font-size:12px;color:#64748b;margin-top:2px">הכנה + התנהלות בטיול</div>
+            </div>
+            <div style="font-size:20px;font-weight:800;color:#F97316;white-space:nowrap">₪799</div>
           </div>
+          <ul style="margin:0;padding-right:18px;font-size:13px;color:#374151;line-height:1.8;display:grid;grid-template-columns:1fr 1fr;gap:0 10px">
+            <li>כל מה שבצ'ק אפ</li>
+            <li>איך להזמין טיסות</li>
+            <li>מקומות לינה</li>
+            <li>התנדבויות בחו"ל</li>
+            <li>טיפים לחסכון בטיול</li>
+            <li>צ'ק אפ יום ראשון</li>
+            <li>התנהלות כלכלית</li>
+            <li>ייעוץ אישי מורחב</li>
+          </ul>
+          <div class="coaching-check" style="display:none;margin-top:10px;text-align:center;color:#F97316;font-weight:700">✓ נבחר</div>
         </div>
 
-        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
-          <img src="assets/images/2026_04_6-600x600.png" alt="כרטיס טיסה פיקטיבי אמין" style="width:100%;aspect-ratio:1;object-fit:cover">
-          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
-            <div style="font-size:13px;font-weight:700;color:#0F172B">כרטיס טיסה פיקטיבי אמין</div>
-            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
-            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3053','כרטיס טיסה פיקטיבי אמין')">הוסף הטבה בחינם</button>
+        <!-- פרימיום -->
+        <div class="coaching-card" id="coaching-premium" onclick="selectCoaching('coaching-premium','המטייל החכם פרימיום',1999)" style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:18px 20px;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s,background 0.2s">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div>
+              <div style="font-size:16px;font-weight:800;color:#0F172B">המטייל החכם פרימיום</div>
+              <div style="font-size:12px;color:#64748b;margin-top:2px">ליווי יד ביד מהתחלה ועד הטיסה</div>
+            </div>
+            <div style="font-size:20px;font-weight:800;color:#F97316;white-space:nowrap">₪1,999</div>
           </div>
-        </div>
-
-        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
-          <img src="assets/images/2026_04_5-600x600.png" alt="סוכן ביטוח אישי ללא תוספת עלות" style="width:100%;aspect-ratio:1;object-fit:cover">
-          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
-            <div style="font-size:13px;font-weight:700;color:#0F172B">סוכן ביטוח אישי ללא תוספת עלות</div>
-            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
-            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3052','סוכן ביטוח אישי ללא תוספת עלות')">הוסף הטבה בחינם</button>
-          </div>
-        </div>
-
-        <div style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);overflow:hidden;text-align:center;display:flex;flex-direction:column">
-          <img src="assets/images/2026_04_4-600x600.png" alt="המדריך המלא לטיול" style="width:100%;aspect-ratio:1;object-fit:cover">
-          <div style="padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
-            <div style="font-size:13px;font-weight:700;color:#0F172B">המדריך המלא לטיול</div>
-            <span style="background:#FFF7ED;color:#F97316;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">חינם!</span>
-            <button class="sf-benefit-btn" onclick="addBenefitToCart(this,'3051','המדריך המלא לטיול')">הוסף הטבה בחינם</button>
-          </div>
+          <ul style="margin:0;padding-right:18px;font-size:13px;color:#374151;line-height:1.8;display:grid;grid-template-columns:1fr 1fr;gap:0 10px">
+            <li>כל מה שבפלוס</li>
+            <li>הזמנת טיסה בפועל</li>
+            <li>הכנה מנטלית ופרקטית</li>
+            <li>תכנון יעדים ומסלול</li>
+            <li>ליווי אישי צמוד</li>
+            <li>זמינות מלאה לשאלות</li>
+          </ul>
+          <div class="coaching-check" style="display:none;margin-top:10px;text-align:center;color:#F97316;font-weight:700">✓ נבחר</div>
         </div>
 
       </div>
@@ -1585,8 +1606,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('sf-next-1').disabled = true;
     document.querySelectorAll('.sf-card').forEach(function(c){ c.classList.remove('selected'); });
   };
+  var selectedCoaching = null;
+  window.selectCoaching = function(id, name, price) {
+    selectedCoaching = id;
+    document.querySelectorAll('.coaching-card').forEach(function(c) {
+      c.style.borderColor = 'transparent';
+      c.style.background = 'white';
+      c.querySelector('.coaching-check').style.display = 'none';
+    });
+    var el = document.getElementById(id);
+    if (el) {
+      el.style.borderColor = '#F97316';
+      el.style.background = '#FFF7ED';
+      el.querySelector('.coaching-check').style.display = 'block';
+    }
+    addItemToCart({id: id, name: name, price: price, qty: 1, mode: 'buy', duration: null});
+    showToast('✓ ' + name + ' נוסף לסל!');
+  };
+
   window.submitForm = function() {
     if(!selectedPack){ alert('אנא בחרו מוצילה בשלב 1'); goStep(1); return; }
+    if(!selectedCoaching){ alert('אנא בחרו מסלול הכנה בשלב 3'); goStep(3); return; }
     var packPrice = mode==='rent' ? calcRentPrice(months) : packBuyPrices[selectedPack];
     var name = allPackNames[selectedPack] || selectedPack;
     if (mode==='rent' && subtype==='both') name += ' + תיק יום 30L';
