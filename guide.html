@@ -438,6 +438,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   } else {
     showGate();
   }
+  window.openUpgradeGate = function(){
+    document.getElementById('guide-code-input').value = '';
+    document.getElementById('guide-code-error').style.display = 'none';
+    document.getElementById('guide-code-input').style.borderColor = '';
+    showGate();
+  };
   window.checkGuideCode = function(){
     var val = document.getElementById('guide-code-input').value.trim();
     if(VALID_CODES[val]){
@@ -1667,7 +1673,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="lock-overlay">
       <div style="font-size:36px">🔒</div>
       <div style="font-size:15px;font-weight:700;color:#0F172B;text-align:center">שלב זה זמין למחזיקי<br>המטייל החכם פלוס</div>
-      <a href="index.html#formpack" style="background:#F97316;color:white;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px">שדרגו לפלוס</a>
+      <button onclick="openUpgradeGate()" style="background:#F97316;color:white;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px;cursor:pointer;font-family:inherit">שדרגו לפלוס</button>
     </div>
     <div class="step-header">
       <div class="step-num">16</div>
@@ -1691,7 +1697,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="lock-overlay">
       <div style="font-size:36px">🔒</div>
       <div style="font-size:15px;font-weight:700;color:#0F172B;text-align:center">שלב זה זמין למחזיקי<br>המטייל החכם פלוס</div>
-      <a href="index.html#formpack" style="background:#F97316;color:white;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px">שדרגו לפלוס</a>
+      <button onclick="openUpgradeGate()" style="background:#F97316;color:white;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px;cursor:pointer;font-family:inherit">שדרגו לפלוס</button>
     </div>
     <div class="step-header">
       <div class="step-num">17</div>
@@ -1715,7 +1721,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="lock-overlay">
       <div style="font-size:36px">🔒</div>
       <div style="font-size:15px;font-weight:700;color:#0F172B;text-align:center">שלב זה זמין למחזיקי<br>המטייל החכם פלוס</div>
-      <a href="index.html#formpack" style="background:#F97316;color:white;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px">שדרגו לפלוס</a>
+      <button onclick="openUpgradeGate()" style="background:#F97316;color:white;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px;cursor:pointer;font-family:inherit">שדרגו לפלוס</button>
     </div>
     <div class="step-header">
       <div class="step-num">18</div>
@@ -1777,7 +1783,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="lock-overlay">
       <div style="font-size:36px">🔒</div>
       <div style="font-size:15px;font-weight:700;color:#0F172B;text-align:center">שלב זה זמין למחזיקי<br>המטייל החכם פלוס</div>
-      <a href="index.html#formpack" style="background:#F97316;color:white;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px">שדרגו לפלוס</a>
+      <button onclick="openUpgradeGate()" style="background:#F97316;color:white;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;margin-top:4px;cursor:pointer;font-family:inherit">שדרגו לפלוס</button>
     </div>
     <div class="step-header">
       <div class="step-num">19</div>
