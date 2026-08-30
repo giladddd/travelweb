@@ -1200,21 +1200,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:28px">
 
         <!-- חינמי — ברירת מחדל -->
-        <div class="coaching-card" id="coaching-checkup" onclick="selectCoaching('coaching-checkup','המטייל החכם — בחינם',0)" style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:18px 20px;cursor:pointer;border:2px solid #F97316;transition:border-color 0.2s">
+        <div class="coaching-card" id="coaching-checkup" onclick="selectCoaching('coaching-checkup','המטייל החכם צ\'ק אפ ובטיחות — בחינם',0)" style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:18px 20px;cursor:pointer;border:2px solid #F97316;transition:border-color 0.2s">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
             <div>
-              <div style="font-size:16px;font-weight:800;color:#0F172B">המטייל החכם — בחינם</div>
-              <div style="font-size:12px;color:#64748b;margin-top:2px">מדריך מלא לטיול + כל הטיפים הבטיחותיים</div>
+              <div style="font-size:16px;font-weight:800;color:#0F172B">המטייל החכם צ'ק אפ ובטיחות — בחינם</div>
+              <div style="font-size:12px;color:#64748b;margin-top:2px">מדריך מלא לטיול + מעבר אישי על בטיחות</div>
             </div>
             <div style="text-align:left">
               <div style="font-size:20px;font-weight:800;color:#22C55E">חינם</div>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 8px;font-size:13px;color:#374151;margin-bottom:10px">
-            <div>✅ מדריך מלא לטיול</div>
-            <div>✅ טיפים בטיחותיים</div>
-            <div>✅ רשימת ציוד חיוני</div>
-            <div>✅ ביטוח, ויזות ומסמכים</div>
+            <div>✅ מדריך מלא לטיול מ-0</div>
+            <div>✅ מעבר אישי על בטיחות בטיול</div>
+            <div>✅ ביטוח נסיעות</div>
+            <div>✅ כרטיס פיקטיבי</div>
+            <div>✅ ויזות</div>
+            <div>✅ צ'ק ליסט ליום הראשון</div>
+            <div>✅ רשימת ציוד</div>
+            <div>✅ סים ואינטרנט</div>
           </div>
           <div style="background:#F0FDF4;color:#166534;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700">
             🛡️ לחזור בשלום — זה הדבר הכי חשוב
@@ -1503,7 +1507,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     injectAddButtons();
     if (step === 3 && !coachingAddedToCart) {
       coachingAddedToCart = true;
-      addItemToCart({id:'coaching-checkup', name:"המטייל החכם — בחינם", price:0, qty:1, mode:'buy', duration:null});
+      addItemToCart({id:'coaching-checkup', name:"המטייל החכם צ'ק אפ ובטיחות — בחינם", price:0, qty:1, mode:'buy', duration:null});
     }
   };
   var allPackNames = {
