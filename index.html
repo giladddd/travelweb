@@ -377,17 +377,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button class="side-close-btn" id="side-close">✕</button>
   <nav class="side-nav">
     <a href="index.html">דף הבית</a>
-    <a href="index.html#formpack">חבילה 360° לטיול</a>
-    <a href="coaching.html">ליווי אישי למטיילים</a>
-    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
-    <a href="categories/bags-rental.html">מוצ'ילות</a>
-    <a href="categories/day-bags.html">תיקי יום</a>
-    <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
-    <a href="categories/hygiene.html">ציוד היגיינה</a>
-    <a href="categories/field.html">ציוד שטח</a>
-    <a href="categories/benefits.html">הטבות בביורוקרטיה בחינם</a>
-    <a href="about.html">אודות</a>
+    <a href="index.html#formpack">תכינו אותי 360 לטיול</a>
     <button class="side-guide-btn" onclick="openGuideMenu()">המדריך המלא לטיול <span style="font-size:12px">◀</span></button>
+    <a href="coaching.html">ליווי אישי למטיילים</a>
+    <button class="side-guide-btn" onclick="openEquipMenu()">ציוד <span style="font-size:12px">◀</span></button>
+    <a href="about.html">אודות</a>
     <a href="order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
   </nav>
 
@@ -396,22 +390,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="side-back-btn" onclick="closeGuideMenu()">▶ חזרה לתפריט</button>
     <nav class="side-nav">
       <a href="guide.html">📋 כל המדריך</a>
-      <a href="guide.html#TG_2">שלב 2: בוחרים יבשת ויעדים</a>
-      <a href="guide.html#TG_3">שלב 3: קבוצות וואטסאפ</a>
-      <a href="guide.html#TG_4">שלב 4: תכנון תקציב</a>
-      <a href="guide.html#TG_5">שלב 5: מזמינים אשראי</a>
-      <a href="guide.html#TG_6">שלב 6: דרישות ויזה</a>
-      <a href="guide.html#TG_7">שלב 7: חיסונים</a>
-      <a href="guide.html#TG_8">שלב 8: ביטוח נסיעות</a>
-      <a href="guide.html#TG_9">שלב 9: חברים מחלצים</a>
-      <a href="guide.html#TG_10">שלב 10: מסמכים</a>
-      <a href="guide.html#TG_11">שלב 11: אפליקציות לטיול</a>
-      <a href="guide.html#TG_12">שלב 12: ציוד</a>
-      <a href="guide.html#TG_13">שלב 13: הזמנת סים</a>
-      <a href="guide.html#TG_14">שלב 14: כרטיס טיסה פיקטיבי</a>
-      <a href="guide.html#TG_15">שלב 15: הזמנת טיסה</a>
-      <a href="guide.html#TG_16">שלב 16: מקום לינה ראשון</a>
-      <a href="guide.html#TG_17">שלב 17: ביטוח לאומי</a>
+      <a href="guide.html#TG_2">בוחרים יבשת ויעדים</a>
+      <a href="guide.html#TG_4">תכנון תקציב</a>
+      <a href="guide.html#TG_6">דרישות ויזה</a>
+      <a href="guide.html#TG_5">מזמינים אשראי</a>
+      <a href="guide.html#TG_7">חיסונים</a>
+      <a href="guide.html#TG_12">ציוד</a>
+      <a href="guide.html#TG_14">כרטיס טיסה פיקטיבי</a>
+      <a href="guide.html#TG_13">הזמנת סים</a>
+      <a href="guide.html#TG_8">ביטוח נסיעות</a>
+      <a href="guide.html#TG_9">חברים מחלצים</a>
+      <a href="guide.html#TG_10">מסמכים</a>
+    </nav>
+  </div>
+
+  <!-- EQUIP SUB-MENU -->
+  <div class="side-sub-panel" id="side-equip-panel">
+    <button class="side-back-btn" onclick="closeEquipMenu()">▶ חזרה לתפריט</button>
+    <nav class="side-nav">
+      <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+      <a href="categories/bags-rental.html">מוצ'ילות</a>
+      <a href="categories/day-bags.html">תיקי יום</a>
+      <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
+      <a href="categories/hygiene.html">ציוד היגיינה</a>
+      <a href="categories/field.html">ציוד שטח</a>
+      <a href="categories/benefits.html">הטבות בחינם</a>
     </nav>
   </div>
   <div class="side-social">
@@ -471,7 +474,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <h1>הכל לטיול הגדול שלך<br><span>במקום אחד!</span></h1>
+    <h1>מכינים אותך לטיול הגדול<br><span>במקום אחד!</span></h1>
     <ul class="hero-checks">
       <li>שוכרים או קונים מוצ'ילה לפי הצורך</li>
       <li>כל הציוד המשלים במקום אחד</li>
@@ -481,7 +484,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-btns">
       <div class="btn-proof-wrap">
         <span class="btn-proof-tag">🔥 57 מטיילים הזמינו חבילה לטיול החודש</span>
-        <a href="#formpack" class="btn-orange" id="hero-cta">הזמנת חבילה 360° לטיול</a>
+        <a href="#formpack" class="btn-orange" id="hero-cta">תכינו אותי 360 לטיול</a>
       </div>
       <a href="https://wa.link/081ywl" target="_blank" class="btn-wa"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="22" height="22" style="vertical-align:middle;margin-left:8px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.852L0 24l6.343-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.007-1.374l-.359-.214-3.724.885.936-3.617-.234-.372A9.794 9.794 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg> דברו איתנו לפרטים נוספים</a>
     </div>
@@ -654,6 +657,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     background: #F97316;
     color: white;
     box-shadow: 0 2px 8px rgba(249,115,22,0.3);
+  }
+  .sf-quiz-btn {
+    border: 2px solid #CBD5E1;
+    background: white;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #64748B;
+    transition: all 0.2s;
+  }
+  /* quiz rows */
+  .quiz-row { display: flex; flex-direction: column; gap: 4px; }
+  .quiz-label { font-size: 13px; font-weight: 700; color: #0F172B; }
+  .quiz-select {
+    width: 100%;
+    border: 2px solid #CBD5E1; border-radius: 8px;
+    padding: 9px 12px; font-family: 'Assistant', sans-serif;
+    font-size: 13px; font-weight: 700; color: #0F172B;
+    background: white; cursor: pointer; outline: none;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: left 12px center;
+    padding-left: 32px; direction: rtl;
+    transition: border-color 0.2s;
+  }
+  .quiz-select:focus, .quiz-select:hover { border-color: #F97316; }
+  .quiz-select option { font-weight: 600; }
+  .coaching-card.hidden-by-quiz { display: none !important; }
+  .sf-quiz-btn.active {
+    border-color: #F97316;
+    background: #FFF7ED;
+    color: #F97316;
   }
   .sf-subtype-btn {
     border: 2px solid #CBD5E1;
@@ -842,16 +880,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <div class="sf-progress">
-  <div class="sf-step active" data-step="1" onclick="goStep(1)" style="cursor:pointer">🎒 מוצילה</div>
-  <div class="sf-step" data-step="2" onclick="goStep(2)" style="cursor:pointer">🛒 ציוד נלווה</div>
-  <div class="sf-step" data-step="3" onclick="goStep(3)" style="cursor:pointer">🎯 הכנה ובירוקרטיה</div>
+  <div class="sf-step active" data-step="1" onclick="goStep(1)" style="cursor:pointer">🎯 הכנה</div>
+  <div class="sf-step" data-step="2" onclick="goStep(2)" style="cursor:pointer">🎒 מוצילות</div>
+  <div class="sf-step" data-step="3" onclick="goStep(3)" style="cursor:pointer">🛒 ציוד נלווה</div>
 </div>
 
 <div class="sf-layout">
   <div class="sf-main">
 
-    <div class="sf-step-panel active" id="sf-panel-1">
-      <h2 class="sf-heading">חבילה 1: מוצילה לטיול</h2>
+    <div class="sf-step-panel" id="sf-panel-2-real">
+      <h2 class="sf-heading">שלב 2: בחירת מוצילה לטיול</h2>
       <p class="sf-sub">בחרו אם להשכיר או לקנות</p>
 
       <!-- mode toggle -->
@@ -1080,12 +1118,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div style="text-align:center;margin-top:24px">
-        <button class="sf-btn-main" id="sf-next-1" onclick="goStep(2)" disabled>המשך לחבילה 2 ←</button>
+        <button class="sf-btn-main" id="sf-next-1" onclick="goStep(3)" disabled>המשך לציוד נלווה ←</button>
       </div>
     </div>
 
-    <div class="sf-step-panel" id="sf-panel-2">
-      <h2 class="sf-heading">חבילה 2: מוצילה + ציוד נלווה</h2>
+    <div class="sf-step-panel" id="sf-panel-3-real">
+      <h2 class="sf-heading">שלב 3: ציוד נלווה</h2>
       <div class="sf-rent-note">🔄 <span>השכרה = מחיר חד פעמי לכל הטיול — מחזירים בסוף</span></div>
       <div class="sf-cat-tabs">
         <button class="sf-cat-tab active" onclick="showCat('general',event)">🛒 ציוד כללי</button>
@@ -1190,13 +1228,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div style="text-align:center;margin-top:24px;display:flex;gap:12px;justify-content:center">
         <button class="sf-btn-secondary" onclick="goStep(1)">← חזרה</button>
-        <button class="sf-btn-main" onclick="goStep(3)">המשך לחבילה 3 ←</button>
+        <button class="sf-btn-main" onclick="submitForm()">המשך לסיכום הזמנה 🎒</button>
       </div>
     </div>
 
-    <div class="sf-step-panel" id="sf-panel-3">
-      <h2 class="sf-heading">חבילה 3: הכנה 360</h2>
-      <p class="sf-sub">🎯 בחרו את מסלול ההכנה שמתאים לכם — חובה לבחור כדי להמשיך</p>
+    <div class="sf-step-panel active" id="sf-panel-1">
+      <h2 class="sf-heading">שלב 1: הכנה ובירוקרטיה</h2>
+      <p class="sf-sub">ספרו לנו קצת עליכם — נמצא את המסלול הכי מתאים לכם</p>
+
+      <!-- QUIZ -->
+      <div id="quiz-section" style="margin-bottom:24px;display:flex;flex-direction:column;gap:10px">
+
+        <!-- לאן הטיסה -->
+        <div class="quiz-row">
+          <label class="quiz-label">✈️ לאן הטיסה?</label>
+          <select class="quiz-select" id="quiz-dest">
+            <option value="">— בחרו יעד —</option>
+            <option value="south-america">🌎 דרום אמריקה</option>
+            <option value="east">🌏 מזרח</option>
+            <option value="africa">🌍 אפריקה</option>
+            <option value="europe">🏰 אירופה</option>
+            <option value="australia-nz">🦘 אוסטרליה — ניו זילנד</option>
+          </select>
+        </div>
+
+        <!-- לכמה זמן -->
+        <div class="quiz-row">
+          <label class="quiz-label">📅 לכמה זמן?</label>
+          <select class="quiz-select" id="quiz-duration">
+            <option value="">— בחרו משך —</option>
+            <option value="1m">חודש</option>
+            <option value="2m">2 חודשים</option>
+            <option value="3m">3 חודשים</option>
+            <option value="4m">4 חודשים</option>
+            <option value="5m">5 חודשים</option>
+            <option value="6m">6 חודשים</option>
+            <option value="7m+">7 חודשים ומעלה</option>
+          </select>
+        </div>
+
+        <!-- סוג מטייל -->
+        <div class="quiz-row">
+          <label class="quiz-label">🎒 סוג מטייל?</label>
+          <select class="quiz-select" id="quiz-traveler">
+            <option value="">— בחרו סוג —</option>
+            <option value="trekker">🥾 טרקים ונופים</option>
+            <option value="beach">🏖️ בטן גב</option>
+            <option value="mix">🌄 שילוב של שניהם</option>
+          </select>
+        </div>
+
+        <!-- רמת מוכנות -->
+        <div class="quiz-row">
+          <label class="quiz-label">📊 רמת המוכנות?</label>
+          <select class="quiz-select" id="quiz-readiness" onchange="updateRecommended(this.value)">
+            <option value="">— בחרו רמה —</option>
+            <option value="ready" selected>✅ די מוכן — רק צריך לוודא שלא שכחתי כלום</option>
+            <option value="some-help">🙋 חצי מוכן — אשמח לכיוון ועזרה בהכנה והתנהלות בטיול</option>
+            <option value="lost">🆘 די אבוד — אשמח לליווי יד ביד</option>
+          </select>
+        </div>
+
+      </div>
+
+      <p id="coaching-title" style="font-size:14px;font-weight:700;color:#0F172B;margin-bottom:12px">🎯 בחרו את מסלול ההכנה שמתאים לכם:</p>
       <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:28px">
 
         <!-- חינמי — ברירת מחדל -->
@@ -1218,7 +1313,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div>✅ צ'ק ליסט ליום הראשון</div>
             <div>✅ רשימת ציוד</div>
             <div>✅ סים ואינטרנט</div>
-            <div style="grid-column:1/-1;font-weight:800;color:#B91C1C;margin-top:4px">✅ ביטוח עם סוכן אישי — ללא תוספת עלות, חובה בהזמנת חבילה<br><span style="font-size:11px;font-weight:600;color:#64748b">(הסוכנים מקבלים את העמלות ישירות מחברות הביטוח, ועובדים עם כל החברות — המחיר זהה לעשות דרך סוכן או לבד באינטרנט)</span></div>
+            <div style="grid-column:1/-1;font-weight:800;color:#B91C1C;margin-top:4px">✅ ביטוח עם סוכן אישי — ללא תוספת עלות בהזמנת חבילה<br><span style="font-size:11px;font-weight:600;color:#64748b">(הסוכנים מקבלים את העמלות ישירות מחברות הביטוח, ועובדים עם כל החברות — המחיר זהה לעשות דרך סוכן או לבד באינטרנט)</span></div>
           </div>
           <div style="background:#FFF7ED;color:#92400E;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700">
             ⏱️ חוסך ~25 שעות מחקר &nbsp;|&nbsp; 💰 חוסך ~₪1,400
@@ -1279,11 +1374,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
       </div>
-      <div style="text-align:center;display:flex;gap:12px;justify-content:center">
-        <button class="sf-btn-secondary" onclick="goStep(2)">← חזרה</button>
-        <button class="sf-btn-main" onclick="submitForm()">המשך לסיכום הזמנה 🎒</button>
+      <div style="text-align:center;margin-top:24px">
+        <button class="sf-btn-main" onclick="goStep(2)">המשך לבחירת מוצילה ←</button>
       </div>
     </div>
+
+    <div class="sf-step-panel" id="sf-panel-2" style="display:none"><!-- placeholder fixed by JS --></div>
+    <div class="sf-step-panel" id="sf-panel-3" style="display:none"><!-- placeholder fixed by JS --></div>
 
   </div><!-- /.sf-main -->
 </div><!-- /.sf-layout -->
@@ -1629,7 +1726,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var selectedCoaching = 'coaching-checkup';
   var coachingAddedToCart = false;
   var coachingIds = ['coaching-checkup','coaching-plus','coaching-premium'];
-  window.selectCoaching = function(id, name, price) {
+  window.selectCoaching = function(id, name, price, silent) {
     var cart = getCart().filter(function(i){ return coachingIds.indexOf(i.id) === -1; });
     saveCart(cart); updateHeader();
     selectedCoaching = id;
@@ -1643,12 +1740,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el.style.borderColor = '#F97316';
     }
     addItemToCart({id: id, name: name, price: price, qty: 1, mode: 'buy', duration: null});
-    showToast('✓ ' + name + ' נוסף לסל!');
+    if (!silent) showToast('✓ ' + name + ' נוסף לסל!');
   };
 
   window.submitForm = function() {
-    if(!selectedPack){ alert('אנא בחרו מוצילה בשלב 1'); goStep(1); return; }
-    if(!selectedCoaching){ alert('אנא בחרו מסלול הכנה בשלב 3'); goStep(3); return; }
+    if(!selectedCoaching){ alert('אנא בחרו מסלול הכנה בשלב 1'); goStep(1); return; }
+    if(!selectedPack){ alert('אנא בחרו מוצילה בשלב 2'); goStep(2); return; }
     var packPrice = mode==='rent' ? calcRentPrice(months) : packBuyPrices[selectedPack];
     var name = allPackNames[selectedPack] || selectedPack;
     if (mode==='rent' && subtype==='both') name += ' + תיק יום 30L';
@@ -1805,7 +1902,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function close(){ panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; }
   if(hamburger) hamburger.addEventListener('click', open);
   if(closeBtn)  closeBtn.addEventListener('click', close);
-  if(overlay)   overlay.addEventListener('click', function(){ close(); closeGuideMenu(); });
+  if(overlay)   overlay.addEventListener('click', function(){ close(); closeGuideMenu(); closeEquipMenu(); });
 })();
 
 window.openGuideMenu = function() {
@@ -1814,6 +1911,63 @@ window.openGuideMenu = function() {
 window.closeGuideMenu = function() {
   document.getElementById('side-guide-panel').classList.remove('open');
 };
+window.openEquipMenu = function() {
+  document.getElementById('side-equip-panel').classList.add('open');
+};
+window.closeEquipMenu = function() {
+  document.getElementById('side-equip-panel').classList.remove('open');
+};
+
+// Fix panel IDs — real panels are named -real, reassign to sf-panel-N
+(function(){
+  var p2 = document.getElementById('sf-panel-2-real');
+  var p3 = document.getElementById('sf-panel-3-real');
+  if(p2) p2.id = 'sf-panel-2';
+  if(p3) p3.id = 'sf-panel-3';
+})();
+
+// Accordion helper
+window.toggleAcc = function(headerBtn) {
+  var body = headerBtn.nextElementSibling;
+  var isOpen = body.classList.contains('open');
+  if (isOpen) {
+    body.classList.remove('open');
+    headerBtn.classList.add('closed');
+  } else {
+    body.classList.add('open');
+    headerBtn.classList.remove('closed');
+  }
+};
+
+// Quiz helpers
+window.toggleQuizBtn = function(btn, groupId) {
+  btn.classList.toggle('active');
+};
+window.selectQuizBtn = function(btn, groupId) {
+  document.querySelectorAll('#'+groupId+' .sf-quiz-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+};
+window.updateRecommended = function(readiness) {
+  var map = { 'ready': 'coaching-checkup', 'some-help': 'coaching-plus', 'lost': 'coaching-premium' };
+  var nameMap = { 'coaching-checkup': "המטייל החכם צ'ק אפ ובטיחות — בחינם", 'coaching-plus': 'המטייל החכם פלוס', 'coaching-premium': 'המטייל החכם פרימיום' };
+  var priceMap = { 'coaching-checkup': 0, 'coaching-plus': 197, 'coaching-premium': 1999 };
+  var recommended = map[readiness];
+  if (!recommended) {
+    document.querySelectorAll('.coaching-card').forEach(function(c){ c.classList.remove('hidden-by-quiz'); });
+    return;
+  }
+  document.querySelectorAll('.coaching-card').forEach(function(c){
+    if (c.id === recommended) {
+      c.classList.remove('hidden-by-quiz');
+    } else {
+      c.classList.add('hidden-by-quiz');
+    }
+  });
+  window.selectCoaching(recommended, nameMap[recommended], priceMap[recommended], true);
+};
+
+// init default readiness on load (silent — no toast)
+window.updateRecommended('ready', true);
 
 // YouTube facade
 window.__ytPlaying = false; // used by carousel to pause auto-advance while a video is open

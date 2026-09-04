@@ -101,39 +101,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button class="side-close-btn" id="side-close">✕</button>
   <nav class="side-nav">
     <a href="../index.html">דף הבית</a>
-    <a href="../index.html#formpack">חבילה 360° לטיול</a>
+    <a href="../index.html#formpack">תכינו אותי 360 לטיול</a>
+    <button class="side-guide-btn" onclick="openGuideMenu()">המדריך המלא לטיול ◀</button>
     <a href="../coaching.html">ליווי אישי למטיילים</a>
-    <a href="../categories/combo-bags.html">מוצ'ילה + תיק יום</a>
-    <a href="../categories/bags-rental.html">מוצ'ילות</a>
-    <a href="../categories/day-bags.html">תיקי יום</a>
-    <a href="../categories/general-equipment.html">ציוד כללי לטיול</a>
-    <a href="../categories/hygiene.html">ציוד היגיינה</a>
-    <a href="../categories/field.html">ציוד שטח</a>
-    <a href="../categories/benefits.html">הטבות בביורוקרטיה בחינם</a>
+    <button class="side-guide-btn" onclick="openEquipMenu()">ציוד ◀</button>
     <a href="../about.html">אודות</a>
-    <button class="side-guide-btn" onclick="openGuideMenu()">המדריך המלא לטיול <span style="font-size:12px">◀</span></button>
     <a href="../order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
   </nav>
   <div class="side-sub-panel" id="side-guide-panel">
     <button class="side-back-btn" onclick="closeGuideMenu()">▶ חזרה לתפריט</button>
     <nav class="side-nav">
       <a href="../guide.html">📋 כל המדריך</a>
-      <a href="../guide.html#TG_2">שלב 2: יבשות ויעדים</a>
-      <a href="../guide.html#TG_3">שלב 3: קבוצות ווואטסאפ</a>
-      <a href="../guide.html#TG_4">שלב 4: תכנון תקציב</a>
-      <a href="../guide.html#TG_5">שלב 5: אשראי למטיילים</a>
-      <a href="../guide.html#TG_6">שלב 6: ויזות</a>
-      <a href="../guide.html#TG_7">שלב 7: חיסונים</a>
-      <a href="../guide.html#TG_8">שלב 8: ביטוח נסיעות</a>
-      <a href="../guide.html#TG_9">שלב 9: חברים מחלצים</a>
-      <a href="../guide.html#TG_10">שלב 10: מסמכים</a>
-      <a href="../guide.html#TG_11">שלב 11: אפליקציות לטיול</a>
-      <a href="../guide.html#TG_12">שלב 12: ציוד</a>
-      <a href="../guide.html#TG_13">שלב 13: הזמנת סים</a>
-      <a href="../guide.html#TG_14">שלב 14: כרטיס טיסה פיקטיבי</a>
-      <a href="../guide.html#TG_15">שלב 15: הזמנת טיסה</a>
-      <a href="../guide.html#TG_16">שלב 16: מקום לינה ראשון</a>
-      <a href="../guide.html#TG_17">שלב 17: ביטוח לאומי</a>
+    </nav>
+  </div>
+  <div class="side-sub-panel" id="side-equip-panel">
+    <button class="side-back-btn" onclick="closeEquipMenu()">▶ חזרה לתפריט</button>
+    <nav class="side-nav">
+      <a href="../categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+      <a href="../categories/bags-rental.html">מוצ'ילות</a>
+      <a href="../categories/day-bags.html">תיקי יום</a>
+      <a href="../categories/general-equipment.html">ציוד כללי לטיול</a>
+      <a href="../categories/hygiene.html">ציוד היגיינה</a>
+      <a href="../categories/field.html">ציוד שטח</a>
+      <a href="../categories/benefits.html">הטבות בחינם</a>
     </nav>
   </div>
   <div class="side-social">
@@ -265,14 +255,16 @@ updateCartDisplay();
   var overlay = document.getElementById('side-overlay');
   var hamburger = document.getElementById('hamburger');
   var closeBtn = document.getElementById('side-close');
-  function open(){ panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; }
-  function close(){ panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; document.getElementById('side-guide-panel').classList.remove('open'); }
+  function open(){ panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('side-equip-panel').classList.add('open'); }
+  function close(){ panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; document.getElementById('side-guide-panel').classList.remove('open'); document.getElementById('side-equip-panel').classList.remove('open'); }
   hamburger.addEventListener('click', open);
   closeBtn.addEventListener('click', close);
   overlay.addEventListener('click', close);
 })();
 window.openGuideMenu = function(){ document.getElementById('side-guide-panel').classList.add('open'); };
 window.closeGuideMenu = function(){ document.getElementById('side-guide-panel').classList.remove('open'); };
+window.openEquipMenu = function(){ document.getElementById('side-equip-panel').classList.add('open'); };
+window.closeEquipMenu = function(){ document.getElementById('side-equip-panel').classList.remove('open'); };
   (function(){
     try{
       var saved=JSON.parse(localStorage.getItem('guideProgress')||'{}');
