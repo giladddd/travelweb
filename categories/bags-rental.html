@@ -296,10 +296,10 @@ function updateCartDisplay() {
   var total = cart.reduce(function(s,i){ return s+(i.price||0)*(i.qty||1); }, 0);
   var ct = document.getElementById('cart-total'); if(ct) ct.textContent = total.toFixed(2) + ' ₪';
 }
-window.addToCart = function(btn, id, name, price) {
+window.addToCart = function(btn, id, name, price, mode, duration) {
   var cart = getCart();
   var ex = cart.find(function(i){ return i.id == id; });
-  var imgEl = btn && btn.closest('.prod-card') && btn.closest('.prod-card').querySelector('img'); var imgSrc = imgEl ? imgEl.src : ''; if(ex) { ex.qty = (ex.qty||1)+1; } else { cart.push({id:id, name:name, price:price, qty:1, img:imgSrc}); }
+  var imgEl = btn && btn.closest('.prod-card') && btn.closest('.prod-card').querySelector('img'); var imgSrc = imgEl ? imgEl.src : ''; if(ex) { ex.qty = (ex.qty||1)+1; } else { cart.push({id:id, name:name, price:price, qty:1, img:imgSrc, mode:mode||'buy', duration:duration||null}); }
   saveCart(cart);
   updateCartDisplay();
   btn.textContent = '✓ נוסף!';
@@ -333,7 +333,7 @@ window.addPageRentalToCart = function(btn) {
   var price = calcMosilaPrice(m);
   var genderLabel = document.getElementById('pg-women-btn').classList.contains('inactive') ? 'גברים' : 'נשים';
   var name = 'מוצ\'ילה להשכרה (' + genderLabel + ') — ' + m + ' חודשים';
-  addToCart(btn, 'bags-rent-' + genderLabel + '-m' + m, name, price);
+  addToCart(btn, 'bags-rent-' + genderLabel + '-m' + m, name, price, 'rent', m);
 };
 // --- Sale gender toggle ---
 var pageSaleData = {
@@ -352,7 +352,7 @@ window.setPageSaleGender = function(g) {
 window.addPageSaleToCart = function(btn) {
   var g = document.getElementById('pg-sale-women-btn').classList.contains('inactive') ? 'men' : 'women';
   var d = pageSaleData[g];
-  addToCart(btn, d.id, d.name + ' (קנייה)', 1119);
+  addToCart(btn, d.id, d.name + ' (קנייה)', 1119, 'buy', null);
 };
 updateCartDisplay();
 
