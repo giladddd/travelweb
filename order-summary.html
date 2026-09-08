@@ -1228,7 +1228,7 @@ window.addUpsell = function(btn, id, name, price) {
     btn.innerHTML = '⏳ שולח הזמנה...';
     btn.style.opacity = '0.8';
 
-    var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhs0aCkgoxwD5jamPjWy_4E42TalcJDDWj2ilgnbQ_198F9-4uCSPHHlPv68x6Q3nNQA/exec';
+    var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwmP41a1dJeLyrkzPFivuxNALLVZAuWNaT68bANGonoMQEikcYzR8OnBnMySw_wyQ_3AQ/exec';
 
     var order = {
       name: name,
@@ -1248,14 +1248,36 @@ window.addUpsell = function(btn, id, name, price) {
       cart: cart
     };
 
+    var submitted = false;
+    var timeout = setTimeout(function() {
+      if (!submitted) {
+        submitted = true;
+        // Fallback: open WhatsApp with order details
+        var waMsg = 'הזמנה חדשה מהאתר!\n' +
+          'שם: ' + order.name + '\n' +
+          'טלפון: ' + order.phone + '\n' +
+          'טיסה: ' + order.flightDate + '\n' +
+          'משלוח: ' + (order.deliveryType === 'delivery' ? 'משלוח לבית' : 'איסוף עצמי') + '\n' +
+          'פריטים: ' + order.cart.map(function(i){ return i.name + ' ×' + (i.qty||1); }).join(', ') + '\n' +
+          'סה״כ: ₪' + order.cart.reduce(function(s,i){ return s+(i.price||0)*(i.qty||1); },0);
+        localStorage.removeItem('smartCart');
+        window.open('https://wa.me/972526070707?text=' + encodeURIComponent(waMsg), '_blank');
+        window.location.href = 'thank-you.html?name=' + encodeURIComponent(order.name);
+      }
+    }, 8000);
+
     fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(order)
     }).catch(function(){}).finally(function() {
-      localStorage.removeItem('smartCart');
-      window.location.href = 'thank-you.html?name=' + encodeURIComponent(order.name);
+      if (!submitted) {
+        submitted = true;
+        clearTimeout(timeout);
+        localStorage.removeItem('smartCart');
+        window.location.href = 'thank-you.html?name=' + encodeURIComponent(order.name);
+      }
     });
   });
 
