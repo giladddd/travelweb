@@ -930,7 +930,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="sf-main">
 
     <div class="sf-step-panel active" id="sf-panel-2-real">
-      <h2 class="sf-heading">שלב 2: בחירת מוצילה לטיול</h2>
+      <h2 class="sf-heading">שלב 1: בחירת מוצילה לטיול</h2>
       <p class="sf-sub">בחרו אם להשכיר או לקנות</p>
 
       <!-- mode toggle -->
@@ -1164,7 +1164,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="sf-step-panel" id="sf-panel-3-real">
-      <h2 class="sf-heading">שלב 3: ציוד נלווה</h2>
+      <h2 class="sf-heading">שלב 2: ציוד נלווה</h2>
       <div class="sf-rent-note">🔄 <span>השכרה = מחיר חד פעמי לכל הטיול — מחזירים בסוף</span></div>
       <div class="sf-cat-tabs">
         <button class="sf-cat-tab active" onclick="showCat('general',event)">🛒 ציוד כללי</button>
@@ -1274,7 +1274,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="sf-step-panel" id="sf-panel-3">
-      <h2 class="sf-heading">שלב 1: הכנה ובירוקרטיה</h2>
+      <h2 class="sf-heading">שלב 3: הכנה ובירוקרטיה</h2>
       <p class="sf-sub">ספרו לנו קצת עליכם — נמצא את המסלול הכי מתאים לכם</p>
 
       <!-- QUIZ -->
@@ -1634,7 +1634,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if(evt&&evt.target) evt.target.classList.add('active');
     injectAddButtons();
   };
-  window.goStep = function(step) {
+  var sfInitDone = false;
+  window.goStep = function(step, noScroll) {
     currentStep=step;
     document.querySelectorAll('.sf-step-panel').forEach(function(p){ p.classList.remove('active'); });
     document.getElementById('sf-panel-'+step).classList.add('active');
@@ -1642,7 +1643,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       s.classList.toggle('active',i+1===step);
       s.classList.toggle('done',i+1<step);
     });
-    document.getElementById('smart-form-360').scrollIntoView({behavior:'smooth',block:'start'});
+    if (!noScroll && sfInitDone) document.getElementById('smart-form-360').scrollIntoView({behavior:'smooth',block:'start'});
     injectAddButtons();
     if (step === 3 && !coachingAddedToCart) {
       coachingAddedToCart = true;
@@ -1965,14 +1966,9 @@ window.closeEquipMenu = function() {
   var p3 = document.getElementById('sf-panel-3-real');
   if(p2) p2.id = 'sf-panel-1';
   if(p3) p3.id = 'sf-panel-2';
-  // show מוצילות by default, always
-  document.querySelectorAll('.sf-step-panel').forEach(function(p){ p.classList.remove('active'); });
-  var p1 = document.getElementById('sf-panel-1');
-  if(p1) p1.classList.add('active');
-  document.querySelectorAll('.sf-progress .sf-step').forEach(function(s,i){
-    s.classList.toggle('active', i===0);
-    s.classList.remove('done');
-  });
+  // show מוצילות by default, always — no scroll on init
+  goStep(1, true);
+  sfInitDone = true;
 })();
 
 // Accordion helper
