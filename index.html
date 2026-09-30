@@ -921,9 +921,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <div class="sf-progress">
-  <div class="sf-step active" data-step="1" onclick="goStep(1)" style="cursor:pointer">🎯 הכנה</div>
-  <div class="sf-step" data-step="2" onclick="goStep(2)" style="cursor:pointer">🎒 מוצילות</div>
-  <div class="sf-step" data-step="3" onclick="goStep(3)" style="cursor:pointer">🛒 ציוד נלווה</div>
+  <div class="sf-step active" data-step="1" onclick="goStep(1)" style="cursor:pointer">🎒 מוצילות</div>
+  <div class="sf-step" data-step="2" onclick="goStep(2)" style="cursor:pointer">🛒 ציוד נלווה</div>
+  <div class="sf-step" data-step="3" onclick="goStep(3)" style="cursor:pointer">🎯 הכנה</div>
 </div>
 
 <div class="sf-layout">
@@ -1159,7 +1159,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div style="text-align:center;margin-top:24px">
-        <button class="sf-btn-main" id="sf-next-1" onclick="goStep(3)" disabled>המשך לציוד נלווה ←</button>
+        <button class="sf-btn-main" id="sf-next-1" onclick="goStep(2)" disabled>המשך לציוד נלווה ←</button>
       </div>
     </div>
 
@@ -1269,11 +1269,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div style="text-align:center;margin-top:24px;display:flex;gap:12px;justify-content:center">
         <button class="sf-btn-secondary" onclick="goStep(1)">← חזרה</button>
-        <button class="sf-btn-main" onclick="submitForm()">המשך לסיכום הזמנה 🎒</button>
+        <button class="sf-btn-main" onclick="goStep(3)">המשך להכנה ←</button>
       </div>
     </div>
 
-    <div class="sf-step-panel active" id="sf-panel-1">
+    <div class="sf-step-panel" id="sf-panel-3">
       <h2 class="sf-heading">שלב 1: הכנה ובירוקרטיה</h2>
       <p class="sf-sub">ספרו לנו קצת עליכם — נמצא את המסלול הכי מתאים לכם</p>
 
@@ -1416,7 +1416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       </div>
       <div style="text-align:center;margin-top:24px">
-        <button class="sf-btn-main" onclick="goStep(2)">המשך לבחירת מוצילה ←</button>
+        <button class="sf-btn-main" onclick="submitForm()">המשך לסיכום הזמנה 🎒</button>
       </div>
     </div>
 
@@ -1785,8 +1785,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   };
 
   window.submitForm = function() {
-    if(!selectedCoaching){ alert('אנא בחרו מסלול הכנה בשלב 1'); goStep(1); return; }
-    if(!selectedPack){ alert('אנא בחרו מוצילה בשלב 2'); goStep(2); return; }
+    if(!selectedPack){ alert('אנא בחרו מוצילה בשלב 1'); goStep(1); return; }
+    if(!selectedCoaching){ alert('אנא בחרו מסלול הכנה בשלב 3'); goStep(3); return; }
     var packPrice = mode==='rent' ? calcRentPrice(months) : packBuyPrices[selectedPack];
     var name = allPackNames[selectedPack] || selectedPack;
     if (mode==='rent' && subtype==='both') name += ' + תיק יום 30L';
@@ -1963,8 +1963,8 @@ window.closeEquipMenu = function() {
 (function(){
   var p2 = document.getElementById('sf-panel-2-real');
   var p3 = document.getElementById('sf-panel-3-real');
-  if(p2) p2.id = 'sf-panel-2';
-  if(p3) p3.id = 'sf-panel-3';
+  if(p2) p2.id = 'sf-panel-1';
+  if(p3) p3.id = 'sf-panel-2';
 })();
 
 // Accordion helper
