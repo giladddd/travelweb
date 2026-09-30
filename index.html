@@ -1965,7 +1965,14 @@ window.closeEquipMenu = function() {
   var p3 = document.getElementById('sf-panel-3-real');
   if(p2) p2.id = 'sf-panel-1';
   if(p3) p3.id = 'sf-panel-2';
-  goStep(1);
+  // show מוצילות by default, always
+  document.querySelectorAll('.sf-step-panel').forEach(function(p){ p.classList.remove('active'); });
+  var p1 = document.getElementById('sf-panel-1');
+  if(p1) p1.classList.add('active');
+  document.querySelectorAll('.sf-progress .sf-step').forEach(function(s,i){
+    s.classList.toggle('active', i===0);
+    s.classList.remove('done');
+  });
 })();
 
 // Accordion helper
