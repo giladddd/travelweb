@@ -905,6 +905,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <input class="form-input" type="tel" id="customer-phone" name="phone" placeholder="050-0000000" required autocomplete="tel" dir="ltr" style="text-align:right">
             </div>
 
+            <div class="form-group" id="phone2-group" style="display:none">
+              <label class="form-label" for="customer-phone2">טלפון נוסף לתיאום עם השליח <span style="font-size:12px;color:#64748B;font-weight:400">(עדיפות)</span></label>
+              <input class="form-input" type="tel" id="customer-phone2" name="phone2" placeholder="050-0000000" autocomplete="tel" dir="ltr" style="text-align:right">
+            </div>
+
             <div class="form-group">
               <label class="form-label" for="customer-email">מייל</label>
               <input class="form-input" type="email" id="customer-email" name="email" placeholder="email@example.com" autocomplete="email" dir="ltr" style="text-align:right">
@@ -1186,7 +1191,8 @@ window.addUpsell = function(btn, id, name, price) {
     var streetGroup = document.getElementById('street-group');
     if (addrGroup) addrGroup.style.display = showAddress ? '' : 'none';
     if (streetGroup) streetGroup.style.display = showAddress ? 'grid' : 'none';
-    // if rental items exist, address is also required when delivery selected
+    var phone2Group = document.getElementById('phone2-group');
+    if (phone2Group) phone2Group.style.display = type === 'delivery' ? '' : 'none';
   };
 
   // Form submit
@@ -1233,6 +1239,7 @@ window.addUpsell = function(btn, id, name, price) {
     var order = {
       name: name,
       phone: phone,
+      phone2: document.getElementById('customer-phone2').value.trim(),
       email: document.getElementById('customer-email').value,
       gender: document.getElementById('gender-input').value,
       city: document.getElementById('customer-city') ? document.getElementById('customer-city').value : '',
@@ -1248,36 +1255,26 @@ window.addUpsell = function(btn, id, name, price) {
       cart: cart
     };
 
-    var submitted = false;
-    var timeout = setTimeout(function() {
-      if (!submitted) {
-        submitted = true;
-        // Fallback: open WhatsApp with order details
-        var waMsg = 'הזמנה חדשה מהאתר!\n' +
-          'שם: ' + order.name + '\n' +
-          'טלפון: ' + order.phone + '\n' +
-          'טיסה: ' + order.flightDate + '\n' +
-          'משלוח: ' + (order.deliveryType === 'delivery' ? 'משלוח לבית' : 'איסוף עצמי') + '\n' +
-          'פריטים: ' + order.cart.map(function(i){ return i.name + ' ×' + (i.qty||1); }).join(', ') + '\n' +
-          'סה״כ: ₪' + order.cart.reduce(function(s,i){ return s+(i.price||0)*(i.qty||1); },0);
-        localStorage.removeItem('smartCart');
-        window.open('https://wa.me/972526070707?text=' + encodeURIComponent(waMsg), '_blank');
-        window.location.href = 'thank-you.html?name=' + encodeURIComponent(order.name);
-      }
-    }, 8000);
+    var submitBtn = document.getElementById('submit-order-btn');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'שולח...'; }
 
     fetch(SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(order)
-    }).catch(function(){}).finally(function() {
-      if (!submitted) {
-        submitted = true;
-        clearTimeout(timeout);
+    }).then(function(res) {
+      return res.json();
+    }).then(function(data) {
+      if (data.success) {
         localStorage.removeItem('smartCart');
         window.location.href = 'thank-you.html?name=' + encodeURIComponent(order.name);
+      } else {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'שלח הזמנה'; }
+        alert('שגיאה בשליחת ההזמנה. אנא נסה שוב או צור קשר בוואטסאפ.');
       }
+    }).catch(function() {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'שלח הזמנה'; }
+      alert('שגיאה בשליחת ההזמנה. אנא נסה שוב או צור קשר בוואטסאפ.');
     });
   });
 

@@ -416,17 +416,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="side-back-btn" onclick="closeGuideMenu()">▶ חזרה לתפריט</button>
     <nav class="side-nav">
       <a href="guide.html">📋 כל המדריך</a>
-      <a href="guide.html#TG_2">בוחרים יבשת ויעדים</a>
-      <a href="guide.html#TG_4">תכנון תקציב</a>
-      <a href="guide.html#TG_6">דרישות ויזה</a>
-      <a href="guide.html#TG_5">מזמינים אשראי</a>
-      <a href="guide.html#TG_7">חיסונים</a>
-      <a href="guide.html#TG_12">ציוד</a>
-      <a href="guide.html#TG_14">כרטיס טיסה פיקטיבי</a>
-      <a href="guide.html#TG_13">הזמנת סים</a>
-      <a href="guide.html#TG_8">ביטוח נסיעות</a>
-      <a href="guide.html#TG_9">חברים מחלצים</a>
-      <a href="guide.html#TG_10">מסמכים</a>
+      <a href="guide.html#TG_2">שלב 2: בוחרים יבשת ויעדים</a>
+      <a href="guide.html#TG_3">שלב 3: קבוצות וואטסאפ</a>
+      <a href="guide.html#TG_4">שלב 4: תכנון תקציב</a>
+      <a href="guide.html#TG_5">שלב 5: מזמינים אשראי</a>
+      <a href="guide.html#TG_6">שלב 6: דרישות ויזה</a>
+      <a href="guide.html#TG_7">שלב 7: חיסונים</a>
+      <a href="guide.html#TG_8">שלב 8: ביטוח נסיעות</a>
+      <a href="guide.html#TG_9">שלב 9: חברים מחלצים</a>
+      <a href="guide.html#TG_10">שלב 10: מסמכים</a>
+      <a href="guide.html#TG_11">שלב 11: אפליקציות לטיול</a>
+      <a href="guide.html#TG_12">שלב 12: ציוד</a>
+      <a href="guide.html#TG_13">שלב 13: הזמנת סים</a>
+      <a href="guide.html#TG_14">שלב 14: כרטיס טיסה פיקטיבי</a>
+      <a href="guide.html#TG_15">שלב 15: הזמנת טיסה</a>
+      <a href="guide.html#TG_16">שלב 16: מקום לינה ראשון</a>
+      <a href="guide.html#TG_17">שלב 17: התנדבות בטיול</a>
+      <a href="guide.html#TG_18">שלב 18: ביטוח לאומי</a>
+      <a href="guide.html#TG_19">שלב 19: צ'ק ליסט יום ראשון</a>
+      <a href="guide.html#TG_20">שלב 20: חבילה 360° עם המטייל החכם</a>
     </nav>
   </div>
 
@@ -1139,7 +1147,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
             <div class="sf-price-buy">₪<strong>1,799</strong> <span style="font-size:12px;color:#64748B">לשניהם יחד</span></div>
-            <button class="sf-add-btn" onclick="addPackToCart('buy-combo')">+ הוסף לסל</button>
+            <button class="sf-add-btn" onclick="addPackToCart('buy-combo-'+buyComboGender)">+ הוסף לסל</button>
           </div>
         </div>
 
@@ -1433,7 +1441,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var subtype = 'pack'; // 'pack' or 'both'
   var months = 3;
   var selectedPack = null;
-  var packBuyPrices = { 'buy-women': 1119, 'buy-men': 1119, 'buy-combo': 1799, 'buy-daypack': 579, 'daypack-only': 99 };
+  var packBuyPrices = { 'buy-women': 1119, 'buy-men': 1119, 'buy-combo': 1799, 'buy-combo-women': 1799, 'buy-combo-men': 1799, 'buy-daypack': 579, 'daypack-only': 99 };
 
   function calcRentPrice(m) {
     if (subtype === 'daypack') return m === 1 ? 150 : 148 + (Math.min(m,6) - 1) * 49;
@@ -1655,7 +1663,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     'rent-men':     'מוצילה לגברים 60–70L (אוספרי/גרגורי)',
     'buy-women':    'מוצילה לנשים 65L — קנייה',
     'buy-men':      'מוצילה לגברים 65L — קנייה',
-    'buy-combo':    'מוצילה 65L + תיק יום 30L — קנייה',
+    'buy-combo':        'מוצילה 65L + תיק יום 30L — קנייה',
+    'buy-combo-women':  'מוצילה לנשים 65L + תיק יום 30L — קנייה',
+    'buy-combo-men':    'מוצילה לגברים 65L + תיק יום 30L — קנייה',
     'buy-daypack':  'תיק יום 30L (Osprey Sportlite 30) — קנייה',
     'daypack-only': 'תיק יום 30L (Osprey Sportlite 30)'
   };
@@ -1678,7 +1688,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var rentGender = 'women';
 
   window.addRentMocila = function() {
-    addPackToCart(sfComboGender === 'men' ? 'rent-men' : 'rent-women');
+    var g = subtype === 'pack' ? rentGender : sfComboGender;
+    addPackToCart(g === 'men' ? 'rent-men' : 'rent-women');
   };
 
   window.rentCarouselMove = function(dir) {
@@ -1959,6 +1970,45 @@ window.openEquipMenu = function() {
 window.closeEquipMenu = function() {
   document.getElementById('side-equip-panel').classList.remove('open');
 };
+
+// Close panel when clicking any link inside a sub-panel
+(function(){
+  function closeAll() {
+    document.getElementById('side-guide-panel').classList.remove('open');
+    document.getElementById('side-equip-panel').classList.remove('open');
+    document.getElementById('side-panel').classList.remove('open');
+    document.getElementById('side-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  ['side-guide-panel','side-equip-panel'].forEach(function(id) {
+    var panel = document.getElementById(id);
+    if (!panel) return;
+    panel.addEventListener('click', function(e) {
+      var a = e.target.closest('a');
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      var hash = href.indexOf('#') !== -1 ? href.split('#')[1] : null;
+      e.preventDefault();
+      closeAll();
+      setTimeout(function() {
+        if (href.startsWith('#')) {
+          var el = document.getElementById(href.slice(1));
+          if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.pageYOffset);
+        } else {
+          window.location.href = href;
+        }
+      }, 310);
+      if (false) {
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            var el = document.getElementById(hash);
+            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset });
+          });
+        });
+      }
+    });
+  });
+})();
 
 // Fix panel IDs — real panels are named -real, reassign to sf-panel-N
 (function(){

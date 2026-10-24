@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html dir="rtl" lang="he-IL">
 <head>
 <!-- Google Tag Manager -->
@@ -489,25 +489,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button class="side-close-btn" id="side-close">✕</button>
   <nav class="side-nav">
     <a href="index.html">דף הבית</a>
-    <a href="index.html#formpack">חבילה 360° לטיול</a>
-    <a href="coaching.html">ליווי אישי למטיילים</a>
-    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
-    <a href="categories/bags-rental.html">מוצ'ילות</a>
-    <a href="categories/day-bags.html">תיקי יום</a>
-    <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
-    <a href="categories/hygiene.html">ציוד היגיינה</a>
-    <a href="categories/field.html">ציוד שטח</a>
-    <a href="categories/benefits.html">הטבות בביורוקרטיה בחינם</a>
-    <a href="about.html">אודות</a>
+    <a href="index.html#formpack">תכינו אותי 360 לטיול</a>
     <button class="side-guide-btn" onclick="openGuideMenu()">המדריך המלא לטיול <span style="font-size:12px">◀</span></button>
+    <a href="coaching.html">ליווי אישי למטיילים</a>
+    <button class="side-guide-btn" onclick="openEquipMenu()">ציוד <span style="font-size:12px">◀</span></button>
+    <a href="about.html">אודות</a>
     <a href="order-summary.html" style="color:#F97316">לעגלה שלי 🛒</a>
   </nav>
-  <div class="side-social">
-    <a href="https://www.instagram.com/the_smart_traveler_il/" target="_blank" title="אינסטגרם"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><defs><radialGradient id="ig_grad" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig_grad)"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="white" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="white"/></svg></a>
-    <a href="https://www.tiktok.com/search?q=%D7%94%D7%9E%D7%98%D7%99%D7%99%D7%9C%20%D7%94%D7%97%D7%9B%D7%9D&t=1783241102121" target="_blank" title="טיקטוק"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#000"/><path d="M17 6.5c-.9-.4-1.6-1.2-1.9-2.1h-1.9v9.1c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.2 0 .4 0 .6.1V9.6c-.2 0-.4-.1-.6-.1-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4V9.1c.8.5 1.7.8 2.7.8V7.1c-.3 0-.6-.2-.9-.6z" fill="white"/></svg></a>
-    <a href="https://wa.link/081ywl" target="_blank" title="ווצאפ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 4a8 8 0 00-6.93 12L4 20l4.1-1.04A8 8 0 1012 4zm0 14.4a6.38 6.38 0 01-3.26-.9l-.23-.14-2.43.62.64-2.37-.15-.24A6.4 6.4 0 1112 18.4zm3.5-4.76c-.18-.09-1.08-.53-1.25-.59-.17-.06-.29-.09-.41.09-.12.18-.48.59-.59.71-.1.12-.22.13-.4.04-.18-.09-.77-.28-1.46-.9-.54-.48-.9-1.07-1.01-1.25-.1-.18-.01-.28.08-.37.09-.08.18-.2.28-.29.09-.1.12-.17.18-.28.06-.11.03-.21-.01-.29-.05-.09-.41-.99-.56-1.36-.15-.35-.3-.3-.41-.31h-.35c-.12 0-.32.05-.49.23-.17.18-.65.64-.65 1.55s.67 1.8.76 1.92c.1.12 1.32 2.01 3.19 2.82.44.19.79.31 1.06.39.44.14.85.12 1.17.07.36-.05 1.08-.44 1.23-.87.15-.43.15-.8.1-.87-.04-.08-.16-.12-.34-.21z" fill="white"/></svg></a>
-    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank" title="וויז"><img src="https://www.gstatic.com/images/branding/product/1x/waze_48dp.png" width="26" height="26" alt="Waze" style="display:block;border-radius:50%"></a>
-  </div>
+
+  <!-- GUIDE SUB-MENU -->
   <div class="side-sub-panel" id="side-guide-panel">
     <button class="side-back-btn" onclick="closeGuideMenu()">▶ חזרה לתפריט</button>
     <nav class="side-nav">
@@ -532,6 +522,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#TG_19">שלב 19: צ'ק ליסט יום ראשון</a>
       <a href="#TG_20">שלב 20: חבילה 360° עם המטייל החכם</a>
     </nav>
+  </div>
+
+  <!-- EQUIP SUB-MENU -->
+  <div class="side-sub-panel" id="side-equip-panel">
+    <button class="side-back-btn" onclick="closeEquipMenu()">▶ חזרה לתפריט</button>
+    <nav class="side-nav">
+      <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+      <a href="categories/bags-rental.html">מוצ'ילות</a>
+      <a href="categories/day-bags.html">תיקי יום</a>
+      <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
+      <a href="categories/hygiene.html">ציוד היגיינה</a>
+      <a href="categories/field.html">ציוד שטח</a>
+      <a href="categories/benefits.html">הטבות בחינם</a>
+    </nav>
+  </div>
+
+  <div class="side-social">
+    <a href="https://www.instagram.com/the_smart_traveler_il/" target="_blank" title="אינסטגרם"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><defs><radialGradient id="ig_grad" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig_grad)"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="white" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="white"/></svg></a>
+    <a href="https://www.tiktok.com/search?q=%D7%94%D7%9E%D7%98%D7%99%D7%99%D7%9C%20%D7%94%D7%97%D7%9B%D7%9D&t=1783241102121" target="_blank" title="טיקטוק"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#000"/><path d="M17 6.5c-.9-.4-1.6-1.2-1.9-2.1h-1.9v9.1c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.2 0 .4 0 .6.1V9.6c-.2 0-.4-.1-.6-.1-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4V9.1c.8.5 1.7.8 2.7.8V7.1c-.3 0-.6-.2-.9-.6z" fill="white"/></svg></a>
+    <a href="https://wa.link/081ywl" target="_blank" title="ווצאפ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 4a8 8 0 00-6.93 12L4 20l4.1-1.04A8 8 0 1012 4zm0 14.4a6.38 6.38 0 01-3.26-.9l-.23-.14-2.43.62.64-2.37-.15-.24A6.4 6.4 0 1112 18.4zm3.5-4.76c-.18-.09-1.08-.53-1.25-.59-.17-.06-.29-.09-.41.09-.12.18-.48.59-.59.71-.1.12-.22.13-.4.04-.18-.09-.77-.28-1.46-.9-.54-.48-.9-1.07-1.01-1.25-.1-.18-.01-.28.08-.37.09-.08.18-.2.28-.29.09-.1.12-.17.18-.28.06-.11.03-.21-.01-.29-.05-.09-.41-.99-.56-1.36-.15-.35-.3-.3-.41-.31h-.35c-.12 0-.32.05-.49.23-.17.18-.65.64-.65 1.55s.67 1.8.76 1.92c.1.12 1.32 2.01 3.19 2.82.44.19.79.31 1.06.39.44.14.85.12 1.17.07.36-.05 1.08-.44 1.23-.87.15-.43.15-.8.1-.87-.04-.08-.16-.12-.34-.21z" fill="white"/></svg></a>
+    <a href="https://waze.com/ul?ll=31.627,34.674&navigate=yes" target="_blank" title="וויז"><img src="https://www.gstatic.com/images/branding/product/1x/waze_48dp.png" width="26" height="26" alt="Waze" style="display:block;border-radius:50%"></a>
   </div>
 </div>
 
@@ -856,12 +867,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="cc-card-header cc-blue">PassportCard Pay</div>
           <div class="cc-stats">
             <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val green">0₪</span></div>
-            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val green">0%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת סליקה</span><span class="cc-stat-val green">0%</span></div>
             <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val green">0%</span></div>
           </div>
           <div class="cc-pros">
             <div class="cc-section-title">✅ יתרונות</div>
-            <div class="cc-item">ללא עמלת ניהון</div>
+            <div class="cc-item">ללא עמלת סליקה</div>
             <div class="cc-item">ללא עמלת משיכה</div>
           </div>
           <div class="cc-cons">
@@ -877,18 +888,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="cc-card">
           <div class="cc-card-header cc-orange">ישראכרט Basic</div>
           <div class="cc-stats">
-            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val green">0₪</span></div>
-            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val green">0%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val green">0₪</span><span style="display:block;font-size:10px;color:#64748B;line-height:1.3;margin-top:2px">בגיהוץ של 1₪+ בחודש, אחרת 12₪/חודש</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת סליקה</span><span class="cc-stat-val green">0%</span></div>
             <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val red">3.5%</span></div>
           </div>
           <div class="cc-pros">
             <div class="cc-section-title">✅ יתרונות</div>
-            <div class="cc-item">ללא עמלת ניהון</div>
-            <div class="cc-item">ללא דמי כרטיס</div>
+            <div class="cc-item">ללא עמלת סליקה</div>
+            <div class="cc-item">0₪ דמי כרטיס (בשימוש חודשי קבוע — גיהוץ של מינימום 1₪ בחודש)</div>
           </div>
           <div class="cc-cons">
             <div class="cc-section-title">❌ חסרונות</div>
             <div class="cc-item">עמלת משיכה במזומן גבוהה (3.5%)</div>
+            <div class="cc-item">12₪ דמי כרטיס בחודש שבו לא היה שימוש בכרטיס</div>
           </div>
           <a href="https://share.google/SePnQ9MqPIBcalVFQ" target="_blank" class="cc-btn">להזמנה ←</a>
         </div>
@@ -898,12 +910,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="cc-card-header cc-dark">ONE ZERO</div>
           <div class="cc-stats">
             <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val orange">49₪/חודש</span></div>
-            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val green">0%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת סליקה</span><span class="cc-stat-val green">0%</span></div>
             <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val green">2%</span></div>
           </div>
           <div class="cc-pros">
             <div class="cc-section-title">✅ יתרונות</div>
-            <div class="cc-item">ללא עמלת ניהון</div>
+            <div class="cc-item">ללא עמלת סליקה</div>
             <div class="cc-item">עמלת משיכה נמוכה יחסית</div>
             <div class="cc-item">החזר דמי משמרת חשבון</div>
           </div>
@@ -920,7 +932,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="cc-card-header cc-purple">MAX בהצטרפות</div>
           <div class="cc-stats">
             <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val green">0₪</span></div>
-            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val red">3%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת סליקה</span><span class="cc-stat-val red">3%</span></div>
             <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val red">3%</span></div>
           </div>
           <div class="cc-pros">
@@ -929,7 +941,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="cc-cons">
             <div class="cc-section-title">❌ חסרונות</div>
-            <div class="cc-item">עמלת ניהון גבוהה (3%)</div>
+            <div class="cc-item">עמלת סליקה גבוהה (3%)</div>
             <div class="cc-item">עמלת משיכה גבוהה (3%)</div>
           </div>
           <a href="#" class="cc-btn" style="opacity:0.5;pointer-events:none">לא מומלץ לטיול</a>
@@ -940,14 +952,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="cc-card-header cc-purple">MAX I Need It</div>
           <div class="cc-stats">
             <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val green">0₪</span></div>
-            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val orange">1%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת סליקה</span><span class="cc-stat-val orange">1%</span></div>
             <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val red">3%</span></div>
           </div>
           <div class="cc-pros">
             <div class="cc-section-title">✅ יתרונות</div>
             <div class="cc-item">ללא דמי כרטיס</div>
-            <div class="cc-item">עמלת ניהון נמוכה יחסית (1%)</div>
-            <div class="cc-item">עמלת ניהון מוקפאת</div>
+            <div class="cc-item">עמלת סליקה נמוכה יחסית (1%)</div>
+            <div class="cc-item">עמלת סליקה מוקפאת</div>
           </div>
           <div class="cc-cons">
             <div class="cc-section-title">❌ חסרונות</div>
@@ -961,9 +973,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="cc-card">
           <div class="cc-card-header cc-teal">Laya</div>
           <div class="cc-stats">
-            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val orange">~45₪/חודש</span></div>
-            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת ניהון</span><span class="cc-stat-val green">~0%</span></div>
-            <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val orange">~1%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">💳 דמי כרטיס</span><span class="cc-stat-val orange">45₪ חד פעמי</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🌍 עמלת סליקה</span><span class="cc-stat-val green">~0%</span></div>
+            <div class="cc-stat"><span class="cc-stat-label">🏧 עמלת משיכה</span><span class="cc-stat-val orange">1%</span></div>
           </div>
           <div class="cc-pros">
             <div class="cc-section-title">✅ יתרונות</div>
@@ -973,7 +985,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="cc-cons">
             <div class="cc-section-title">❌ חסרונות</div>
-            <div class="cc-item">דמי כרטיס חודשיים (~45₪)</div>
+            <div class="cc-item">תשלום חד פעמי בהזמנה (כולל משלוח)</div>
             <div class="cc-item">עמלות עקיפות נוספות</div>
           </div>
           <a href="https://share.google/d2yg1nJ5buPLRMtzg" target="_blank" class="cc-btn">להזמנה ←</a>
@@ -1678,7 +1690,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- שלב 15 — ביטוח לאומי (הועבר לפני שלבי הטיסה) -->
-  <span id="TG_18" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
+  <span id="TG_15" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
   <div class="step-card locked-step" data-step="15">
     <div class="lock-overlay">
       <div style="font-size:36px">🎁</div>
@@ -1702,7 +1714,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- שלב 16 — נעול למי שאין קוד 1001 -->
-  <span id="TG_15" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
+  <span id="TG_16" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
   <div class="step-card locked-step" data-step="16">
     <div class="lock-overlay">
       <div style="font-size:36px">🔒</div>
@@ -1726,7 +1738,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- שלב 17 — נעול -->
-  <span id="TG_16" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
+  <span id="TG_17" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
   <div class="step-card locked-step" data-step="17">
     <div class="lock-overlay">
       <div style="font-size:36px">🔒</div>
@@ -1750,7 +1762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- שלב 18 — נעול -->
-  <span id="TG_17" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
+  <span id="TG_18" style="display:block;position:relative;top:-90px;visibility:hidden;"></span>
   <div class="step-card locked-step" data-step="18">
     <div class="lock-overlay">
       <div style="font-size:36px">🔒</div>
@@ -1922,11 +1934,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function close(){ panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; }
   if(hamburger) hamburger.addEventListener('click', open);
   if(closeBtn)  closeBtn.addEventListener('click', close);
-  if(overlay)   overlay.addEventListener('click', function(){ close(); closeGuideMenu(); });
+  if(overlay)   overlay.addEventListener('click', function(){ close(); closeGuideMenu(); closeEquipMenu(); });
 })();
 
 window.openGuideMenu = function() { document.getElementById('side-guide-panel').classList.add('open'); };
 window.closeGuideMenu = function() { document.getElementById('side-guide-panel').classList.remove('open'); };
+window.openEquipMenu  = function() { document.getElementById('side-equip-panel').classList.add('open'); };
+window.closeEquipMenu = function() { document.getElementById('side-equip-panel').classList.remove('open'); };
+
+// Close panel when clicking any link inside a sub-panel
+(function(){
+  function scrollToStep(id) {
+    var m = /^TG_(\d+)$/.exec(id);
+    var el = m ? document.querySelector('.step-card[data-step="' + m[1] + '"]') : document.getElementById(id);
+    if (!el) return;
+    var header = document.querySelector('.sticky-progress') || document.querySelector('header');
+    var offset = header ? header.getBoundingClientRect().bottom + 10 : 90;
+    window.scrollTo(0, el.getBoundingClientRect().top + window.pageYOffset - offset);
+  }
+  window.scrollToStep = scrollToStep;
+  if (location.hash) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.addEventListener('load', function(){
+      setTimeout(function(){ scrollToStep(location.hash.slice(1)); }, 100);
+    });
+  }
+  function closeAll() {
+    document.getElementById('side-guide-panel').classList.remove('open');
+    document.getElementById('side-equip-panel').classList.remove('open');
+    document.getElementById('side-panel').classList.remove('open');
+    document.getElementById('side-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  ['side-guide-panel','side-equip-panel'].forEach(function(id) {
+    var panel = document.getElementById(id);
+    if (!panel) return;
+    panel.addEventListener('click', function(e) {
+      var a = e.target.closest('a');
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      var hash = href.indexOf('#') !== -1 ? href.split('#')[1] : null;
+      e.preventDefault();
+      closeAll();
+      setTimeout(function() {
+        if (href.startsWith('#')) {
+          scrollToStep(href.slice(1));
+        } else {
+          window.location.href = href;
+        }
+      }, 310);
+      if (false) {
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            var el = document.getElementById(hash);
+            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset });
+          });
+        });
+      }
+    });
+  });
+})();
 
 // PROGRESS
 var done = {};
