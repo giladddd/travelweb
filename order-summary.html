@@ -1263,9 +1263,11 @@ window.addUpsell = function(btn, id, name, price) {
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(order)
     }).then(function(res) {
-      return res.json();
-    }).then(function(data) {
-      if (data.success) {
+      return res.text().then(function(t) { return { ok: res.ok, text: t }; });
+    }).then(function(r) {
+      var ok = r.ok;
+      try { var j = JSON.parse(r.text); if (j && j.success === false) ok = false; } catch (e) {}
+      if (ok) {
         localStorage.removeItem('smartCart');
         window.location.href = 'thank-you.html?name=' + encodeURIComponent(order.name);
       } else {
