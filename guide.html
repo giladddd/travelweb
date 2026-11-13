@@ -398,6 +398,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     body.acc-contrast { filter: contrast(1.6) brightness(0.95); }
     body.acc-links a { text-decoration: underline !important; font-weight: 700 !important; color: #1A56DB !important; }
   </style>
+<style id="desk-nav-css">
+  .header-nav { display:flex; gap:4px; align-items:center; }
+  .header-nav > a, .header-nav .nav-dropdown > a, .header-nav .nav-dropdown > span {
+    display:inline-flex; align-items:center; gap:4px; padding:8px 12px; border-radius:999px;
+    font-size:15px; font-weight:600; color:#0F172B; white-space:nowrap; cursor:pointer;
+    text-decoration:none; transition:background .15s, color .15s; line-height:1.2;
+  }
+  .header-nav > a:hover, .header-nav .nav-dropdown:hover > a, .header-nav .nav-dropdown:hover > span { background:#FFF7ED; color:#F97316; }
+  .header-nav a.is-active, .header-nav .nav-dropdown > a.is-active { color:#F97316; }
+  .nav-caret { font-size:11px; opacity:.7; }
+  .header-nav .nav-dropdown { position:relative; }
+  .header-nav .nav-dropdown-menu {
+    display:none; position:absolute; top:100%; right:0; margin-top:0; padding:8px;
+    background:#0F172B; border-radius:14px; box-shadow:0 12px 32px rgba(15,23,43,.28);
+    min-width:220px; z-index:999;
+  }
+  .header-nav .nav-dropdown-menu::before { content:''; position:absolute; top:-10px; left:0; right:0; height:10px; }
+  .header-nav .nav-dropdown:hover .nav-dropdown-menu, .header-nav .nav-dropdown:focus-within .nav-dropdown-menu { display:block; }
+  .header-nav .nav-dropdown-menu a {
+    display:block; padding:10px 14px; border-radius:8px; font-size:14px; font-weight:600;
+    color:#E2E8F0; white-space:nowrap; text-decoration:none; transition:background .15s, color .15s;
+  }
+  .header-nav .nav-dropdown-menu a:hover { background:rgba(249,115,22,.15); color:#FB923C; }
+  .header-nav .nav-mega { width:520px; }
+  .header-nav .nav-mega-all { color:#FB923C !important; border-bottom:1px solid rgba(255,255,255,.08); border-radius:8px 8px 0 0 !important; margin-bottom:4px; }
+  .header-nav .nav-mega-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 4px; max-height:60vh; overflow-y:auto; }
+  .header-nav .nav-mega-grid a { display:flex; align-items:center; gap:10px; white-space:normal; padding:8px 10px; }
+  .header-nav .nav-mega-grid b {
+    flex:0 0 24px; height:24px; border-radius:50%; background:rgba(249,115,22,.18); color:#FB923C;
+    font-size:12px; display:inline-flex; align-items:center; justify-content:center;
+  }
+  @media (max-width:1180px) { .header-nav > a, .header-nav .nav-dropdown > a, .header-nav .nav-dropdown > span { padding:8px 8px; font-size:14px; } }
+  @media (max-width:768px) { .header-nav { display:none !important; } }
+</style>
 </head>
 <body>
 <!-- ACCESS GATE -->
@@ -557,12 +591,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
   </div>
   <nav class="header-nav">
-    <a href="categories/bags-rental.html">מוצ'ילות</a>
-    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
-    <a href="categories/rental.html">ציוד</a>
-    <a href="guide.html" style="color:#F97316">מדריך</a>
+    <a href="index.html">דף הבית</a>
+    <a href="index.html#formpack">תכינו אותי 360 לטיול</a>
+    <div class="nav-dropdown">
+      <a href="guide.html" class="is-active">המדריך המלא לטיול <span class="nav-caret">▾</span></a>
+      <div class="nav-dropdown-menu nav-mega">
+        <a href="guide.html" class="nav-mega-all">📋 כל המדריך</a>
+        <div class="nav-mega-grid">
+          <a href="guide.html#TG_2"><b>2</b>בוחרים יבשת ויעדים</a>
+          <a href="guide.html#TG_3"><b>3</b>קבוצות וואטסאפ</a>
+          <a href="guide.html#TG_4"><b>4</b>תכנון תקציב</a>
+          <a href="guide.html#TG_5"><b>5</b>מזמינים אשראי</a>
+          <a href="guide.html#TG_6"><b>6</b>דרישות ויזה</a>
+          <a href="guide.html#TG_7"><b>7</b>חיסונים</a>
+          <a href="guide.html#TG_8"><b>8</b>ביטוח נסיעות</a>
+          <a href="guide.html#TG_9"><b>9</b>חברים מחלצים</a>
+          <a href="guide.html#TG_10"><b>10</b>מסמכים</a>
+          <a href="guide.html#TG_11"><b>11</b>אפליקציות לטיול</a>
+          <a href="guide.html#TG_12"><b>12</b>ציוד</a>
+          <a href="guide.html#TG_13"><b>13</b>הזמנת סים</a>
+          <a href="guide.html#TG_14"><b>14</b>כרטיס טיסה פיקטיבי</a>
+          <a href="guide.html#TG_15"><b>15</b>הזמנת טיסה</a>
+          <a href="guide.html#TG_16"><b>16</b>מקום לינה ראשון</a>
+          <a href="guide.html#TG_17"><b>17</b>התנדבות בטיול</a>
+          <a href="guide.html#TG_18"><b>18</b>ביטוח לאומי</a>
+          <a href="guide.html#TG_19"><b>19</b>צ'ק ליסט יום ראשון</a>
+          <a href="guide.html#TG_20"><b>20</b>חבילה 360° עם המטייל החכם</a>
+        </div>
+      </div>
+    </div>
+    <a href="coaching.html">ליווי אישי למטיילים</a>
+    <div class="nav-dropdown">
+      <span>ציוד <span class="nav-caret">▾</span></span>
+      <div class="nav-dropdown-menu">
+        <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+        <a href="categories/bags-rental.html">מוצ'ילות</a>
+        <a href="categories/day-bags.html">תיקי יום</a>
+        <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
+        <a href="categories/hygiene.html">ציוד היגיינה</a>
+        <a href="categories/field.html">ציוד שטח</a>
+        <a href="categories/benefits.html">הטבות בחינם</a>
+      </div>
+    </div>
     <a href="about.html">אודות</a>
-    <a href="https://wa.link/081ywl" target="_blank">WhatsApp</a>
   </nav>
   <a href="guide.html" class="header-progress" title="הכנה לטיול">
     <div class="header-progress-ring">
@@ -584,8 +655,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- HERO -->
 <section class="guide-hero">
   <div class="guide-hero-tag">✈️ המדריך המלא לטיול הגדול</div>
-  <h1>20 שלבים למסע<br><span>המושלם בחייך</span></h1>
-  <p>מהחיוך הראשון ועד לטיסה — כל מה שצריך לדעת, לסדר ולהכין, כולל כלים, קישורים וטיפים שחוסכים לך זמן וכסף.</p>
+  <h1>מדריך 20 השלבים<br><span>המלא לטיול</span></h1>
+  <p>כל מה שצריך לדעת לטיול מוצלח, חסכוני ובלי טעויות — עם כל הטיפים הכי טובים לטיול מוצלח.</p>
   <button id="wa-cta-btn" style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:Assistant,sans-serif;font-size:17px;font-weight:800;border:none;padding:16px 28px;border-radius:50px;box-shadow:0 6px 20px rgba(37,211,102,0.4);cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;margin-top:8px;">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.852L0 24l6.343-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-5.007-1.374l-.359-.214-3.724.885.936-3.617-.234-.372A9.794 9.794 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
     לקביעת שיחת הכנה אישית לטיול — בחינם וללא התחייבות
@@ -1661,7 +1732,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="step-btns">
       <a href="https://voyeglobalconnectivity.pxf.io/0GZVoE" target="_blank" class="step-btn">15% הנחה ב-VOYE</a>
-      <a href="https://bsim.co.il" target="_blank" class="step-btn outline">הזמנה ב-BSIM</a>
     </div>
     <div class="step-check-row">
       <input type="checkbox" id="chk13" onchange="markDone(this,13)">
@@ -1781,32 +1851,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="app-card">
               <img src="assets/images/unnamed.jpg" alt="לוחמים ללא גבולות" class="app-icon">
               <div class="app-name">לוחמים ללא גבולות</div>
-              <div class="app-category">הומניטרי</div>
-              <div class="app-tip">💛 ארגון רפואי בינלאומי — מחפשים מתנדבים עם מיומנויות שונות גם ללא רקע רפואי</div>
+              <div class="app-category">התנדבות עם ילדים</div>
+              <div class="app-tip">💛 התנדבות עם ילדים ברחבי העולם — ארגון ישראלי, הכי מוכר בארץ</div>
+              <a href="https://hfl.org.il/" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;background:#F97316;color:#fff;font-weight:700;font-size:14px;padding:9px 22px;border-radius:50px;text-decoration:none">לאתר הארגון ←</a>
             </div>
             <div class="app-card">
-              <img src="https://www.google.com/s2/favicons?domain=helpup.co.il&sz=128" alt="HelpUp" class="app-icon">
+              <img src="assets/images/helpup.png" alt="HelpUp" class="app-icon" style="object-fit:cover">
               <div class="app-name">HelpUp</div>
               <div class="app-category">פלטפורמת התנדבות</div>
               <div class="app-tip">💛 פלטפורמה ישראלית שמחברת מטיילים להזדמנויות התנדבות ברחבי העולם</div>
+              <a href="https://helpup.org.il/" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;background:#F97316;color:#fff;font-weight:700;font-size:14px;padding:9px 22px;border-radius:50px;text-decoration:none">לאתר הארגון ←</a>
             </div>
             <div class="app-card">
-              <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=128" alt="בדרכו של עידו" class="app-icon">
+              <img src="assets/images/bedarko-shel-ido.png" alt="בדרכו של עידו" class="app-icon" style="object-fit:cover">
               <div class="app-name">בדרכו של עידו — גואטמלה</div>
               <div class="app-category">השראה</div>
-              <div class="app-tip">💛 סרט תיעודי מרגש על מטייל ישראלי שהפך חייו בגואטמלה — השראה לכל מי שחושב על התנדבות</div>
+              <div class="app-tip">💛 התנדבות בדרום אמריקה לזכרו של עידו</div>
+              <a href="https://www.instagram.com/kamalbe__volunteering/" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;background:#F97316;color:#fff;font-weight:700;font-size:14px;padding:9px 22px;border-radius:50px;text-decoration:none">לאינסטגרם ←</a>
             </div>
             <div class="app-card">
               <img src="https://www.google.com/s2/favicons?domain=workaway.info&sz=128" alt="Workaway" class="app-icon">
               <div class="app-name">Workaway</div>
               <div class="app-category">עבודה תמורת לינה</div>
               <div class="app-tip">💛 עבדו כמה שעות ביום בתמורה ללינה וארוחות — אלפי הזדמנויות בכל העולם</div>
+              <a href="https://www.workaway.info/" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;background:#F97316;color:#fff;font-weight:700;font-size:14px;padding:9px 22px;border-radius:50px;text-decoration:none">לאתר ←</a>
             </div>
             <div class="app-card">
               <img src="https://www.google.com/s2/favicons?domain=wwoof.net&sz=128" alt="WWOOF" class="app-icon">
               <div class="app-name">WWOOF</div>
               <div class="app-category">חקלאות אורגנית</div>
               <div class="app-tip">💛 עבדו בחוות אורגניות בכל העולם — לינה וארוחות בחינם בתמורה לעבודה חקלאית</div>
+              <a href="https://wwoof.net/" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;background:#F97316;color:#fff;font-weight:700;font-size:14px;padding:9px 22px;border-radius:50px;text-decoration:none">לאתר ←</a>
             </div>
           </div>
         </div>
@@ -1838,14 +1913,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="step-body">
       <p class="step-desc">לפני שיוצאים מהבית — וודאו שיש לכם הכל:</p>
       <ul style="list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:8px;">
-        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🎫</span><span>כרטיס טיסה — מודפס / שמור במכשיר אופליין</span></li>
-        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🏨</span><span>צילום הזמנת מקום לינה ראשון — כתובת + שם</span></li>
-        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">📶</span><span>סים אינטרנטי ליום הראשון — פעיל ומוכן</span></li>
-        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">📄</span><span>מסמכים בגוגל דרייב — דרכון, ביטוח, כרטיס טיסה</span></li>
-        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🎟️</span><span>כרטיס פיקטיבי או כרטיס יציאה מהמדינה</span></li>
-        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🌐</span><span>Google Translate — השפה המקומית מורדת לאופליין</span></li>
-        <li style="display:flex;align-items:flex-start;gap:8px;font-size:14px;color:#0F172B;"><span style="font-size:18px;line-height:1;">🚖</span><span>הזמנת מונית מהשדה להוסטל / הורדת אפליקציית מוניות מקומית</span></li>
+        <li><label class="day1-item"><input type="checkbox" class="day1-chk" data-k="1"><span style="font-size:18px;line-height:1;">🎫</span><span>כרטיס טיסה — מודפס / שמור במכשיר אופליין</span></label></li>
+        <li><label class="day1-item"><input type="checkbox" class="day1-chk" data-k="2"><span style="font-size:18px;line-height:1;">🏨</span><span>צילום הזמנת מקום לינה ראשון — כתובת + שם</span></label></li>
+        <li><label class="day1-item"><input type="checkbox" class="day1-chk" data-k="3"><span style="font-size:18px;line-height:1;">📶</span><span>סים אינטרנטי ליום הראשון — פעיל ומוכן</span></label></li>
+        <li><label class="day1-item"><input type="checkbox" class="day1-chk" data-k="4"><span style="font-size:18px;line-height:1;">📄</span><span>מסמכים בגוגל דרייב — דרכון, ביטוח, כרטיס טיסה</span></label></li>
+        <li><label class="day1-item"><input type="checkbox" class="day1-chk" data-k="5"><span style="font-size:18px;line-height:1;">🎟️</span><span>כרטיס פיקטיבי או כרטיס יציאה מהמדינה</span></label></li>
+        <li><label class="day1-item"><input type="checkbox" class="day1-chk" data-k="6"><span style="font-size:18px;line-height:1;">🌐</span><span>Google Translate — השפה המקומית מורדת לאופליין</span></label></li>
+        <li><label class="day1-item"><input type="checkbox" class="day1-chk" data-k="7"><span style="font-size:18px;line-height:1;">🚖</span><span>הזמנת מונית מהשדה להוסטל / הורדת אפליקציית מוניות מקומית</span></label></li>
       </ul>
+      <style>
+        .day1-item { display:flex; align-items:center; gap:10px; font-size:14px; color:#0F172B; cursor:pointer; padding:8px 10px; border:1.5px solid #E2E8F0; border-radius:10px; transition:background .15s,border-color .15s; }
+        .day1-item:hover { border-color:#FDBA74; }
+        .day1-chk { width:20px; height:20px; flex:0 0 20px; accent-color:#F97316; cursor:pointer; margin:0; }
+        .day1-item:has(.day1-chk:checked) { background:#F0FDF4; border-color:#86EFAC; }
+        .day1-item:has(.day1-chk:checked) span:last-child { text-decoration:line-through; color:#64748B; }
+      </style>
+      <script>
+        (function(){
+          var KEY = 'day1_checklist';
+          var saved = {};
+          try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+          document.querySelectorAll('.day1-chk').forEach(function(c){
+            c.checked = !!saved[c.dataset.k];
+            c.addEventListener('change', function(){
+              saved[c.dataset.k] = c.checked;
+              try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+            });
+          });
+        })();
+      </script>
     </div>
     <div class="step-check-row">
       <input type="checkbox" id="chk19" onchange="markDone(this,19)">
@@ -1953,6 +2049,7 @@ window.closeEquipMenu = function() { document.getElementById('side-equip-panel')
     window.scrollTo(0, el.getBoundingClientRect().top + window.pageYOffset - offset);
   }
   window.scrollToStep = scrollToStep;
+  window.addEventListener('hashchange', function(){ scrollToStep(location.hash.slice(1)); });
   if (location.hash) {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.addEventListener('load', function(){

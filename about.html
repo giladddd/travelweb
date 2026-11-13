@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html dir="rtl" lang="he-IL">
 <head>
 <!-- Google Tag Manager -->
@@ -126,6 +126,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     body.acc-contrast { filter: contrast(1.6) brightness(0.95); }
     body.acc-links a { text-decoration: underline !important; font-weight: 700 !important; color: #1A56DB !important; }
   </style>
+<style id="desk-nav-css">
+  .header-nav { display:flex; gap:4px; align-items:center; }
+  .header-nav > a, .header-nav .nav-dropdown > a, .header-nav .nav-dropdown > span {
+    display:inline-flex; align-items:center; gap:4px; padding:8px 12px; border-radius:999px;
+    font-size:15px; font-weight:600; color:#0F172B; white-space:nowrap; cursor:pointer;
+    text-decoration:none; transition:background .15s, color .15s; line-height:1.2;
+  }
+  .header-nav > a:hover, .header-nav .nav-dropdown:hover > a, .header-nav .nav-dropdown:hover > span { background:#FFF7ED; color:#F97316; }
+  .header-nav a.is-active, .header-nav .nav-dropdown > a.is-active { color:#F97316; }
+  .nav-caret { font-size:11px; opacity:.7; }
+  .header-nav .nav-dropdown { position:relative; }
+  .header-nav .nav-dropdown-menu {
+    display:none; position:absolute; top:100%; right:0; margin-top:0; padding:8px;
+    background:#0F172B; border-radius:14px; box-shadow:0 12px 32px rgba(15,23,43,.28);
+    min-width:220px; z-index:999;
+  }
+  .header-nav .nav-dropdown-menu::before { content:''; position:absolute; top:-10px; left:0; right:0; height:10px; }
+  .header-nav .nav-dropdown:hover .nav-dropdown-menu, .header-nav .nav-dropdown:focus-within .nav-dropdown-menu { display:block; }
+  .header-nav .nav-dropdown-menu a {
+    display:block; padding:10px 14px; border-radius:8px; font-size:14px; font-weight:600;
+    color:#E2E8F0; white-space:nowrap; text-decoration:none; transition:background .15s, color .15s;
+  }
+  .header-nav .nav-dropdown-menu a:hover { background:rgba(249,115,22,.15); color:#FB923C; }
+  .header-nav .nav-mega { width:520px; }
+  .header-nav .nav-mega-all { color:#FB923C !important; border-bottom:1px solid rgba(255,255,255,.08); border-radius:8px 8px 0 0 !important; margin-bottom:4px; }
+  .header-nav .nav-mega-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 4px; max-height:60vh; overflow-y:auto; }
+  .header-nav .nav-mega-grid a { display:flex; align-items:center; gap:10px; white-space:normal; padding:8px 10px; }
+  .header-nav .nav-mega-grid b {
+    flex:0 0 24px; height:24px; border-radius:50%; background:rgba(249,115,22,.18); color:#FB923C;
+    font-size:12px; display:inline-flex; align-items:center; justify-content:center;
+  }
+  @media (max-width:1180px) { .header-nav > a, .header-nav .nav-dropdown > a, .header-nav .nav-dropdown > span { padding:8px 8px; font-size:14px; } }
+  @media (max-width:768px) { .header-nav { display:none !important; } }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -179,12 +213,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
   </div>
   <nav class="header-nav">
-    <a href="categories/bags-rental.html">מוצ'ילות</a>
-    <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
-    <a href="categories/rental.html">ציוד</a>
-    <a href="guide.html">מדריך</a>
-    <a href="about.html">אודות</a>
-    <a href="https://wa.link/081ywl" target="_blank">WhatsApp</a>
+    <a href="index.html">דף הבית</a>
+    <a href="index.html#formpack">תכינו אותי 360 לטיול</a>
+    <div class="nav-dropdown">
+      <a href="guide.html">המדריך המלא לטיול <span class="nav-caret">▾</span></a>
+      <div class="nav-dropdown-menu nav-mega">
+        <a href="guide.html" class="nav-mega-all">📋 כל המדריך</a>
+        <div class="nav-mega-grid">
+          <a href="guide.html#TG_2"><b>2</b>בוחרים יבשת ויעדים</a>
+          <a href="guide.html#TG_3"><b>3</b>קבוצות וואטסאפ</a>
+          <a href="guide.html#TG_4"><b>4</b>תכנון תקציב</a>
+          <a href="guide.html#TG_5"><b>5</b>מזמינים אשראי</a>
+          <a href="guide.html#TG_6"><b>6</b>דרישות ויזה</a>
+          <a href="guide.html#TG_7"><b>7</b>חיסונים</a>
+          <a href="guide.html#TG_8"><b>8</b>ביטוח נסיעות</a>
+          <a href="guide.html#TG_9"><b>9</b>חברים מחלצים</a>
+          <a href="guide.html#TG_10"><b>10</b>מסמכים</a>
+          <a href="guide.html#TG_11"><b>11</b>אפליקציות לטיול</a>
+          <a href="guide.html#TG_12"><b>12</b>ציוד</a>
+          <a href="guide.html#TG_13"><b>13</b>הזמנת סים</a>
+          <a href="guide.html#TG_14"><b>14</b>כרטיס טיסה פיקטיבי</a>
+          <a href="guide.html#TG_15"><b>15</b>הזמנת טיסה</a>
+          <a href="guide.html#TG_16"><b>16</b>מקום לינה ראשון</a>
+          <a href="guide.html#TG_17"><b>17</b>התנדבות בטיול</a>
+          <a href="guide.html#TG_18"><b>18</b>ביטוח לאומי</a>
+          <a href="guide.html#TG_19"><b>19</b>צ'ק ליסט יום ראשון</a>
+          <a href="guide.html#TG_20"><b>20</b>חבילה 360° עם המטייל החכם</a>
+        </div>
+      </div>
+    </div>
+    <a href="coaching.html">ליווי אישי למטיילים</a>
+    <div class="nav-dropdown">
+      <span>ציוד <span class="nav-caret">▾</span></span>
+      <div class="nav-dropdown-menu">
+        <a href="categories/combo-bags.html">מוצ'ילה + תיק יום</a>
+        <a href="categories/bags-rental.html">מוצ'ילות</a>
+        <a href="categories/day-bags.html">תיקי יום</a>
+        <a href="categories/general-equipment.html">ציוד כללי לטיול</a>
+        <a href="categories/hygiene.html">ציוד היגיינה</a>
+        <a href="categories/field.html">ציוד שטח</a>
+        <a href="categories/benefits.html">הטבות בחינם</a>
+      </div>
+    </div>
+    <a href="about.html" class="is-active">אודות</a>
   </nav>
   <a href="guide.html" class="header-progress" title="הכנה לטיול">
     <div class="header-progress-ring">
