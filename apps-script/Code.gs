@@ -216,8 +216,9 @@ function rentalMonths(d) {
 
 function registerReminder(d) {
   var g = d.tripGoals;
-  if (!g || !g.reminders || !d.email || !g.flightDate || !FREQ_LABELS[g.frequency]) return null;
-  var flight = String(g.flightDate).slice(0, 10);
+  var flightRaw = d.flightDate || g && g.flightDate;
+  if (!g || !g.reminders || !d.email || !/^\d{4}-\d{2}-\d{2}/.test(String(flightRaw || '')) || !FREQ_LABELS[g.frequency]) return null;
+  var flight = String(flightRaw).slice(0, 10);
   var months = Math.min(rentalMonths(d) || CONFIG.DEFAULT_REMINDER_MONTHS, CONFIG.REMINDER_MONTHS);
   var end = addMonths(flight, months);
   var next = nextDate(flight, g.frequency);

@@ -1168,6 +1168,11 @@ window.addUpsell = function(btn, id, name, price) {
       .replace(/"/g,'&quot;');
   }
 
+  function deliveryExtra() {
+    var d = document.getElementById('delivery-type');
+    return d && d.value === 'delivery' ? 39 : 0;
+  }
+
   function renderCart() {
     var container = document.getElementById('cart-items');
     var countEl = document.getElementById('cart-count');
@@ -1230,7 +1235,7 @@ window.addUpsell = function(btn, id, name, price) {
 
     if (countEl) countEl.textContent = cart.length + ' פריטים נבחרו';
 
-    var totalStr = '₪' + total.toLocaleString('he-IL');
+    var totalStr = '₪' + (total + deliveryExtra()).toLocaleString('he-IL');
     if (totalEl) totalEl.textContent = totalStr;
     if (totalAmountEl) totalAmountEl.textContent = totalStr;
     if (totalRowEl) totalRowEl.style.display = cart.length > 0 ? 'flex' : 'none';
@@ -1266,6 +1271,7 @@ window.addUpsell = function(btn, id, name, price) {
     if (streetGroup) streetGroup.style.display = showAddress ? 'grid' : 'none';
     var phone2Group = document.getElementById('phone2-group');
     if (phone2Group) phone2Group.style.display = type === 'delivery' ? '' : 'none';
+    renderCart();
   };
 
   // Form submit
