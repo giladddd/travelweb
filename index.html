@@ -493,8 +493,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="guide.html#TG_16">שלב 16: מקום לינה ראשון</a>
       <a href="guide.html#TG_17">שלב 17: התנדבות בטיול</a>
       <a href="guide.html#TG_18">שלב 18: ביטוח לאומי</a>
-      <a href="guide.html#TG_19">שלב 19: צ'ק ליסט יום ראשון</a>
-      <a href="guide.html#TG_20">שלב 20: חבילה 360° עם המטייל החכם</a>
+      <a href="guide.html#TG_19">שלב 19: המסע שלי — טיול עם משמעות</a>
+      <a href="guide.html#TG_20">שלב 20: דוח מצב חודשי בטיול</a>
+      <a href="guide.html#TG_21">שלב 21: צ'ק ליסט יום הטיסה</a>
+      <a href="guide.html#TG_22">שלב 22: חבילה 360° עם המטייל החכם</a>
     </nav>
   </div>
 
@@ -555,8 +557,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="guide.html#TG_16"><b>16</b>מקום לינה ראשון</a>
           <a href="guide.html#TG_17"><b>17</b>התנדבות בטיול</a>
           <a href="guide.html#TG_18"><b>18</b>ביטוח לאומי</a>
-          <a href="guide.html#TG_19"><b>19</b>צ'ק ליסט יום ראשון</a>
-          <a href="guide.html#TG_20"><b>20</b>חבילה 360° עם המטייל החכם</a>
+          <a href="guide.html#TG_19"><b>19</b>המסע שלי — טיול עם משמעות</a>
+          <a href="guide.html#TG_20"><b>20</b>דוח מצב חודשי בטיול</a>
+          <a href="guide.html#TG_21"><b>21</b>צ'ק ליסט יום הטיסה</a>
+          <a href="guide.html#TG_22"><b>22</b>חבילה 360° עם המטייל החכם</a>
         </div>
       </div>
     </div>
@@ -581,7 +585,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <circle cx="17" cy="17" r="13" fill="none" stroke="#E2E8F0" stroke-width="3"/>
         <circle id="progress-ring" cx="17" cy="17" r="13" fill="none" stroke="#F97316" stroke-width="3" stroke-dasharray="81.68" stroke-dashoffset="81.68" stroke-linecap="round" transform="rotate(-90 17 17)"/>
       </svg>
-      <span id="progress-num" class="header-progress-ring-num">0/18</span>
+      <span id="progress-num" class="header-progress-ring-num">0/22</span>
     </div>
     <div class="header-progress-lbl">מד מוכנות לטיול</div>
   </a>
@@ -2303,7 +2307,7 @@ document.getElementById('hero-cta').addEventListener('click', function(e){
   (function(){
     try{
       var saved=JSON.parse(localStorage.getItem('guideProgress')||'{}');
-      var count=Object.keys(saved).length, total=18;
+      var count=Object.keys(saved).length, total=22;
       var circ=81.68;
       var ring=document.getElementById('progress-ring');
       if(ring) ring.style.strokeDashoffset=(circ*(1-count/total)).toFixed(2);
