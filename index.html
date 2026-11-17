@@ -812,7 +812,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   .quiz-select:focus, .quiz-select:hover { border-color: #F97316; }
   .quiz-select option { font-weight: 600; }
-  .coaching-card.hidden-by-quiz { display: none !important; }
   .sf-quiz-btn.active {
     border-color: #F97316;
     background: #FFF7ED;
@@ -1005,7 +1004,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .quiz-label { font-size: 16px !important; }
     .quiz-select { font-size: 16px !important; padding: 12px 16px !important; padding-left: 36px !important; }
     #quiz-section { gap: 14px !important; margin-bottom: 32px !important; }
-    #coaching-title { font-size: 17px !important; margin-bottom: 16px !important; }
     .coaching-card { padding: 24px 28px !important; border-radius: 18px !important; }
     .coaching-card > div:first-child > div > div:first-child { font-size: 20px !important; }
     .sf-progress .sf-step { font-size: 18px !important; padding: 10px 24px !important; }
@@ -1374,148 +1372,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="sf-step-panel" id="sf-panel-3">
       <h2 class="sf-heading">שלב 3: הכנה ובירוקרטיה</h2>
-      <p class="sf-sub">ספרו לנו קצת עליכם — נמצא את המסלול הכי מתאים לכם</p>
-
-      <!-- QUIZ -->
-      <div id="quiz-section" style="margin-bottom:24px;display:flex;flex-direction:column;gap:10px">
-
-        <!-- לאן הטיסה -->
-        <div class="quiz-row">
-          <label class="quiz-label">✈️ לאן הטיסה?</label>
-          <select class="quiz-select" id="quiz-dest">
-            <option value="">— בחרו יעד —</option>
-            <option value="south-america">🌎 דרום אמריקה</option>
-            <option value="east">🌏 מזרח</option>
-            <option value="africa">🌍 אפריקה</option>
-            <option value="europe">🏰 אירופה</option>
-            <option value="australia-nz">🦘 אוסטרליה — ניו זילנד</option>
-          </select>
+      <div class="coaching-card" id="coaching-checkup" style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:20px;border:2px solid #F97316;margin-bottom:28px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div style="font-size:17px;font-weight:800;color:#0F172B">📞 המטייל החכם — שיחת הכנה לטיול</div>
+          <div style="font-size:20px;font-weight:800;color:#22C55E">חינם</div>
         </div>
+        <p style="font-size:14px;color:#475569;line-height:1.7;margin:0 0 14px">שיחה שבה נבין לאן הטיסה ומה היעדים, ונתאים ביחד את המוצ'ילות והציוד שמתאימים לכם. נעבור איתכם על הכל — כמו חבר מקצוען שנמצא שם בשבילכם, עד שתהיו מוכנים ב-100%:</p>
 
-        <!-- לכמה זמן -->
-        <div class="quiz-row">
-          <label class="quiz-label">📅 לכמה זמן?</label>
-          <select class="quiz-select" id="quiz-duration">
-            <option value="">— בחרו משך —</option>
-            <option value="1m">חודש</option>
-            <option value="2m">2 חודשים</option>
-            <option value="3m">3 חודשים</option>
-            <option value="4m">4 חודשים</option>
-            <option value="5m">5 חודשים</option>
-            <option value="6m">6 חודשים</option>
-            <option value="7m+">7 חודשים ומעלה</option>
-          </select>
+        <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:6px 12px;font-size:13px;color:#374151;margin-bottom:16px;line-height:1.5">
+          <div>✅ ביטוח עם סוכן אישי — ללא תוספת עלות</div>
+          <div>✅ ויזות וחיסונים</div>
+          <div>✅ כרטיס פיקטיבי</div>
+          <div>✅ איך להזמין טיסות ומקומות לינה בזול</div>
+          <div>✅ מסמכים חשובים ואשראי בלי עמלות</div>
+          <div>✅ רשימת ציוד</div>
+          <div>✅ מעבר אישי על בטיחות</div>
+          <div>✅ התנדבויות בטיול</div>
+          <div>✅ צ'ק ליסט ליום הטיסה</div>
+          <div>✅ מטרות אישיות שילוו אתכם לאורך הטיול</div>
         </div>
-
-        <!-- סוג מטייל -->
-        <div class="quiz-row">
-          <label class="quiz-label">🎒 סוג מטייל?</label>
-          <select class="quiz-select" id="quiz-traveler">
-            <option value="">— בחרו סוג —</option>
-            <option value="trekker">🥾 טרקים ונופים</option>
-            <option value="beach">🏖️ בטן גב</option>
-            <option value="mix">🌄 שילוב של שניהם</option>
-          </select>
+        <p style="font-size:13px;font-weight:700;color:#C2410C;text-align:center;margin:-6px 0 16px">➕ ועוד הרבה — כל מה שצריך לדעת לטיול הגדול</p>
+        <div style="background:#FFF7ED;color:#92400E;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700">
+          <div>📞 שיחה של 15 דקות &nbsp;|&nbsp; ⏱️ חוסך ~40 שעות מחקר &nbsp;|&nbsp; 🎯 טיול עם משמעות</div>
+          <div style="margin-top:4px">💰 חיסכון בהכנה לטיול ~₪1,400 &nbsp;|&nbsp; 💰 חיסכון בטיול עצמו ~₪2,900</div>
         </div>
-
-        <!-- רמת מוכנות -->
-        <div class="quiz-row">
-          <label class="quiz-label">📊 רמת המוכנות?</label>
-          <select class="quiz-select" id="quiz-readiness" onchange="updateRecommended(this.value)">
-            <option value="">— בחרו רמה —</option>
-            <option value="ready" selected>✅ די מוכן — אשמח למדריך המלא בחינם</option>
-            <option value="some-help">🙋 חצי מוכן — אשמח לשיחה חד פעמית</option>
-            <option value="lost">🆘 צריך עזרה —אשמח לליווי מלא</option>
-          </select>
-        </div>
-
-      </div>
-
-      <p id="coaching-title" style="font-size:14px;font-weight:700;color:#0F172B;margin-bottom:12px">🎯 בחרו את מסלול ההכנה שמתאים לכם:</p>
-      <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:28px">
-
-        <!-- חינמי — ברירת מחדל -->
-        <div class="coaching-card" id="coaching-checkup" onclick="selectCoaching('coaching-checkup','המטייל החכם צ\'ק אפ ובטיחות — בחינם',0)" style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:18px 20px;cursor:pointer;border:2px solid #F97316;transition:border-color 0.2s">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-            <div>
-              <div style="font-size:16px;font-weight:800;color:#0F172B">המטייל החכם צ'ק אפ ובטיחות — בחינם</div>
-              <div style="font-size:12px;color:#64748b;margin-top:2px">מדריך מלא לטיול + מעבר אישי על בטיחות</div>
-            </div>
-            <div style="text-align:left">
-              <div style="font-size:20px;font-weight:800;color:#22C55E">חינם</div>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 8px;font-size:13px;color:#374151;margin-bottom:10px">
-            <div>✅ מדריך מלא לטיול מ-0</div>
-            <div>✅ מעבר אישי על בטיחות בטיול</div>
-            <div>✅ כרטיס פיקטיבי</div>
-            <div>✅ ויזות</div>
-            <div>✅ צ'ק ליסט ליום הראשון</div>
-            <div>✅ רשימת ציוד</div>
-            <div>✅ סים ואינטרנט</div>
-            <div style="grid-column:1/-1;font-weight:800;color:#B91C1C;margin-top:4px">✅ ביטוח עם סוכן אישי — ללא תוספת עלות בהזמנת חבילה<br><span style="font-size:11px;font-weight:600;color:#64748b">(הסוכנים מקבלים את העמלות ישירות מחברות הביטוח, ועובדים עם כל החברות — המחיר זהה לעשות דרך סוכן או לבד באינטרנט)</span></div>
-          </div>
-          <div style="background:#FFF7ED;color:#92400E;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700">
-            ⏱️ חוסך ~25 שעות מחקר &nbsp;|&nbsp; 💰 חוסך ~₪1,400
-          </div>
-        </div>
-
-        <!-- פלוס -->
-        <div class="coaching-card" id="coaching-plus" onclick="selectCoaching('coaching-plus','המטייל החכם פלוס',197)" style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:18px 20px;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s;position:relative">
-          <div style="position:absolute;top:-1px;right:16px;background:#F97316;color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:0 0 8px 8px">הכי פופולרי 🔥</div>
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;padding-top:6px">
-            <div>
-              <div style="font-size:16px;font-weight:800;color:#0F172B">המטייל החכם פלוס</div>
-              <div style="font-size:12px;color:#64748b;margin-top:2px">כל המדריך + הכנה אישית + טיסות ולינה</div>
-            </div>
-            <div style="text-align:left">
-              <div style="font-size:20px;font-weight:800;color:#F97316">₪197</div>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 8px;font-size:13px;color:#374151;margin-bottom:10px">
-            <div>✅ כל המסלול החינמי</div>
-            <div>✅ מסמכים, ביטוח, אשראי</div>
-            <div>✅ סים ובירוקרטיה</div>
-            <div>✅ הזמנת טיסות בזול</div>
-            <div>✅ מקומות לינה</div>
-            <div>✅ התנהלות וחסכון בטיול</div>
-            <div>✅ שאלות וייעוץ אישי</div>
-          </div>
-          <div style="background:#F97316;color:white;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;display:flex;justify-content:space-between">
-            <span>⏱️ חוסך ~50 שעות מחקר</span>
-            <span>💰 חוסך ~₪3,100</span>
-          </div>
-        </div>
-
-        <!-- פרימיום -->
-        <div class="coaching-card" id="coaching-premium" onclick="selectCoaching('coaching-premium','המטייל החכם פרימיום',1999)" style="background:white;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,0.08);padding:18px 20px;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-            <div>
-              <div style="font-size:16px;font-weight:800;color:#0F172B">המטייל החכם פרימיום</div>
-              <div style="font-size:12px;color:#64748b;margin-top:2px">3 פגישות 1:1 — ליווי צמוד עד הטיסה</div>
-            </div>
-            <div style="text-align:left">
-              <div style="font-size:12px;color:#94a3b8;text-decoration:line-through">₪3,800</div>
-              <div style="font-size:20px;font-weight:800;color:#F97316">₪1,999</div>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 8px;font-size:13px;color:#374151;margin-bottom:10px">
-            <div>✅ כל מה שבפלוס</div>
-            <div>✅ תכנון מסלול ויעדים</div>
-            <div>✅ הזמנת טיסה בפועל</div>
-            <div>✅ הכנה מנטלית לטיול</div>
-            <div>✅ ליווי צמוד עד הטיסה</div>
-            <div>✅ זמינות מלאה לשאלות</div>
-          </div>
-          <div style="background:#F97316;color:white;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;display:flex;justify-content:space-between">
-            <span>⏱️ חוסך ~100 שעות מחקר</span>
-            <span>💰 חוסך ~₪4,200</span>
-          </div>
-        </div>
-
       </div>
       <div style="text-align:center;margin-top:24px">
-        <button class="sf-btn-main" onclick="submitForm()">המשך לסיכום הזמנה 🎒</button>
+        <button class="sf-btn-main" onclick="submitForm()">הוסיפו לסל והמשיכו לסיכום ההזמנה 🎒</button>
       </div>
     </div>
 
@@ -1746,7 +1629,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     injectAddButtons();
     if (step === 3 && !coachingAddedToCart) {
       coachingAddedToCart = true;
-      addItemToCart({id:'coaching-checkup', name:"המטייל החכם צ'ק אפ ובטיחות — בחינם", price:0, qty:1, mode:'buy', duration:null});
+      addItemToCart({id:'coaching-checkup', name:"המטייל החכם — שיחת הכנה לטיול בחינם", price:0, qty:1, mode:'buy', duration:null});
     }
   };
   var allPackNames = {
@@ -2130,27 +2013,9 @@ window.selectQuizBtn = function(btn, groupId) {
   document.querySelectorAll('#'+groupId+' .sf-quiz-btn').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
 };
-window.updateRecommended = function(readiness) {
-  var map = { 'ready': 'coaching-checkup', 'some-help': 'coaching-plus', 'lost': 'coaching-premium' };
-  var nameMap = { 'coaching-checkup': "המטייל החכם צ'ק אפ ובטיחות — בחינם", 'coaching-plus': 'המטייל החכם פלוס', 'coaching-premium': 'המטייל החכם פרימיום' };
-  var priceMap = { 'coaching-checkup': 0, 'coaching-plus': 197, 'coaching-premium': 1999 };
-  var recommended = map[readiness];
-  if (!recommended) {
-    document.querySelectorAll('.coaching-card').forEach(function(c){ c.classList.remove('hidden-by-quiz'); });
-    return;
-  }
-  document.querySelectorAll('.coaching-card').forEach(function(c){
-    if (c.id === recommended) {
-      c.classList.remove('hidden-by-quiz');
-    } else {
-      c.classList.add('hidden-by-quiz');
-    }
-  });
-  window.selectCoaching(recommended, nameMap[recommended], priceMap[recommended], true);
-};
+window.selectCoaching('coaching-checkup', "המטייל החכם — שיחת הכנה לטיול בחינם", 0, true);
 
-// init default readiness on load (silent — no toast)
-window.updateRecommended('ready', true);
+
 
 // YouTube facade
 window.__ytPlaying = false; // used by carousel to pause auto-advance while a video is open
